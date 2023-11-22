@@ -6,7 +6,7 @@ const getProductosHandler = async (req, res) => {
 
     const response = await getProductos(branch);
 
-    if (!response) return "not sucursal";
+    if (!response.length) return res.status(400).send("not sucursal");
 
     res.status(200).json(response);
   } catch (error) {
