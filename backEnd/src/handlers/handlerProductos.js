@@ -2,7 +2,7 @@ const { getProductos } = require("../controllers/controllerProductos.js");
 
 const getProductosHandler = async (req, res) => {
   try {
-    const { branch } = req.body; //branch = sucursal
+    const { branch } = req.query; //branch = sucursal
 
     const response = await getProductos(branch);
 
