@@ -1,11 +1,9 @@
 const { Router } = require("express");
 
-const {
-  /*handler */
-} = require(/*handler */);
+const { getVentasHandler } = require("../handlers/handlerVentas.js");
 
 routeVentas = Router();
 
-routeVentas.get("/" /*getVentasHandler*/);
+routeVentas.get("/", getVentasHandler);
 
 module.exports = routeVentas;

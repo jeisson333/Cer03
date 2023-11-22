@@ -1,11 +1,9 @@
 const { Router } = require("express");
 
-const {
-  /*handler */
-} = require(/*handler */);
+const { getProductosHandler } = require("../handlers/handlerProductos.js");
 
 routeProductos = Router();
 
-routeProductos.get("/" /*getRegistroEmpresa*/);
+routeProductos.get("/", getProductosHandler);
 
 module.exports = routeProductos;
