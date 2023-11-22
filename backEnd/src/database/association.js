@@ -40,7 +40,169 @@ const handlerAssociationModels = ({ sequelize }) => {
 
   CATALOGO_UNIVERSAL.hasOne(CATALOGO_UNIVERSAL, {
     foreignKey: {
-      name: "TipoCatalogo",
+      name: "tipo_catalogo",
+    },
+  });
+
+  CATALOGO_UNIVERSAL.belongsTo(CATALOGO_UNIVERSAL, {
+    foreignKey: {
+      name: "tipo_catalogo",
+    },
+  });
+
+  EMPRESA.hasMany(CONTACTO_EMPRESA, {
+    foreignKey: {
+      name: "contacto_empresa",
+    },
+  });
+
+  CONTACTO_EMPRESA.belongsTo(EMPRESA, {
+    foreignKey: {
+      name: "contacto_empresa",
+    },
+  });
+
+  CATALOGO_UNIVERSAL.hasOne(CONTACTO_EMPRESA, {
+    foreignKey: {
+      name: "tipo_contacto",
+    },
+  });
+
+  CONTACTO_EMPRESA.belongsTo(CATALOGO_UNIVERSAL, {
+    foreignKey: {
+      name: "tipo_contacto",
+    },
+  });
+
+  CATALOGO_UNIVERSAL.hasOne(VENDEDOR, {
+    foreignKey: {
+      name: "tipo_documento",
+    },
+  });
+
+  VENDEDOR.belongsTo(CATALOGO_UNIVERSAL, {
+    foreignKey: {
+      name: "tipo_documento",
+    },
+  });
+
+  SUCURSAL.hasOne(VENDEDOR, {
+    foreignKey: {
+      name: "vendedor_sucursal",
+    },
+  });
+
+  VENDEDOR.belongsTo(SUCURSAL, {
+    foreignKey: {
+      name: "vendedor_sucursal",
+    },
+  });
+
+  EMPRESA.hasOne(SUCURSAL, {
+    foreignKey: {
+      name: "sucursal_empresa",
+    },
+  });
+
+  SUCURSAL.belongsTo(EMPRESA, {
+    foreignKey: {
+      name: "sucursal_empresa",
+    },
+  });
+
+  CATALOGO_UNIVERSAL.hasOne(PRODUCTO, {
+    foreignKey: {
+      name: "tipo_producto",
+    },
+  });
+
+  PRODUCTO.belongsTo(CATALOGO_UNIVERSAL, {
+    foreignKey: {
+      name: "tipo_producto",
+    },
+  });
+
+  EMPRESA.hasOne(PRODUCTO, {
+    foreignKey: {
+      name: "producto_empresa",
+    },
+  });
+
+  PRODUCTO.belongsTo(EMPRESA, {
+    foreignKey: {
+      name: "producto_empresa",
+    },
+  });
+
+  PRODUCTO.hasMany(INVENTARIO_PRODUCTO, {
+    foreignKey: {
+      name: "inventario_producto",
+    },
+  });
+
+  INVENTARIO_PRODUCTO.belongsTo(PRODUCTO, {
+    foreignKey: {
+      name: "inventario_producto",
+    },
+  });
+
+  SUCURSAL.hasOne(INVENTARIO_PRODUCTO, {
+    foreignKey: {
+      name: "inventario_sucursal",
+    },
+  });
+
+  INVENTARIO_PRODUCTO.belongsTo(SUCURSAL, {
+    foreignKey: {
+      name: "inventario_sucursal",
+    },
+  });
+
+  CATALOGO_UNIVERSAL.hasOne(VENTA, {
+    foreignKey: {
+      name: "metodo_pago",
+    },
+  });
+
+  VENTA.belongsTo(CATALOGO_UNIVERSAL, {
+    foreignKey: {
+      name: "metodo_pago",
+    },
+  });
+
+  SUCURSAL.hasOne(VENTA, {
+    foreignKey: {
+      name: "venta_sucursal",
+    },
+  });
+
+  VENTA.belongsTo(SUCURSAL, {
+    foreignKey: {
+      name: "venta_sucursal",
+    },
+  });
+
+  PRODUCTO.hasOne(DETALLES_VENTA, {
+    foreignKey: {
+      name: "venta_producto",
+    },
+  });
+
+  DETALLES_VENTA.belongsTo(PRODUCTO, {
+    foreignKey: {
+      name: "venta_producto",
+    },
+  });
+
+  VENTA.hasMany(DETALLES_VENTA, {
+    foreignKey: {
+      name: "detalles_venta",
+    },
+  });
+
+  DETALLES_VENTA.belongsTo(VENTA, {
+    foreignKey: {
+      name: "detalles_venta",
     },
   });
 };
