@@ -1,6 +1,6 @@
 const {
   /*models*/
-} = require("../db");
+} = require("../database/db");
 
 const getVendedor = () => {};
 
