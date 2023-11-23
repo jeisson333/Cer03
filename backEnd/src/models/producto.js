@@ -17,6 +17,16 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
 
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
+      peso: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+
       valor_venta: {
         type: DataTypes.FLOAT,
         allowNull: false,
