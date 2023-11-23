@@ -1,8 +1,14 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/database/db.js");
+const createCatalogueType = require("./src/utils/createCatalogueType.js");
 const PORT = process.env.PORT || 3001;
 
-server.listen(PORT, () => {
-  conn.sync({ force: false });
-  console.log(`listening at ${PORT}`);
-});
+conn
+  .sync({ force: true })
+  .then(() => {
+    createCatalogueType();
+    server.listen(PORT, () => {
+      console.log(`Server listening on port ${PORT}`);
+    });
+  })
+  .catch((error) => console.error(error));
