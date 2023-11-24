@@ -1,7 +1,13 @@
-.siderBarPosition{
-    display: grid;
-    grid-template-columns: 270px auto;
-    background: #EDF3FB;
-    transition: all 0.3s;
-    color: #202020;
+.siderBarPosition {
+  display: grid;
+  grid-template-columns: 270px auto;
+  background: #edf3fb;
+  transition: all 0.3s;
+  color: #202020;
+}
+
+.prueba {
+  background: #edf3fb;
+  transition: all 0.3s;
+  color: #202020;
 }
