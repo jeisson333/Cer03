@@ -12,6 +12,6 @@ const router = Router();
 router.use("/empresa", routeEmpresa);
 router.use("/vendedor", routeVendedor);
 router.use("/ventas", routeVentas);
-router.use("/productos", productsRouter);
+router.use("/products", productsRouter);
 
 module.exports = router;
