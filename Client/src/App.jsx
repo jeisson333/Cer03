@@ -20,7 +20,7 @@ function App() {
       <Routes>
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/inventory" element={<Inventory />} />
+      <Route path="/products" element={<Inventory />} />
       <Route path="/settings" element={<Settings />} />
       <Route exact path="/" element={<LandingPage />} />
       <Route path="/registerForm" element={<RegisterForm />} />
