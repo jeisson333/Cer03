@@ -2,14 +2,11 @@ const { obtainAllProducts } = require("../controllers/obtainAllProducts.js");
 
 const getAllProducts = async (req, res) => {
   try {
-    const { branch } = req.query; //branch = sucursal
+    const conditions = req.query;
+    const idBranch = req.body;
+    const response = await obtainAllProducts({ conditions, idBranch });
 
-    if (!branch) throw new Error("Not branch");
-    // return res.status(400).json({ error: "" });
-
-    const response = await obtainAllProducts(branch);
-
-    if (!response.length) throw new Error("Not found branch products");
+    if (!response.length) throw new Error("Not found products");
 
     return res.status(200).json(response); //objects array
   } catch (error) {

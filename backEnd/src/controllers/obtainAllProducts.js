@@ -1,10 +1,9 @@
 const { PRODUCTO, CATALOGO_UNIVERSAL, EMPRESA } = require("../database/db");
-// const { Op } = require("sequelize");
+const { Op } = require("sequelize");
 
-const obtainAllProducts = async (branch) => {
-  let products = [];
-
-  let productsFound = await PRODUCTO.findAll({
+const obtainAllProducts = async ({ conditions, idBranch }) => {
+  if (!idBranch?.id) throw new Error("The query need Product's branch");
+  let products = await PRODUCTO.findAll({
     attributes: [
       "id_producto",
       "nombre_producto",
@@ -14,7 +13,10 @@ const obtainAllProducts = async (branch) => {
       "valor_compra",
     ],
     where: {
-      producto_empresa: branch, //all products --> branch
+      producto_empresa: idBranch?.id, //all products --> branch
+      nombre_producto: {
+        [Op.iLike]: conditions?.name ? `%${conditions.name}%` : "%%",
+      },
     },
     include: [
       {
@@ -27,18 +29,7 @@ const obtainAllProducts = async (branch) => {
       },
     ],
   });
-
-  // productsFound.forEach((product) => {
-  //   products.push({
-  //     id: product.id_producto,
-  //     nombre: product.nombre_producto,
-  //     valor_venta: product.valor_venta,
-  //     valor_compra: product.valor_compra,
-  //     tipo: product.tipo_producto,
-  //   });
-  // });
-
-  return productsFound;
+  return products;
 };
 
 module.exports = {
