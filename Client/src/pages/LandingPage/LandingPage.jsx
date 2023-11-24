@@ -1,17 +1,13 @@
+
+import Header from "../../components/Header/Header"
+
 import style from "./LandingPage.module.css"
 
 export default function LandingPage(){
     return(
         <div className={style.landingPage}>
-            <div className={style.header}>
-                <img className={style.logoImage} src="https://png.pngtree.com/png-clipart/20190604/original/pngtree-corporate-image-logo-png-image_1026060.jpg" alt="" />
-                <div className={style.headerHolder}>
-                    <h1 className={style.element}>Sobre Nosotros</h1>
-                    <h1 className={style.element}>Contáctanos ✆</h1>
-                    <button className={style.login}>Log In</button>
-                </div>
+            <Header/>
            
-            </div>
             <div className={style.sideInfo}>
                 <h1 className={style.sideText}>Tu negocio a la mano y en todos tus dispositivos</h1>
                 <p>¡No importa el tamaño! Aquí los pequeños negocios, comerciantes y emprendedores pueden digitalizar, monitorear y crecer las finanzas de su negocio.</p>

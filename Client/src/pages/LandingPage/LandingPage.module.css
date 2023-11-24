@@ -7,46 +7,8 @@
 
 }
 
-.header{
-    background-color: #001832;
-    min-width: 100vw;
-    height: 180px;
-    flex-direction: flex-start;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 8px;
-    color: #ded9d9;
-}
-
-.headerHolder{
-    display: flex;
-    width: 50vw;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.logoImage{
-    width: 170px;
-}
-
-.login{
-    background-color: #189FFB;
-    height: 40px;
-    width: 130px;
-    font-size: medium;
-    margin: 11px;
-}
-
-.element{
-    margin: 11px;
-}
-.element:hover{
-    cursor: pointer;
-}
-
 .sideInfo{
-    margin: 10px;
+    margin: 30px;
     /* margin-left: 55px; */
     /* border: 2px solid black; */
     height: 600px;
@@ -76,16 +38,7 @@
 }
 
 @media only screen and (max-width: 830px) {
-    .header{
-        display: grid;
-        place-items: center;
-        height: 380px;
-    }
-    .headerHolder{
-        display: grid;
-        place-items: center;
 
-    }
     .sideInfo{
         width: 80vw;
     }
