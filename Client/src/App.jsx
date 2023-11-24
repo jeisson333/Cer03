@@ -7,20 +7,28 @@ import RegisterForm from "./pages/RegisterForm/RegisterForm";
 import About from "./pages/About/About"
 import SignIn from "./pages/SignIn/SignIn";
 import Contact from "./pages/Contact/Contact"
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Settings from "./pages/Settings/Settings";
+import NavBAr from "./components/NavBar/NavBar";
 
 function App() {
+  const location = useLocation();
+  const isActive  = location.pathname === '/contact' || location.pathname === '/about' || location.pathname === '/landingPage' ||  location.pathname === '/' ;
   return (
-    <Routes>
+    <div className="siderBarPosition">
+      {!isActive && <NavBAr/>}
+      <Routes>
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/home" element={<Home />} />
       <Route path="/inventory" element={<Inventory />} />
-      <Route exact path="/landingPage" element={<LandingPage />} />
+      <Route path="/settings" element={<Settings />} />
+      <Route exact path="/" element={<LandingPage />} />
       <Route path="/registerForm" element={<RegisterForm />} />
       <Route path="/signIn" element={<SignIn />} />
       <Route path="/about" element={<About/>}/>
       <Route path="/contact" element={<Contact/>}/>
     </Routes>
+    </div>
   );
 }
 

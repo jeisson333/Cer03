@@ -34,7 +34,7 @@ export default function Contact(){
                 </div>
             </div>
             <div className={styles.goHolder}>
-                <NavLink to = '/landingPage'>
+                <NavLink to = '/'>
                 <h2 className={styles.goBack}><FontAwesomeIcon icon={faLeftLong}/> Volver</h2> </NavLink>
             </div>
         </div>

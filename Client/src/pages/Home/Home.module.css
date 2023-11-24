@@ -1,6 +1,6 @@
 .siderBarPosition{
     display: grid;
-    grid-template-columns: 270px auto;
+    grid-template-columns: 300px auto;
     background: #EDF3FB;
     transition: all 0.3s;
     color: #202020;
