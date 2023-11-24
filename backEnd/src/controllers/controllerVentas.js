@@ -1,8 +1,8 @@
-const {
-  /*models*/
-} = require("../database/db");
+const { VENTA, DETALLES_VENTA, SUCURSAL } = require("../database/db");
 
-const getVentas = () => {};
+const getVentas = (branch) => {
+  // const ventas = VENTA.findAll({ }) //sub consultas y bd cargada
+};
 
 module.exports = {
   getVentas,

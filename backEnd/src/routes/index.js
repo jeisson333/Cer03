@@ -4,7 +4,7 @@ const { Router } = require("express");
 const routeEmpresa = require("./routeEmpresa.js");
 const routeVentas = require("./routeVentas.js");
 const routeVendedor = require("./routeVendedor.js");
-const routeProductos = require("./routeProductos.js");
+const productsRouter = require("./productsRouter.js");
 
 const router = Router();
 
@@ -12,6 +12,6 @@ const router = Router();
 router.use("/empresa", routeEmpresa);
 router.use("/vendedor", routeVendedor);
 router.use("/ventas", routeVentas);
-router.use("/productos", routeProductos);
+router.use("/productos", productsRouter);
 
 module.exports = router;

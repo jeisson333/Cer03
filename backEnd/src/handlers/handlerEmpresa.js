@@ -9,6 +9,8 @@ const getEmpresaHandler = async (req, res) => {
   }
 };
 
+//para el get empresa nos tenemos que meter con los token y las auth de terceros
+
 module.exports = {
   getEmpresaHandler,
 };
