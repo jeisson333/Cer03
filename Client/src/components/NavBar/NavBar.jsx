@@ -3,7 +3,7 @@ import { CiSettings } from 'react-icons/ci';
 import { MdProductionQuantityLimits } from 'react-icons/md';
 import { MdOutlineInventory } from 'react-icons/md';
 import { MdOutlinePointOfSale } from "react-icons/md";
-import { TfiAlignJustify } from "react-icons/tfi";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { IoIosLogOut } from 'react-icons/io';
 import style from './SideBar.module.css';
 import logoCer03 from './logoCer03.jpeg';
@@ -41,6 +41,7 @@ const NavBAr = () => {
         <div>
           <SidebarLink to="/settings" icon={<CiSettings />} text="Configuraciones" />
           <div className={style.divider}></div>
+          <SidebarLink to="/home" icon={<FaMoneyBillTrendUp/>} text="Movimientos" />
           <SidebarLink to="/products" icon={<MdProductionQuantityLimits />} text="Productos" />
           <SidebarLink to="/sales" icon={<MdOutlinePointOfSale  />} text="Ventas" />
           <SidebarLink to="/inventory" icon={<MdOutlineInventory />} text="Inventario" />
