@@ -6,9 +6,7 @@ const getAllProducts = async (req, res) => {
     const idBranch = req.body;
     const response = await obtainAllProducts({ conditions, idBranch });
 
-    if (!response.length) throw new Error("Not found products");
-
-    return res.status(200).json(response); //objects array
+    return res.status(200).json(response);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
