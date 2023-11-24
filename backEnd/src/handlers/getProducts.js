@@ -4,16 +4,16 @@ const getAllProducts = async (req, res) => {
   try {
     const { branch } = req.query; //branch = sucursal
 
-    if (!branch) return res.status(400).send("Not branch");
+    if (!branch) throw new Error("Not branch");
+    // return res.status(400).json({ error: "" });
 
     const response = await obtainAllProducts(branch);
 
-    if (!response.length)
-      return res.status(400).send("Branch products not founds");
+    if (!response.length) throw new Error("Not found branch products");
 
-    res.status(200).json(response); //objects array
+    return res.status(200).json(response); //objects array
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(400).json({ error: error.message });
   }
 };
 
