@@ -1,27 +1,27 @@
-import Cards from "../../components/Cards/Cards.jsx";
+import Cards from "../../components/Card/Card";
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import Paginate from "../../components/Paginate/Paginate.jsx";
 import style from "./Sales.module.css";
 import usePage from "../../components/utils/UsagePage.jsx";
-import Search from "../../components/SearchBar/SearchBar.jsx";
+// import SearchBar from "../../components/SearchBar/SearchBar";
 
 const Sales = () => {
-  const { changeNext, changePrev, paginate, count, totPagine } = usePage();
+  // const { changeNext, changePrev, paginate, count, totPagine } = usePage();
 
   return (
     <div className={style.contenSales}>
-      <NavBar />
-      <SearchBar />
-      <div className={style.salesPage}>
+      {/* <NavBar /> */}
+      {/* <SearchBar /> */}
+      {/* <div className={style.salesPage}>
         <Paginate
           prevChange={changePrev}
           nextChange={changeNext}
           pages={count}
           pageTotal={totPagine}
         />
-      </div>
+      </div> */}
 
-      <Cards products={paginate} />
+      {/* <Cards products={paginate} /> */}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import "./App.css";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Checkout from "./pages/Checkout/Checkout";
 import Home from "./pages/Home/Home";
 import Inventory from "./pages/Inventory/Inventory";
@@ -7,7 +8,7 @@ import RegisterForm from "./pages/RegisterForm/RegisterForm";
 import About from "./pages/About/About";
 import SignIn from "./pages/SignIn/SignIn";
 import Contact from "./pages/Contact/Contact";
-import { Route, Routes, useLocation } from "react-router-dom";
+import Sales from "./pages/Sales/Sales";
 import Settings from "./pages/Settings/Settings";
 import NavBAr from "./components/NavBar/NavBar";
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/sales" element={<Sales />} />
       </Routes>
     </div>
   );
