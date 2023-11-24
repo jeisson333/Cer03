@@ -1,9 +1,9 @@
 .content {
     color: rgb(45, 45, 45);
     background: rgb(255, 255, 255);
-    position: sticky;
+    position: fixed;
     padding-top: 15px;
-
+    width: 265px;
 }
 
 .logoContent {
