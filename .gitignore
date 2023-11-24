@@ -1,2 +1,5 @@
 backEnd/.env
 backEnd/pnpm-lock.yaml
+backEnd/node_modules/
+Client/pnpm-lock.yaml
+Client/.vite/deps_temp_bbe382f5/package.json
