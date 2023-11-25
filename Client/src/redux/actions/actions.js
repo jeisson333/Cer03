@@ -2,16 +2,16 @@ import {
   GET_PRODUCTS,
   GET_PRODUCT_NAME,
   GET_PRODUCT_ID,
-} from "./actions-types.js";
+} from "./action-types.js";
 import axios from "axios";
 
-export const productsGet = () => {
+export const getProducts = () => {
   return async function (dispatch) {
     try {
-      const dataPd = (await axios.get("http://localhost:3001/products")).data;
+      const { data } = (await axios.get("http://localhost:3001/products")).data;
       return dispatch({
         type: GET_PRODUCTS,
-        payload: dataPd,
+        payload: data,
       });
     } catch (error) {
       console.log(error.message);

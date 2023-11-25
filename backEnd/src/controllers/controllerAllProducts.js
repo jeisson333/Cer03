@@ -99,6 +99,28 @@ const obtainAllProducts = async ({ conditions, idBranch }) => {
 
   if (!products.length) throw new Error("Not found products");
 
+  const response = [];
+
+  // products.forEach((product) => {
+  //   response.push({
+  //     id: product.PRODUCTO.id_producto,
+  //     nombre: product.PRODUCTO.nombre_producto,
+  //     image: product.PRODUCTO.image,
+  //     peso: product.PRODUCTO.peso,
+  //     precio_venta: product.PRODUCTO.valor_venta,
+  //     precio_compra: product.PRODUCTO.valor_compra,
+  //     catalogo: {
+  //       id: product.CATALOGO_UNIVERSAL.id_catalogo,
+  //       nombre: product.CATALOGO_UNIVERSAL.nombre_catalogo,
+  //     },
+  //     sucursal: {
+  //       id: product.CATALOGO_UNIVERSAL.id_sucursal,
+  //       nombre: product.CATALOGO_UNIVERSAL.nombre_sucursal,
+  //     },
+  //     stock: product.stock,
+  //   });
+  // });
+
   return handlerApiFormat(products, pageNumber, count, limit);
 };
 
