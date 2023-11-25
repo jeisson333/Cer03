@@ -14,8 +14,8 @@ import NavBAr from "./components/NavBar/NavBar";
 
 function App() {
   const location = useLocation();
-  // const [isActive, setIsActive] = useState(false)
   const idBranch = "6f722d7f-515b-4705-a007-84b07317cc20"; //Api_key
+  // const [isActive, setIsActive] = useState(false)
 
   const isActive =
     location.pathname === "/contact" ||

@@ -12,7 +12,6 @@ const Inventory = ({ idBranch }) => {
         const { data } = await axios.post("http://localhost:3001/products", {
           id: idBranch,
         });
-
         setProducts(data.data);
       } catch (error) {
         throw Error(error.message);

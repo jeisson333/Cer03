@@ -1,4 +1,4 @@
-import { GET_PRODUCTS } from "../actions/action-types.js";
+import { GET_PRODUCTS } from "./action-types.js";
 
 const initialState = {
   products: [],
