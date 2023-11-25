@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-// import { products } from "../../data/products";
 import axios from "axios";
 
 import Style from "./inventory.module.css";
 
-const Inventory = () => {
+const Inventory = ({ idBranch }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
         const { data } = await axios.post("http://localhost:3001/products", {
-          id: "6f722d7f-515b-4705-a007-84b07317cc20",
+          id: idBranch,
         });
 
         setProducts(data.data);
