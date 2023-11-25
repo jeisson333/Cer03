@@ -1,6 +1,9 @@
 const { Router } = require("express");
 
-const { getAllProducts } = require("../handlers/getProducts");
+const {
+  getAllProducts,
+  postNewProduct,
+} = require("../handlers/handlerProducts");
 
 productsRouter = Router();
 
