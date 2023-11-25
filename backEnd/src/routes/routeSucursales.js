@@ -7,7 +7,6 @@ const {
 
 routeSucursales = Router();
 
-routeSucursales.get("/", getAllSucursales);
-// routeSucursales.get("/nameEmpresa", getSucursalesByNameEmpresaHandler); //no deberia poder hacerse
+routeSucursales.post("/", getAllSucursales);
 
 module.exports = routeSucursales;
