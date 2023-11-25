@@ -21,14 +21,12 @@ const Inventory = () => {
     })();
   }, []);
 
-  console.log(products);
-
   return (
     <div>
       <h1>Inventory</h1>
       <div className={Style.cardContainer}>
-        {products?.map((product) => (
-          <div key={product?.PRODUCTO?.id_producto} className={Style.card}>
+        {products?.map((product, i) => (
+          <div key={i} className={Style.card}>
             <img
               src={product?.PRODUCTO?.image}
               alt={product?.PRODUCTO?.nombre_producto}
