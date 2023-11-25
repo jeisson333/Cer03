@@ -5,15 +5,12 @@ const {
   CATALOGO_UNIVERSAL,
   PRODUCTO,
 } = require("../database/db");
-const {
-  handleFiltersProducts,
-  handlerFormatProducts,
-} = require("./controllerPages");
+const { handlerFilters, handlerApiFormat } = require("./controllerPages");
 const { Op, Sequelize } = require("sequelize");
 
 const getVentas = async ({ conditions, idBranch }) => {
   if (!idBranch?.id) throw new Error("The query need Product's branch");
-  const [pageNumber, limit, offset] = handleFiltersProducts({
+  const [pageNumber, limit, offset] = handlerFilters({
     conditions,
   });
 
@@ -115,7 +112,7 @@ const getVentas = async ({ conditions, idBranch }) => {
 
   const [sales, allSales] = await Promise.all([salesPromise, allsalesPromise]);
   const count = allSales.length;
-  return handlerFormatProducts(sales, pageNumber, count, limit);
+  return handlerApiFormat(sales, pageNumber, count, limit);
 };
 
 module.exports = {
