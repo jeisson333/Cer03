@@ -1,21 +1,21 @@
-const handleFiltersProducts = ({ conditions }) => {
+const handlerFilters = ({ conditions }) => {
   let pageNumber = parseInt(conditions?.page) || 1;
   let limit = parseInt(conditions?.pageSize) || 20;
   let offset = Math.max(0, pageNumber - 1) * limit;
   return [pageNumber, limit, offset];
 };
 
-const handlerFormatProducts = (products, pageNumber, count, limit) => {
+const handlerApiFormat = (data, pageNumber, count, limit) => {
   return {
     info: {
       count: count,
       currentPage: pageNumber,
       pages: Math.ceil(count / limit),
     },
-    data: products,
+    data: data,
   };
 };
 module.exports = {
-  handleFiltersProducts,
-  handlerFormatProducts,
+  handlerFilters,
+  handlerApiFormat,
 };

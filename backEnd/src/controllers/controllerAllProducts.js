@@ -5,16 +5,15 @@ const {
   SUCURSAL,
 } = require("../database/db");
 const { Op } = require("sequelize");
-const {
-  handleFiltersProducts,
-  handlerFormatProducts,
-} = require("./controllerPages");
+const { handlerFilters, handlerApiFormat } = require("./controllerPages");
 
 const obtainAllProducts = async ({ conditions, idBranch }) => {
-  if (!idBranch?.id) throw new Error("The query need Product's branch");
-  const [pageNumber, limit, offset] = handleFiltersProducts({
+  if (!idBranch?.id) throw new Error("Not branch id");
+
+  const [pageNumber, limit, offset] = handlerFilters({
     conditions,
   });
+
   const countPromise = INVENTARIO_PRODUCTO.count({
     include: [
       {
@@ -48,6 +47,7 @@ const obtainAllProducts = async ({ conditions, idBranch }) => {
       },
     ],
   });
+
   const productsPromise = INVENTARIO_PRODUCTO.findAll({
     attributes: ["stock"],
     include: [
@@ -94,10 +94,12 @@ const obtainAllProducts = async ({ conditions, idBranch }) => {
     limit: limit,
     offset: offset,
   });
+
   const [count, products] = await Promise.all([countPromise, productsPromise]);
+
   if (!products.length) throw new Error("Not found products");
 
-  return handlerFormatProducts(products, pageNumber, count, limit);
+  return handlerApiFormat(products, pageNumber, count, limit);
 };
 
 module.exports = {

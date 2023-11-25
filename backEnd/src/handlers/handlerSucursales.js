@@ -1,44 +1,21 @@
 const {
-	getSucursalByName,
-	getSucursalesByEmpresa,
-} = require('../controllers/controllerSucursales.js');
+  controllerAllSucursales,
+} = require("../controllers/controllerAllSucursales.js");
 
-const getByNameSucursalHandler = async (req, res) => {
-	try {
-		const { nameSucursal } = req.query;
+const getAllSucursales = async (req, res) => {
+  try {
+    const conditions = req.query;
+    const idBranch = req.body;
 
-		if (!nameSucursal)
-			return res.status(400).send('unregistered branch office');
+    const response = await controllerAllSucursales(conditions, idBranch);
 
-		const response = await getSucursalByName(nameSucursal);
-
-		if (!response.length)
-			return res.status(400).send(' branch office not found');
-
-		res.status(200).json(response);
-	} catch (error) {
-		res.status(400).json({ error: error.message });
-	}
-};
-
-const getSucursalesByNameEmpresaHandler = async (req, res) => {
-	try {
-		const { nameEmpresa } = req.query;
-
-		if (!nameEmpresa) return res.status(400).send('Enter company name');
-
-		const response = await getSucursalesByEmpresa(nameEmpresa);
-
-		if (!Object.keys(response).length)
-			return res.status(400).send('This company is not registered');
-
-		res.status(200).json(response);
-	} catch (error) {
-		res.status(400).json({ error: error.message });
-	}
+    return res.status(200).json(response);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
 };
 
 module.exports = {
-	getByNameSucursalHandler,
-	getSucursalesByNameEmpresaHandler,
+  getAllSucursales,
+  //   getSucursalesByNameEmpresaHandler,
 };

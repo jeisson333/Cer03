@@ -1,13 +1,13 @@
-const { Router } = require('express');
+const { Router } = require("express");
 
 const {
-	getByNameSucursalHandler,
-	getSucursalesByNameEmpresaHandler,
-} = require('../handlers/handlerSucursales.js');
+  getAllSucursales,
+  //   getSucursalesByNameEmpresaHandler,
+} = require("../handlers/handlerSucursales.js");
 
 routeSucursales = Router();
 
-routeSucursales.get('/nameSucursal', getByNameSucursalHandler);
-routeSucursales.get('/nameEmpresa', getSucursalesByNameEmpresaHandler);
+routeSucursales.get("/", getAllSucursales);
+// routeSucursales.get("/nameEmpresa", getSucursalesByNameEmpresaHandler); //no deberia poder hacerse
 
 module.exports = routeSucursales;

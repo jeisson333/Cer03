@@ -1,5 +1,4 @@
 const { Router } = require("express");
-
 const { getEmpresaHandler } = require("../handlers/handlerEmpresa.js");
 
 routeEmpresa = Router();
