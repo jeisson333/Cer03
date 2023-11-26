@@ -28,7 +28,7 @@ const handlerSequealizeModels = ({ sequelize }) => {
 const handlerAssociationModels = ({ sequelize }) => {
   const {
     CATALOGO_UNIVERSAL,
-    CONTACTO_EMPRESA,
+    CONTACTO_SUCURSAL,
     DETALLES_VENTA,
     EMPRESA,
     INVENTARIO_PRODUCTO,
@@ -50,25 +50,25 @@ const handlerAssociationModels = ({ sequelize }) => {
     },
   });
 
-  EMPRESA.hasMany(CONTACTO_EMPRESA, {
+  SUCURSAL.hasMany(CONTACTO_SUCURSAL, {
     foreignKey: {
-      name: "contacto_empresa",
+      name: "contacto_sucursal",
     },
   });
 
-  CONTACTO_EMPRESA.belongsTo(EMPRESA, {
+  CONTACTO_SUCURSAL.belongsTo(SUCURSAL, {
     foreignKey: {
-      name: "contacto_empresa",
+      name: "contacto_sucursal",
     },
   });
 
-  CATALOGO_UNIVERSAL.hasOne(CONTACTO_EMPRESA, {
+  CATALOGO_UNIVERSAL.hasOne(CONTACTO_SUCURSAL, {
     foreignKey: {
       name: "tipo_contacto",
     },
   });
 
-  CONTACTO_EMPRESA.belongsTo(CATALOGO_UNIVERSAL, {
+  CONTACTO_SUCURSAL.belongsTo(CATALOGO_UNIVERSAL, {
     foreignKey: {
       name: "tipo_contacto",
     },

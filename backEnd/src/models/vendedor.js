@@ -43,13 +43,18 @@ module.exports = (sequelize) => {
       },
 
       numero_documento: {
-        type: DataTypes.STRING,
+        type: DataTypes.BIGINT,
         allowNull: false,
       },
 
       //TipoDocumento UUID [ref: - CATALOGO_UNIVERSAL.id_catalogo]
       //VendedorSucursal UUID [ref: > SUCURSAL.id_sucursal]
     },
-    { freezeTableName: true, timestamps: false }
+    {
+      freezeTableName: true,
+      timestamps: true,
+      paranoid: true,
+      deleteAt: "detroyTime",
+    }
   );
 };
