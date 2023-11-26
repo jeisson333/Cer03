@@ -7,6 +7,7 @@ const routeVendedor = require("./routeVendedor.js");
 const productsRouter = require("./productsRouter.js");
 const routeSucursales = require("./routeSucursales.js");
 const routeSaveJsonInDB = require("./saveJsonInDBRouter.js");
+const routeCatalogos = require("./routeCatalogo.js");
 
 const router = Router();
 
@@ -17,5 +18,6 @@ router.use("/ventas", routeVentas);
 router.use("/products", productsRouter);
 router.use("/sucursales", routeSucursales);
 router.use("/database", routeSaveJsonInDB);
+router.use("/catalogos", routeCatalogos);
 
 module.exports = router;
