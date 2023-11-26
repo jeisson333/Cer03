@@ -36,9 +36,15 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
+
       // TipoProducto varchar [ref: - CATALOGO_UNIVERSAL.id_catalogo]
       //ProductoEmpresa UUID [ref: > EMPRESA.id_empresa]
     },
-    { freezeTableName: true, timestamps: false }
+    {
+      freezeTableName: true,
+      timestamps: true,
+      paranoid: true,
+      deleteAt: "detroyTime",
+    }
   );
 };

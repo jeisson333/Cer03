@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     "INVENTARIO_PRODUCTO",
     {
-      id_cantidad_producto: {
+      id_inventario_producto: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
@@ -20,6 +20,11 @@ module.exports = (sequelize) => {
       //InventarioProducto UUID [ref: > PRODUCTO.id_producto]
       //  InventarioSucursal UUID [ref: > SUCURSAL.id_sucursal]
     },
-    { freezeTableName: true, timestamps: false }
+    {
+      freezeTableName: true,
+      timestamps: true,
+      paranoid: true,
+      deleteAt: "detroyTime",
+    }
   );
 };
