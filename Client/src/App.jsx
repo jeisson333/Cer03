@@ -14,6 +14,7 @@ import NavBAr from "./components/NavBar/NavBar";
 
 function App() {
   const location = useLocation();
+  const idBranch = "6f722d7f-515b-4705-a007-84b07317cc20"; //Api_key
   // const [isActive, setIsActive] = useState(false)
 
   const isActive =
@@ -31,14 +32,14 @@ function App() {
       <Routes>
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/products" element={<Inventory />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/products" element={<Inventory idBranch={idBranch} />} />
+        <Route path="/settings" element={<Settings idBranch={idBranch} />} />
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/registerForm" element={<RegisterForm />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/sales" element={<Sales />} />
+        <Route path="/sales" element={<Sales idBranch={idBranch} />} />
       </Routes>
     </div>
   );

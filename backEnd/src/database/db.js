@@ -5,14 +5,24 @@ const {
   handlerAssociationModels,
 } = require("./association.js");
 
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_ONLINE_URL, DB_MODE } =
+  process.env;
 
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-  host: DB_HOST,
-  dialect: "postgres",
-  logging: false,
-  native: false,
-});
+let sequelize;
+
+switch (DB_MODE) {
+  case "online":
+    sequelize = new Sequelize(DB_ONLINE_URL);
+    break;
+  case "local":
+    sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+      host: DB_HOST,
+      dialect: "postgres",
+      logging: false,
+      native: false,
+    });
+    break;
+}
 
 handlerSequealizeModels({ sequelize });
 handlerAssociationModels({ sequelize });

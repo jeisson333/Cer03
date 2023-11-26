@@ -4,6 +4,6 @@ const { getVentasHandler } = require("../handlers/handlerVentas.js");
 
 routeVentas = Router();
 
-routeVentas.get("/", getVentasHandler);
+routeVentas.post("/", getVentasHandler);
 
 module.exports = routeVentas;
