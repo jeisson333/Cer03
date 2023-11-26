@@ -104,6 +104,13 @@ const getVentas = async ({ conditions, idBranch }) => {
         duplicating: false,
       },
     ],
+    order: [
+      [
+        VENTA,
+        conditions?.orderName ? `${conditions?.orderName}` : `id_venta`,
+        conditions?.order ? `${conditions?.order}` : `ASC`,
+      ],
+    ],
     group: ["detalles_venta", "id_venta", "id_catalogo", "id_sucursal"],
     raw: true,
     limit: limit,
