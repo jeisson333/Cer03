@@ -1,6 +1,6 @@
 const handlerFilters = ({ conditions }) => {
   let pageNumber = parseInt(conditions?.page) || 1;
-  let limit = parseInt(conditions?.pageSize) || 20;
+  let limit = parseInt(conditions?.page_size) || 20;
   let offset = Math.max(0, pageNumber - 1) * limit;
   return [pageNumber, limit, offset];
 };
