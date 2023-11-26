@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import axios from "axios";
+import {getTypeProducts} from '../../redux/actions'
 import Style from "./inventory.module.css";
 import { Link } from "react-router-dom";
 import { FaListOl } from "react-icons/fa6";
 import { FaFilterCircleDollar } from "react-icons/fa6";
 
 const Inventory = ({ idBranch }) => {
+  const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
 
+  const allTypeProducts = useSelector((state) => state.allTypeProducts)
+
+  useEffect(()=>{
+    dispatch(getTypeProducts());
+  },[])
+  console.log(allTypeProducts);
   useEffect(() => {
     (async () => {
       try {
