@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     "INVENTARIO_PRODUCTO",
     {
-      id_cantidad_producto: {
+      id_inventario_producto: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
