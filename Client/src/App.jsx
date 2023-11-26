@@ -11,6 +11,7 @@ import Contact from "./pages/Contact/Contact";
 import Sales from "./pages/Sales/Sales";
 import Settings from "./pages/Settings/Settings";
 import NavBAr from "./components/NavBar/NavBar";
+import { CreateProduct } from "./pages/Forms/CreateProduct";
 import Detail from "./pages/Detail/Detail";
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/sales" element={<Sales idBranch={idBranch} />} />
+        <Route path="/newProduct" element={<CreateProduct />} />
       </Routes>
     </div>
   );
