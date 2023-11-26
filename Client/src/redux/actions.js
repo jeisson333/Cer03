@@ -25,8 +25,10 @@ export const getTypeProducts  = () =>{
         type: GET_TYPEPRODUCTS,
         payload: response.data
       })
+      
     } catch (error) {
       console.log(error.message);
     }
   }
 }
+

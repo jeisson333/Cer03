@@ -11,12 +11,8 @@ const Inventory = ({ idBranch }) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
 
-  const allTypeProducts = useSelector((state) => state.allTypeProducts)
+  const allTypeProduct = useSelector((state) => state.allTypeProducts)
 
-  useEffect(()=>{
-    dispatch(getTypeProducts());
-  },[])
-  console.log(allTypeProducts);
   useEffect(() => {
     (async () => {
       try {
@@ -28,7 +24,10 @@ const Inventory = ({ idBranch }) => {
         throw Error(error.message);
       }
     })();
+    dispatch(getTypeProducts());
   }, []);
+
+  console.log(allTypeProduct);
 
   return (
     <div>

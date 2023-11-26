@@ -10,7 +10,7 @@ function reducer(state = initialState, action) {
     case GET_TYPEPRODUCTS:
       return{
         ...state,
-        allTypeProducts: payload
+        allTypeProducts: action.payload?.data
       }
       break
     case GET_PRODUCTS:
@@ -19,7 +19,7 @@ function reducer(state = initialState, action) {
         products: [...action.payload],
       };
     default:
-      state;
+      return { ...state };
   }
 }
 
