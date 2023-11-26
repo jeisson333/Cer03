@@ -11,6 +11,8 @@ import Contact from "./pages/Contact/Contact";
 import Sales from "./pages/Sales/Sales";
 import Settings from "./pages/Settings/Settings";
 import NavBAr from "./components/NavBar/NavBar";
+import { CreateProduct } from "./pages/Forms/CreateProduct";
+import Detail from "./pages/Detail/Detail";
 
 function App() {
   const location = useLocation();
@@ -36,10 +38,12 @@ function App() {
         <Route path="/settings" element={<Settings idBranch={idBranch} />} />
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/registerForm" element={<RegisterForm />} />
+        <Route path="/detail" element={ <Detail idBranch={idBranch}/>} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/sales" element={<Sales idBranch={idBranch} />} />
+        <Route path="/newProduct" element={<CreateProduct />} />
       </Routes>
     </div>
   );

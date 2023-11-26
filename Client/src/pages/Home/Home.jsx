@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from '../../components/NavBar/NavBar';
 import styles from './Home.module.css';
 import { FaListOl } from "react-icons/fa6";
 import { FaFilterCircleDollar } from "react-icons/fa6";
