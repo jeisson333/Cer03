@@ -4,21 +4,21 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    "INVENTARIO_PRODUCTO",
+    "CONTACTO_SUCURSAL",
     {
-      id_inventario_producto: {
+      id_contacto_sucursal: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
 
-      stock: {
-        type: DataTypes.INTEGER,
+      contacto: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
 
-      //InventarioProducto UUID [ref: > PRODUCTO.id_producto]
-      //  InventarioSucursal UUID [ref: > SUCURSAL.id_sucursal]
+      //ContactoEmpresa UUID [ref: > EMPRESA.id_empresa]
+      // TipoContacto UUID [ref: - CATALOGO_UNIVERSAL.id_catalogo]
     },
     {
       freezeTableName: true,
