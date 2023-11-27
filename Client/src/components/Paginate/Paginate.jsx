@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import style from "./Paginate.module.css";
 
 const Paginate = ({ prevChange, nextChange, pages, pageTotal }) => {
@@ -13,12 +12,6 @@ const Paginate = ({ prevChange, nextChange, pages, pageTotal }) => {
       <button onClick={nextChange}>Next</button>
     </div>
   );
-};
-Paginate.propTypes = {
-  prevChange: PropTypes.func.isRequired,
-  nextChange: PropTypes.func.isRequired,
-  pages: PropTypes.number.isRequired,
-  pageTotal: PropTypes.number.isRequired,
 };
 
 export default Paginate;

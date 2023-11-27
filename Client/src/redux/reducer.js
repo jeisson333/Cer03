@@ -1,4 +1,8 @@
-import { GET_PRODUCTS,GET_TYPEPRODUCTS } from "./action-types.js";
+import {
+  GET_PRODUCTS,
+  GET_TYPEPRODUCTS,
+  POST_NEWPRODUCT,
+} from "./action-types.js";
 
 const initialState = {
   allTypeProducts: [],
@@ -8,16 +12,19 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_TYPEPRODUCTS:
-      return{
+      return {
         ...state,
-        allTypeProducts: action.payload?.data
-      }
-      break
+        allTypeProducts: action.payload?.data,
+      };
+      break;
     case GET_PRODUCTS:
       return {
         ...state,
         products: [...action.payload],
       };
+    case POST_NEWPRODUCT:
+      return { ...state };
+
     default:
       return { ...state };
   }

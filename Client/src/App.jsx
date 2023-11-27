@@ -38,12 +38,15 @@ function App() {
         <Route path="/settings" element={<Settings idBranch={idBranch} />} />
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/registerForm" element={<RegisterForm />} />
-        <Route path="/detail" element={ <Detail idBranch={idBranch}/>} />
+        <Route path="/detail" element={<Detail idBranch={idBranch} />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/sales" element={<Sales idBranch={idBranch} />} />
-        <Route path="/newProduct" element={<CreateProduct />} />
+        <Route
+          path="/newProduct"
+          element={<CreateProduct idBranch={idBranch} />}
+        />
       </Routes>
     </div>
   );
