@@ -44,15 +44,16 @@ const Detail = ({ idBranch }) => {
           Sucursal: {product[0]?.SUCURSAL.nombre_sucursal}
         </p>
         <p className={styles.info}>
-          Catalogo Universal:{" "}
+          Tipo de producto:{" "}
           {product[0]?.PRODUCTO?.CATALOGO_UNIVERSAL?.nombre_catalogo}
         </p>
-        <p className={styles.info}>Peso: {product[0]?.PRODUCTO?.peso}</p>
+        <p className={styles.info}>Stock/Cantidad: {product[0]?.stock}</p>
+        <p className={styles.info}>Peso(gr): {product[0]?.PRODUCTO?.peso}</p>
         <p className={styles.info}>
-          Valor Compra: {product[0]?.PRODUCTO?.valor_compra}
+          Precio Compra: ${product[0]?.PRODUCTO?.valor_compra}
         </p>
         <p className={styles.info}>
-          Valor Venta: {product[0]?.PRODUCTO?.valor_venta}
+          Precio Venta: ${product[0]?.PRODUCTO?.valor_venta}
         </p>
       </div>
     </div>
