@@ -5,6 +5,57 @@ import validator from "validator";
 import { getTypeProducts, postNewProduct } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
+function validate(input) {
+  let errors = {};
+
+  const regexNumber = /^[1-9]\d*$/;
+
+  if (
+    !input.nombre_producto ||
+    !/^[A-Z]+[A-Za-z0-9\s]+$/g.test(input.nombre_producto)
+  ) {
+    errors.nombre_producto =
+      "Ingresa la Primera letra Mayuscula, Unicamente Letras y Numeros, y al menos 3 caracteres ";
+  } else if (input.nombre_producto.length > 20) {
+    errors.nombre_producto = "El nombre tiene que tener menos de 20 caracteres";
+  } else if (input.nombre_producto.length < 3) {
+    errors.nombre_producto = "El nombre tiene que tener al menos 3 caracteres";
+  }
+
+  if (!input.peso || !regexNumber.test(input.peso)) {
+    errors.peso = "El peso tiene que ser entero positivo no se permite coma";
+  } else if (parseInt(input.peso) > 10001) {
+    errors.peso = "El peso no puede exeder los 10000gr";
+  }
+
+  if (!input.valor_compra || !regexNumber.test(input.valor_compra)) {
+    errors.valor_compra =
+      "El valor compra tiene que ser entero positivo no se permite coma";
+  } else if (parseInt(input.valor_compra) > 500001) {
+    errors.valor_compra = "El valor compra no puede exeder los $500000";
+  }
+
+  if (!input.valor_compra || !regexNumber.test(input.valor_compra)) {
+    errors.valor_compra =
+      "El valor de venta tiene que ser numerico no se permite coma";
+  } else if (parseInt(input.valor_compra) <= parseInt(input.valor_compra)) {
+    errors.valor_compra = "compra no puede ser Mayor o Igual que venta";
+  } else if (parseInt(input.valor_compra) > 1000001) {
+    errors.valor_compra = "El valor de venta no puede exeder el $1000000";
+  }
+
+  if (
+    input.image &&
+    !/[a-z0-9-.]+\.[a-z]{2,4}\/?([^\s<>#%",{}\\|^[\]`]+)?$/.test(input.image)
+  ) {
+    errors.image = "Debe ser una URL";
+  }
+  if ((input.temperament.length = 0)) {
+    errors.temperament = "Se requiere seleccionar el tipo de producto";
+  }
+  return errors;
+}
+
 export function CreateProduct({ idBranch }) {
   const [newProduct, setNewProduct] = useState({
     idBranch: idBranch,
