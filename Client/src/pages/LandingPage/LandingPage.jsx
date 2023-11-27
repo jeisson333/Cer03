@@ -19,8 +19,7 @@ export default function LandingPage(){
                 </ul>
             </div>
             <div className={style.sideBox}>
-                <img className={style.corporateImage} src="https://www.processmaker.com/wp-content/uploads/2019/02/corporate-shake-hands.jpg" alt="" />
-                <h2>Espacio libre por si queremos añadir algo mas</h2>
+                <img className={style.corporateImage} src="https://www.brinknews.com/wp-content/uploads/2019/12/shutterstock_1031044285.jpg" alt="" />
             </div>
         </div>
         )

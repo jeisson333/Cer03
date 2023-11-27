@@ -43,7 +43,10 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/sales" element={<Sales idBranch={idBranch} />} />
-        <Route path="/newProduct" element={<CreateProduct />} />
+        <Route
+          path="/newProduct"
+          element={<CreateProduct idBranch={idBranch} />}
+        />
       </Routes>
     </div>
   );

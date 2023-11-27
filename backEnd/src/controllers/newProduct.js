@@ -29,6 +29,7 @@ const newProduct = async ({ values }) => {
     let [inventoryNewProduct] = await INVENTARIO_PRODUCTO.findOrCreate({
       where: {
         stock: 0,
+        inventario_producto: newProduct?.id_producto,
         inventario_sucursal: BranchProduct[index]?.id_sucursal,
       },
     });

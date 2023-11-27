@@ -20,11 +20,4 @@ const Paginate = ({ prevChange, nextChange, pages, pageTotal }) => {
     </div>
   );
 };
-// Paginate.propTypes = {
-//   prevChange: PropTypes.func.isRequired,
-//   nextChange: PropTypes.func.isRequired,
-//   pages: PropTypes.number.isRequired,
-//   pageTotal: PropTypes.number.isRequired,
-// };
-
 export default Paginate;

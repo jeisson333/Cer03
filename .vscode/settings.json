@@ -1,6 +1,11 @@
 {
   "editor.inlineSuggest.showToolbar": "onHover",
+<<<<<<< HEAD
+  "cSpell.words": ["TYPEPRODUCTS"]
+=======
   "cSpell.words": [
+    "FILTERPRODCTS",
     "TYPEPRODUCTS"
   ]
+>>>>>>> 84f263f695aca0219085db9a68af5a334da14dc3
 }
