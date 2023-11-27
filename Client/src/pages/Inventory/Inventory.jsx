@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getTypeProducts, filterTemperamentAction, postProductName,postOrderProducts } from '../../redux/actions'
+import {
+  getProducts,
+  getTypeProducts,
+  filterTemperamentAction,
+  postProductName,
+  postOrderProducts,
+} from "../../redux/actions";
 import Style from "./inventory.module.css";
 import { Link } from "react-router-dom";
 import Paginate from "../../components/Paginate/Paginate";
 import Search from "../../components/SearchBar/SearchBar";
 
-
 const Inventory = ({ idBranch }) => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
 
-
-  const allTypeProduct = useSelector((state) => state.allTypeProducts)
+  const allTypeProduct = useSelector((state) => state.allTypeProducts);
   const [search, setSearch] = useState("");
   const [info, setInfo] = useState({
     count: 0,
@@ -27,33 +31,29 @@ const Inventory = ({ idBranch }) => {
   const filterTypeProducts = (event) => {
     if (event.target.value === "all") {
       dispatch(getProducts(idBranch));
+    } else {
+      dispatch(filterTemperamentAction(event.target.value, idBranch));
     }
-    else {
-      dispatch(filterTemperamentAction(event.target.value, idBranch))
-    }
-  }
+  };
 
   const handleChange = (event) => {
     event.preventDefault();
     setSearch(event.target.value);
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(postProductName(search, idBranch))
-  }
-  const orderProducts = (event)=>{
+    dispatch(postProductName(search, idBranch));
+  };
+  const orderProducts = (event) => {
     if (event.target.value === "nombre_producto") {
-      dispatch(postOrderProducts("nombre_producto","",idBranch))
+      dispatch(postOrderProducts("nombre_producto", "", idBranch));
+    } else if (event.target.value === "DESC") {
+      dispatch(postOrderProducts("nombre_producto", "DESC", idBranch));
+    } else {
+      dispatch(postOrderProducts("", "", idBranch));
     }
-    else if(event.target.value === "DESC" ){
-      dispatch(postOrderProducts("nombre_producto","DESC",idBranch))
-    }
-    else{
-      dispatch(postOrderProducts("","",idBranch));
-    }
-    
-  }
+  };
   //pages
   const prevPage = () => {
     if (info.currentPage > 1)
@@ -64,30 +64,31 @@ const Inventory = ({ idBranch }) => {
     if (info.currentPage < info.pages)
       setInfo({ ...info, currentPage: info.currentPage + 1 });
   };
-  
 
   return (
-    <div>
+    <div className={Style.divMain}>
       <h1>Inventario</h1>
       <div className={Style.filtrosContainer}>
-
         <select onChange={filterTypeProducts} className={Style.buttons}>
           <option value="all">Ver todos los productos</option>
           {allTypeProduct.map((p) => (
-            <option key={p.id_catalogo} value={p.nombre_catalogo}>{p.nombre_catalogo}</option>
+            <option key={p.id_catalogo} value={p.nombre_catalogo}>
+              {p.nombre_catalogo}
+            </option>
           ))}
         </select>
         <select onChange={orderProducts} className={Style.buttons}>
           <option value="all">Ordenar: Por defecto</option>
           <option value="nombre_producto">A-Z</option>
           <option value="DESC">Z-A</option>
-        </select>   
-        <Search className={Style.searchInput} handleChange={handleChange} handleSubmit={handleSubmit} />
-        
-
-
+        </select>
+        <Search
+          className={Style.searchInput}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
       </div>
-      <div  className={Style.cardContainer}>
+      <div className={Style.cardContainer}>
         {products?.map((product, i) => (
           <div key={i} className={Style.card}>
             <Link
