@@ -6,7 +6,8 @@ import {
   filterTemperamentAction,
   postProductName,
   postOrderProducts,
-  filter
+  filter,
+  handlerPages,
 } from "../../redux/actions";
 import Style from "./inventory.module.css";
 import { Link } from "react-router-dom";
@@ -19,47 +20,53 @@ const Inventory = ({ idBranch }) => {
 
   const allTypeProduct = useSelector((state) => state.allTypeProducts);
   const [search, setSearch] = useState("");
-  const [info, setInfo] = useState({
-    count: 0, //count en caso de que se quiera mostrar la cantidad de productos
-    currentPage: 1,
-    pages: 1,
-  });
+  // const [info, setInfo] = useState({
+  //   count: 0, //count en caso de que se quiera mostrar la cantidad de productos
+  //   currentPage: 1,
+  //   pages: 1,
+  // });
+
+  const pages = useSelector((state) => state.pages);
+  const [currentPage, setCurrentPage] = useState(1);
 
   //type and order
   const [options, setOptions] = useState({
-    type: '',
-    orderName: 'nombre_producto',
-    order: '',
-  })
+    type: "",
+    orderName: "nombre_producto",
+    order: "",
+    name: "",
+    page: 1,
+  });
 
-  const [conditions, setConditions] = useState('')
- 
+  const [conditions, setConditions] = useState("");
 
   useEffect(() => {
     dispatch(filter(conditions, idBranch));
-  }, [options.type, options.order])
-
+  }, [options.type, options.order, options.name, options.page, conditions]);
 
   const handlertype = (event) => {
     setOptions({
-        ...options,
-        [event.target.name]: event.target.value
-      })
-      setConditions(
-        `?type=${event.target.value}&order=${options.order}&orderName=${options.orderName}`
-      );
-  }
+      ...options,
+      [event.target.name]: event.target.value,
+      page: 1,
+    });
+    setCurrentPage(1);
+    setConditions(
+      `?type=${event.target.value}&order=${options.order}&name=${options.name}&orderName=${options.orderName}&page=${currentPage}`
+    );
+  };
 
   const handlerOrder = (event) => {
-      setOptions({
-        ...options,
-        [event.target.name]: event.target.value
-      })
-      setConditions(
-        `?type=${options.type}&order=${event.target.value}&orderName=${options.orderName}`
-      );
-  }
-
+    setOptions({
+      ...options,
+      [event.target.name]: event.target.value,
+      page: 1,
+    });
+    setCurrentPage(1);
+    setConditions(
+      `?type=${options.type}&order=${event.target.value}&name=${options.name}&orderName=${options.orderName}&page=${currentPage}`
+    );
+  };
 
   useEffect(() => {
     dispatch(getProducts(idBranch));
@@ -77,8 +84,17 @@ const Inventory = ({ idBranch }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(postProductName(search, idBranch));
+    setOptions({
+      ...options,
+      name: search,
+      page: 1,
+    });
+    setCurrentPage(1);
+    setConditions(
+      `?type=${options.type}&order=${options.order}&name=${search}&orderName=${options.orderName}&page=${currentPage}`
+    );
   };
+
   const orderProducts = (event) => {
     if (event.target.value === "nombre_producto") {
       dispatch(postOrderProducts("nombre_producto", "", idBranch));
@@ -88,15 +104,32 @@ const Inventory = ({ idBranch }) => {
       dispatch(postOrderProducts("", "", idBranch));
     }
   };
+
   //pages
   const prevPage = () => {
-    if (info.currentPage > 1)
-      setInfo({ ...info, currentPage: info.currentPage - 1 });
+    if (currentPage > 1) {
+      setOptions({
+        ...options,
+        page: options.page - 1,
+      });
+      setCurrentPage(currentPage - 1);
+      setConditions(
+        `?type=${options.type}&order=${options.order}&name=${options.name}&orderName=${options.orderName}&page=${currentPage}`
+      );
+    }
   };
 
   const nextPage = () => {
-    if (info.currentPage < info.pages)
-      setInfo({ ...info, currentPage: info.currentPage + 1 });
+    if (currentPage <= pages) {
+      setOptions({
+        ...options,
+        page: options.page + 1,
+      });
+      setCurrentPage(currentPage + 1);
+      setConditions(
+        `?type=${options.type}&order=${options.order}&name=${options.name}&orderName=${options.orderName}&page=${currentPage}`
+      );
+    }
   };
 
   return (
@@ -108,7 +141,7 @@ const Inventory = ({ idBranch }) => {
           handleChange={handleChange}
           handleSubmit={handleSubmit}
         />
-        <select name='type' onChange={handlertype} className={Style.buttons}>
+        <select name="type" onChange={handlertype} className={Style.buttons}>
           <option value="">Ver todos los productos</option>
           {allTypeProduct.map((p) => (
             <option key={p.id_catalogo} value={p.nombre_catalogo}>
@@ -116,8 +149,8 @@ const Inventory = ({ idBranch }) => {
             </option>
           ))}
         </select>
-        <select name='order' onChange={handlerOrder} className={Style.buttons}>
-          <option value="ASC">Ordenar: Por defecto</option>
+        <select name="order" onChange={handlerOrder} className={Style.buttons}>
+          <option value="">Ordenar: Por defecto</option>
           <option value="ASC">A-Z</option>
           <option value="DESC">Z-A</option>
         </select>
@@ -147,8 +180,8 @@ const Inventory = ({ idBranch }) => {
         <Paginate
           prevChange={prevPage}
           nextChange={nextPage}
-          pages={info.currentPage}
-          pageTotal={info.pages}
+          pages={currentPage}
+          pageTotal={pages}
         />
       </div>
     </div>

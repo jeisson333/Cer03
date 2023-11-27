@@ -5,7 +5,8 @@ import {
   POST_PRODUCTSNAME,
   POST_NEWPRODUCT,
   POST_ORDERPRODUCT,
-  FILTER
+  FILTER,
+  PAGES,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -104,45 +105,60 @@ export const postProductName = (name, idBranch) => {
   };
 };
 export const postOrderProducts = (nombre_producto, DESC, idBranch) => {
-  
   return async (dispatch) => {
     try {
       const response = await axios.post(
         `http://localhost:3001/products/?orderName=${nombre_producto}&order=${DESC}`,
         {
           id: idBranch,
-        });
-        
+        }
+      );
+
       return dispatch({
         type: POST_ORDERPRODUCT,
         payload: response.data,
       });
-
     } catch (error) {
       console.log(error.message);
     }
-  }
-}
+  };
+};
 
 export const filter = (conditions, idBranch) => {
   return async (dispatch) => {
-    try{
-
-      const response = await axios.post(`http://localhost:3001/products${conditions ? conditions : ''}`,{
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/products${conditions ? conditions : ""}`,
+        {
           id: idBranch,
-        });
-      
+        }
+      );
+
       return dispatch({
         type: FILTER,
         payload: response.data,
       });
-    }
-    catch(error){
+    } catch (error) {
       return dispatch({
         type: FILTER,
-        payload: {data:[]},
+        payload: { data: [] },
       });
-      
     }
-  }
-}
+  };
+};
+
+export const handlerPages = (direction, page) => {
+  return (dispatch) => {
+    if (direction === "next") {
+      return dispatch({
+        type: PAGES,
+        payload: page + 1,
+      });
+    } else if (direction === "prev") {
+      return dispatch({
+        type: PAGES,
+        payload: page - 1,
+      });
+    }
+  };
+};

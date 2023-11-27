@@ -5,12 +5,15 @@ import {
   POST_PRODUCTSNAME,
   POST_NEWPRODUCT,
   POST_ORDERPRODUCT,
-  FILTER
+  FILTER,
+  PAGES,
 } from "./action-types.js";
 
 const initialState = {
   allTypeProducts: [],
   products: [],
+
+  pages: 1,
 };
 
 function reducer(state = initialState, action) {
@@ -22,6 +25,8 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         products: action.payload?.data,
+        currentPages: action.payload.info.currentPages,
+        pages: action.payload.info.pages,
       };
       break;
     case GET_TYPEPRODUCTS:
@@ -34,6 +39,8 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         products: action.payload,
+        currentPages: action.payload.info.currentPages,
+        pages: action.payload.info.pages,
       };
     case POST_NEWPRODUCT:
       return { ...state };
@@ -45,20 +52,33 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         products: action.payload?.data,
+        currentPages: action.payload.info.currentPages,
+        pages: action.payload.info.pages,
       };
       break;
-      case POST_ORDERPRODUCT:
-        return {
-          ...state,
-          products: action.payload?.data
-        }
-        break
-
-    case FILTER: 
+    case POST_ORDERPRODUCT:
       return {
         ...state,
-        products: action.payload?.data
-      }
+        products: action.payload?.data,
+        currentPages: action.payload.info.currentPages,
+        pages: action.payload.info.pages,
+      };
+      break;
+
+    case FILTER:
+      return {
+        ...state,
+        products: action.payload?.data,
+        currentPages: action.payload.info.currentPages,
+        pages: action.payload.info.pages,
+      };
+
+    case PAGES:
+      return {
+        ...state,
+        currentPages: action.payload,
+      };
+
     default:
       return { ...state };
   }
