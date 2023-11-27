@@ -1,48 +1,60 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from "axios";
-import {getTypeProducts} from '../../redux/actions'
+import { getProducts, getTypeProducts, filterTemperamentAction,postProductName } from '../../redux/actions'
 import Style from "./inventory.module.css";
 import { Link } from "react-router-dom";
 import { FaListOl } from "react-icons/fa6";
 import { FaFilterCircleDollar } from "react-icons/fa6";
+import Search from "../../components/SearchBar/SearchBar";
 
 const Inventory = ({ idBranch }) => {
   const dispatch = useDispatch();
-  const [products, setProducts] = useState([]);
 
+  const products = useSelector((state) => state.products);
   const allTypeProduct = useSelector((state) => state.allTypeProducts)
 
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axios.post("http://localhost:3001/products", {
-          id: idBranch,
-        });
-        setProducts(data.data);
-      } catch (error) {
-        throw Error(error.message);
-      }
-    })();
+    dispatch(getProducts(idBranch));
     dispatch(getTypeProducts());
   }, []);
 
-  console.log(allTypeProduct);
+  const filterTypeProducts = (event) => {
+    if (event.target.value === "all") {
+      dispatch(getProducts(idBranch));
+    }
+    else {
+      dispatch(filterTemperamentAction(event.target.value, idBranch))
+    }
+  }
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    setSearch(event.target.value);
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(postProductName(search,idBranch))
+  }
 
   return (
     <div>
       <h1>Inventario</h1>
       <div className={Style.filtrosContainer}>
 
-        <button className={Style.buttons}><FaFilterCircleDollar /> Filtrar</button>
+        <select onChange={filterTypeProducts} className={Style.buttons}>
+          <option value="all">Ver todos los productos</option>
+          {allTypeProduct.map((p) => (
+            <option key={p.id_catalogo} value={p.nombre_catalogo}>{p.nombre_catalogo}</option>
+          ))}
+        </select>
         <button className={Style.buttons}><FaListOl /> Ordenar</button>
-          <input
-            type="search"
-            placeholder="Buscar concepto..."
-            className={Style.searchInput}
-          />
+        <Search className={Style.searchInput} handleChange={handleChange} handleSubmit={handleSubmit} />
 
-        
+
       </div>
       <div className={Style.cardContainer}>
         {products?.map((product, i) => (
