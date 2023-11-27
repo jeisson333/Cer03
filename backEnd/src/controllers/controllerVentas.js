@@ -118,6 +118,7 @@ const getVentas = async ({ conditions, idBranch }) => {
   });
 
   const [sales, allSales] = await Promise.all([salesPromise, allsalesPromise]);
+
   const count = allSales.length;
   return handlerApiFormat(sales, pageNumber, count, limit);
 };
