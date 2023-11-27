@@ -103,7 +103,7 @@ export const postProductName = (name, idBranch) => {
   };
 };
 export const postOrderProducts = (nombre_producto, DESC, idBranch) => {
-  console.log(nombre_producto, DESC, idBranch);
+  
   return async (dispatch) => {
     try {
       const response = await axios.post(
