@@ -6,6 +6,7 @@ import {
   filterTemperamentAction,
   postProductName,
   postOrderProducts,
+  filter
 } from "../../redux/actions";
 import Style from "./inventory.module.css";
 import { Link } from "react-router-dom";
@@ -23,17 +24,50 @@ const Inventory = ({ idBranch }) => {
     currentPage: 1,
     pages: 1,
   });
+
+  //type and order
+  const [options, setOptions] = useState({
+    type: '',
+    orderName: 'nombre_producto',
+    order: '',
+  })
+
+  const [conditions, setConditions] = useState('')
+ 
+
+  useEffect(() => {
+    dispatch(filter(conditions, idBranch));
+  }, [options.type, options.order])
+
+
+  const handlertype = (event) => {
+    setOptions({
+        ...options,
+        [event.target.name]: event.target.value
+      })
+      setConditions(
+        `?type=${event.target.value}&order=${options.order}&orderName=${options.orderName}`
+      );
+  }
+
+  const handlerOrder = (event) => {
+      setOptions({
+        ...options,
+        [event.target.name]: event.target.value
+      })
+      setConditions(
+        `?type=${options.type}&order=${event.target.value}&orderName=${options.orderName}`
+      );
+  }
+
+
   useEffect(() => {
     dispatch(getProducts(idBranch));
     dispatch(getTypeProducts());
   }, []);
 
-  const filterTypeProducts = (event) => {
-    if (event.target.value === "all") {
-      dispatch(getProducts(idBranch));
-    } else {
-      dispatch(filterTemperamentAction(event.target.value, idBranch));
-    }
+  const typeTypeProducts = (event) => {
+    dispatch(typeTemperamentAction(event.target.value, idBranch));
   };
 
   const handleChange = (event) => {
@@ -74,17 +108,17 @@ const Inventory = ({ idBranch }) => {
           handleChange={handleChange}
           handleSubmit={handleSubmit}
         />
-        <select onChange={filterTypeProducts} className={Style.buttons}>
-          <option value="all">Ver todos los productos</option>
+        <select name='type' onChange={handlertype} className={Style.buttons}>
+          <option value="">Ver todos los productos</option>
           {allTypeProduct.map((p) => (
             <option key={p.id_catalogo} value={p.nombre_catalogo}>
               {p.nombre_catalogo}
             </option>
           ))}
         </select>
-        <select onChange={orderProducts} className={Style.buttons}>
-          <option value="all">Ordenar: Por defecto</option>
-          <option value="nombre_producto">A-Z</option>
+        <select name='order' onChange={handlerOrder} className={Style.buttons}>
+          <option value="ASC">Ordenar: Por defecto</option>
+          <option value="ASC">A-Z</option>
           <option value="DESC">Z-A</option>
         </select>
       </div>
