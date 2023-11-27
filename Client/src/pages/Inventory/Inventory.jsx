@@ -12,7 +12,7 @@ const Inventory = ({ idBranch }) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   const [info, setInfo] = useState({
-    count: 0,
+    count: 0, //count en caso de que se quiera mostrar la cantidad de productos
     currentPage: 1,
     pages: 1,
   });
@@ -49,14 +49,13 @@ const Inventory = ({ idBranch }) => {
         );
 
         setProducts(data.data);
-        // setInfo({ ...data.info });
       } catch (error) {
         throw Error(error.message);
       }
     })();
   }, [info.currentPage]);
 
-  //pages
+  //pages handlers
   const prevPage = () => {
     if (info.currentPage > 1)
       setInfo({ ...info, currentPage: info.currentPage - 1 });
