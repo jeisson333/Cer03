@@ -1,13 +1,9 @@
 import {
   GET_PRODUCTS,
   GET_TYPEPRODUCTS,
-  POST_NEWPRODUCT,
-} from "./action-types.js";
-import {
-  GET_PRODUCTS,
-  GET_TYPEPRODUCTS,
   POST_FILTERPRODCTS,
   POST_PRODUCTSNAME,
+  POST_NEWPRODUCT
 } from "./action-types.js";
 
 const initialState = {
