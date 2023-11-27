@@ -4,6 +4,7 @@ import {
   POST_FILTERPRODCTS,
   POST_PRODUCTSNAME,
   POST_NEWPRODUCT,
+  POST_ORDERPRODUCT
 } from "./action-types.js";
 import axios from "axios";
 
@@ -101,3 +102,23 @@ export const postProductName = (name, idBranch) => {
     }
   };
 };
+export const postOrderProducts = (nombre_producto, DESC, idBranch) => {
+  console.log(nombre_producto, DESC, idBranch);
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/products/?orderName=${nombre_producto}&order=${DESC}`,
+        {
+          id: idBranch,
+        });
+        
+      return dispatch({
+        type: POST_ORDERPRODUCT,
+        payload: response.data,
+      });
+
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+}

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { getProducts, getTypeProducts, filterTemperamentAction, postProductName } from '../../redux/actions'
+import { getProducts, getTypeProducts, filterTemperamentAction, postProductName,postOrderProducts } from '../../redux/actions'
 import Style from "./inventory.module.css";
 import { Link } from "react-router-dom";
 import Paginate from "../../components/Paginate/Paginate";
@@ -43,6 +42,18 @@ const Inventory = ({ idBranch }) => {
     event.preventDefault();
     dispatch(postProductName(search, idBranch))
   }
+  const orderProducts = (event)=>{
+    if (event.target.value === "nombre_producto") {
+      dispatch(postOrderProducts("nombre_producto","",idBranch))
+    }
+    else if(event.target.value === "DESC" ){
+      dispatch(postOrderProducts("nombre_producto","DESC",idBranch))
+    }
+    else{
+      dispatch(postOrderProducts("","",idBranch));
+    }
+    
+  }
   //pages
   const prevPage = () => {
     if (info.currentPage > 1)
@@ -53,6 +64,7 @@ const Inventory = ({ idBranch }) => {
     if (info.currentPage < info.pages)
       setInfo({ ...info, currentPage: info.currentPage + 1 });
   };
+  
 
   return (
     <div>
@@ -65,17 +77,17 @@ const Inventory = ({ idBranch }) => {
             <option key={p.id_catalogo} value={p.nombre_catalogo}>{p.nombre_catalogo}</option>
           ))}
         </select>
-
+        <select onChange={orderProducts} className={Style.buttons}>
+          <option value="all">Ordenar: Por defecto</option>
+          <option value="nombre_producto">A-Z</option>
+          <option value="DESC">Z-A</option>
+        </select>   
         <Search className={Style.searchInput} handleChange={handleChange} handleSubmit={handleSubmit} />
-        <select>
-          <option></option>
-          <option></option>
-          <option></option>
-        </select>
+        
 
 
       </div>
-      <div className={Style.cardContainer}>
+      <div  className={Style.cardContainer}>
         {products?.map((product, i) => (
           <div key={i} className={Style.card}>
             <Link

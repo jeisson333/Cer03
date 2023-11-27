@@ -3,7 +3,8 @@ import {
   GET_TYPEPRODUCTS,
   POST_FILTERPRODCTS,
   POST_PRODUCTSNAME,
-  POST_NEWPRODUCT
+  POST_NEWPRODUCT,
+  POST_ORDERPRODUCT
 } from "./action-types.js";
 
 const initialState = {
@@ -45,6 +46,12 @@ function reducer(state = initialState, action) {
         products: action.payload?.data,
       };
       break;
+      case POST_ORDERPRODUCT:
+        return {
+          ...state,
+          products: action.payload?.data
+        }
+        break
     default:
       return { ...state };
   }
