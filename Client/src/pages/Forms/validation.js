@@ -45,13 +45,20 @@ const validateType = ({ newProduct, errors }) => {
 
 const validateHeight = ({ newProduct, errors }) => {
   if (parseInt(newProduct.peso) <= 0) {
-    errors.peso = "Ingrese un peso válido mayor a cero.";
+    errors.peso = "Ingrese un peso válido mayor a 0 gramos.";
+  }
+  if (parseInt(newProduct.peso) <= 8) {
+    errors.peso = "Ingrese un peso válido mayor a 8 gramos.";
   }
 };
 
 const validatePriceBuy = ({ newProduct, errors }) => {
   if (parseInt(newProduct.valor_compra) <= 0) {
-    errors.valor_compra = "Ingrese un precio de compra válido mayor a cero.";
+    errors.valor_compra = "Ingrese un precio de compra válido mayor a 0 pesos.";
+  }
+
+  if (parseInt(newProduct.valor_compra) <= 5) {
+    errors.valor_compra = "Ingrese un precio de compra válido mayor a 5 pesos.";
   }
 };
 
@@ -62,7 +69,11 @@ const validatePriceSeal = ({ newProduct, errors }) => {
   }
 
   if (parseInt(newProduct.valor_venta) <= 0) {
-    errors.valor_venta = "Ingrese un precio de venta válido mayor a cero.";
+    errors.valor_venta = "Ingrese un precio de venta válido mayor a 0 pesos.";
+  }
+
+  if (parseInt(newProduct.valor_venta) <= 5) {
+    errors.valor_venta = "Ingrese un precio de venta válido mayor a 5 pesos.";
   }
 };
 

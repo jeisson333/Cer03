@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import validation from "./validation";
 import { useEffect, useState } from "react";
 import { getTypeProducts, postNewProduct } from "../../redux/actions";
@@ -45,7 +46,6 @@ export function CreateProduct({ idBranch }) {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(newProduct);
     dispatch(postNewProduct(newProduct));
   };
 
@@ -87,6 +87,7 @@ export function CreateProduct({ idBranch }) {
                 onChange={handleChangeProduct}
                 name="tipo_producto"
               >
+                <option value=""></option>
                 {allTypeProducts?.map((tipo_producto, index) => (
                   <option key={index} value={tipo_producto.id_catalogo}>
                     {tipo_producto.nombre_catalogo}
