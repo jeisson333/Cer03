@@ -47,6 +47,7 @@ export function CreateProduct({ idBranch }) {
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(postNewProduct(newProduct));
+    alert("producto cargado con exito!");
   };
 
   const allTypeProducts = useSelector((state) => state.allTypeProducts);
