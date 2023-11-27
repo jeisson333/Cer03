@@ -66,6 +66,23 @@
   border: none;
 }
 
+.submit:disabled {
+  cursor: default;
+  border-radius: 5px;
+  background-color: rgb(21, 48, 15);
+  color: #6e5d5d;
+  border: none;
+}
+
+.submit:disabled:hover {
+  background-color: rgb(21, 48, 15);
+}
+
 .submit:hover {
   background-color: rgb(65, 176, 40);
+}
+
+.errors {
+  color: rgb(201, 0, 0);
+  font-weight: 100;
 }

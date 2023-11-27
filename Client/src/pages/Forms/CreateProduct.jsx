@@ -1,7 +1,5 @@
-import * as React from "react";
+import validation from "./validation";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import validator from "validator";
 import { getTypeProducts, postNewProduct } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./CreateProduct.module.css";
@@ -10,6 +8,8 @@ export function CreateProduct({ idBranch }) {
   const [newProduct, setNewProduct] = useState({
     idBranch: idBranch,
   });
+
+  const [errors, setErrors] = useState({});
 
   const handleChangeProduct = (event) => {
     switch (event.target.name) {
@@ -45,71 +45,8 @@ export function CreateProduct({ idBranch }) {
 
   const onSubmit = (event) => {
     event.preventDefault();
-
-    if (!newProduct.nombre_producto) {
-      alert("Ingrese un nombre para el producto.");
-      return;
-    }
-
-    if (!newProduct.tipo_producto) {
-      alert("Seleccione un tipo de producto.");
-      return;
-    }
-
-    if (!newProduct.peso || isNaN(newProduct.peso)) {
-      alert("Ingrese un peso válido.");
-      return;
-    }
-
-    if (!newProduct.valor_compra || isNaN(newProduct.valor_compra)) {
-      alert("Ingrese un valor de compra válido.");
-      return;
-    }
-
-    if (!newProduct.valor_venta || isNaN(newProduct.valor_venta)) {
-      alert("Ingrese un valor de venta válido.");
-      return;
-    }
-
-    if (!validator.isURL(newProduct.image)) {
-      alert("Ingrese una URL de imagen válida.");
-      return;
-    }
-
-    if (newProduct.nombre_producto.length > 25) {
-      alert("El nombre del producto no puede exceder los 25 caracteres.");
-      return;
-    }
-
-    if (newProduct.valor_venta <= newProduct.valor_compra) {
-      alert("El valor de venta no puede ser menor o igual al valor de compra.");
-      return;
-    }
-
-    if (!Number.isInteger(newProduct.peso) || newProduct.peso < 0) {
-      alert("Ingrese un peso válido mayor o igual a cero.");
-      return;
-    }
-
-    if (
-      !Number.isInteger(newProduct.valor_compra) ||
-      newProduct.valor_compra < 0
-    ) {
-      alert("Ingrese un valor de compra válido mayor o igual a cero.");
-      return;
-    }
-
-    if (
-      !Number.isInteger(newProduct.valor_venta) ||
-      newProduct.valor_venta < 0
-    ) {
-      alert("Ingrese un valor de venta válido mayor o igual a cero.");
-      return;
-    }
-
     console.log(newProduct);
     dispatch(postNewProduct(newProduct));
-    alert("producto cargado con exito");
   };
 
   const allTypeProducts = useSelector((state) => state.allTypeProducts);
@@ -117,9 +54,9 @@ export function CreateProduct({ idBranch }) {
 
   useEffect(() => {
     dispatch(getTypeProducts());
-  }, []);
+    setErrors(validation({ newProduct }));
+  }, [newProduct]);
 
-  console.log(newProduct.image);
   return (
     <form onSubmit={onSubmit}>
       <div className={styles.cargarProductos}>
@@ -136,6 +73,9 @@ export function CreateProduct({ idBranch }) {
                 type="text"
                 name="nombre_producto"
               />
+              {errors.nombre_producto != "" && (
+                <p className={styles.errors}>{errors.nombre_producto}</p>
+              )}
             </label>
           </div>
 
@@ -160,6 +100,9 @@ export function CreateProduct({ idBranch }) {
             <label>
               <span>peso: gr. </span>
               <input onChange={handleChangeProduct} type="number" name="peso" />
+              {errors.peso != "" && (
+                <p className={styles.errors}>{errors.peso}</p>
+              )}
             </label>
           </div>
 
@@ -171,6 +114,9 @@ export function CreateProduct({ idBranch }) {
                 type="number"
                 name="valor_compra"
               />
+              {errors.valor_compra != "" && (
+                <p className={styles.errors}>{errors.valor_compra}</p>
+              )}
             </label>
           </div>
 
@@ -182,6 +128,9 @@ export function CreateProduct({ idBranch }) {
                 type="number"
                 name="valor_venta"
               />
+              {errors.valor_venta != "" && (
+                <p className={styles.errors}>{errors.valor_venta}</p>
+              )}
             </label>
           </div>
 
@@ -198,12 +147,32 @@ export function CreateProduct({ idBranch }) {
             <label>
               <span>Imagen (URL) </span>
               <input onChange={handleChangeProduct} type="url" name="image" />
+              {errors.image != "" && (
+                <p className={styles.errors}>{errors.image}</p>
+              )}
             </label>
           </div>
         </div>
         <div className={styles.buttonHolder}>
-          <button className={styles.submit} type="submit">
-            Submit
+          <button
+            className={styles.submit}
+            type="submit"
+            disabled={
+              !newProduct.nombre_producto ||
+              !newProduct.image ||
+              !newProduct.valor_compra ||
+              !newProduct.valor_venta ||
+              !newProduct.peso ||
+              !newProduct.tipo_producto ||
+              errors.nombre_producto ||
+              errors.image ||
+              errors.valor_compra ||
+              errors.valor_venta ||
+              errors.peso ||
+              errors.tipo_producto
+            }
+          >
+            Registrar
           </button>
         </div>
       </div>
