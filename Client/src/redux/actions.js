@@ -20,9 +20,10 @@ export const getProducts = (idBranch) => {
 export const filterTemperamentAction = (condition,idBranch) =>{
   return async (dispatch) =>{
     try {
-      const response = await axios.post(`http://localhost:3001/products/?${condition}`,{
+      const response = await axios.post(`http://localhost:3001/products/?type=${condition}`,{
         id: idBranch,
       });
+      console.log(response);
       return dispatch({
         type: POST_FILTERPRODCTS,
         payload: response.data
