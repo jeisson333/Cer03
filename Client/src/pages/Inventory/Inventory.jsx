@@ -69,6 +69,11 @@ const Inventory = ({ idBranch }) => {
     <div className={Style.divMain}>
       <h1>Inventario</h1>
       <div className={Style.filtrosContainer}>
+        <Search
+          className={Style.searchInput}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
         <select onChange={filterTypeProducts} className={Style.buttons}>
           <option value="all">Ver todos los productos</option>
           {allTypeProduct.map((p) => (
@@ -82,11 +87,6 @@ const Inventory = ({ idBranch }) => {
           <option value="nombre_producto">A-Z</option>
           <option value="DESC">Z-A</option>
         </select>
-        <Search
-          className={Style.searchInput}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
       </div>
       <div className={Style.cardContainer}>
         {products?.map((product, i) => (
@@ -109,12 +109,14 @@ const Inventory = ({ idBranch }) => {
       {/* <button>Anterior</button>
       <label htmlFor="page">Page: </label>
       <button>Siguiente</button> */}
-      <Paginate
-        prevChange={prevPage}
-        nextChange={nextPage}
-        pages={info.currentPage}
-        pageTotal={info.pages}
-      />
+      <div className={Style.filtrosContainer}>
+        <Paginate
+          prevChange={prevPage}
+          nextChange={nextPage}
+          pages={info.currentPage}
+          pageTotal={info.pages}
+        />
+      </div>
     </div>
   );
 };

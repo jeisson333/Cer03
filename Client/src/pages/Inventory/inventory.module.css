@@ -51,3 +51,9 @@ img {
 .buttons:hover {
   background-color: #e0e0e0;
 }
+
+.filtrosContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
