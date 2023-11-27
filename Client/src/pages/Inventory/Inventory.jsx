@@ -1,63 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { getTypeProducts } from "../../redux/actions";
+import { getProducts, getTypeProducts, filterTemperamentAction,postProductName } from '../../redux/actions'
+import Style from "./inventory.module.css";
 import { Link } from "react-router-dom";
 import Paginate from "../../components/Paginate/Paginate";
 import { FaListOl } from "react-icons/fa6";
 import { FaFilterCircleDollar } from "react-icons/fa6";
-import Style from "./inventory.module.css";
+import Search from "../../components/SearchBar/SearchBar";
+
 
 const Inventory = ({ idBranch }) => {
   const dispatch = useDispatch();
-  const [products, setProducts] = useState([]);
+  const products = useSelector((state) => state.products);
+ 
+
+  const allTypeProduct = useSelector((state) => state.allTypeProducts)
+  const [search, setSearch] = useState("");
   const [info, setInfo] = useState({
     count: 0,
     currentPage: 1,
     pages: 1,
   });
-
-  const allTypeProduct = useSelector((state) => state.allTypeProducts);
-
   useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axios.post(
-          "http://localhost:3001/products?page_size=5",
-          {
-            id: idBranch,
-          }
-        );
-
-        setProducts(data.data);
-        setInfo({ ...data.info });
-      } catch (error) {
-        throw Error(error.message);
-      }
-    })();
+    dispatch(getProducts(idBranch));
     dispatch(getTypeProducts());
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axios.post(
-          `http://localhost:3001/products?page_size=5&page=${info.currentPage}`,
-          {
-            id: idBranch,
-          }
-        );
+  const filterTypeProducts = (event) => {
+    if (event.target.value === "all") {
+      dispatch(getProducts(idBranch));
+    }
+    else {
+      dispatch(filterTemperamentAction(event.target.value, idBranch))
+    }
+  }
 
-        setProducts(data.data);
-        // setInfo({ ...data.info });
-      } catch (error) {
-        throw Error(error.message);
-      }
-    })();
-  }, [info.currentPage]);
+  const handleChange = (event) => {
+    event.preventDefault();
+    setSearch(event.target.value);
+  }
 
-  //pages
-  const prevPage = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(postProductName(search,idBranch))
+  }
+   //pages
+   const prevPage = () => {
     if (info.currentPage > 1)
       setInfo({ ...info, currentPage: info.currentPage - 1 });
   };
@@ -71,17 +60,18 @@ const Inventory = ({ idBranch }) => {
     <div>
       <h1>Inventario</h1>
       <div className={Style.filtrosContainer}>
-        <button className={Style.buttons}>
-          <FaFilterCircleDollar /> Filtrar
-        </button>
-        <button className={Style.buttons}>
-          <FaListOl /> Ordenar
-        </button>
-        <input
-          type="search"
-          placeholder="Buscar concepto..."
-          className={Style.searchInput}
-        />
+
+      <select onChange={filterTypeProducts} className={Style.buttons}>
+          <option value="all">Ver todos los productos</option>
+          {allTypeProduct.map((p) => (
+            <option key={p.id_catalogo} value={p.nombre_catalogo}>{p.nombre_catalogo}</option>
+          ))}
+        </select>
+        <button className={Style.buttons}><FaListOl /> Ordenar</button>
+        <Search className={Style.searchInput} handleChange={handleChange} handleSubmit={handleSubmit} />
+
+
+        
       </div>
       <div className={Style.cardContainer}>
         {products?.map((product, i) => (

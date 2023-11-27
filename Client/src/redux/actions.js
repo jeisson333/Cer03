@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import {
   GET_PRODUCTS,
   GET_TYPEPRODUCTS,
   POST_NEWPRODUCT,
 } from "./action-types.js";
+=======
+import { GET_PRODUCTS,GET_TYPEPRODUCTS,POST_FILTERPRODCTS,POST_PRODUCTSNAME } from "./action-types.js";
+>>>>>>> 84f263f695aca0219085db9a68af5a334da14dc3
 import axios from "axios";
 
 export const getProducts = (idBranch) => {
@@ -21,6 +25,7 @@ export const getProducts = (idBranch) => {
     }
   };
 };
+<<<<<<< HEAD
 export const getTypeProducts = () => {
   return async (dispatch) => {
     try {
@@ -28,6 +33,33 @@ export const getTypeProducts = () => {
         "http://localhost:3001/catalogos?tipo_catalogo=3890c641-32e7-49cf-864e-de62c04efb1b"
       );
       dispatch({
+=======
+export const filterTemperamentAction = (condition,idBranch) =>{
+  return async (dispatch) =>{
+    try {
+      const response = await axios.post(`http://localhost:3001/products/?type=${condition}`,{
+        id: idBranch,
+      });
+      console.log(response);
+      return dispatch({
+        type: POST_FILTERPRODCTS,
+        payload: response.data
+      })
+    } catch (error) {
+      return dispatch({
+        type: POST_FILTERPRODCTS,
+        payload: error.message
+      })
+    }
+  }
+} 
+
+export const getTypeProducts  = () =>{
+  return async (dispatch) =>{
+    try {
+      const response = await axios.get('http://localhost:3001/catalogos?tipo_catalogo=3890c641-32e7-49cf-864e-de62c04efb1b');
+      return dispatch({
+>>>>>>> 84f263f695aca0219085db9a68af5a334da14dc3
         type: GET_TYPEPRODUCTS,
         payload: response.data,
       });
@@ -37,6 +69,7 @@ export const getTypeProducts = () => {
   };
 };
 
+<<<<<<< HEAD
 export const postNewProduct = (input) => {
   return async function (dispatch) {
     try {
@@ -53,3 +86,24 @@ export const postNewProduct = (input) => {
     }
   };
 };
+=======
+export const postProductName = (name,idBranch) =>{
+  return async (dispatch) =>{
+    try {
+      const response = await axios.post(`http://localhost:3001/products/?name=${name}`,{
+        id: idBranch,
+      });
+      return dispatch({
+        type: POST_PRODUCTSNAME,
+        payload: response.data
+      })
+    } catch (error) {
+      return dispatch({
+        type: POST_FILTERPRODCTS,
+        payload: error.message
+      })
+    }
+  }
+}
+
+>>>>>>> 84f263f695aca0219085db9a68af5a334da14dc3
