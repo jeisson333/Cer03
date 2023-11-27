@@ -1,5 +1,4 @@
 
-
 .movimientos {
     display: flex;
     padding: 8px 16px 8px 16px;
@@ -15,9 +14,15 @@
     background-color: rgb(83, 219, 52);
     color: #fff;
     border: none;
-    padding: 5px 16px 8px 16px;
+    /* padding: 5px 16px 8px 16px; */
+    height: 46px;
+    width: 110px;
     cursor: pointer;
-    
+    margin: 10px;    
+}
+
+.movimientos .buttonNv:hover{
+    background-color: rgb(65, 176, 40);
 }
 
 .movimientos button {
@@ -25,8 +30,15 @@
     background-color: rgb(219, 57, 52);
     color: #fff;
     border: none;
-    padding: 8px 16px 8px 16px;
+    /* padding: 8px 16px 8px 16px; */
     cursor: pointer;
+    margin: 10px;  
+    height: 46px;
+    width: 110px;
+}
+
+.movimientos button:hover{
+    background-color: rgb(162, 42, 38);
 }
 
 .buttonContainer {
@@ -41,6 +53,7 @@
     margin: 24px 0;
 
 }
+
 .filtrosContainer{
     display: flex;
     margin: auto;

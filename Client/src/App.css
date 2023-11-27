@@ -1,3 +1,7 @@
+body{
+  background: #edf3fb;
+}
+
 .siderBarPosition {
   display: grid;
   grid-template-columns: 270px auto;

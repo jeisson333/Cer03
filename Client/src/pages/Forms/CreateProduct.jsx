@@ -5,6 +5,8 @@ import validator from "validator";
 import { getTypeProducts, postNewProduct } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
+import styles from "./CreateProduct.module.css"
+
 function validate(input) {
   let errors = {};
 
@@ -90,7 +92,7 @@ export function CreateProduct({ idBranch }) {
         break;
     }
 
-    console.log(newProduct);
+    // console.log(newProduct);
   };
 
   const onSubmit = (event) => {
@@ -106,10 +108,17 @@ export function CreateProduct({ idBranch }) {
     dispatch(getTypeProducts());
   }, []);
 
+  console.log(newProduct.image)
   return (
     <form onSubmit={onSubmit}>
-      <h1>Cargar producto</h1>
-      <div>
+      <div className={styles.cargarProductos}>
+      <h2>Cargar producto</h2>
+      <div className={styles.divider}>
+      </div>
+      </div>
+      <div className={styles.formHolder}>
+      <div className={styles.createContainer}>
+      <div className={styles.indHolder}>
         <label>
           <span>Nombre del Producto </span>
           <input
@@ -120,10 +129,10 @@ export function CreateProduct({ idBranch }) {
         </label>
       </div>
 
-      <div>
+      <div className={styles.indHolder}>
         <label>
           <span>Tipo de producto </span>
-          <select onChange={handleChangeProduct} name="tipo_producto">
+          <select className={styles.select} onChange={handleChangeProduct} name="tipo_producto">
             {allTypeProducts?.map((tipo_producto, index) => (
               <option key={index} value={tipo_producto.id_catalogo}>
                 {tipo_producto.nombre_catalogo}
@@ -133,21 +142,14 @@ export function CreateProduct({ idBranch }) {
         </label>
       </div>
 
-      <div>
+      <div className={styles.indHolder}>
         <label>
           <span>peso: gr. </span>
           <input onChange={handleChangeProduct} type="number" name="peso" />
         </label>
       </div>
 
-      <div>
-        <label>
-          <span>Imagen </span>
-          <input onChange={handleChangeProduct} type="url" name="image" />
-        </label>
-      </div>
-
-      <div>
+      <div className={styles.indHolder}>
         <label>
           <span>Valor compra: $ </span>
           <input
@@ -158,7 +160,7 @@ export function CreateProduct({ idBranch }) {
         </label>
       </div>
 
-      <div>
+      <div className={styles.indHolder}>
         <label>
           <span>Valor venta: $ </span>
           <input
@@ -169,7 +171,25 @@ export function CreateProduct({ idBranch }) {
         </label>
       </div>
 
-      <button type="submit">Submit</button>
+      {/* <button type="submit">Submit</button> */}
+      </div>
+      <div className={styles.createContainer}>
+
+      <div className={styles.indHolder}>
+        <h2>Imagen</h2>
+           <img className={styles.image} src={newProduct.image} alt="Aqui puedes ver tu imagen" />
+        <label>
+          <span>Imagen (URL) </span>
+          <input  onChange={handleChangeProduct} type="url" name="image" />
+        </label>
+      </div>
+
+      </div>
+      <div className={styles.buttonHolder}>
+      <button className={styles.submit} type="submit">Submit</button>
+      </div>
+      
+      </div>
     </form>
   );
 }
