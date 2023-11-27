@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { getProducts, getTypeProducts, filterTemperamentAction,postProductName } from '../../redux/actions'
+import { getProducts, getTypeProducts, filterTemperamentAction, postProductName } from '../../redux/actions'
 import Style from "./inventory.module.css";
 import { Link } from "react-router-dom";
 import Paginate from "../../components/Paginate/Paginate";
-import { FaListOl } from "react-icons/fa6";
-import { FaFilterCircleDollar } from "react-icons/fa6";
 import Search from "../../components/SearchBar/SearchBar";
 
 
 const Inventory = ({ idBranch }) => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
- 
+
 
   const allTypeProduct = useSelector((state) => state.allTypeProducts)
   const [search, setSearch] = useState("");
@@ -43,10 +41,10 @@ const Inventory = ({ idBranch }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(postProductName(search,idBranch))
+    dispatch(postProductName(search, idBranch))
   }
-   //pages
-   const prevPage = () => {
+  //pages
+  const prevPage = () => {
     if (info.currentPage > 1)
       setInfo({ ...info, currentPage: info.currentPage - 1 });
   };
@@ -61,17 +59,21 @@ const Inventory = ({ idBranch }) => {
       <h1>Inventario</h1>
       <div className={Style.filtrosContainer}>
 
-      <select onChange={filterTypeProducts} className={Style.buttons}>
+        <select onChange={filterTypeProducts} className={Style.buttons}>
           <option value="all">Ver todos los productos</option>
           {allTypeProduct.map((p) => (
             <option key={p.id_catalogo} value={p.nombre_catalogo}>{p.nombre_catalogo}</option>
           ))}
         </select>
-        <button className={Style.buttons}><FaListOl /> Ordenar</button>
+
         <Search className={Style.searchInput} handleChange={handleChange} handleSubmit={handleSubmit} />
+        <select>
+          <option></option>
+          <option></option>
+          <option></option>
+        </select>
 
 
-        
       </div>
       <div className={Style.cardContainer}>
         {products?.map((product, i) => (
