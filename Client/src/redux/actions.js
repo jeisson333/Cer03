@@ -4,7 +4,8 @@ import {
   POST_FILTERPRODCTS,
   POST_PRODUCTSNAME,
   POST_NEWPRODUCT,
-  POST_ORDERPRODUCT
+  POST_ORDERPRODUCT,
+  FILTER
 } from "./action-types.js";
 import axios from "axios";
 
@@ -119,6 +120,29 @@ export const postOrderProducts = (nombre_producto, DESC, idBranch) => {
 
     } catch (error) {
       console.log(error.message);
+    }
+  }
+}
+
+export const filter = (conditions, idBranch) => {
+  return async (dispatch) => {
+    try{
+
+      const response = await axios.post(`http://localhost:3001/products${conditions ? conditions : ''}`,{
+          id: idBranch,
+        });
+      
+      return dispatch({
+        type: FILTER,
+        payload: response.data,
+      });
+    }
+    catch(error){
+      return dispatch({
+        type: FILTER,
+        payload: {data:[]},
+      });
+      
     }
   }
 }

@@ -4,7 +4,8 @@ import {
   POST_FILTERPRODCTS,
   POST_PRODUCTSNAME,
   POST_NEWPRODUCT,
-  POST_ORDERPRODUCT
+  POST_ORDERPRODUCT,
+  FILTER
 } from "./action-types.js";
 
 const initialState = {
@@ -52,6 +53,12 @@ function reducer(state = initialState, action) {
           products: action.payload?.data
         }
         break
+
+    case FILTER: 
+      return {
+        ...state,
+        products: action.payload?.data
+      }
     default:
       return { ...state };
   }
