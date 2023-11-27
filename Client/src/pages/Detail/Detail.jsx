@@ -29,7 +29,7 @@ const Detail = ({ idBranch }) => {
   }, []);
   return (
     <div className={styles.divMain}>
-      <div className={styles.divTittle}>
+      <div className={styles.divSecond}>
         <h2 className={styles.tittle}>
           {product[0]?.PRODUCTO?.nombre_producto}
         </h2>
@@ -39,7 +39,7 @@ const Detail = ({ idBranch }) => {
           alt={product[0]?.PRODUCTO?.nombre_producto}
         />
       </div>
-      <div>
+      <div className={styles.divSecond}>
         <p className={styles.info}>
           Sucursal: {product[0]?.SUCURSAL.nombre_sucursal}
         </p>
