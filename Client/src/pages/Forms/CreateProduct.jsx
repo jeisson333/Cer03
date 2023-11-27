@@ -76,8 +76,40 @@ export function CreateProduct({ idBranch }) {
       return;
     }
 
+    if (newProduct.nombre_producto.length > 25) {
+      alert("El nombre del producto no puede exceder los 25 caracteres.");
+      return;
+    }
+
+    if (newProduct.valor_venta <= newProduct.valor_compra) {
+      alert("El valor de venta no puede ser menor o igual al valor de compra.");
+      return;
+    }
+
+    if (!Number.isInteger(newProduct.peso) || newProduct.peso < 0) {
+      alert("Ingrese un peso válido mayor o igual a cero.");
+      return;
+    }
+
+    if (
+      !Number.isInteger(newProduct.valor_compra) ||
+      newProduct.valor_compra < 0
+    ) {
+      alert("Ingrese un valor de compra válido mayor o igual a cero.");
+      return;
+    }
+
+    if (
+      !Number.isInteger(newProduct.valor_venta) ||
+      newProduct.valor_venta < 0
+    ) {
+      alert("Ingrese un valor de venta válido mayor o igual a cero.");
+      return;
+    }
+
     console.log(newProduct);
     dispatch(postNewProduct(newProduct));
+    alert("producto cargado con exito");
   };
 
   const allTypeProducts = useSelector((state) => state.allTypeProducts);
