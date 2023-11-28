@@ -1,51 +1,26 @@
 import {
   GET_PRODUCTS,
-  GET_TYPEPRODUCTS,
-  POST_FILTERPRODCTS,
-  POST_PRODUCTSNAME,
   POST_NEWPRODUCT,
-  POST_ORDERPRODUCT,
-  FILTER,
-  PAGES,
+  GET_TYPEPRODUCTS,
+  GET_SUCURSAL,
 } from "./action-types.js";
 import axios from "axios";
 
-export const getProducts = (idBranch) => {
+export const getProducts = (idBranch, conditions) => {
   return async function (dispatch) {
     try {
-      const { data } = await axios.post("http://localhost:3001/products", {
-        id: idBranch,
-      });
+      const queryParams = new URLSearchParams(conditions).toString();
+      const url = conditions
+        ? `http://localhost:3001/products?${queryParams}`
+        : "http://localhost:3001/products";
+      const { data } = await axios.post(url, { id: idBranch });
 
       return dispatch({
         type: GET_PRODUCTS,
-        payload: data.data,
+        payload: data,
       });
     } catch (error) {
       console.log(error.message);
-    }
-  };
-};
-
-export const filterTemperamentAction = (condition, idBranch) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(
-        `http://localhost:3001/products/?type=${condition}`,
-        {
-          id: idBranch,
-        }
-      );
-      console.log(response);
-      return dispatch({
-        type: POST_FILTERPRODCTS,
-        payload: response.data,
-      });
-    } catch (error) {
-      return dispatch({
-        type: POST_FILTERPRODCTS,
-        payload: error.message,
-      });
     }
   };
 };
@@ -66,6 +41,25 @@ export const getTypeProducts = () => {
   };
 };
 
+export const getSucursales = (idBranch, conditions) => {
+  return async function (dispatch) {
+    try {
+      const queryParams = new URLSearchParams(conditions).toString();
+      const url = conditions
+        ? `http://localhost:3001/sucursales?${queryParams}`
+        : "http://localhost:3001/sucursales";
+      const { data } = await axios.post(url, { id: idBranch });
+
+      return dispatch({
+        type: GET_SUCURSAL,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
 export const postNewProduct = (input) => {
   return async function (dispatch) {
     try {
@@ -79,86 +73,6 @@ export const postNewProduct = (input) => {
       });
     } catch (error) {
       console.log(error.message);
-    }
-  };
-};
-
-export const postProductName = (name, idBranch) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(
-        `http://localhost:3001/products/?name=${name}`,
-        {
-          id: idBranch,
-        }
-      );
-      return dispatch({
-        type: POST_PRODUCTSNAME,
-        payload: response.data,
-      });
-    } catch (error) {
-      return dispatch({
-        type: POST_FILTERPRODCTS,
-        payload: error.message,
-      });
-    }
-  };
-};
-export const postOrderProducts = (nombre_producto, DESC, idBranch) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(
-        `http://localhost:3001/products/?orderName=${nombre_producto}&order=${DESC}`,
-        {
-          id: idBranch,
-        }
-      );
-
-      return dispatch({
-        type: POST_ORDERPRODUCT,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-};
-
-export const filter = (conditions, idBranch) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(
-        `http://localhost:3001/products${conditions ? conditions : ""}`,
-        {
-          id: idBranch,
-        }
-      );
-
-      return dispatch({
-        type: FILTER,
-        payload: response.data,
-      });
-    } catch (error) {
-      return dispatch({
-        type: FILTER,
-        payload: { data: [] },
-      });
-    }
-  };
-};
-
-export const handlerPages = (direction, page) => {
-  return (dispatch) => {
-    if (direction === "next") {
-      return dispatch({
-        type: PAGES,
-        payload: page + 1,
-      });
-    } else if (direction === "prev") {
-      return dispatch({
-        type: PAGES,
-        payload: page - 1,
-      });
     }
   };
 };
