@@ -5,6 +5,7 @@ import { getProducts, getSucursales } from "../../redux/actions";
 //components
 import Products from "../../components/Products/Products";
 import Filters from "../../components/Filters/Filters";
+import Cart from "../../components/Cart/Cart";
 
 //styles
 import Style from "./NewSales.module.css";
@@ -55,6 +56,7 @@ const NewSales = ({ idBranch }) => {
         handlerSubmit={handlerSubmit}
       />
       <Products />
+      <Cart />
 
       <div></div>
     </div>
