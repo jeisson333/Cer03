@@ -8,10 +8,12 @@
   gap: 0.5rem;
   border: 1px dashed #000000;
   border-radius: 10px;
-  background-color: rgba(2, 11, 26, 0.938);
+  /* background-color: rgba(2, 11, 26, 0.938); */
+  background-color: rgb(224, 210, 191);
   filter: brightness(1.1) contrast(1.1);
 }
-.card img {
+
+img {
   inline-size: 13rem;
   block-size: 10rem;
   vertical-align: middle;
