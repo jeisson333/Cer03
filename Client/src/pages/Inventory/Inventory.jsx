@@ -18,7 +18,7 @@ const Inventory = ({ idBranch }) => {
   const sucursales = useSelector((state) => state.sucursales);
   const [conditions, setConditions] = useState({
     page: 1,
-    page_size: 6,
+    page_size: 15,
   });
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const Inventory = ({ idBranch }) => {
   };
 
   return (
-    <div className={Style.divMain}>
+    <div>
       <Filters
         conditions={conditions}
         setConditions={setConditions}
