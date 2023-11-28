@@ -2,6 +2,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { LiaCartPlusSolid } from "react-icons/lia";
+import { FaRegTrashAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart, removeCart } from "../../redux/actions";
 
@@ -60,7 +61,9 @@ const Product = ({ product }) => {
               <LiaCartPlusSolid />
             </button>
           ) : (
-            <button onClick={cartHandler}>Delete</button>
+            <button onClick={cartHandler}>
+              <FaRegTrashAlt />
+            </button>
           )}
           <div className={style.cardContent}>
             <img
