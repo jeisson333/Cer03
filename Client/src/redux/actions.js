@@ -3,6 +3,8 @@ import {
   POST_NEWPRODUCT,
   GET_TYPEPRODUCTS,
   GET_SUCURSAL,
+  ADD_CART,
+  REMOVE_CART,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -74,5 +76,19 @@ export const postNewProduct = (input) => {
     } catch (error) {
       console.log(error.message);
     }
+  };
+};
+
+export const addCart = (product) => {
+  return {
+    type: ADD_CART,
+    payload: product,
+  };
+};
+
+export const removeCart = (productId) => {
+  return {
+    type: REMOVE_CART,
+    payload: productId,
   };
 };

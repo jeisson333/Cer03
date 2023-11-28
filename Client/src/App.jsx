@@ -13,6 +13,7 @@ import Settings from "./pages/Settings/Settings";
 import NavBAr from "./components/NavBar/NavBar";
 import { CreateProduct } from "./pages/Forms/CreateProduct";
 import Detail from "./pages/Detail/Detail";
+import NewSales from "./pages/NewSales/NewSales";
 
 function App() {
   const location = useLocation();
@@ -43,6 +44,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/sales" element={<Sales idBranch={idBranch} />} />
+        <Route path="/newsales" element={<NewSales idBranch={idBranch} />} />
         <Route
           path="/newProduct"
           element={<CreateProduct idBranch={idBranch} />}

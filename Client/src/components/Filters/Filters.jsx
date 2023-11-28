@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTypeProducts } from "../../redux/actions";
+import { useLocation } from "react-router-dom";
 
 //components
 import Paginate from "../Paginate/Paginate";
@@ -100,24 +101,26 @@ export default function Filters({
           Descendente
         </option>
       </select>
-      <select
-        name="sucursal"
-        onChange={handlerConditions}
-        className={Style.selectFilter}
-      >
-        <option value="" className={Style.optionFilter}>
-          Sucursales
-        </option>
-        {sucursales.map((sucursal, index) => (
-          <option
-            key={index}
-            value={sucursal?.nombre_sucursal}
-            className={Style.optionFilter}
-          >
-            {sucursal?.nombre_sucursal}
+      {useLocation().pathname !== "/newsales" && (
+        <select
+          name="sucursal"
+          onChange={handlerConditions}
+          className={Style.selectFilter}
+        >
+          <option value="" className={Style.optionFilter}>
+            Sucursales
           </option>
-        ))}
-      </select>
+          {sucursales.map((sucursal, index) => (
+            <option
+              key={index}
+              value={sucursal?.nombre_sucursal}
+              className={Style.optionFilter}
+            >
+              {sucursal?.nombre_sucursal}
+            </option>
+          ))}
+        </select>
+      )}
       <Paginate
         prevChange={prevPage}
         nextChange={nextPage}
