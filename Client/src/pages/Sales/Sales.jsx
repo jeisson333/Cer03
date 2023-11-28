@@ -1,7 +1,6 @@
-import Cards from "../../components/Card/Card";
+// import Cards from "../../components/Card/Card";
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import Paginate from "../../components/Paginate/Paginate.jsx";
-import usePage from "../../components/utils/UsagePage.jsx";
 // import SearchBar from "../../components/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import axios from "axios";
