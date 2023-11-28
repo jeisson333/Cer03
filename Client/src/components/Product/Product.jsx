@@ -25,11 +25,8 @@ const Product = ({ product }) => {
 
   useEffect(() => {
     inCart.forEach((prodCart) => {
-      if (prodCart.PRODUCTO.id_producto === product.PRODUCTO.id_producto) {
+      if (prodCart.PRODUCTO.id_producto === product.PRODUCTO.id_producto)
         setIsCart(true);
-      } else {
-        setIsCart(false);
-      }
     });
   }, [inCart]);
 
