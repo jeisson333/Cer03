@@ -52,6 +52,10 @@ const Inventory = ({ idBranch }) => {
 
   return (
     <div>
+      <div className={Style.inventario}>
+        <h2>Inventario</h2>
+        <div className={Style.divider}></div>
+      </div>
       <Filters
         conditions={conditions}
         setConditions={setConditions}

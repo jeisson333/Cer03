@@ -1,1 +1,22 @@
 
+.inventario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px 16px 8px 16px;
+    margin: auto;
+    color: #001832;
+}
+
+.inventario h2{
+    padding: 10px 5rem 0 5px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.divider {
+    height: 1px;
+    width: 99%;
+    background: rgb(195, 194, 194);
+    margin: 24px 0;
+}
