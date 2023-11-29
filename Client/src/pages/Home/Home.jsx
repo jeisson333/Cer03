@@ -4,6 +4,7 @@ import styles from "./Home.module.css";
 import { FaListOl } from "react-icons/fa6";
 import { FaFilterCircleDollar } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
+import { NavLink } from "react-router-dom";
 
 export default function Home({ idBranch }) {
   // const [sales, setSales] = useState([]);
@@ -79,16 +80,16 @@ export default function Home({ idBranch }) {
     <div className={styles.container}>
       <div className={`${styles.movimientos}`}>
         <h2>Movimientos</h2>
-        {/*
-        <button className={styles.buttonNv}>Nueva venta</button>
 
-
-          <button>Nuevo gasto</button> 
-        */}
+        <NavLink className={styles.buttonNv} to="/newsales">
+          Nueva venta
+        </NavLink>
+        {/*}
+        <button>Nuevo gasto</button>
       </div>
       <div className={styles.divider}></div>
       <div className={styles.filtrosContainer}>
-        {/*
+
         <button className={styles.buttons}>
           <FaFilterCircleDollar /> Filtrar
         </button>
