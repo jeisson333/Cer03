@@ -1,15 +1,13 @@
-const { Router } = require('express');
+const { Router } = require("express");
 
 const {
-	getVendedorHandlerIdentityCard,
-	getVendedorHandlerName,
-} = require('../handlers/handlerVendedor.js');
+  getVendedorHandlerIdentityCard,
+  getVendedorHandlerName,
+} = require("../handlers/handlerVendedor.js");
 
 routeVendedor = Router();
 
-routeVendedor.get('/idCard', getVendedorHandlerIdentityCard);
-routeVendedor.get('/name', getVendedorHandlerName);
+routeVendedor.get("/idCard", getVendedorHandlerIdentityCard);
+routeVendedor.get("/name", getVendedorHandlerName);
 
-module.exports = {
-	routeVendedor,
-};
+module.exports = routeVendedor;
