@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts, getSucursales } from "../../redux/actions";
 
 //components
-import Paginate from "../../components/Paginate/Paginate";
-import Search from "../../components/SearchBar/SearchBar";
 import Products from "../../components/Products/Products";
 import Filters from "../../components/Filters/Filters";
 
@@ -17,12 +15,17 @@ const Inventory = ({ idBranch }) => {
   const [search, setSearch] = useState("");
   const sucursales = useSelector((state) => state.sucursales);
   const [conditions, setConditions] = useState({
+    sucursales: [],
     page: 1,
     page_size: 15,
   });
 
   useEffect(() => {
     dispatch(getSucursales(idBranch));
+    setConditions({ ...conditions, sucursal: sucursales[0].nombre_sucursal });
+  }, []);
+
+  useEffect(() => {
     dispatch(getProducts(idBranch, conditions));
   }, [conditions]);
 

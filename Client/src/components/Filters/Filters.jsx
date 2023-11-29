@@ -107,18 +107,26 @@ export default function Filters({
           onChange={handlerConditions}
           className={Style.selectFilter}
         >
-          <option value="" className={Style.optionFilter}>
-            Sucursales
+          <option
+            key={0}
+            value={sucursales[0].nombre_sucursal}
+            className={Style.optionFilter}
+          >
+            {sucursales[0].nombre_sucursal}
           </option>
-          {sucursales.map((sucursal, index) => (
-            <option
-              key={index}
-              value={sucursal?.nombre_sucursal}
-              className={Style.optionFilter}
-            >
-              {sucursal?.nombre_sucursal}
-            </option>
-          ))}
+          {sucursales.map((sucursal, index) => {
+            if (index != 0) {
+              return (
+                <option
+                  key={index}
+                  value={sucursal?.nombre_sucursal}
+                  className={Style.optionFilter}
+                >
+                  {sucursal?.nombre_sucursal}
+                </option>
+              );
+            }
+          })}
         </select>
       )}
       <Paginate
