@@ -13,6 +13,7 @@ import Settings from "./pages/Settings/Settings";
 import NavBAr from "./components/NavBar/NavBar";
 import { CreateProduct } from "./pages/Forms/CreateProduct";
 import Detail from "./pages/Detail/Detail";
+import Experiments from "./pages/Experiments/Experiments";
 
 function App() {
   const location = useLocation();
@@ -47,6 +48,7 @@ function App() {
           path="/newProduct"
           element={<CreateProduct idBranch={idBranch} />}
         />
+        <Route path="/test" element={<Experiments />} />
       </Routes>
     </div>
   );

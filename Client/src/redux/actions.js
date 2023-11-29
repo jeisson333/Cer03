@@ -1,49 +1,26 @@
 import {
   GET_PRODUCTS,
-  GET_TYPEPRODUCTS,
-  POST_FILTERPRODCTS,
-  POST_PRODUCTSNAME,
   POST_NEWPRODUCT,
-  POST_ORDERPRODUCT
+  GET_TYPEPRODUCTS,
+  GET_SUCURSAL,
 } from "./action-types.js";
 import axios from "axios";
 
-export const getProducts = (idBranch) => {
+export const getProducts = (idBranch, conditions) => {
   return async function (dispatch) {
     try {
-      const { data } = await axios.post("http://localhost:3001/products", {
-        id: idBranch,
-      });
+      const queryParams = new URLSearchParams(conditions).toString();
+      const url = conditions
+        ? `http://localhost:3001/products?${queryParams}`
+        : "http://localhost:3001/products";
+      const { data } = await axios.post(url, { id: idBranch });
 
       return dispatch({
         type: GET_PRODUCTS,
-        payload: data.data,
+        payload: data,
       });
     } catch (error) {
       console.log(error.message);
-    }
-  };
-};
-
-export const filterTemperamentAction = (condition, idBranch) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(
-        `http://localhost:3001/products/?type=${condition}`,
-        {
-          id: idBranch,
-        }
-      );
-      console.log(response);
-      return dispatch({
-        type: POST_FILTERPRODCTS,
-        payload: response.data,
-      });
-    } catch (error) {
-      return dispatch({
-        type: POST_FILTERPRODCTS,
-        payload: error.message,
-      });
     }
   };
 };
@@ -57,6 +34,25 @@ export const getTypeProducts = () => {
       return dispatch({
         type: GET_TYPEPRODUCTS,
         payload: response.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const getSucursales = (idBranch, conditions) => {
+  return async function (dispatch) {
+    try {
+      const queryParams = new URLSearchParams(conditions).toString();
+      const url = conditions
+        ? `http://localhost:3001/sucursales?${queryParams}`
+        : "http://localhost:3001/sucursales";
+      const { data } = await axios.post(url, { id: idBranch });
+
+      return dispatch({
+        type: GET_SUCURSAL,
+        payload: data,
       });
     } catch (error) {
       console.log(error.message);
@@ -80,45 +76,3 @@ export const postNewProduct = (input) => {
     }
   };
 };
-
-export const postProductName = (name, idBranch) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(
-        `http://localhost:3001/products/?name=${name}`,
-        {
-          id: idBranch,
-        }
-      );
-      return dispatch({
-        type: POST_PRODUCTSNAME,
-        payload: response.data,
-      });
-    } catch (error) {
-      return dispatch({
-        type: POST_FILTERPRODCTS,
-        payload: error.message,
-      });
-    }
-  };
-};
-export const postOrderProducts = (nombre_producto, DESC, idBranch) => {
-  
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(
-        `http://localhost:3001/products/?orderName=${nombre_producto}&order=${DESC}`,
-        {
-          id: idBranch,
-        });
-        
-      return dispatch({
-        type: POST_ORDERPRODUCT,
-        payload: response.data,
-      });
-
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-}

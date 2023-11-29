@@ -24,54 +24,54 @@ export default function Home({ idBranch }) {
   // console.log(sales);
   const productos = [
     {
-      Concepto: "Regla",
-      Valor: 1.2,
-      Estado: "Pagado",
+      Producto: "Zanahorias",
+      Valor: 500,
+      Concepto: "Venta",
     },
     {
-      Concepto: "Goma de borrar",
-      Valor: 0.75,
-      Estado: "Pendiente",
+      Producto: "Limones",
+      Valor: 100,
+      Concepto: "Compra",
     },
     {
-      Concepto: "Plumón",
-      Valor: 3.5,
-      Estado: "Pendiente",
+      Producto: "Arroz",
+      Valor: 100,
+      Concepto: "Compra",
     },
     {
-      Concepto: "Pegamento",
-      Valor: 1.8,
-      Estado: "Pagado",
+      Producto: "Cereal",
+      Valor: 300,
+      Concepto: "Venta",
     },
     {
-      Concepto: "Calculadora",
-      Valor: 10.99,
-      Estado: "Pendiente",
+      Producto: "Carne",
+      Valor: 800,
+      Concepto: "Compra",
     },
     {
-      Concepto: "Resaltador",
-      Valor: 1.25,
-      Estado: "Pagado",
+      Producto: "Remolacha",
+      Valor: 400,
+      Concepto: "Venta",
     },
     {
-      Concepto: "Cinta adhesiva",
-      Valor: 1.5,
-      Estado: "Pendiente",
+      Producto: "Caramelos",
+      Valor: 100,
+      Concepto: "Compra",
     },
     {
-      Concepto: "Tijeras",
-      Valor: 2.0,
-      Estado: "Pagado",
+      Producto: "Tomates",
+      Valor: 300,
+      Concepto: "Venta",
     },
     {
-      Concepto: "Folder",
-      Valor: 2.75,
-      Estado: "Pendiente",
+      Producto: "Atun",
+      Valor: 1000,
+      Concepto: "Compra",
     },
     {
-      Concepto: "Corrector líquido",
-      Valor: 1.9,
-      Estado: "Pagado",
+      Producto: "Carne",
+      Valor: 2000,
+      Concepto: "Venta",
     },
   ];
 
@@ -79,12 +79,16 @@ export default function Home({ idBranch }) {
     <div className={styles.container}>
       <div className={`${styles.movimientos}`}>
         <h2>Movimientos</h2>
+        {/*
         <button className={styles.buttonNv}>Nueva venta</button>
 
-        <button>Nuevo gasto</button>
+
+          <button>Nuevo gasto</button> 
+        */}
       </div>
       <div className={styles.divider}></div>
       <div className={styles.filtrosContainer}>
+        {/*
         <button className={styles.buttons}>
           <FaFilterCircleDollar /> Filtrar
         </button>
@@ -92,30 +96,32 @@ export default function Home({ idBranch }) {
           <FaListOl /> Ordenar
         </button>
         <div className={styles.buttonContainer}>
-          {/* <CiSearch /> */}
+         
           <input
             type="search"
             placeholder="Buscar concepto..."
             className={styles.searchInput}
           />
         </div>
+    );
+    */}
       </div>
 
       <div className={styles.divider}></div>
       <table className={styles.productTable}>
         <thead>
           <tr>
+            <th>Producto</th>
+            <th>Valor $</th>
             <th>Concepto</th>
-            <th>Valor</th>
-            <th>Estado</th>
           </tr>
         </thead>
         <tbody>
           {productos.map((producto, index) => (
             <tr key={index}>
-              <td>{producto.Concepto}</td>
+              <td>{producto.Producto}</td>
               <td>{producto.Valor}</td>
-              <td>{producto.Estado}</td>
+              <td>{producto.Concepto}</td>
             </tr>
           ))}
         </tbody>
