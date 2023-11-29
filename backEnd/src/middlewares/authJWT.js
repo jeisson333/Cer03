@@ -1,25 +1,27 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 
 // autorizacion JWT
 
 const verifyToken = (req, res, next) => {
-	const token = req.headers.authorization.split(' ')[1];
+  const token = req.headers?.authorization?.split(" ")[1];
 
-	if (!token) {
-		return res.status(401).json({ msg: 'access denied, Token not provided' });
-	}
+  if (!token) {
+    return res.status(401).json({ msg: "access denied, Token not provided" });
+  }
 
-	const payload = jwt.verify(token, SECRET);
+  const payload = jwt.verify(token, SECRET);
+  // validar tiempo en que expira el token
+  if (Date.now() / 1000 > payload.exp) {
+    return res.status(401).send({ error: "token expired" });
+  }
 
-	// validar tiempo en que expira el token
-	if (Date.now() > payload.exp) {
-		return res.status(401).send({ error: 'token expired' });
-	}
-
-	next();
+  req.userData = {
+    role: payload?.role,
+  };
+  next();
 };
 
 module.exports = {
-	verifyToken,
+  verifyToken,
 };

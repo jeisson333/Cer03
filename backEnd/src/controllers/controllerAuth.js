@@ -4,6 +4,7 @@ const SECRET = process.env.SECRET;
 const singIn = async (email, password) => {
   let date;
   let role;
+  let idBranch;
   const empresaPromise = EMPRESA.findOne({
     where: {
       email: email,
@@ -24,6 +25,7 @@ const singIn = async (email, password) => {
   else if (empresa) {
     if (empresa?.password != password) throw new Error("Password incorrect");
     else {
+      idBranch = empresa?.id_empresa;
       date = empresa?.fecha_licencia;
       role = "admin";
     }
@@ -31,11 +33,14 @@ const singIn = async (email, password) => {
     if (vendedor?.contraseña_vendedor != password)
       throw new Error("Password incorrect");
     else {
-      const sucursalPromise = SUCURSAL.findOne({
+      const sucursal = await SUCURSAL.findOne({
         where: {
           id_sucursal: vendedor?.vendedor_sucursal,
         },
       });
+      if (!sucursal) throw new Error("Sucursal not exist");
+      idBranch = sucursal?.sucursal_empresa;
+      role = "user";
     }
   }
   const dayMS = 1000 * 60 * 60 * 24;
@@ -45,7 +50,7 @@ const singIn = async (email, password) => {
 
   const token = jwt.sign(
     {
-      idBranch: empresa?.id_empresa,
+      idBranch: idBranch,
       role: role,
       exp: Date.now() / 1000 + 60 * 1440,
     },

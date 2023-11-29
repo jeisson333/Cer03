@@ -1,8 +1,7 @@
-const { Router } = require('express');
-const { singInHandler } = require('../handlers/handlerAuth.js');
+const { Router } = require("express");
+const { singInHandler } = require("../handlers/handlerAuth.js");
 
 routeAuth = Router();
 
-routeAuth.post('/sing-in', singInHandler);
-
+routeAuth.post("/sing-in", singInHandler);
 module.exports = routeAuth;
