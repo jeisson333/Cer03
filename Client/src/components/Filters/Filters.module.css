@@ -1,0 +1,16 @@
+.container {
+  margin: 20px;
+}
+.selectFilter {
+  width: 200px;
+  padding: 8px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.optionFilter {
+  padding: 5px;
+}

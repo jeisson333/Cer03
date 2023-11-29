@@ -1,32 +1,34 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Paginate.module.css */
 
-.button {
+.containerButtons {
   display: flex;
-  margin-block-end: 0.4rem;
-  inline-size: 13.75rem;
   justify-content: space-between;
-  border-radius: 0.5rem;
-  color: black;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: rgba(138, 230, 230, 0.527);
+  align-items: center;
+  margin-top: 20px;
 }
 
-.button button {
-  font-size: 16px;
-  color: rgb(9, 3, 40);
-  font-weight: bold;
-  border-radius: 0.5rem;
-}
-.button button:hover {
-  transform: scale(1.2);
+.buttons {
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding: 8px 12px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-@layer components {
-  .ButtonSelect {
-    @apply w-10 h-10 text-indigo-600 transition-colors duration-150 rounded-full hover:bg-indigo-100 focus:shadow-blue-900;
-  }
+.buttons:hover {
+  background-color: #0056b3;
+}
+
+.buttons:disabled {
+  background-color: #ddd;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.spans {
+  font-size: 14px;
+  margin: 0 15px;
+  color: #333;
 }

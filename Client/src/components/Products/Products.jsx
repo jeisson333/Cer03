@@ -8,7 +8,7 @@ const Products = () => {
   const products = useSelector((state) => state.products);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.cards}>
       {products?.map((product, index) => {
         return <Product key={index} product={product} />;
       })}

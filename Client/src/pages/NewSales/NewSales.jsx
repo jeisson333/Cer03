@@ -5,38 +5,28 @@ import { getProducts, getSucursales } from "../../redux/actions";
 //components
 import Products from "../../components/Products/Products";
 import Filters from "../../components/Filters/Filters";
+import Cart from "../../components/Cart/Cart";
 
 //styles
-import Style from "./inventory.module.css";
+import Style from "./NewSales.module.css";
 
-const Inventory = ({ idBranch }) => {
+const NewSales = ({ idBranch }) => {
   const dispatch = useDispatch();
   const totalPages = useSelector((state) => state.totalPages);
-  const [search, setSearch] = useState("");
   const sucursales = useSelector((state) => state.sucursales);
+
+  const sucursalEmpleado = "FORMOSA";
+
+  const [search, setSearch] = useState("");
   const [conditions, setConditions] = useState({
-    sucursal: [],
+    sucursal: sucursalEmpleado,
     page: 1,
-    page_size: 15,
+    page_size: 6,
   });
-  const [firstChargue, setFirstChargue] = useState(true);
 
   useEffect(() => {
-    dispatch(getSucursales(idBranch));
-  }, []);
-
-  useEffect(() => {
-    if (firstChargue) {
-      setConditions({
-        ...conditions,
-        sucursal: sucursales[0]?.nombre_sucursal,
-      });
-      setFirstChargue(false);
-    }
-  }, [sucursales]);
-
-  useEffect(() => {
-    if (conditions.sucursal) dispatch(getProducts(idBranch, conditions));
+    // dispatch(getSucursales(idBranch));
+    dispatch(getProducts(idBranch, conditions)); //nueva action con filtro de sucursal
   }, [conditions]);
 
   const handlerChange = (event) => {
@@ -50,8 +40,13 @@ const Inventory = ({ idBranch }) => {
     });
   };
 
+  // funtion addToCart(event)
+  // const cartHandler = (event) => {
+
+  // }
+
   return (
-    <div>
+    <div className={Style.divMain}>
       <Filters
         conditions={conditions}
         setConditions={setConditions}
@@ -61,8 +56,11 @@ const Inventory = ({ idBranch }) => {
         handlerSubmit={handlerSubmit}
       />
       <Products />
+      <Cart />
+
+      <div></div>
     </div>
   );
 };
 
-export default Inventory;
+export default NewSales;
