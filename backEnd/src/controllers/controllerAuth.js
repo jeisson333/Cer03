@@ -1,40 +1,60 @@
-const { EMPRESA } = require('../database/db');
-const jwt = require('jsonwebtoken');
+const { EMPRESA, VENDEDOR, SUCURSAL } = require("../database/db");
+const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 const singIn = async (email, password) => {
-	try {
-		const empresa = await EMPRESA.findOne({
-			where: {
-				email: email,
-				password: password,
-			},
-		});
+  let date;
+  let role;
+  const empresaPromise = EMPRESA.findOne({
+    where: {
+      email: email,
+    },
+  });
+  const vendedorPromise = VENDEDOR.findOne({
+    where: {
+      usuario_vendedor: email,
+    },
+  });
 
-		if (!empresa) return { msg: 'invalid email or password' };
+  const [empresa, vendedor] = await Promise.all([
+    empresaPromise,
+    vendedorPromise,
+  ]);
 
-		// volver la fecha en valor numero milisegundos
-		/*const fechaMilisegundos = empresa.fecha_licencia.getTime();
-		const fechaActual = new Date();
+  if (!empresa && !vendedor) throw new Error("Not exist user");
+  else if (empresa) {
+    if (empresa?.password != password) throw new Error("Password incorrect");
+    else {
+      date = empresa?.fecha_licencia;
+      role = "admin";
+    }
+  } else {
+    if (vendedor?.contraseña_vendedor != password)
+      throw new Error("Password incorrect");
+    else {
+      const sucursalPromise = SUCURSAL.findOne({
+        where: {
+          id_sucursal: vendedor?.vendedor_sucursal,
+        },
+      });
+    }
+  }
+  const dayMS = 1000 * 60 * 60 * 24;
+  const restDaysMS = Math.abs(Date.now() - date);
+  const countDays = restDaysMS / dayMS;
+  if (countDays > 30) throw new Error("Expired license");
 
-		if (fechaMilisegundos < fechaActual.getTime()) {
-			return { msg: 'your license expired' };
-        }*/
-	} catch (error) {
-		return error;
-	}
-	const token = jwt.sign(
-		{
-			email,
-			password,
-			exp: Date.now() + 60 * 5000,
-		},
-		SECRET
-	);
-	console.log(token);
-	return token;
+  const token = jwt.sign(
+    {
+      idBranch: empresa?.id_empresa,
+      role: role,
+      exp: Date.now() / 1000 + 60 * 1440,
+    },
+    SECRET
+  );
+  return token;
 };
 
 module.exports = {
-	singIn,
+  singIn,
 };
 /*var token = jwt.sign({ foo: 'bar' }, 'shhhhh');*/
