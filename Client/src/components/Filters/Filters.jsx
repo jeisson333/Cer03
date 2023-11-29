@@ -109,10 +109,10 @@ export default function Filters({
         >
           <option
             key={0}
-            value={sucursales[0].nombre_sucursal}
+            value={sucursales[0]?.nombre_sucursal}
             className={Style.optionFilter}
           >
-            {sucursales[0].nombre_sucursal}
+            {sucursales[0]?.nombre_sucursal}
           </option>
           {sucursales.map((sucursal, index) => {
             if (index != 0) {

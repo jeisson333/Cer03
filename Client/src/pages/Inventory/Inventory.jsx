@@ -15,18 +15,28 @@ const Inventory = ({ idBranch }) => {
   const [search, setSearch] = useState("");
   const sucursales = useSelector((state) => state.sucursales);
   const [conditions, setConditions] = useState({
-    sucursales: [],
+    sucursal: [],
     page: 1,
     page_size: 15,
   });
+  const [firstChargue, setFirstChargue] = useState(true);
 
   useEffect(() => {
     dispatch(getSucursales(idBranch));
-    setConditions({ ...conditions, sucursal: sucursales[0].nombre_sucursal });
   }, []);
 
   useEffect(() => {
-    dispatch(getProducts(idBranch, conditions));
+    if (firstChargue) {
+      setConditions({
+        ...conditions,
+        sucursal: sucursales[0]?.nombre_sucursal,
+      });
+      setFirstChargue(false);
+    }
+  }, [sucursales]);
+
+  useEffect(() => {
+    if (conditions.sucursal) dispatch(getProducts(idBranch, conditions));
   }, [conditions]);
 
   const handlerChange = (event) => {
