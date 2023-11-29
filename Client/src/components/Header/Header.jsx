@@ -4,7 +4,7 @@ import logo from "../image/logocer03.jpeg";
 
 const Header = () => {
   return (
-    <nav className="bg-blue-900 p-4 fixed w-full top-0 z-10">
+    <nav className="bg-blue-900 p-4 fixed w-full top-0 z-10 mb-500">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
           <img

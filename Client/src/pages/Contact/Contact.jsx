@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faPhone, faEnvelope, faLeftLong } from "@fortawesome/free-solid-svg-icons";
 import {faXTwitter, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { NavLink } from "react-router-dom"
-import Card from "../../components/Card/Card";
+// import Card from "../../components/Card/Card";
 
 import styles from "./Contact.module.css"
 

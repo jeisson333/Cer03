@@ -1,64 +1,91 @@
-import React, { useState, useEffect } from "react";
-import Header from "../../components/Header/Header";
-import { Fade, Zoom } from "react-reveal";
-
-const images = [
-  "https://www.brinknews.com/wp-content/uploads/2019/12/shutterstock_1031044285.jpg",
-  "https://www.upb.edu.co/es/imagenes/img-10-tips-para-emprender-con-exito-1464262571595.jpeg",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgsX6sPOuEwHlMYBsAMUktEnUNs7lJ0t2vGQ&usqp=CAU",   
-];
+import React, { useState } from 'react';
+import { Fade } from 'react-reveal';
+import SlideShow from '../../components/SlideShow/SlideShow';
+import Advantages from '../../components/Advantages/Advantages';
+import Header from '../../components/Header/Header';
+import Testimonials from '../../components/Testimonials/Testimonials';
 
 const LandingPage = () => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
-    useEffect(() => {
-      const timer = setInterval(() => {
-        setCurrentImageIndex((prevIndex) =>
-          prevIndex === images.length - 1 ? 0 : prevIndex + 1
-        );
-      }, 2000);
-  
-      return () => clearInterval(timer);
-    }, []);
-  
-    return (
-      <div className="flex flex-wrap items-center justify-center min-h-screen">
-        <Header />
-  
-        <div className="w-full md:w-2/5 p-8">
-          <Fade top>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl text-blue-500 font-bold mb-4">
-              Tu negocio a la mano y en todos tus dispositivos
-            </h1>
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? testimonialsData.length - 1 : prevIndex - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === testimonialsData.length - 1 ? 0 : prevIndex + 1));
+  };
+
+  const testimonialsData = [
+    {
+      id: 1,
+      name: 'Juan Pérez',
+      quote: '¡Increíble experiencia! Me encanta la comunidad y la conexión que proporciona Cer03.',
+    },
+    {
+      id: 2,
+      name: 'María García',
+      quote: 'Cer03 ha cambiado la forma en que interactúo con mi vecindario. Estoy muy agradecida.',
+    },
+    {
+      id: 3,
+      name: 'María García',
+      quote: 'Cer03 ha cambiado la forma en que interactúo con mi vecindario. Estoy muy agradecida.',
+    },
+    {
+      id: 4,
+      name: 'María García',
+      quote: 'Cer03 ha cambiado la forma en que interactúo con mi vecindario. Estoy muy agradecida.',
+    },
+    {
+      id: 5,
+      name: 'María García',
+      quote: 'Cer03 ha cambiado la forma en que interactúo con mi vecindario. Estoy muy agradecida.',
+    },
+  ];
+
+  return (
+    <div className="flex flex-col min-h-screen overflow-hidden">
+      <Header />
+      {/* Contenedor principal */}
+      <div className="flex-1 flex overflow-hidden mt-40">
+        {/* Texto a la izquierda con animación Fade */}
+        <div className="w-1/2 p-8 flex flex-col items-center justify-center">
+          <Fade>
+            <h1 className="text-4xl font-bold mb-4">Bienvenido a Cer03</h1>
           </Fade>
-          <Fade top>
-            <p className="text-gray-700 mb-4">
-              ¡No importa el tamaño! Aquí los pequeños negocios, comerciantes y
-              emprendedores pueden digitalizar, monitorear y crecer las finanzas
-              de su negocio.
+          <Fade delay={300}>
+            <p className="text-gray-600 mb-4">
+              Explora las posibilidades de tu comunidad con nosotros. En Cer03,
+              priorizamos las conexiones y el crecimiento conjunto sobre las transacciones comerciales.
             </p>
           </Fade>
-          <Fade top>
-            <ul className="list-disc list-inside mb-4">
-              <li>Registra tus ventas, deudas y gastos.</li>
-              <li>Gestiona grandes inventarios desde tu computadora.</li>
-              <li>Crea tu catálogo virtual y vende en línea.</li>
-              <li>Sincroniza tu información automáticamente en tu app y PC.</li>
-            </ul>
+          <Fade delay={600}>
+            <p className="text-gray-600 mb-4">
+              Registra y comparte tus experiencias, eventos y recursos con otros miembros del barrio.
+              Lleva un control detallado de tus interacciones, desde colaboraciones hasta actividades
+              cotidianas, sin la presión de vender.
+            </p>
+          </Fade>
+          <Fade delay={900}>
+            <p className="text-gray-600">
+              Únete a nosotros para construir juntos un espacio comunitario vibrante y próspero.
+            </p>
           </Fade>
         </div>
-  
-        <div className="w-full md:w-3/5 p-8">
-          <Zoom>
-            <img
-              className="w-full h-auto rounded-lg shadow-md hover:opacity-90 transform hover:scale-105 transition duration-300"
-              src={images[currentImageIndex]}
-              alt=""
-            />
-          </Zoom>
+
+        <div className="w-1/2 p-8">
+          <SlideShow />
         </div>
       </div>
-    );
-  };
-  
-  export default LandingPage;  
+
+      <div className="w-full p-8 mt-8">
+        <Advantages />
+      </div>
+      <Testimonials currentIndex={currentIndex} handlePrev={handlePrev} handleNext={handleNext} />
+    </div>
+  );
+};
+
+export default LandingPage;
