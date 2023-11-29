@@ -24,11 +24,9 @@
     "react-redux": "^8.1.3",
     "react-reveal": "^1.2.2",
     "react-router-dom": "^6.3.0",
-<<<<<<< HEAD
     "react-scroll": "^1.9.0",
-=======
     "react-select": "^5.8.0",
->>>>>>> dea8e218e0108fe8bb51cd87ea6004c38cb21948
+
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "validator": "^13.11.0"
