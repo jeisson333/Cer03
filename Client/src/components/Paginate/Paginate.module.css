@@ -1,5 +1,10 @@
 /* Paginate.module.css */
-
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
 .containerButtons {
   display: flex;
   justify-content: space-between;
@@ -19,6 +24,7 @@
 
 .buttons:hover {
   background-color: #0056b3;
+  cursor: pointer;
 }
 
 .buttons:disabled {

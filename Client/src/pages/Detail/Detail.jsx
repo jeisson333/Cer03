@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Fade, Rotate } from "react-reveal";
 
+
 const Detail = ({ idBranch }) => {
   const location = useLocation();
   const query = new URLSearchParams(location.search);

@@ -1,21 +1,27 @@
 
 .movimientos {
     display: flex;
+    align-items: center;
     padding: 8px 16px 8px 16px;
     margin: auto;
+    color: #001832;
 }
 
 .movimientos h2 {
     padding: 10px 5rem 0 5px;
+    font-size: 25px;
+    font-weight: 600;
 }
 
 .movimientos .buttonNv {
     border-radius: 5px;
     background-color: rgb(83, 219, 52);
+    display: grid;
+    place-items: center;
     color: #fff;
     border: none;
     /* padding: 5px 16px 8px 16px; */
-    height: 46px;
+    height: 45px;
     width: 110px;
     cursor: pointer;
     margin: 10px;    

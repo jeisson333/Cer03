@@ -1,5 +1,8 @@
 .container {
   margin: 20px;
+  /* border: 2px solid black; */
+  width: 50vw;
+  margin: 0 auto;
 }
 .selectFilter {
   width: 200px;
