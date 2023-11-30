@@ -34,15 +34,15 @@ const singIn = async (email, password) => {
     if (vendedor?.contraseña_vendedor != password)
       throw new Error("Password incorrect");
     else {
-      const sucursal = await SUCURSAL.findOne({
+      modelSucursal = await SUCURSAL.findOne({
         where: {
           id_sucursal: vendedor?.vendedor_sucursal,
         },
       });
-      if (!sucursal) throw new Error("Sucursal not exist");
-      idBranch = sucursal?.sucursal_empresa;
+      if (!modelSucursal) throw new Error("Sucursal not exist");
+      idBranch = modelSucursal?.sucursal_empresa;
       role = "user";
-      sucursal = sucursal?.nombre_sucursal;
+      sucursal = modelSucursal?.nombre_sucursal;
     }
   }
   const dayMS = 1000 * 60 * 60 * 24;
