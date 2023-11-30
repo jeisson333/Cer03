@@ -65,7 +65,7 @@ const getVentas = async ({ conditions, idBranch }) => {
     attributes: [],
     include: [
       {
-        attributes: ["id_venta"],
+        attributes: ["id_venta", "createdAt"],
         model: VENTA,
         include: [
           {

@@ -10,7 +10,7 @@ import style from "./Sales.module.css";
 const Sales = ({ idBranch }) => {
   // const { changeNext, changePrev, paginate, count, totPagine } = usePage();
   const [sales, setSales] = useState([]);
-
+  console.log(sales);
   useEffect(() => {
     (async () => {
       try {
