@@ -1,6 +1,11 @@
 import styles from "./ProdCart.module.css";
 
-const ProdCart = ({ product, quantity, quantityInputHandler }) => {
+const ProdCart = ({
+  product,
+  quantity,
+  quantityInputHandler,
+  deleteProdCart,
+}) => {
   return (
     <div className={styles.prodCart}>
       <div className={styles.prodInfo}>
@@ -25,6 +30,9 @@ const ProdCart = ({ product, quantity, quantityInputHandler }) => {
           <p>Stock: {product.stock}</p>
           <p>Precio: {product.PRODUCTO.valor_venta}</p>
         </div>
+        <button onClick={deleteProdCart} name={product.PRODUCTO.id_producto}>
+          X
+        </button>
       </div>
     </div>
   );

@@ -1,17 +1,21 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
 import ProdCart from "../ProdCart/ProdCart";
 
 import styles from "./Cart.module.css";
+import { removeCart } from "../../redux/actions";
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.inCart);
+  const cartRemove = useSelector((state) => state.cartRemove);
   const [totalPrice, setTotalPrice] = useState(0);
   const [quantity, setQuantity] = useState({
     id: "",
     type: "",
     before: 0,
+    detect: false,
   });
 
   useEffect(() => {
@@ -26,6 +30,7 @@ const Cart = () => {
           id: product.PRODUCTO.id_producto,
           type: "add",
           before: 0,
+          detect: quantity.detect ? false : true,
         });
       }
     });
@@ -49,7 +54,7 @@ const Cart = () => {
         }
       }
     }
-  }, [quantity.id, quantity.before, quantity.type]);
+  }, [quantity.detect]);
 
   const quantityInputHandler = (event) => {
     if (event.target.value && quantity[event.target.name].quantity !== 0) {
@@ -67,17 +72,25 @@ const Cart = () => {
           quantity: parseInt(event.target.value),
         },
         id: event.target.name,
+        detect: quantity.detect ? false : true,
       });
     }
   };
 
-  // const deleteProdCart = (event) => {
-  //   setTotalPrice(
-  //     totalPrice -
-  //       quantity[event.target.name].value * quantity[event.target.name].quantity
-  //   );
-  //   //dispatch
-  // };
+  const deleteProdCart = (event) => {
+    dispatch(removeCart(event.target.name));
+  };
+
+  useEffect(() => {
+    if (cartRemove.id) {
+      setTotalPrice(
+        totalPrice -
+          quantity[cartRemove.id].value * quantity[cartRemove.id].quantity
+      );
+      delete quantity[cartRemove.id];
+    }
+  }, [cartRemove.detect]);
+  console.log(quantity);
 
   return (
     <div>
@@ -89,6 +102,7 @@ const Cart = () => {
               product={product}
               quantity={quantity}
               quantityInputHandler={quantityInputHandler}
+              deleteProdCart={deleteProdCart}
             />
           );
         })}

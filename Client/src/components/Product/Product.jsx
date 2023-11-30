@@ -12,7 +12,6 @@ const Product = ({ product }) => {
   const dispatch = useDispatch();
   const inCart = useSelector((state) => state.inCart);
   const [isCart, setIsCart] = useState(false);
-  const anAction = useSelector((state) => state.anAction);
 
   const cartHandler = () => {
     if (!isCart) {
