@@ -114,4 +114,9 @@ export const getUser = (user) => {
   };
 };
 
-export const signOut = (user) => {};
+export const signOut = (user) => {
+  return {
+    type: SIGN_OUT,
+    payload: user,
+  };
+};
