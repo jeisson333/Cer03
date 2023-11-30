@@ -9,6 +9,7 @@ const productsRouter = require("./productsRouter.js");
 const routeSucursales = require("./routeSucursales.js");
 const routeSaveJsonInDB = require("./saveJsonInDBRouter.js");
 const routeCatalogos = require("./routeCatalogo.js");
+const routePaymentGateways = require("./routePaymentGateways.js");
 
 const { verifyToken } = require("../middlewares/authJWT.js");
 
@@ -23,5 +24,6 @@ router.use("/products", productsRouter);
 router.use("/sucursales", routeSucursales);
 router.use("/database", routeSaveJsonInDB);
 router.use("/catalogos", routeCatalogos);
+router.use("/paymentGateways", routePaymentGateways);
 
 module.exports = router;

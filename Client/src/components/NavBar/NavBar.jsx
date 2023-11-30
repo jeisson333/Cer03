@@ -5,6 +5,7 @@ import { MdOutlineInventory } from "react-icons/md";
 import { MdOutlinePointOfSale } from "react-icons/md";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { IoIosLogOut } from "react-icons/io";
+import { CiBadgeDollar } from "react-icons/ci";
 import style from "./SideBar.module.css";
 import logoCer03 from "../../components/image/logocer03.jpeg";
 
@@ -43,6 +44,11 @@ const NavBAr = () => {
             to="/settings"
             icon={<CiSettings />}
             text="Configuraciones"
+          />
+          <SidebarLink
+            to="/subscription"
+            icon={<CiBadgeDollar />}
+            text="Suscripción"
           />
           <div className={style.divider}></div>
           <SidebarLink

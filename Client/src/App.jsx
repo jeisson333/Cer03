@@ -13,6 +13,7 @@ import Settings from "./pages/Settings/Settings";
 import NavBAr from "./components/NavBar/NavBar";
 import { CreateProduct } from "./pages/Forms/CreateProduct";
 import Detail from "./pages/Detail/Detail";
+import Subscription from "./pages/Subscription/Subscription";
 
 function App() {
   const location = useLocation();
@@ -47,6 +48,7 @@ function App() {
           path="/newProduct"
           element={<CreateProduct idBranch={idBranch} />}
         />
+        <Route path="/subscription" element={<Subscription />} />
       </Routes>
     </div>
   );
