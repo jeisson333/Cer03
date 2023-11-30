@@ -24,7 +24,7 @@ const Cart = () => {
         setQuantity({
           ...quantity,
           [product.PRODUCTO.id_producto]: {
-            value: product.PRODUCTO.valor_venta,
+            value: Math.floor(product.PRODUCTO.valor_venta),
             quantity: product.stock ? 1 : 0,
           },
           id: product.PRODUCTO.id_producto,
@@ -91,7 +91,6 @@ const Cart = () => {
     }
   }, [cartRemove.detect]);
   console.log(quantity);
-
   return (
     <div>
       <div>

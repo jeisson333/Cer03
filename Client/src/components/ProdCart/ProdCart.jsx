@@ -28,7 +28,7 @@ const ProdCart = ({
         />
         <div>
           <p>Stock: {product.stock}</p>
-          <p>Precio: {product.PRODUCTO.valor_venta}</p>
+          <p>Precio: {Math.floor(product.PRODUCTO.valor_venta)}</p>
         </div>
         <button onClick={deleteProdCart} name={product.PRODUCTO.id_producto}>
           X
