@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { NavLink, useMatch } from "react-router-dom";
 import { CiSettings } from "react-icons/ci";
 import { MdProductionQuantityLimits } from "react-icons/md";
@@ -8,23 +9,29 @@ import { IoIosLogOut } from "react-icons/io";
 import style from "./SideBar.module.css";
 import logoCer03 from "../../components/image/logocer03.jpeg";
 
-const SidebarLink = ({ to, icon, text }) => {
+const SidebarLink = ({ to, icon, text, Onclick }) => {
   const match = useMatch(to);
 
   return (
     <div className={`${style.linkContainer} ${match ? style.activeLink : ""}`}>
-      <NavLink to={to} className={style.Links} end>
-        <div className={style.linkIcon}>
-          <span>
-            {icon} {text}
-          </span>
-        </div>
-      </NavLink>
+      {Onclick ? (
+        <button onClick={onclick}>A</button>
+      ) : (
+        <NavLink to={to} className={style.Links} end>
+          <div className={style.linkIcon}>
+            <span>
+              {icon} {text}
+            </span>
+          </div>
+        </NavLink>
+      )}
     </div>
   );
 };
 
 const NavBAr = () => {
+  const handleSignOut = () => {};
+
   return (
     <div>
       <div className={style.content}>
@@ -61,7 +68,12 @@ const NavBAr = () => {
             text="Cargar Producto"
           />
           <div className={style.divider}></div>
-          <SidebarLink to="/" icon={<IoIosLogOut />} text="Cerrar sesión" />
+          <SidebarLink
+            to="/"
+            Onclick={() => console.log("hola")}
+            icon={<IoIosLogOut />}
+            text="Cerrar sesión"
+          />
         </div>
         <div className={style.divider}></div>
       </div>
