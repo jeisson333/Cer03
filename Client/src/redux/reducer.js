@@ -14,8 +14,8 @@ const initialState = {
   sucursales: [],
   totalPages: 1,
 
-  anAction: false,
   inCart: [],
+  cartRemove: { id: "", detect: false },
 };
 
 function reducer(state = initialState, action) {
@@ -31,7 +31,6 @@ function reducer(state = initialState, action) {
         ...state,
         products: action.payload.data,
         totalPages: action.payload.info.pages,
-        anAction: state.anAction ? false : true,
         // currentPages: action.payload.info.currentPages,
         // pages: action.payload.info.pages,
       };
@@ -48,15 +47,17 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         inCart: [...state.inCart, action.payload],
-        anAction: state.anAction ? false : true,
       };
     case REMOVE_CART:
       return {
         ...state,
+        cartRemove: {
+          id: action.payload,
+          detect: state.cartRemove.detect ? false : true,
+        },
         inCart: [...state.inCart].filter((product) => {
           return product.PRODUCTO.id_producto !== action.payload;
         }),
-        anAction: state.anAction ? false : true,
       };
     case GET_USER:
       return {

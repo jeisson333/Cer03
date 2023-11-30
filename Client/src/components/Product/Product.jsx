@@ -12,24 +12,25 @@ const Product = ({ product }) => {
   const dispatch = useDispatch();
   const inCart = useSelector((state) => state.inCart);
   const [isCart, setIsCart] = useState(false);
-  const anAction = useSelector((state) => state.anAction);
 
   const cartHandler = () => {
-    if (!isCart) {
-      setIsCart(true);
+    if (
+      !inCart.find((prodCart) => {
+        return prodCart.PRODUCTO.id_producto === product.PRODUCTO.id_producto;
+      })
+    ) {
       dispatch(addCart(product));
     } else {
-      setIsCart(false);
-      dispatch(removeCart(product.PRODUCTO.id_producto));
+      console.log("nop");
     }
   };
 
-  useEffect(() => {
-    inCart.forEach((prodCart) => {
-      if (prodCart.PRODUCTO.id_producto === product.PRODUCTO.id_producto)
-        setIsCart(true);
-    });
-  }, [inCart]);
+  // useEffect(() => {
+  //   inCart.forEach((prodCart) => {
+  //     if (prodCart.PRODUCTO.id_producto === product.PRODUCTO.id_producto)
+  //       setIsCart(true);
+  //   });
+  // }, [inCart]);
 
   return (
     <div className={style.card}>
@@ -47,7 +48,7 @@ const Product = ({ product }) => {
             </div>
 
             <div className={style.cardContent}>
-              <h2>Precio: ${product?.PRODUCTO?.valor_venta}</h2>
+              <h2>Precio: ${Math.floor(product?.PRODUCTO?.valor_venta)}</h2>
               <h6>{product?.PRODUCTO?.nombre_producto}</h6>
             </div>
           </div>
@@ -55,16 +56,7 @@ const Product = ({ product }) => {
       )}
 
       {useLocation().pathname === "/newsales" && (
-        <div>
-          {!isCart ? (
-            <button onClick={cartHandler}>
-              <LiaCartPlusSolid />
-            </button>
-          ) : (
-            <button onClick={cartHandler}>
-              <FaRegTrashAlt />
-            </button>
-          )}
+        <div onClick={cartHandler}>
           <div className={style.cardContent}>
             <img
               src={product?.PRODUCTO?.image}
@@ -74,7 +66,7 @@ const Product = ({ product }) => {
           </div>
 
           <div className={style.cardContent}>
-            <h2>Precio: ${product?.PRODUCTO?.valor_venta}</h2>
+            <h2>Precio: ${Math.floor(product?.PRODUCTO?.valor_venta)}</h2>
             <h6>{product?.PRODUCTO?.nombre_producto}</h6>
           </div>
         </div>

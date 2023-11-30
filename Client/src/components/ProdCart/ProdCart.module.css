@@ -1,0 +1,22 @@
+.prodCart {
+  margin-bottom: 8px;
+  width: 280px;
+}
+
+.prodInfo {
+  display: flex;
+}
+
+.prodInfo > img {
+  width: 50px;
+}
+
+.quantity {
+  display: flex;
+  justify-content: space-between;
+}
+
+.quantity > input {
+  width: 100px;
+  height: 25px;
+}
