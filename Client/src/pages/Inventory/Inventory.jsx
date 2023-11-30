@@ -9,8 +9,9 @@ import Filters from "../../components/Filters/Filters";
 //styles
 import Style from "./inventory.module.css";
 
-const Inventory = ({ idBranch }) => {
+const Inventory = () => {
   const dispatch = useDispatch();
+  const { idBranch, branch } = useSelector((state) => state.user);
   const totalPages = useSelector((state) => state.totalPages);
   const [search, setSearch] = useState("");
   const sucursales = useSelector((state) => state.sucursales);
@@ -29,7 +30,7 @@ const Inventory = ({ idBranch }) => {
     if (firstChargue) {
       setConditions({
         ...conditions,
-        sucursal: sucursales[0]?.nombre_sucursal,
+        sucursal: branch ? branch : sucursales[0]?.nombre_sucursal,
       });
       setFirstChargue(false);
     }

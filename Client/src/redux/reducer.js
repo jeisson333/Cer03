@@ -13,7 +13,8 @@ const initialState = {
   allTypeProducts: [],
   sucursales: [],
   totalPages: 1,
-
+  user: {},
+  authentication: false,
   inCart: [],
   cartRemove: { id: "", detect: false },
 };
@@ -62,7 +63,11 @@ function reducer(state = initialState, action) {
     case GET_USER:
       return {
         ...state,
-        user: action.payload?.data,
+        user: {
+          idBranch: action.payload?.idBranch,
+          role: action.payload?.role,
+          branch: action.payload?.branch,
+        },
       };
 
     default:

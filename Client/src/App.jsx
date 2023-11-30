@@ -35,7 +35,7 @@ function App() {
       <Routes>
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/home" element={<Home idBranch={idBranch} />} />
-        <Route path="/products" element={<Inventory idBranch={idBranch} />} />
+        <Route path="/products" element={<Inventory />} />
         <Route path="/settings" element={<Settings idBranch={idBranch} />} />
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/registerForm" element={<RegisterForm />} />

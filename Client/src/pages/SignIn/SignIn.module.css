@@ -41,10 +41,13 @@
 .inputSubmit {
   width: 100%;
   padding: 10px;
-  border: none;
+  border: solid;
   border-radius: 4px;
-  background-color: white;
-  color: #3498db;
+  color: #ffffff;
   /* Azul rey */
   cursor: pointer;
+}
+
+.inputSubmit:hover {
+  color: #000000;
 }
