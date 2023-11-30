@@ -14,6 +14,10 @@ import NavBAr from "./components/NavBar/NavBar";
 import { CreateProduct } from "./pages/Forms/CreateProduct";
 import Detail from "./pages/Detail/Detail";
 import Subscription from "./pages/Subscription/Subscription";
+import SubscriptionCheckout from "./pages/SubscriptionCheckout/SubscriptionCheckout";
+import SubscriptionSuccess from "./pages/SubscriptionCheckout/SubscriptionSuccess";
+import SubscriptionFailure from "./pages/SubscriptionCheckout/SubscriptionFailure";
+import SubscriptionPending from "./pages/SubscriptionCheckout/SubscriptionPending";
 
 function App() {
   const location = useLocation();
@@ -49,6 +53,13 @@ function App() {
           element={<CreateProduct idBranch={idBranch} />}
         />
         <Route path="/subscription" element={<Subscription />} />
+        <Route
+          path="/subscription/checkout"
+          element={<SubscriptionCheckout />}
+        />
+        <Route path="/subscription/success" element={<SubscriptionSuccess />} />
+        <Route path="/subscription/failure" element={<SubscriptionFailure />} />
+        <Route path="/subscription/pending" element={<SubscriptionPending />} />
       </Routes>
     </div>
   );

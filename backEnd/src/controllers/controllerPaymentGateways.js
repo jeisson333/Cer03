@@ -19,9 +19,9 @@ const getMercadoPagoController = async ({ info }) => {
     ],
     auto_return: "approved",
     back_urls: {
-      success: "http://localhost:3001/paymentGateways/success",
-      failure: "http://localhost:3001/paymentGateways/failure",
-      pending: "http://localhost:3001/paymentGateways/pending",
+      success: "http://localhost:5173/subscription/success",
+      failure: "http://localhost:5173/subscription/failure",
+      pending: "http://localhost:5173/subscription/pending",
     },
     notification_url:
       "https://5942-45-238-182-200.ngrok.io/paymentGateways/webhook",
@@ -36,20 +36,8 @@ const getWebHookController = async (infoQuery) => {
   }
   return data;
 };
-const getSuccessController = async () => {
-  return "Success";
-};
-const getFailureController = async () => {
-  return "Failure";
-};
-const getPendingController = async () => {
-  return "Pending";
-};
 
 module.exports = {
   getMercadoPagoController,
-  getSuccessController,
-  getFailureController,
-  getPendingController,
   getWebHookController,
 };
