@@ -4,77 +4,27 @@ import styles from "./Home.module.css";
 import { FaListOl } from "react-icons/fa6";
 import { FaFilterCircleDollar } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 export default function Home({ idBranch }) {
-  // const [sales, setSales] = useState([]);
+  const [sales, setSales] = useState([]);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const { data } = await axios.post("http://localhost:3001/ventas", {
-  //         id: idBranch,
-  //       });
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await axios.post("http://localhost:3001/ventas", {
+          id: idBranch,
+        });
 
-  //       setSales(data.data);
-  //     } catch (error) {
-  //       throw Error(error.message);
-  //     }
-  //   })();
-  // }, []);
-  // console.log(sales);
-  const productos = [
-    {
-      Producto: "Zanahorias",
-      Valor: 500,
-      Concepto: "Venta",
-    },
-    {
-      Producto: "Limones",
-      Valor: 100,
-      Concepto: "Compra",
-    },
-    {
-      Producto: "Arroz",
-      Valor: 100,
-      Concepto: "Compra",
-    },
-    {
-      Producto: "Cereal",
-      Valor: 300,
-      Concepto: "Venta",
-    },
-    {
-      Producto: "Carne",
-      Valor: 800,
-      Concepto: "Compra",
-    },
-    {
-      Producto: "Remolacha",
-      Valor: 400,
-      Concepto: "Venta",
-    },
-    {
-      Producto: "Caramelos",
-      Valor: 100,
-      Concepto: "Compra",
-    },
-    {
-      Producto: "Tomates",
-      Valor: 300,
-      Concepto: "Venta",
-    },
-    {
-      Producto: "Atun",
-      Valor: 1000,
-      Concepto: "Compra",
-    },
-    {
-      Producto: "Carne",
-      Valor: 2000,
-      Concepto: "Venta",
-    },
-  ];
+        setSales(data.data);
+        sales.forEach((sale) => {
+          console.log(Object.keys(sale));
+        });
+      } catch (error) {
+        throw Error(error.message);
+      }
+    })();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -84,45 +34,32 @@ export default function Home({ idBranch }) {
         <NavLink className={styles.buttonNv} to="/newsales">
           Nueva venta
         </NavLink>
-        {/*}
-        <button>Nuevo gasto</button>
       </div>
-      <div className={styles.divider}></div>
-      <div className={styles.filtrosContainer}>
-
-        <button className={styles.buttons}>
-          <FaFilterCircleDollar /> Filtrar
-        </button>
-        <button className={styles.buttons}>
-          <FaListOl /> Ordenar
-        </button>
-        <div className={styles.buttonContainer}>
-         
-          <input
-            type="search"
-            placeholder="Buscar concepto..."
-            className={styles.searchInput}
-          />
-        </div>
-    );
-    */}
-      </div>
-
       <div className={styles.divider}></div>
       <table className={styles.productTable}>
         <thead>
           <tr>
-            <th>Producto</th>
+            <th>Fecha</th>
             <th>Valor $</th>
-            <th>Concepto</th>
+            <th>Detalles</th>
           </tr>
         </thead>
         <tbody>
-          {productos.map((producto, index) => (
-            <tr key={index}>
-              <td>{producto.Producto}</td>
-              <td>{producto.Valor}</td>
-              <td>{producto.Concepto}</td>
+          {sales.map((producto) => (
+            <tr key={producto["VENTum.id_venta"]}>
+              <td>{producto["VENTum.createdAt"]}</td>
+              <td>
+                {`${producto[
+                  "VENTum.CATALOGO_UNIVERSAL.nombre_catalogo"
+                ][0].toUpperCase()}${producto[
+                  "VENTum.CATALOGO_UNIVERSAL.nombre_catalogo"
+                ].slice(1)}`}
+              </td>
+              <td>
+                <Link to="/home">
+                  <button>Detalles</button>
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
