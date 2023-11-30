@@ -1,8 +1,6 @@
 import styles from "./ProdCart.module.css";
 
 const ProdCart = ({ product, quantity, quantityInputHandler }) => {
-  console.log(product);
-  console.log(quantity);
   return (
     <div className={styles.prodCart}>
       <div className={styles.prodInfo}>
@@ -17,7 +15,7 @@ const ProdCart = ({ product, quantity, quantityInputHandler }) => {
         <input
           type="number"
           name={product.PRODUCTO.id_producto}
-          value={quantity[product.PRODUCTO.id_producto]}
+          value={quantity[product.PRODUCTO.id_producto]?.quantity}
           onChange={quantityInputHandler}
           min={1}
           max={product.stock}
