@@ -3,13 +3,15 @@ import validation from "./validation";
 import { useEffect, useState } from "react";
 import { getTypeProducts, postNewProduct } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
+import {useNavigate} from "react-router-dom";
+
 import styles from "./CreateProduct.module.css";
 
 export function CreateProduct({ idBranch }) {
   const [newProduct, setNewProduct] = useState({
     idBranch: idBranch,
   });
-
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
 
   const handleChangeProduct = (event) => {
@@ -48,6 +50,7 @@ export function CreateProduct({ idBranch }) {
     event.preventDefault();
     dispatch(postNewProduct(newProduct));
     alert("producto cargado con exito!");
+    navigate('/products')
   };
 
   const allTypeProducts = useSelector((state) => state.allTypeProducts);
@@ -58,12 +61,27 @@ export function CreateProduct({ idBranch }) {
     setErrors(validation({ newProduct }));
   }, [newProduct]);
 
+  const resetForm = () =>{
+    setNewProduct({
+      idBranch: newProduct.idBranch,
+      image: "",
+      nombre_producto: "",
+      peso: "",
+      tipo_producto: "",
+      valor_compra: "",
+      valor_venta: ""
+    })
+
+  }
+  // console.log(newProduct);
+  // console.log(errors)
   return (
     <form onSubmit={onSubmit}>
       <div className={styles.cargarProductos}>
         <h2>Cargar producto</h2>
         <div className={styles.divider}></div>
       </div>
+      <h2 className={styles.title}>Información del producto</h2>
       <div className={styles.formHolder}>
         <div className={styles.createContainer}>
           <div className={styles.indHolder}>
@@ -73,6 +91,7 @@ export function CreateProduct({ idBranch }) {
                 onChange={handleChangeProduct}
                 type="text"
                 name="nombre_producto"
+                value={newProduct.nombre_producto}
               />
               {errors.nombre_producto != "" && (
                 <p className={styles.errors}>{errors.nombre_producto}</p>
@@ -87,6 +106,7 @@ export function CreateProduct({ idBranch }) {
                 className={styles.select}
                 onChange={handleChangeProduct}
                 name="tipo_producto"
+                value={newProduct.tipo_producto}
               >
                 <option value=""></option>
                 {allTypeProducts?.map((tipo_producto, index) => (
@@ -100,8 +120,8 @@ export function CreateProduct({ idBranch }) {
 
           <div className={styles.indHolder}>
             <label>
-              <span>peso: gr. </span>
-              <input onChange={handleChangeProduct} type="number" name="peso" />
+              <span>Peso: gr. </span>
+              <input onChange={handleChangeProduct} type="number" name="peso" value={newProduct.peso} />
               {errors.peso != "" && (
                 <p className={styles.errors}>{errors.peso}</p>
               )}
@@ -115,6 +135,7 @@ export function CreateProduct({ idBranch }) {
                 onChange={handleChangeProduct}
                 type="number"
                 name="valor_compra"
+                value={newProduct.valor_compra}
               />
               {errors.valor_compra != "" && (
                 <p className={styles.errors}>{errors.valor_compra}</p>
@@ -129,6 +150,7 @@ export function CreateProduct({ idBranch }) {
                 onChange={handleChangeProduct}
                 type="number"
                 name="valor_venta"
+                value={newProduct.valor_venta}
               />
               {errors.valor_venta != "" && (
                 <p className={styles.errors}>{errors.valor_venta}</p>
@@ -140,7 +162,7 @@ export function CreateProduct({ idBranch }) {
         </div>
         <div className={styles.createContainer}>
           <div className={styles.indHolder}>
-            <h2>Imagen</h2>
+            <span>Imagen</span>
             <img
               className={styles.image}
               src={newProduct.image}
@@ -148,7 +170,7 @@ export function CreateProduct({ idBranch }) {
             />
             <label>
               <span>Imagen (URL) </span>
-              <input onChange={handleChangeProduct} type="url" name="image" />
+              <input onChange={handleChangeProduct} type="url" name="image" value={newProduct.image} />
               {errors.image != "" && (
                 <p className={styles.errors}>{errors.image}</p>
               )}
@@ -156,6 +178,12 @@ export function CreateProduct({ idBranch }) {
           </div>
         </div>
         <div className={styles.buttonHolder}>
+          <button 
+          type="button"
+          className={styles.delete}
+          onClick={resetForm}>
+            Borrar
+          </button>
           <button
             className={styles.submit}
             type="submit"

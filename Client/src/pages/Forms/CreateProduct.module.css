@@ -28,6 +28,12 @@
   margin: 20px;
 }
 
+.title{
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
 .formHolder {
   display: flex;
   /* align-items: center; */
@@ -38,21 +44,28 @@
   margin-top: 50px;
 }
 
+
+
 .indHolder {
   margin: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  
+}
+
+.indHolder span{
+  font-weight: 600;
 }
 
 .select {
-  width: 167px;
+  width: 202px;
 }
 
 .buttonHolder {
   width: 100%;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .image {
@@ -68,25 +81,40 @@
   margin: 10px;
   cursor: pointer;
   border-radius: 5px;
-  background-color: rgb(83, 219, 52);
+  background: rgb(83, 219, 52) !important;
   color: #fff;
-  border: none;
 }
 
 .submit:disabled {
   cursor: default;
   border-radius: 5px;
-  background-color: rgb(21, 48, 15);
+  background-color: rgb(21, 48, 15) !important;
   color: #6e5d5d;
   border: none;
 }
 
 .submit:disabled:hover {
-  background-color: rgb(21, 48, 15);
+  background-color: rgb(21, 48, 15) !important;
 }
 
 .submit:hover {
-  background-color: rgb(65, 176, 40);
+  background-color: rgb(65, 176, 40) !important
+}
+
+.delete{
+  width: 120px;
+  height: 38px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgb(201, 0, 0) !important;
+  color: #fff;
+  border: none;
+}
+
+.delete:hover{
+  background-color: rgb(153, 2, 2) !important;
+
 }
 
 .errors {
