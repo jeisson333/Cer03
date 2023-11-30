@@ -8,7 +8,6 @@ import RegisterForm from "./pages/RegisterForm/RegisterForm";
 import About from "./pages/About/About";
 import SignIn from "./pages/SignIn/SignIn";
 import Contact from "./pages/Contact/Contact";
-import Sales from "./pages/Sales/Sales";
 import Settings from "./pages/Settings/Settings";
 import NavBAr from "./components/NavBar/NavBar";
 import { CreateProduct } from "./pages/Forms/CreateProduct";
@@ -17,8 +16,6 @@ import Experiments from "./pages/Experiments/Experiments";
 import NewSales from "./pages/NewSales/NewSales";
 function App() {
   const location = useLocation();
-  const idBranch = "6f722d7f-515b-4705-a007-84b07317cc20"; //Api_key
-  // const [isActive, setIsActive] = useState(false)
 
   const isActive =
     location.pathname === "/contact" ||
@@ -34,21 +31,17 @@ function App() {
       {!isActive && <NavBAr />}
       <Routes>
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/home" element={<Home idBranch={idBranch} />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/products" element={<Inventory />} />
-        <Route path="/settings" element={<Settings idBranch={idBranch} />} />
+        <Route path="/settings" element={<Settings />} />
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/registerForm" element={<RegisterForm />} />
-        <Route path="/detail" element={<Detail idBranch={idBranch} />} />
+        <Route path="/detail" element={<Detail />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/sales" element={<Sales idBranch={idBranch} />} />
-        <Route path="/newsales" element={<NewSales idBranch={idBranch} />} />
-        <Route
-          path="/newProduct"
-          element={<CreateProduct idBranch={idBranch} />}
-        />
+        <Route path="/newsales" element={<NewSales />} />
+        <Route path="/newProduct" element={<CreateProduct />} />
         <Route path="/test" element={<Experiments />} />
       </Routes>
     </div>
