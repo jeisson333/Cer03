@@ -5,6 +5,7 @@ const singIn = async (email, password) => {
   let date;
   let role;
   let idBranch;
+  let sucursal = "";
   const empresaPromise = EMPRESA.findOne({
     where: {
       email: email,
@@ -41,6 +42,7 @@ const singIn = async (email, password) => {
       if (!sucursal) throw new Error("Sucursal not exist");
       idBranch = sucursal?.sucursal_empresa;
       role = "user";
+      sucursal = sucursal?.nombre_sucursal;
     }
   }
   const dayMS = 1000 * 60 * 60 * 24;
@@ -52,6 +54,7 @@ const singIn = async (email, password) => {
     {
       idBranch: idBranch,
       role: role,
+      branch: sucursal,
       exp: Date.now() / 1000 + 60 * 1440,
     },
     SECRET
