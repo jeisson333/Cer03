@@ -5,6 +5,7 @@ import {
   GET_SUCURSAL,
   ADD_CART,
   REMOVE_CART,
+  GET_USER,
 } from "./action-types.js";
 
 const initialState = {
@@ -57,6 +58,12 @@ function reducer(state = initialState, action) {
         }),
         anAction: state.anAction ? false : true,
       };
+    case GET_USER:
+      return {
+        ...state,
+        user: action.payload?.data,
+      };
+
     default:
       return { ...state };
   }

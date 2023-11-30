@@ -5,6 +5,7 @@ import {
   GET_SUCURSAL,
   ADD_CART,
   REMOVE_CART,
+  GET_USER,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -90,5 +91,20 @@ export const removeCart = (productId) => {
   return {
     type: REMOVE_CART,
     payload: productId,
+  };
+};
+
+export const getUser = (user) => {
+  return async function (dispatch) {
+    try {
+      const url = `http://localhost:3001/auth/sing-in`;
+      const { data } = await axios.post(url, user);
+      return dispatch({
+        type: GET_USER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 };
