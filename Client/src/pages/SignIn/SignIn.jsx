@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../redux/actions";
 import Style from "./SignIn.module.css";
 import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import { gapi } from "gapi-script";
+import { decodeToken } from "react-jwt";
+const client_id = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
-const SECRET = import.meta.env.VITE_SECRET;
 export default function SignIn() {
   const dispatch = useDispatch();
   const dataUser = useSelector((state) => state.user);
@@ -19,6 +22,13 @@ export default function SignIn() {
     if (Object.keys(dataUser).length > 1) {
       navigate("/home");
     }
+    function start() {
+      gapi.auth2.init({
+        client_id: client_id,
+        scope: "",
+      });
+    }
+    gapi.load("client:auth2", start);
   }, [dataUser]);
 
   const handleUser = (event) => {
@@ -47,6 +57,14 @@ export default function SignIn() {
     // }
   };
 
+  const onSucess = (credentialResponse) => {
+    const { email, sub } = decodeToken(credentialResponse?.credential);
+    console.log(email, sub);
+  };
+
+  const onFailure = (res) => {
+    console.log("TE HE MIRADO A LOS OJOSSSSSSSSSSSS ", res);
+  };
   return (
     <div className={Style.container}>
       <form onSubmit={handleSubmit} className={Style.containerForm}>
@@ -69,6 +87,7 @@ export default function SignIn() {
         />
         <input type="submit" value="Ingresar" className={Style.inputSubmit} />
       </form>
+      <GoogleLogin onSuccess={onSucess} onError={onFailure}></GoogleLogin>;
     </div>
   );
 }
