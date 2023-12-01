@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { Fade, Rotate } from "react-reveal";
+import { Fade, Rotate } from "react-awesome-reveal";
 import { useSelector } from "react-redux";
 
 const Detail = () => {
