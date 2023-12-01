@@ -14,15 +14,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          args: --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
       - name: Build project
         run: npm run build
