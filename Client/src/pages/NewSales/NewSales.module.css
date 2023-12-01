@@ -1,6 +1,12 @@
 .salesPage {
   margin-inline-start: 0.5rem;
 }
+
+.divMain{
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid black */
+}
 .contenHome {
   display: flex;
   flex-direction: column;
@@ -8,4 +14,11 @@
   inline-size: 100vw;
   block-size: 90vh;
   overflow-x: hidden;
+}
+
+.holder{
+  align-items: center;
+  /* border: 1px solid black; */
+  margin: 0 auto;
+  /* width: 67vw; */
 }
