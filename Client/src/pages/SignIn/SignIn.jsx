@@ -54,6 +54,7 @@ export default function SignIn({ setIsActive }) {
       email: email,
       password: sub,
     };
+    console.log(user);
     dispatch(getUser(user));
   };
 

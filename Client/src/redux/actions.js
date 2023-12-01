@@ -99,7 +99,6 @@ export const removeCart = (productId) => {
 export const getUser = (user) => {
   return async function (dispatch) {
     try {
-      console.log(user);
       const url = `http://localhost:3001/auth/sing-in`;
       const { data } = await axios.post(url, user);
       const myDecodedToken = decodeToken(data);
