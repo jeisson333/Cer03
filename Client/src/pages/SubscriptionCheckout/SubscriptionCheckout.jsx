@@ -25,6 +25,7 @@ const SubscriptionCheckout = () => {
       }
     })();
   }, []);
+  console.log(checkout.init_point);
   const handleSubmit = () => {
     window.location.href = checkout.init_point;
   };

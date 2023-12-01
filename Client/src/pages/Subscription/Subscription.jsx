@@ -12,8 +12,8 @@ const Subscription = () => {
   });
   const [subscriptionPay, setSubscriptionPay] = useState({
     free: 0,
-    basic: 100,
-    premium: 300,
+    basic: 1000,
+    premium: 3000,
   });
   const [selectedCurrency, setSelectedCurrency] = useState([
     "COP",
