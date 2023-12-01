@@ -7,6 +7,7 @@ import {
   REMOVE_CART,
   GET_USER,
   SIGN_OUT,
+  SIDEBAR,
 } from "./action-types.js";
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   authentication: false,
   inCart: [],
   cartRemove: { id: "", detect: false },
+  sidebarActive: false,
 };
 
 function reducer(state = initialState, action) {
@@ -78,6 +80,9 @@ function reducer(state = initialState, action) {
         products: [],
         inCart: [],
       };
+
+    case SIDEBAR:
+      return { ...state, sidebarActive: action.payload };
 
     default:
       return { ...state };

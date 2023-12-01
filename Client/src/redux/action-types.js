@@ -6,3 +6,4 @@ export const ADD_CART = "ADD_CART";
 export const REMOVE_CART = "REMOVE_CART";
 export const GET_USER = "GET_USER";
 export const SIGN_OUT = "SIGN_OUT";
+export const SIDEBAR = "SIDEBAR";

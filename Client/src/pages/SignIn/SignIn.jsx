@@ -19,10 +19,6 @@ export default function SignIn({ setIsActive }) {
   });
 
   useEffect(() => {
-    setIsActive(true);
-  }, []);
-
-  useEffect(() => {
     if (Object.keys(dataUser).length > 1) {
       navigate("/home");
       dispatch(getSucursales(dataUser?.idBranch));

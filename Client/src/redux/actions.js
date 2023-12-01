@@ -8,6 +8,7 @@ import {
   REMOVE_CART,
   GET_USER,
   SIGN_OUT,
+  SIDEBAR,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -118,5 +119,12 @@ export const signOut = (user) => {
   return {
     type: SIGN_OUT,
     payload: user,
+  };
+};
+
+export const changeSidebar = (boolean) => {
+  return {
+    type: SIDEBAR,
+    payload: boolean,
   };
 };
