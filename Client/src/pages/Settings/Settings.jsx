@@ -4,12 +4,13 @@ import { useSelector } from "react-redux";
 
 const Settings = () => {
   const [sucursales, setSucursales] = useState([]);
+  const url = import.meta.env.VITE_BASE_URL;
   const { idBranch } = useSelector((state) => state.auth);
 
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.post("http://localhost:3001/sucursales", {
+        const { data } = await axios.post(`${url}/sucursales`, {
           id: idBranch,
         });
         console.log(data);

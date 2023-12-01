@@ -11,14 +11,14 @@ const Detail = () => {
   const query = new URLSearchParams(location.search);
   const name = query.get("name");
   const sucursal = query.get("sucursal");
-
+  const url = import.meta.env.VITE_BASE_URL;
   const [product, setProducts] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
         const { data } = await axios.post(
-          `http://localhost:3001/products/?name=${name}&sucursal=${sucursal}`,
+          `${url}?name=${name}&sucursal=${sucursal}`,
           {
             id: idBranch,
           }
