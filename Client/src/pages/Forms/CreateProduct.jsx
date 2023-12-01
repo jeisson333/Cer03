@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getTypeProducts, postNewProduct } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import styles from "./CreateProduct.module.css";
 
@@ -50,7 +51,11 @@ export function CreateProduct() {
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(postNewProduct(newProduct));
-    alert("producto cargado con exito!");
+    Swal.fire({
+      title: "SUCCESS!",
+      text: "Genial! Se cargo con exito tu producto",
+      icon: "success",
+    });
     navigate("/products");
   };
 
