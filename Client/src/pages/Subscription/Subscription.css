@@ -1,29 +1,24 @@
-/* Subscription.css */
-
-/* Estilos para el encabezado */
 header {
-  color: hsl(233, 13%, 49%);
-  margin: 3.3rem 0;
+  color: #065374;
+  margin: 0.1rem auto 2rem auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 0%;
 }
 .container {
-  background: #f7f7ff;
   font-family: "montserrat", sans-serif;
-  width: 80%;
-  margin: 0 auto;
+  margin-top: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-x: hidden;
+  padding-top: 0%;
 }
 
-/* Estilos para el interruptor anual/mensual */
 .toggle {
-  margin-top: 2rem;
-  color: hdl(234, 14%, 74%);
+  margin-top: 0.5rem;
+  color: hsl(200, 90%, 16%);
   display: flex;
   align-items: center;
 }
@@ -36,8 +31,8 @@ header {
 .sub {
   background: linear-gradient(
     135deg,
-    rgba(163, 168, 240, 1) 0%,
-    rgba(105, 111, 221, 1) 100%
+    rgba(0, 117, 234, 1) 0%,
+    rgba(0, 100, 141, 1) 100%
   );
   display: flex;
   justify-content: flex-start;
@@ -54,7 +49,7 @@ header {
   width: 1.4rem;
   border-radius: 50%;
 }
-.checkbox:checked .sub {
+.checkbox:checked + .sub {
   justify-content: flex-end;
 }
 
@@ -66,14 +61,14 @@ header {
 }
 .card {
   background-color: #fff;
-  color: hsl(233, 13%, 49%);
+  color: hsl(200, 90%, 16%);
   border-radius: 0.8rem;
 }
 .cards .card.active {
   background: linear-gradient(
     135deg,
-    rgba(163, 168, 240, 1) 0%,
-    rgb(105, 111, 221, 1) 100%
+    rgba(0, 100, 141, 1) 0%,
+    rgb(0, 177, 234, 1) 100%
   );
   color: #fff;
   display: flex;
@@ -97,7 +92,7 @@ ul li {
 }
 ul li.price {
   font-size: 3rem;
-  color: hsl(232, 13%, 33%);
+  color: hsl(200, 90%, 16%);
   padding-bottom: 2rem;
 }
 .shadow {
@@ -116,23 +111,25 @@ ul li.price {
   border-radius: 4px;
   background: linear-gradient(
     135deg,
-    rgba(163, 168, 240, 1) 0%,
-    rgb(105, 111, 221, 1) 100%
+    rgba(0, 177, 234, 1) 0%,
+    rgb(117, 223, 255, 1) 100%
   );
-  color: #fff;
+  color: hsl(200, 90%, 16%);
   outline: none;
   border: 0;
   font-weight: bold;
+  cursor: pointer;
 }
+
 .active-btn {
   background: #fff;
-  color: hsl(237, 63%, 64%);
+  color: hsl(200, 90%, 16%);
 }
 .bottonBar {
-  border-bottom: 2px solid hsl(240, 8%, 85%, 0.583);
+  border-bottom: 2px solid hsl(198, 100%, 42%);
 }
 .card.active .bottonBar {
-  border-bottom: 2px solid hsl(240, 8%, 85%, 0.253);
+  border-bottom: 2px solid hsl(200, 90%, 16%);
 }
 
 .pack {
