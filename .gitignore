@@ -6,3 +6,5 @@ Client/.vite/deps_temp_bbe382f5/package.json
 backEnd/src/utils/json/
 Client/.env
 Client/package-lock.json
+node_modules/
+pnpm-lock.yaml
