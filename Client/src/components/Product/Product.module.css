@@ -44,6 +44,8 @@
   object-fit: fill;
   max-width: 100%;
   margin: 0 5px;
+  border: 1px solid rgb(195, 194, 194);
+
 }
 
 @media (max-width: 768px) {
