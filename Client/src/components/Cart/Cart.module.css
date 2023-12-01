@@ -1,67 +1,66 @@
-@keyframes fade-id{
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
+@keyframes fade-id {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-@keyframes fade-out{
-    100%{
-        opacity: 0;;
-    }
-    0%{
-        opacity: 1;
-    }
+@keyframes fade-out {
+  100% {
+    opacity: 0;
+  }
+  0% {
+    opacity: 1;
+  }
 }
 
-@keyframes slide-right{
-    0%{
-        transform: translateX(100%);
-    }
-    100%{
-        transform: translateX(0%);
-    }
+@keyframes slide-right {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 
-.container{
-    display: block;
-    background: rgb(255, 255, 255);
-    text-align: center;
-    font-weight: 350;
-    /* width: 530px; */
+.container {
+  display: block;
+  background: rgb(255, 255, 255);
+  text-align: center;
+  font-weight: 350;
+  height: 100%;
+  /* width: 530px; */
 }
 
-.title{
-    font-weight: 700;
+.title {
+  font-weight: 700;
 }
 
-.container h2{
-    margin: 17px;
+.container h2 {
+  margin: 17px;
 }
-
 
 .divider {
-    height: 1px;
-    width: 99%;
-    background: rgb(195, 194, 194);
-    /* margin: 24px; */
-    margin-top: 0px;
-    margin-bottom: 2px;
+  height: 1px;
+  width: 99%;
+  background: rgb(195, 194, 194);
+  /* margin: 24px; */
+  margin-top: 0px;
+  margin-bottom: 2px;
 }
 
-.comprar{
-    width: 120px;
-    height: 38px;
-    background: rgb(83, 219, 52);
-    margin: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    color: #fff;
+.comprar {
+  width: 120px;
+  height: 38px;
+  background: rgb(83, 219, 52);
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #fff;
 }
 
-.comprar:hover{
-    background-color: rgb(65, 176, 40);
-
+.comprar:hover {
+  background-color: rgb(65, 176, 40);
 }
