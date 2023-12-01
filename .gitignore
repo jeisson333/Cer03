@@ -4,3 +4,4 @@ backEnd/node_modules/
 Client/pnpm-lock.yaml
 Client/.vite/deps_temp_bbe382f5/package.json
 backEnd/src/utils/json/
+Client/.env
