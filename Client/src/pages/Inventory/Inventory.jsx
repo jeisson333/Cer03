@@ -11,7 +11,7 @@ import Style from "./inventory.module.css";
 
 const Inventory = () => {
   const dispatch = useDispatch();
-  const { idBranch, branch } = useSelector((state) => state.user);
+  const { idBranch, branch } = useSelector((state) => state.auth);
   const totalPages = useSelector((state) => state.totalPages);
   const [search, setSearch] = useState("");
   const sucursales = useSelector((state) => state.sucursales);
@@ -23,7 +23,7 @@ const Inventory = () => {
   const [firstChargue, setFirstChargue] = useState(true);
 
   useEffect(() => {
-    dispatch(getSucursales(idBranch));
+    // dispatch(getSucursales(idBranch)); descomentar cuando se pueda hacer log in
   }, []);
 
   useEffect(() => {

@@ -8,18 +8,18 @@ import { useNavigate } from "react-router-dom";
 const SECRET = import.meta.env.VITE_SECRET;
 export default function SignIn() {
   const dispatch = useDispatch();
-  const dataUser = useSelector((state) => state.user);
+  const dataUser = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
-  useEffect(() => {
-    if (Object.keys(dataUser).length > 1) {
-      navigate("/home");
-    }
-  }, [dataUser]);
+  // useEffect(() => {
+  //   if (Object.keys(dataUser).length > 1) {
+  //     navigate("/home");
+  //   }
+  // }, [dataUser]);
 
   const handleUser = (event) => {
     setUser({
