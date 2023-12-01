@@ -2,10 +2,9 @@ const mercadopage = require("mercadopago");
 
 const getMercadoPagoController = async ({ info }) => {
   const { subscription, totalPay, currency, quantity } = info;
-
+  const TOKEN = process.env.MERCADO_PAGO_TOKEN;
   mercadopage.configure({
-    access_token:
-      "TEST-693675017837230-112918-1c7c986c9825a403771a0581260d31c1-1570236693",
+    access_token: TOKEN,
   });
 
   const result = await mercadopage.preferences.create({
