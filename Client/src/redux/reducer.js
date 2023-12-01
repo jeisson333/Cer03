@@ -14,7 +14,7 @@ const initialState = {
   allTypeProducts: [],
   sucursales: [],
   totalPages: 1,
-  auth: { role: "admin" }, //to edit code
+  auth: {}, //to edit code
   authentication: false,
   inCart: [],
   cartRemove: { id: "", detect: false },

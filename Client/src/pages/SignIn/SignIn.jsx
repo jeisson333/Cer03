@@ -9,7 +9,7 @@ import { gapi } from "gapi-script";
 import { decodeToken } from "react-jwt";
 const client_id = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
-export default function SignIn() {
+export default function SignIn({ setIsActive }) {
   const dispatch = useDispatch();
   const dataUser = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -17,6 +17,10 @@ export default function SignIn() {
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    setIsActive(true);
+  }, []);
 
   useEffect(() => {
     if (Object.keys(dataUser).length > 1) {

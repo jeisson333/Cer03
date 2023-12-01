@@ -23,7 +23,7 @@ const Inventory = () => {
   const [firstChargue, setFirstChargue] = useState(true);
 
   useEffect(() => {
-    // dispatch(getSucursales(idBranch)); descomentar cuando se pueda hacer log in
+    dispatch(getSucursales(idBranch));
   }, []);
 
   useEffect(() => {

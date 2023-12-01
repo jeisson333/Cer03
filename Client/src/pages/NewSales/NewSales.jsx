@@ -12,7 +12,7 @@ import Style from "./NewSales.module.css";
 
 const NewSales = () => {
   const dispatch = useDispatch();
-  const { idBranch } = useSelector((state) => state.user);
+  const { idBranch } = useSelector((state) => state.auth);
   const totalPages = useSelector((state) => state.totalPages);
   const sucursales = useSelector((state) => state.sucursales);
 

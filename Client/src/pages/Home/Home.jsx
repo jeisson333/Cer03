@@ -10,7 +10,7 @@ import { NavLink, Link } from "react-router-dom";
 
 export default function Home() {
   const [sales, setSales] = useState([]);
-  const { idBranch } = useSelector((state) => state.user);
+  const { idBranch } = useSelector((state) => state.auth);
   useEffect(() => {
     (async () => {
       try {

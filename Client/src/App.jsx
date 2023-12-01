@@ -44,7 +44,7 @@ function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/registerForm" element={<RegisterForm />} />
         <Route path="/detail" element={<Detail />} />
-        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/signIn" element={<SignIn setIsActive={setIsActive} />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
 
@@ -68,7 +68,6 @@ function App() {
 
         {/* sin nada */}
         <Route path="/registerForm" element={<RegisterForm />} />
-        <Route path="/sales" element={<Sales />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/test" element={<Experiments />} />
 
