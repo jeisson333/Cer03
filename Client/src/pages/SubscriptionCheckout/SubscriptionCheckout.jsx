@@ -12,7 +12,7 @@ const SubscriptionCheckout = () => {
   const quantity = query.get("quantity");
 
   const [checkout, setCheckout] = useState([]);
-
+  console.log(subscription, totalPay, currency_id, quantity);
   useEffect(() => {
     (async () => {
       try {
