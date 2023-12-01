@@ -1,3 +1,4 @@
+import { isExpired, decodeToken } from "react-jwt";
 import {
   GET_PRODUCTS,
   POST_NEWPRODUCT,
@@ -6,6 +7,7 @@ import {
   ADD_CART,
   REMOVE_CART,
   GET_USER,
+  SIGN_OUT,
 } from "./action-types.js";
 import axios from "axios";
 
@@ -97,14 +99,25 @@ export const removeCart = (productId) => {
 export const getUser = (user) => {
   return async function (dispatch) {
     try {
+      console.log(user);
       const url = `http://localhost:3001/auth/sing-in`;
       const { data } = await axios.post(url, user);
+      const myDecodedToken = decodeToken(data);
+      const isMyTokenExpired = isExpired(data);
+      if (isMyTokenExpired) throw new Error("Expired token");
       return dispatch({
         type: GET_USER,
-        payload: data,
+        payload: myDecodedToken,
       });
     } catch (error) {
       console.log(error.message);
     }
+  };
+};
+
+export const signOut = (user) => {
+  return {
+    type: SIGN_OUT,
+    payload: user,
   };
 };

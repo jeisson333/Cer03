@@ -6,6 +6,7 @@ import {
   ADD_CART,
   REMOVE_CART,
   GET_USER,
+  SIGN_OUT,
 } from "./action-types.js";
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
   allTypeProducts: [],
   sucursales: [],
   totalPages: 1,
-
+  auth: {}, //to edit code
+  authentication: false,
   inCart: [],
   cartRemove: { id: "", detect: false },
 };
@@ -62,7 +64,19 @@ function reducer(state = initialState, action) {
     case GET_USER:
       return {
         ...state,
-        user: action.payload?.data,
+        auth: {
+          idBranch: action.payload?.idBranch,
+          role: action.payload?.role,
+          branch: action.payload?.branch,
+        },
+      };
+    case SIGN_OUT:
+      return {
+        ...state,
+        auth: {},
+        cartRemove: { id: "", detect: false },
+        products: [],
+        inCart: [],
       };
 
     default:

@@ -3,11 +3,13 @@ import validation from "./validation";
 import { useEffect, useState } from "react";
 import { getTypeProducts, postNewProduct } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import styles from "./CreateProduct.module.css";
 
-export function CreateProduct({ idBranch }) {
+export function CreateProduct() {
+  const { idBranch } = useSelector((state) => state.auth);
   const [newProduct, setNewProduct] = useState({
     idBranch: idBranch,
   });
@@ -49,8 +51,12 @@ export function CreateProduct({ idBranch }) {
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(postNewProduct(newProduct));
-    alert("producto cargado con exito!");
-    navigate('/products')
+    Swal.fire({
+      title: "SUCCESS!",
+      text: "Genial! Se cargo con exito tu producto",
+      icon: "success",
+    });
+    navigate("/products");
   };
 
   const allTypeProducts = useSelector((state) => state.allTypeProducts);
@@ -61,7 +67,7 @@ export function CreateProduct({ idBranch }) {
     setErrors(validation({ newProduct }));
   }, [newProduct]);
 
-  const resetForm = () =>{
+  const resetForm = () => {
     setNewProduct({
       idBranch: newProduct.idBranch,
       image: "",
@@ -69,10 +75,9 @@ export function CreateProduct({ idBranch }) {
       peso: "",
       tipo_producto: "",
       valor_compra: "",
-      valor_venta: ""
-    })
-
-  }
+      valor_venta: "",
+    });
+  };
   // console.log(newProduct);
   // console.log(errors)
   return (
@@ -121,7 +126,12 @@ export function CreateProduct({ idBranch }) {
           <div className={styles.indHolder}>
             <label>
               <span>Peso: gr. </span>
-              <input onChange={handleChangeProduct} type="number" name="peso" value={newProduct.peso} />
+              <input
+                onChange={handleChangeProduct}
+                type="number"
+                name="peso"
+                value={newProduct.peso}
+              />
               {errors.peso != "" && (
                 <p className={styles.errors}>{errors.peso}</p>
               )}
@@ -170,7 +180,12 @@ export function CreateProduct({ idBranch }) {
             />
             <label>
               <span>Imagen (URL) </span>
-              <input onChange={handleChangeProduct} type="url" name="image" value={newProduct.image} />
+              <input
+                onChange={handleChangeProduct}
+                type="url"
+                name="image"
+                value={newProduct.image}
+              />
               {errors.image != "" && (
                 <p className={styles.errors}>{errors.image}</p>
               )}
@@ -178,10 +193,7 @@ export function CreateProduct({ idBranch }) {
           </div>
         </div>
         <div className={styles.buttonHolder}>
-          <button 
-          type="button"
-          className={styles.delete}
-          onClick={resetForm}>
+          <button type="button" className={styles.delete} onClick={resetForm}>
             Borrar
           </button>
           <button

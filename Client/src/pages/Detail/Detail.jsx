@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Fade, Rotate } from "react-reveal";
+import { useSelector } from "react-redux";
 
-
-const Detail = ({ idBranch }) => {
+const Detail = () => {
+  const { idBranch } = useSelector((state) => state.auth);
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const name = query.get("name");
@@ -46,15 +47,21 @@ const Detail = ({ idBranch }) => {
               <h2 className="text-2xl font-bold mb-4">
                 {product[0]?.PRODUCTO?.nombre_producto}
               </h2>
-              <p className="mb-2">Sucursal: {product[0]?.SUCURSAL.nombre_sucursal}</p>
+              <p className="mb-2">
+                Sucursal: {product[0]?.SUCURSAL.nombre_sucursal}
+              </p>
               <p className="mb-2">
                 Tipo de producto:{" "}
                 {product[0]?.PRODUCTO?.CATALOGO_UNIVERSAL?.nombre_catalogo}
               </p>
               <p className="mb-2">Stock/Cantidad: {product[0]?.stock}</p>
               <p className="mb-2">Peso(gr): {product[0]?.PRODUCTO?.peso}</p>
-              <p className="mb-2">Precio Compra: ${product[0]?.PRODUCTO?.valor_compra}</p>
-              <p className="mb-2">Precio Venta: ${product[0]?.PRODUCTO?.valor_venta}</p>
+              <p className="mb-2">
+                Precio Compra: ${product[0]?.PRODUCTO?.valor_compra}
+              </p>
+              <p className="mb-2">
+                Precio Venta: ${product[0]?.PRODUCTO?.valor_venta}
+              </p>
             </div>
           </div>
         </Rotate>
