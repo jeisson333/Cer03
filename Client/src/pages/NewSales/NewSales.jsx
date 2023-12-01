@@ -45,40 +45,20 @@ const NewSales = () => {
 
   return (
     <div className={Style.divMain}>
-      <Filters
-        conditions={conditions}
-        setConditions={setConditions}
-        sucursales={sucursales}
-        totalPages={totalPages}
-        handlerChange={handlerChange}
-        handlerSubmit={handlerSubmit}
-      />
-      <Products />
+      <div className={Style.holder}>
+        <Filters
+          conditions={conditions}
+          setConditions={setConditions}
+          sucursales={sucursales}
+          totalPages={totalPages}
+          handlerChange={handlerChange}
+          handlerSubmit={handlerSubmit}
+        />
+        <Products />
+      </div>
       <Cart />
-
-      <div></div>
     </div>
   );
 };
-
-// return (
-//   <div className={Style.divMain}>
-//     <div className={Style.holder}>
-//     <Filters
-//       conditions={conditions}
-//       setConditions={setConditions}
-//       sucursales={sucursales}
-//       totalPages={totalPages}
-//       handlerChange={handlerChange}
-//       handlerSubmit={handlerSubmit}
-//     />
-//     <Products />
-//     </div>
-//     <Cart />
-
-
-//   </div>
-// );
-
 
 export default NewSales;
