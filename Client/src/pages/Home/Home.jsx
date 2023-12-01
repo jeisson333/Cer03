@@ -5,7 +5,7 @@ import { FaListOl } from "react-icons/fa6";
 import { FaFilterCircleDollar } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 import { useSelector } from "react-redux";
-
+const url = import.meta.env.VITE_BASE_URL;
 import { NavLink, Link } from "react-router-dom";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.post("http://localhost:3001/ventas", {
+        const { data } = await axios.post(`${url}:3001/ventas`, {
           id: idBranch,
         });
 
