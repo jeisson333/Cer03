@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const SubscriptionCheckout = () => {
   const location = useLocation();
@@ -11,11 +10,8 @@ const SubscriptionCheckout = () => {
   const totalPay = query.get("totalPay");
   const currency_id = query.get("currency_id");
   const quantity = query.get("quantity");
-  console.log(subscription, totalPay, currency_id, quantity);
 
   const [checkout, setCheckout] = useState([]);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -29,7 +25,6 @@ const SubscriptionCheckout = () => {
       }
     })();
   }, []);
-  console.log(checkout.init_point);
   const handleSubmit = () => {
     window.location.href = checkout.init_point;
   };
