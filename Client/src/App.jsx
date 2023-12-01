@@ -37,12 +37,12 @@ function App() {
   useEffect(() => {
     if (withoutSide.find((route) => route === location.pathname)) {
       dispatch(changeSidebar(false));
-    } else if (withSide.find((route) => route === location)) {
+    } else if (withSide.find((route) => route === location.pathname)) {
       dispatch(changeSidebar(true));
     } else {
       dispatch(changeSidebar(false));
     }
-  }, [location]);
+  }, [location.pathname]);
 
   const navClass = sidebarActive ? "siderBarPosition" : "prueba";
 
