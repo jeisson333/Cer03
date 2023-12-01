@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { NavLink, useMatch } from "react-router-dom";
+import { NavLink, useMatch, useNavigate } from "react-router-dom";
 import { CiSettings } from "react-icons/ci";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { MdOutlineInventory } from "react-icons/md";
@@ -8,6 +8,8 @@ import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { IoIosLogOut } from "react-icons/io";
 import style from "./SideBar.module.css";
 import logoCer03 from "../../components/image/logocer03.jpeg";
+import { useDispatch } from "react-redux";
+import { signOut } from "../../redux/actions";
 
 const SidebarLink = ({ to, icon, text, Onclick }) => {
   const match = useMatch(to);
@@ -15,7 +17,9 @@ const SidebarLink = ({ to, icon, text, Onclick }) => {
   return (
     <div className={`${style.linkContainer} ${match ? style.activeLink : ""}`}>
       {Onclick ? (
-        <button onClick={onclick}>A</button>
+        <button onClick={Onclick}>
+          {icon} {text}
+        </button>
       ) : (
         <NavLink to={to} className={style.Links} end>
           <div className={style.linkIcon}>
@@ -30,7 +34,13 @@ const SidebarLink = ({ to, icon, text, Onclick }) => {
 };
 
 const NavBAr = () => {
-  const handleSignOut = () => {};
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    navigate("/");
+    dispatch(signOut());
+  };
 
   return (
     <div>
@@ -70,7 +80,7 @@ const NavBAr = () => {
           <div className={style.divider}></div>
           <SidebarLink
             to="/"
-            Onclick={() => console.log("hola")}
+            Onclick={handleSignOut}
             icon={<IoIosLogOut />}
             text="Cerrar sesión"
           />

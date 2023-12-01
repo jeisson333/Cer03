@@ -39,10 +39,16 @@ const singIn = async (email, password) => {
           id_sucursal: vendedor?.vendedor_sucursal,
         },
       });
+      modelEmpresa = await EMPRESA.findOne({
+        where: {
+          id_empresa: modelSucursal?.sucursal_empresa,
+        },
+      });
       if (!modelSucursal) throw new Error("Sucursal not exist");
       idBranch = modelSucursal?.sucursal_empresa;
       role = "user";
       sucursal = modelSucursal?.nombre_sucursal;
+      date = modelEmpresa?.fecha_licencia;
     }
   }
   const dayMS = 1000 * 60 * 60 * 24;

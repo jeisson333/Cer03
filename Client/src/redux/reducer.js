@@ -6,6 +6,7 @@ import {
   ADD_CART,
   REMOVE_CART,
   GET_USER,
+  SIGN_OUT,
 } from "./action-types.js";
 
 const initialState = {
@@ -68,6 +69,11 @@ function reducer(state = initialState, action) {
           role: action.payload?.role,
           branch: action.payload?.branch,
         },
+      };
+    case SIGN_OUT:
+      return {
+        ...state,
+        user: {},
       };
 
     default:

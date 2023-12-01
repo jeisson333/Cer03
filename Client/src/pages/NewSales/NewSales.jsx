@@ -10,8 +10,9 @@ import Cart from "../../components/Cart/Cart";
 //styles
 import Style from "./NewSales.module.css";
 
-const NewSales = ({ idBranch }) => {
+const NewSales = () => {
   const dispatch = useDispatch();
+  const { idBranch } = useSelector((state) => state.user);
   const totalPages = useSelector((state) => state.totalPages);
   const sucursales = useSelector((state) => state.sucursales);
 
