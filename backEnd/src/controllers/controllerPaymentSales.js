@@ -19,9 +19,9 @@ const getMercadoPagoSalesController = async ({ products }) => {
 		}),
 		auto_return: 'approved',
 		back_urls: {
-			success: 'http://localhost:5173/paymentSales/success',
-			failure: 'http://localhost:5173/paymentSales/failure',
-			pending: 'http://localhost:5173/paymentSales/pending',
+			success: 'http://localhost:5173/subscription/success',
+			failure: 'http://localhost:5173/subscription/failure',
+			pending: 'http://localhost:5173/subscription/pending',
 		},
 		notification_url:
 			'https://5942-45-238-182-200.ngrok.io/paymentSales/webhook',
