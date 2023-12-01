@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.post(`${url}:3001/ventas`, {
+        const { data } = await axios.post(`${url}/ventas`, {
           id: idBranch,
         });
 

@@ -18,7 +18,7 @@ const Detail = () => {
     (async () => {
       try {
         const { data } = await axios.post(
-          `${url}?name=${name}&sucursal=${sucursal}`,
+          `${url}/products?name=${name}&sucursal=${sucursal}`,
           {
             id: idBranch,
           }
