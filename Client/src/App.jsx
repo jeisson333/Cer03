@@ -20,20 +20,61 @@ import Error from "./pages/Error/Error";
 
 function App() {
   const location = useLocation();
+  // const idBranch = "6f722d7f-515b-4705-a007-84b07317cc20"; //Api_key
+  const [isActive, setIsActive] = useState(false);
 
-  const isActive =
-    location.pathname === "/contact" ||
-    location.pathname === "/about" ||
-    location.pathname === "/landingPage" ||
-    location.pathname === "/" ||
-    location.pathname === "/signIn";
+  useEffect(() => {
+    setIsActive(
+      location.pathname === "/contact" ||
+        location.pathname === "/about" ||
+        location.pathname === "/landingPage" ||
+        location.pathname === "/" ||
+        location.pathname === "/signin" ||
+        location.pathname === "*"
+    );
+  }, [location]);
 
   const navClass = !isActive ? "siderBarPosition" : "prueba";
 
   return (
     <div className={navClass}>
       {!isActive && <NavBAr />}
-      <Routes></Routes>
+      <Routes>
+        {/* public */}
+        <Route exact path="/" element={<LandingPage />} />
+        <Route path="/registerForm" element={<RegisterForm />} />
+        <Route path="/detail" element={<Detail />} />
+        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+
+        {/* admin */}
+        <Route element={<RequireAuth authRoles={["admin"]} />}>
+          <Route path="/products" element={<Inventory />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/newProduct" element={<CreateProduct />} />
+        </Route>
+
+        {/* user */}
+        <Route element={<RequireAuth authRoles={["user"]} />}>
+          <Route path="/newsales" element={<NewSales />} />
+          <Route path="/detail" element={<Detail />} />
+        </Route>
+
+        {/* admin and user */}
+        <Route element={<RequireAuth authRoles={["admin", "user"]} />}>
+          <Route path="/home" element={<Home />} />
+        </Route>
+
+        {/* sin nada */}
+        <Route path="/registerForm" element={<RegisterForm />} />
+        <Route path="/sales" element={<Sales />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/test" element={<Experiments />} />
+
+        {/* 404 error */}
+        <Route path="*" element={<Error setIsActive={setIsActive} />} />
+      </Routes>
     </div>
   );
 }
