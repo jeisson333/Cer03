@@ -46,25 +46,15 @@ export default function SignIn({ setIsActive }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(getUser(user));
-
-    // Buscar el usuario en el array por el nombre de usuario
-    // const user = users.find((user) => user.userName === username);
-
-    // if (user) {
-    //   // Verificar si la contraseña coincide
-    //   if (user.password === password) {
-    //
-    //   } else {
-    //     alert("Contraseña incorrecta");
-    //   }
-    // } else {
-    //   alert("Usuario no encontrado");
-    // }
   };
 
   const onSucess = (credentialResponse) => {
     const { email, sub } = decodeToken(credentialResponse?.credential);
-    console.log(email, sub);
+    const user = {
+      email: email,
+      password: sub,
+    };
+    dispatch(getUser(user));
   };
 
   const onFailure = (res) => {
@@ -91,8 +81,16 @@ export default function SignIn({ setIsActive }) {
           name="password"
         />
         <input type="submit" value="Ingresar" className={Style.inputSubmit} />
+        <div
+          style={{
+            marginTop: "3vh",
+            justifyContent: "center",
+            display: "flex",
+          }}
+        >
+          <GoogleLogin onSuccess={onSucess} onError={onFailure}></GoogleLogin>
+        </div>
       </form>
-      <GoogleLogin onSuccess={onSucess} onError={onFailure}></GoogleLogin>;
     </div>
   );
 }
