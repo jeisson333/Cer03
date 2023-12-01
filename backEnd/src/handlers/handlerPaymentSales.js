@@ -5,8 +5,8 @@ const {
 
 const getPaymentSales = async (req, res) => {
 	try {
-		const info = req.query;
-		const response = await getMercadoPagoSalesController({ info });
+		const products = req.body;
+		const response = await getMercadoPagoSalesController({ products });
 		res.status(200).json(response);
 	} catch (error) {
 		res.status(400).json({ error: error.message });

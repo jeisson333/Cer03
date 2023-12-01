@@ -4,15 +4,15 @@ const { Router } = require('express');
 const routeAuth = require('./routeAuth.js');
 const routeEmpresa = require('./routeEmpresa.js');
 const routeVentas = require('./routeVentas.js');
-const routeVendedor = require('./routeVendedor.js');
+//const routeVendedor = require('./routeVendedor.js');
 const productsRouter = require('./productsRouter.js');
 const routeSucursales = require('./routeSucursales.js');
 const routeSaveJsonInDB = require('./saveJsonInDBRouter.js');
 const routeCatalogos = require('./routeCatalogo.js');
 const routePaymentGateways = require('./routePaymentGateways.js');
-const routePaymentSales = require('./routePaymentSales.js');
+const routeSales = require('./routePaymentSales.js');
 
-const { verifyToken } = require('../middlewares/authJWT.js');
+//const { verifyToken } = require('../middlewares/authJWT.js');
 
 const router = Router();
 
@@ -26,6 +26,6 @@ router.use('/sucursales', routeSucursales);
 router.use('/database', routeSaveJsonInDB);
 router.use('/catalogos', routeCatalogos);
 router.use('/paymentGateways', routePaymentGateways);
-router.use('/paymentSales', routePaymentSales);
+router.use('/paymentSales', routeSales);
 
 module.exports = router;

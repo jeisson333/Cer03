@@ -1,22 +1,22 @@
 const mercadopage = require('mercadopago');
 const { ACCESS_TOKEN } = process.env;
 
-const getMercadoPagoSalesController = async ({ info }) => {
-	const { nombre_producto, totalPay, currency, quantity } = info;
+const getMercadoPagoSalesController = async ({ products }) => {
+	//const { nombre_producto, totalPay, currency, quantity, description } = info;
 
 	mercadopage.configure({
 		access_token: ACCESS_TOKEN,
 	});
 
 	const preference = {
-		items: [
-			{
-				title: nombre_producto,
-				unit_price: parseInt(totalPay),
-				currency_id: currency,
-				quantity: parseInt(quantity),
-			},
-		],
+		items: products?.map((product) => {
+			return {
+				title: product.nombre_producto,
+				unit_price: parseInt(product.totalPay),
+				currency_id: product.currency,
+				quantity: parseInt(product.quantity),
+			};
+		}),
 		auto_return: 'approved',
 		back_urls: {
 			success: 'http://localhost:5173/paymentSales/success',
@@ -27,9 +27,9 @@ const getMercadoPagoSalesController = async ({ info }) => {
 			'https://5942-45-238-182-200.ngrok.io/paymentSales/webhook',
 	};
 
-	const result = await mercadopage.preferences.create(preference);
+	const response = await mercadopage.preferences.create(preference);
 
-	return result;
+	return response;
 };
 const getWebHookController = async (infoQuery) => {
 	if (infoQuery.type === 'payment') {
