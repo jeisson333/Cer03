@@ -10,4 +10,5 @@ export default defineConfig({
       prefix: "",
     }),
   ],
+  base: "/vite-deploy/",
 });
