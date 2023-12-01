@@ -22,9 +22,9 @@ const Inventory = () => {
   });
   const [firstChargue, setFirstChargue] = useState(true);
 
-  useEffect(() => {
-    dispatch(getSucursales(idBranch));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getSucursales(idBranch));
+  // }, []);
 
   useEffect(() => {
     if (firstChargue) {

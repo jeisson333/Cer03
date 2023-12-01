@@ -6,7 +6,7 @@ import { Fade, Rotate } from "react-reveal";
 import { useSelector } from "react-redux";
 
 const Detail = () => {
-  const { idBranch } = useSelector((state) => state.user);
+  const { idBranch } = useSelector((state) => state.auth);
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const name = query.get("name");

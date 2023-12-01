@@ -73,7 +73,10 @@ function reducer(state = initialState, action) {
     case SIGN_OUT:
       return {
         ...state,
-        user: {},
+        auth: {},
+        cartRemove: { id: "", detect: false },
+        products: [],
+        inCart: [],
       };
 
     default:

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./CreateProduct.module.css";
 
 export function CreateProduct() {
-  const { idBranch } = useSelector((state) => state.user);
+  const { idBranch } = useSelector((state) => state.auth);
   const [newProduct, setNewProduct] = useState({
     idBranch: idBranch,
   });

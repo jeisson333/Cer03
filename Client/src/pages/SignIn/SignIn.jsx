@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../redux/actions";
+import { getUser, getSucursales } from "../../redux/actions";
 import Style from "./SignIn.module.css";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
@@ -25,6 +25,7 @@ export default function SignIn({ setIsActive }) {
   useEffect(() => {
     if (Object.keys(dataUser).length > 1) {
       navigate("/home");
+      dispatch(getSucursales(dataUser?.idBranch));
     }
     function start() {
       gapi.auth2.init({

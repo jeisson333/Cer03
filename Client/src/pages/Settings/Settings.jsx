@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const Settings = () => {
   const [sucursales, setSucursales] = useState([]);
-  const { idBranch } = useSelector((state) => state.user);
+  const { idBranch } = useSelector((state) => state.auth);
 
   useEffect(() => {
     (async () => {

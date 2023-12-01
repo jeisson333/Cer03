@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getSucursales } from "../../redux/actions";
+import { getProducts } from "../../redux/actions";
 
 //components
 import Products from "../../components/Products/Products";
@@ -12,21 +12,18 @@ import Style from "./NewSales.module.css";
 
 const NewSales = () => {
   const dispatch = useDispatch();
-  const { idBranch } = useSelector((state) => state.auth);
+  const { idBranch, branch } = useSelector((state) => state.auth);
   const totalPages = useSelector((state) => state.totalPages);
   const sucursales = useSelector((state) => state.sucursales);
 
-  const sucursalEmpleado = "FORMOSA";
-
   const [search, setSearch] = useState("");
   const [conditions, setConditions] = useState({
-    sucursal: sucursalEmpleado,
+    sucursal: branch,
     page: 1,
     page_size: 6,
   });
 
   useEffect(() => {
-    // dispatch(getSucursales(idBranch));
     dispatch(getProducts(idBranch, conditions)); //nueva action con filtro de sucursal
   }, [conditions]);
 
