@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import FormVendedor from "../../components/FormVendedor/FormVendedor";
 
 const Settings = ({ idBranch }) => {
   const [sucursales, setSucursales] = useState([]);
@@ -18,7 +19,9 @@ const Settings = ({ idBranch }) => {
     })();
   }, []);
 
-  return <div>Settings</div>;
+  return <div>
+    <FormVendedor />
+  </div>;
 };
 
 export default Settings;

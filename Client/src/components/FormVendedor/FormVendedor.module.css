@@ -1,0 +1,51 @@
+/* FormVendedor.module.css */
+
+.formContainer {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .formLabel {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .formInput {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  
+  .formError {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .formButton {
+    padding: 10px;
+    background-color: #4169e1; /* Cambiado a color azul rey */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .formSubmit:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+  }
+  
+  /* Add any additional styles as needed */
+  
