@@ -1,5 +1,6 @@
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Checkout from "./pages/Checkout/Checkout";
 import Home from "./pages/Home/Home";
 import Inventory from "./pages/Inventory/Inventory";
@@ -8,48 +9,79 @@ import RegisterForm from "./pages/RegisterForm/RegisterForm";
 import About from "./pages/About/About";
 import SignIn from "./pages/SignIn/SignIn";
 import Contact from "./pages/Contact/Contact";
-import Sales from "./pages/Sales/Sales";
 import Settings from "./pages/Settings/Settings";
 import NavBAr from "./components/NavBar/NavBar";
 import { CreateProduct } from "./pages/Forms/CreateProduct";
 import Detail from "./pages/Detail/Detail";
 import Experiments from "./pages/Experiments/Experiments";
 import NewSales from "./pages/NewSales/NewSales";
+import RequireAuth from "./pages/RequireAuth/RequireAuth";
+import Error from "./pages/Error/Error";
+import { changeSidebar } from "./redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+
 function App() {
   const location = useLocation();
-  const idBranch = "6f722d7f-515b-4705-a007-84b07317cc20"; //Api_key
-  // const [isActive, setIsActive] = useState(false)
+  const dispatch = useDispatch();
+  const { sidebarActive } = useSelector((state) => state);
+  const withSide = [
+    "/products",
+    "/settings",
+    "/newProduct",
+    "/newsales",
+    "/home",
+    "/detail",
+  ];
+  const withoutSide = ["/", "/contact", "/about", "/landingPage", "/signIn"];
 
-  const isActive =
-    location.pathname === "/contact" ||
-    location.pathname === "/about" ||
-    location.pathname === "/landingPage" ||
-    location.pathname === "/" ||
-    location.pathname === "/signIn";
+  useEffect(() => {
+    if (withoutSide.find((route) => route === location.pathname)) {
+      dispatch(changeSidebar(false));
+    } else if (withSide.find((route) => route === location.pathname)) {
+      dispatch(changeSidebar(true));
+    } else {
+      dispatch(changeSidebar(false));
+    }
+  }, [location.pathname]);
 
-  const navClass = !isActive ? "siderBarPosition" : "prueba";
+  const navClass = sidebarActive ? "siderBarPosition" : "prueba";
 
   return (
     <div className={navClass}>
-      {!isActive && <NavBAr />}
+      {sidebarActive && <NavBAr />}
       <Routes>
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/home" element={<Home idBranch={idBranch} />} />
-        <Route path="/products" element={<Inventory idBranch={idBranch} />} />
-        <Route path="/settings" element={<Settings idBranch={idBranch} />} />
+        {/* public */}
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/registerForm" element={<RegisterForm />} />
-        <Route path="/detail" element={<Detail idBranch={idBranch} />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/sales" element={<Sales idBranch={idBranch} />} />
-        <Route path="/newsales" element={<NewSales idBranch={idBranch} />} />
-        <Route
-          path="/newProduct"
-          element={<CreateProduct idBranch={idBranch} />}
-        />
+
+        {/* admin */}
+        <Route element={<RequireAuth authRoles={["admin"]} />}>
+          <Route path="/products" element={<Inventory />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/newProduct" element={<CreateProduct />} />
+        </Route>
+
+        {/* user */}
+        <Route element={<RequireAuth authRoles={["user"]} />}>
+          <Route path="/newsales" element={<NewSales />} />
+        </Route>
+
+        {/* admin and user */}
+        <Route element={<RequireAuth authRoles={["admin", "user"]} />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/detail" element={<Detail />} />
+        </Route>
+
+        {/* sin nada */}
+        <Route path="/registerForm" element={<RegisterForm />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/test" element={<Experiments />} />
+
+        {/* 404 error */}
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

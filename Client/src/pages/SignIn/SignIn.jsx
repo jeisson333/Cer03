@@ -1,31 +1,62 @@
-import { useState } from "react";
-import { users } from "../../data/users";
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, getSucursales } from "../../redux/actions";
 import Style from "./SignIn.module.css";
 import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import { gapi } from "gapi-script";
+import { decodeToken } from "react-jwt";
+const client_id = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
-export default function SignIn() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+export default function SignIn({ setIsActive }) {
+  const dispatch = useDispatch();
+  const dataUser = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    if (Object.keys(dataUser).length > 1) {
+      navigate("/home");
+      dispatch(getSucursales(dataUser?.idBranch));
+    }
+    function start() {
+      gapi.auth2.init({
+        client_id: client_id,
+        scope: "",
+      });
+    }
+    gapi.load("client:auth2", start);
+  }, [dataUser]);
+
+  const handleUser = (event) => {
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Buscar el usuario en el array por el nombre de usuario
-    const user = users.find((user) => user.userName === username);
-
-    if (user) {
-      // Verificar si la contraseña coincide
-      if (user.password === password) {
-        navigate("/home");
-      } else {
-        alert("Contraseña incorrecta");
-      }
-    } else {
-      alert("Usuario no encontrado");
-    }
+    dispatch(getUser(user));
   };
 
+  const onSucess = (credentialResponse) => {
+    const { email, sub } = decodeToken(credentialResponse?.credential);
+    const user = {
+      email: email,
+      password: sub,
+    };
+    console.log(user);
+    dispatch(getUser(user));
+  };
+
+  const onFailure = (res) => {
+    console.log("TE HE MIRADO A LOS OJOSSSSSSSSSSSS ", res);
+  };
   return (
     <div className={Style.container}>
       <form onSubmit={handleSubmit} className={Style.containerForm}>
@@ -33,18 +64,29 @@ export default function SignIn() {
         <label className={Style.label}>Usuario</label>
         <input
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={user?.email}
+          onChange={handleUser}
           className={Style.input}
+          name="email"
         />
         <label className={Style.label}>Contraseña</label>
         <input
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={user?.password}
+          onChange={handleUser}
           className={Style.input}
+          name="password"
         />
         <input type="submit" value="Ingresar" className={Style.inputSubmit} />
+        <div
+          style={{
+            marginTop: "3vh",
+            justifyContent: "center",
+            display: "flex",
+          }}
+        >
+          <GoogleLogin onSuccess={onSucess} onError={onFailure}></GoogleLogin>
+        </div>
       </form>
     </div>
   );

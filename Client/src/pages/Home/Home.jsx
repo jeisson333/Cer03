@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Home.module.css";
 import { FaListOl } from "react-icons/fa6";
 import { FaFilterCircleDollar } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
+import { useSelector } from "react-redux";
+const url = import.meta.env.VITE_BASE_URL;
 import { NavLink, Link } from "react-router-dom";
 
-export default function Home({ idBranch }) {
+export default function Home() {
   const [sales, setSales] = useState([]);
-
+  const { idBranch } = useSelector((state) => state.auth);
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.post("http://localhost:3001/ventas", {
+        const { data } = await axios.post(`${url}/ventas`, {
           id: idBranch,
         });
 
@@ -47,7 +49,9 @@ export default function Home({ idBranch }) {
         <tbody>
           {sales.map((producto) => (
             <tr key={producto["VENTum.id_venta"]}>
-              <td>{producto["VENTum.createdAt"]}</td>
+              <td>
+                {new Date(producto["VENTum.createdAt"])?.toLocaleString()}
+              </td>
               <td>
                 {`${producto[
                   "VENTum.CATALOGO_UNIVERSAL.nombre_catalogo"

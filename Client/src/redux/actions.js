@@ -1,3 +1,4 @@
+import { isExpired, decodeToken } from "react-jwt";
 import {
   GET_PRODUCTS,
   POST_NEWPRODUCT,
@@ -6,16 +7,19 @@ import {
   ADD_CART,
   REMOVE_CART,
   GET_USER,
+  SIGN_OUT,
+  SIDEBAR,
 } from "./action-types.js";
 import axios from "axios";
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 export const getProducts = (idBranch, conditions) => {
   return async function (dispatch) {
     try {
       const queryParams = new URLSearchParams(conditions).toString();
       const url = conditions
-        ? `http://localhost:3001/products?${queryParams}`
-        : "http://localhost:3001/products";
+        ? `${baseUrl}/products?${queryParams}`
+        : `${baseUrl}/products`;
       const { data } = await axios.post(url, { id: idBranch });
 
       return dispatch({
@@ -32,7 +36,7 @@ export const getTypeProducts = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/catalogos?tipo_catalogo=3890c641-32e7-49cf-864e-de62c04efb1b"
+        `${baseUrl}/catalogos?tipo_catalogo=3890c641-32e7-49cf-864e-de62c04efb1b`
       );
       return dispatch({
         type: GET_TYPEPRODUCTS,
@@ -49,8 +53,8 @@ export const getSucursales = (idBranch, conditions) => {
     try {
       const queryParams = new URLSearchParams(conditions).toString();
       const url = conditions
-        ? `http://localhost:3001/sucursales?${queryParams}`
-        : "http://localhost:3001/sucursales";
+        ? `${baseUrl}/sucursales?${queryParams}`
+        : `${baseUrl}/sucursales`;
       const { data } = await axios.post(url, { id: idBranch });
 
       return dispatch({
@@ -67,7 +71,7 @@ export const postNewProduct = (input) => {
   return async function (dispatch) {
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/products/newproduct",
+        `${baseUrl}/products/newproduct`,
         input
       );
       return dispatch({
@@ -97,14 +101,31 @@ export const removeCart = (productId) => {
 export const getUser = (user) => {
   return async function (dispatch) {
     try {
-      const url = `http://localhost:3001/auth/sing-in`;
+      const url = `${baseUrl}/auth/sing-in`;
       const { data } = await axios.post(url, user);
+      const myDecodedToken = decodeToken(data);
+      const isMyTokenExpired = isExpired(data);
+      if (isMyTokenExpired) throw new Error("Expired token");
       return dispatch({
         type: GET_USER,
-        payload: data,
+        payload: myDecodedToken,
       });
     } catch (error) {
       console.log(error.message);
     }
+  };
+};
+
+export const signOut = (user) => {
+  return {
+    type: SIGN_OUT,
+    payload: user,
+  };
+};
+
+export const changeSidebar = (boolean) => {
+  return {
+    type: SIDEBAR,
+    payload: boolean,
   };
 };

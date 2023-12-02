@@ -90,10 +90,14 @@ const Cart = () => {
       delete quantity[cartRemove.id];
     }
   }, [cartRemove.detect]);
-  console.log(quantity);
+
   return (
-    <div>
-      <div>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h2 className={styles.title}>Productos a Comprar</h2>
+        <div className={styles.divider}></div>
+      </div>
+      <div className={styles.cards}>
         {products?.map((product) => {
           return (
             <ProdCart
@@ -108,7 +112,10 @@ const Cart = () => {
       </div>
       <div>
         <p>Precio Total: {totalPrice}</p>
-        <button onClick={() => console.log("Elija el metodo de pago")}>
+        <button
+          className={styles.comprar}
+          onClick={() => console.log("Elija el metodo de pago")}
+        >
           Comprar
         </button>
       </div>
