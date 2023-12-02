@@ -2,11 +2,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { Fade, Rotate } from "react-awesome-reveal";
-import { useSelector } from "react-redux";
+import { Rotate } from "react-awesome-reveal";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const Detail = () => {
-  const { idBranch } = useSelector((state) => state.auth);
+  const { idBranch } = cookies.get("auth");
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const name = query.get("name");

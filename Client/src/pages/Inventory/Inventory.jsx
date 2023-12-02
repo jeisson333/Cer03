@@ -9,9 +9,12 @@ import Filters from "../../components/Filters/Filters";
 //styles
 import Style from "./inventory.module.css";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 const Inventory = () => {
   const dispatch = useDispatch();
-  const { idBranch, branch } = useSelector((state) => state.auth);
+  const { idBranch, branch } = cookies.get("auth");
   const totalPages = useSelector((state) => state.totalPages);
   const [search, setSearch] = useState("");
   const sucursales = useSelector((state) => state.sucursales);
@@ -22,9 +25,9 @@ const Inventory = () => {
   });
   const [firstChargue, setFirstChargue] = useState(true);
 
-  // useEffect(() => {
-  //   dispatch(getSucursales(idBranch));
-  // }, []);
+  useEffect(() => {
+    dispatch(getSucursales(idBranch));
+  }, []);
 
   useEffect(() => {
     if (firstChargue) {

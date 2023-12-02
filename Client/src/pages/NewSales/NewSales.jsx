@@ -10,9 +10,12 @@ import Cart from "../../components/Cart/Cart";
 //styles
 import Style from "./NewSales.module.css";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 const NewSales = () => {
   const dispatch = useDispatch();
-  const { idBranch, branch } = useSelector((state) => state.auth);
+  const { idBranch, branch } = cookies.get("auth");
   const totalPages = useSelector((state) => state.totalPages);
   const sucursales = useSelector((state) => state.sucursales);
 

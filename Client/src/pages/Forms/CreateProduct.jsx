@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { getTypeProducts, postNewProduct } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-
 import styles from "./CreateProduct.module.css";
+import Swal from "sweetalert2";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 export function CreateProduct() {
-  const { idBranch } = useSelector((state) => state.auth);
+  const { idBranch } = cookies.get("auth");
   const [newProduct, setNewProduct] = useState({
     idBranch: idBranch,
   });

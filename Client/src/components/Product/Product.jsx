@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -8,9 +9,12 @@ import { addCart, removeCart } from "../../redux/actions";
 
 import style from "./Product.module.css";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 const Product = ({ product }) => {
   const dispatch = useDispatch();
-  const inCart = useSelector((state) => state.inCart);
+  const inCart = cookies.get("inCart");
   const [isCart, setIsCart] = useState(false);
 
   const cartHandler = () => {

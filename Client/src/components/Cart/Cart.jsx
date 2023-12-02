@@ -6,10 +6,14 @@ import ProdCart from "../ProdCart/ProdCart";
 import styles from "./Cart.module.css";
 import { removeCart } from "../../redux/actions";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 const Cart = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.inCart);
-  const cartRemove = useSelector((state) => state.cartRemove);
+  const products = cookies.get("inCart");
+  const cartRemove = cookies.get("cartRemove");
+  const cookieQuantity = cookies.get("quantity");
   const [totalPrice, setTotalPrice] = useState(0);
   const [quantity, setQuantity] = useState({
     id: "",
@@ -17,6 +21,8 @@ const Cart = () => {
     before: 0,
     detect: false,
   });
+
+  useEffect(() => {}, [quantity?.id]);
 
   useEffect(() => {
     products.forEach((product) => {
@@ -37,6 +43,7 @@ const Cart = () => {
   }, [products]);
 
   useEffect(() => {
+    console.log(cookieQuantity, quantity);
     for (let key in quantity) {
       if (key === quantity.id) {
         if (quantity[key].quantity && Number.isInteger(quantity.before)) {

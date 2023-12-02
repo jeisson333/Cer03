@@ -1,23 +1,20 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Home.module.css";
-import { FaListOl } from "react-icons/fa6";
-import { FaFilterCircleDollar } from "react-icons/fa6";
-import { CiSearch } from "react-icons/ci";
-import { useSelector } from "react-redux";
 const url = import.meta.env.VITE_BASE_URL;
 import { NavLink, Link } from "react-router-dom";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 export default function Home() {
   const [sales, setSales] = useState([]);
-  const { idBranch } = useSelector((state) => state.auth);
+  const { idBranch } = cookies.get("auth");
   useEffect(() => {
     (async () => {
       try {
         const { data } = await axios.post(`${url}/ventas`, {
           id: idBranch,
         });
-
         setSales(data.data);
         sales.forEach((sale) => {
           console.log(Object.keys(sale));

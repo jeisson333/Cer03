@@ -1,17 +1,19 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser, getSucursales } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import { getUser } from "../../redux/actions";
 import Style from "./SignIn.module.css";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { gapi } from "gapi-script";
 import { decodeToken } from "react-jwt";
 const client_id = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
-export default function SignIn({ setIsActive }) {
+export default function SignIn() {
   const dispatch = useDispatch();
-  const dataUser = useSelector((state) => state.auth);
+  const dataUser = cookies.get("auth");
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -21,7 +23,6 @@ export default function SignIn({ setIsActive }) {
   useEffect(() => {
     if (Object.keys(dataUser).length > 1) {
       navigate("/home");
-      dispatch(getSucursales(dataUser?.idBranch));
     }
     function start() {
       gapi.auth2.init({
