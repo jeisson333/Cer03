@@ -30,7 +30,7 @@ function App() {
     "/newProduct",
     "/newsales",
     "/home",
-    "/detail",
+    "/detail/",
   ];
   const withoutSide = ["/", "/contact", "/about", "/landingPage", "/signIn"];
 
