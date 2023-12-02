@@ -6,31 +6,31 @@ const testimonialsData = [
     id: 1,
     name: "Juan Pérez",
     quote:
-      "¡Increíble experiencia! Me encanta la comunidad y la conexión que proporciona Cer03.",
+      "Excelente, la empecé a revisar y está muy bien creada, tienen todo lo que necesito para llevar un mejor control de mi negocio y lo mejor de lo mejor es que se utiliza en el celular muy bien pensando Cer03. Gracias Cer03 por pensar en nosotros. ",
   },
   {
     id: 2,
     name: "María García",
     quote:
-      "Cer03 ha cambiado la forma en que interactúo con mi vecindario. Estoy muy agradecida.",
+      "¡Me encanta! ¡Simplemente espectacular! Puedo no solo llevar el inventario y registro de compras y ventas sino también un registro de deudores. Además, que ponen a tu disposición una página web con un catálogo de tus productos. La amo.",
   },
   {
     id: 3,
     name: "Carlos Martínez",
     quote:
-      "Una plataforma excepcional para conectar con los demás en la comunidad.",
+      "Es Genial pode hacer todas las tareas necesarias para administrar el negocio desde el celular o computadora y tener la opción de soporte técnico. Gracias!!",
   },
   {
     id: 4,
     name: "Ana Rodríguez",
     quote:
-      "Cer03 me ha ayudado a descubrir eventos interesantes y a conocer a personas increíbles.",
+      "Excelente para llevar la administración de tu negocio y tus finanzas. Amo la opción de inventario, es justo lo que necesitaba para organizar mi mercancía.",
   },
   {
     id: 5,
     name: "Pedro Sánchez",
     quote:
-      "Gran herramienta para fortalecer la comunidad y construir lazos significativos.",
+      "Cuando empecé mi negocio me costaba mucho llevar la cuenta de mi inventario y las ventas del mes, pero desde que empecé a usar Cer03 todo mi trabajo se agilizó, aumentando así mis ingresos.",
   },
 ];
 
