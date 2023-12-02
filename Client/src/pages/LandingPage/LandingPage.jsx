@@ -81,23 +81,20 @@ const LandingPage = () => {
           </Fade>
           <Fade delay={300}>
             <p className={Style.description}>
-              Explora las posibilidades de tu comunidad con nosotros. En Cer03,
-              priorizamos las conexiones y el crecimiento conjunto sobre las
-              transacciones comerciales.
+              Explota el potencial de tu empresa, ya sea chica o grande. En
+              Cer03, priorizamos el control de tu inventario y finanzas.
             </p>
           </Fade>
           <Fade delay={600}>
             <p className={Style.description}>
-              Registra y comparte tus experiencias, eventos y recursos con otros
-              miembros del barrio. Lleva un control detallado de tus
-              interacciones, desde colaboraciones hasta actividades cotidianas,
-              sin la presión de vender.
+              Lleva los detalles de tus productos y ventas desde la pantalla de
+              tu PC o tu celular, ya no necesitaras usar más el papel y lápiz.
             </p>
           </Fade>
           <Fade delay={900}>
             <p className={Style.description}>
-              Únete a nosotros para construir juntos un espacio comunitario
-              vibrante y próspero.
+              Únete a nosotros para modernizar y agilizar el control de tu
+              negocio
             </p>
           </Fade>
         </div>
@@ -121,9 +118,9 @@ const LandingPage = () => {
             <div className={Style.additional_text_container}>
               <h2 className={Style.additional_title}>Administra tu negocio</h2>
               <p>
-                Treinta es la primera app gratuita de Latinoamérica que permite
-                a los negocios digitalizar sus finanzas. Administra ventas,
-                gastos, deudas, inventario, balance y mucho más, 100% gratis.
+                Con Cer03 prodras administrar 100% de forma digital tu negocio,
+                aumentando asi, la velocidad con la que consultas tu inventario
+                y ventas.
               </p>
             </div>
             <div className={Style.additional_image}>

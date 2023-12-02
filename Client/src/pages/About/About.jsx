@@ -12,31 +12,32 @@ export default function About() {
       <div>
         <div className={styles.story}>
           <h1 className={styles.title}>
-            Conectando empresas, Potenciando el crecimiento
+            Democratizando la digitalización financiera de los pequeños y
+            grandes comerciantes
           </h1>
           <h3 className={styles.body}>
-            Cer03 empezó en Marzo del 2005. No se trataba solo de crear una
-            plataforma sinó de tejer una tela digital que conectara a las
-            empresas con sus clientes y empleados de forma eficiente.
-            Visualizamos un mundo en el que cada empresa y cada pequeño vendedor
-            pueda aprovechar el poder de la technología para impulsar su
-            crecimiento. Diferentes empresarios notaron las dificultades para
-            vender y administrar productos. Teniendo en cuenta estas
-            dificultades, un grupo de mentes visionarias se unió con una misión
-            compartida para apoyar tanto a las empresas grandes como a los
-            pequeños comerciantes. Nuestro propósito es simplificar el trabajo
-            de la gestión de ventas y proovedores. Por esto es que nos
-            distinguimos. Cer03 no solo ofrece la mejor tecnología. Creemos en
-            la simplicidad sin sacrificar la sofisticación, en el poder sin
-            complejidad. Nuestra plataforma es un testimonio de la idea de que
-            la tecnología debe ser un puente que facilite a las empresas a
-            concentrarse en lo que mejor hacen: servir a sus clientes.
+            Cer03 empezó en Marzo del 2005. La cual busca impulsar a los
+            pequeños negocios por medio de la inclusión digital y financiera, y
+            potenciar aún más a las grandes empresas Visualizamos un mundo en el
+            que cada empresa y cada pequeño vendedor pueda aprovechar el poder
+            de la tecnología para impulsar su crecimiento. Diferentes
+            empresarios notaron las dificultades para vender y administrar
+            productos. Teniendo en cuenta estas dificultades, un grupo de mentes
+            visionarias se unió con una misión compartida, apoyar tanto a las
+            empresas grandes como a los pequeños comerciantes. Nuestro propósito
+            es simplificar el trabajo de la gestión de ventas y productos. Por
+            esto es que nos distinguimos. Cer03 no solo ofrece la mejor
+            tecnología. Creemos en la simplicidad sin sacrificar la
+            sofisticación, en el poder sin complejidad. Nuestra plataforma es un
+            testimonio de la idea de que la tecnología debe ser un puente que
+            facilite a las empresas el llevar cuenta de aquello que a veces
+            resulta difícil.
           </h3>
 
           <h3 className={styles.body}>
-            Detás de la interfaz elegante y las múltiples funciones, tenemos un
-            equipo de individuos dedicas a ti, apasionados por tu éxito.
-            Desarrolladores, servicio al cliente y mucho mas. Cer03 está
+            Detrás de la interfaz elegante y sus funciones, tenemos un equipo de
+            individuos dedicados a ti, apasionados por ayudar en tu éxito.
+            Desarrolladores, servicio al cliente y mucho más. Cer03 está
             comprometido a brindar un soporte incomparable en tu viaje a la
             excelencia.
           </h3>
@@ -68,17 +69,17 @@ export default function About() {
           <div className={styles.smallBlockHolder}>
             <h1 className={styles.title}>Impacto social</h1>
             <h3 className={styles.body}>
-              <strong>Empresas conectadas:</strong> Mas de 1000 empresas en todo
-              el mundo confían en Cer03 para gestionar sus ventas.
+              <strong>Empresas conectadas:</strong> Mas de 100 empresas en todo
+              Latinoamérica confían en Cer03 para gestionar sus ventas.
             </h3>
             <h3 className={styles.body}>
               <strong>Transacciones procesadas:</strong> Anualmente facilitames
-              mas de 100 millones de transacciones, simplificando y agilizando
+              mas de 10 millones de transacciones, simplificando y agilizando
               los procesos comerciales.
             </h3>
             <h3 className={styles.body}>
               <strong>Pequeños proovedores:</strong> Los pequeños proovedores
-              experimentaron un aumento promedio del 22% en sus ingresos desde
+              experimentaron un aumento promedio del 20% en sus ingresos desde
               que se unieron a Cer03.
             </h3>
           </div>
