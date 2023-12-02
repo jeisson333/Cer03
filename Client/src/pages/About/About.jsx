@@ -69,17 +69,17 @@ export default function About() {
           <div className={styles.smallBlockHolder}>
             <h1 className={styles.title}>Impacto social</h1>
             <h3 className={styles.body}>
-              <strong>Empresas conectadas:</strong> Mas de 1000 empresas en todo
-              el mundo confían en Cer03 para gestionar sus ventas.
+              <strong>Empresas conectadas:</strong> Mas de 100 empresas en todo
+              Latinoamérica confían en Cer03 para gestionar sus ventas.
             </h3>
             <h3 className={styles.body}>
               <strong>Transacciones procesadas:</strong> Anualmente facilitames
-              mas de 100 millones de transacciones, simplificando y agilizando
+              mas de 10 millones de transacciones, simplificando y agilizando
               los procesos comerciales.
             </h3>
             <h3 className={styles.body}>
               <strong>Pequeños proovedores:</strong> Los pequeños proovedores
-              experimentaron un aumento promedio del 22% en sus ingresos desde
+              experimentaron un aumento promedio del 20% en sus ingresos desde
               que se unieron a Cer03.
             </h3>
           </div>
