@@ -1,20 +1,11 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import { Fade, Slide } from 'react-reveal';
-import SlideShow from '../../components/SlideShow/SlideShow';
-import Advantages from '../../components/Advantages/Advantages';
-import Header from '../../components/Header/Header';
-import Testimonials from '../../components/Testimonials/Testimonials';
-import Style from './LandingPage.module.css'
-import Footer from '../../components/Footer/Footer';
-=======
-import React, { useState } from "react";
+import Style from "./LandingPage.module.css";
+import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import SlideShow from "../../components/SlideShow/SlideShow";
 import Advantages from "../../components/Advantages/Advantages";
 import Header from "../../components/Header/Header";
 import Testimonials from "../../components/Testimonials/Testimonials";
->>>>>>> fd7b3994387e56421fd9bfb68122bb1349957959
+import Footer from "../../components/Footer/Footer";
 
 const LandingPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -82,18 +73,7 @@ const LandingPage = () => {
             </p>
           </Fade>
           <Fade delay={600}>
-<<<<<<< HEAD
             <p className={Style.description}>
-              Registra y comparte tus experiencias, eventos y recursos con otros miembros del barrio.
-              Lleva un control detallado de tus interacciones, desde colaboraciones hasta actividades
-              cotidianas, sin la presión de vender.
-            </p>
-          </Fade>
-          <Fade delay={900}>
-            <p className={Style.description}>
-              Únete a nosotros para construir juntos un espacio comunitario vibrante y próspero.
-=======
-            <p className="text-gray-600 mb-4">
               Registra y comparte tus experiencias, eventos y recursos con otros
               miembros del barrio. Lleva un control detallado de tus
               interacciones, desde colaboraciones hasta actividades cotidianas,
@@ -101,10 +81,9 @@ const LandingPage = () => {
             </p>
           </Fade>
           <Fade delay={900}>
-            <p className="text-gray-600">
+            <p className={Style.description}>
               Únete a nosotros para construir juntos un espacio comunitario
               vibrante y próspero.
->>>>>>> fd7b3994387e56421fd9bfb68122bb1349957959
             </p>
           </Fade>
         </div>
@@ -117,31 +96,32 @@ const LandingPage = () => {
       <div className={Style.advantages_container}>
         <Advantages />
       </div>
-<<<<<<< HEAD
-      <Testimonials currentIndex={currentIndex} handlePrev={handlePrev} handleNext={handleNext} />
+      <Testimonials
+        currentIndex={currentIndex}
+        handlePrev={handlePrev}
+        handleNext={handleNext}
+      />
       <div className={Style.additional_container}>
         <Fade>
           <div className={Style.additional_wrapper}>
             <div className={Style.additional_text_container}>
               <h2 className={Style.additional_title}>Administra tu negocio</h2>
               <p>
-                Treinta es la primera app gratuita de Latinoamérica que permite a los negocios digitalizar sus finanzas. Administra ventas, gastos, deudas, inventario, balance y mucho más, 100% gratis.
+                Treinta es la primera app gratuita de Latinoamérica que permite
+                a los negocios digitalizar sus finanzas. Administra ventas,
+                gastos, deudas, inventario, balance y mucho más, 100% gratis.
               </p>
             </div>
             <div className={Style.additional_image}>
-              <img src="https://previews.123rf.com/images/yupiramos/yupiramos1802/yupiramos180210134/95204193-computadora-port%C3%A1til-con-estad%C3%ADsticas.jpg" alt="una imagen aca" />
+              <img
+                src="https://previews.123rf.com/images/yupiramos/yupiramos1802/yupiramos180210134/95204193-computadora-port%C3%A1til-con-estad%C3%ADsticas.jpg"
+                alt="una imagen aca"
+              />
             </div>
           </div>
         </Fade>
       </div>
       <Footer />
-=======
-      <Testimonials
-        currentIndex={currentIndex}
-        handlePrev={handlePrev}
-        handleNext={handleNext}
-      />
->>>>>>> fd7b3994387e56421fd9bfb68122bb1349957959
     </div>
   );
 };

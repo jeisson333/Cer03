@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-<<<<<<< HEAD
-import FormVendedor from "../../components/FormVendedor/FormVendedor";
-=======
 import { useSelector } from "react-redux";
->>>>>>> fd7b3994387e56421fd9bfb68122bb1349957959
+import FormVendedor from "../../components/FormVendedor/FormVendedor";
 
 const Settings = () => {
   const [sucursales, setSucursales] = useState([]);
@@ -25,19 +22,19 @@ const Settings = () => {
     })();
   }, []);
 
-<<<<<<< HEAD
-  return <div>
-    <FormVendedor />
-  </div>;
-=======
   return (
     <div>
-      {sucursales.map((sucursal, index) => (
-        <h3 key={index}>{sucursal?.nombre_sucursal}</h3>
-      ))}
+      <FormVendedor />
     </div>
   );
->>>>>>> fd7b3994387e56421fd9bfb68122bb1349957959
+
+  // return (
+  //   <div>
+  //     {sucursales.map((sucursal, index) => (
+  //       <h3 key={index}>{sucursal?.nombre_sucursal}</h3>
+  //     ))}
+  //   </div>
+  // );
 };
 
 export default Settings;
