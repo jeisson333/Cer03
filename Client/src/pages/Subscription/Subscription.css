@@ -135,3 +135,14 @@ ul li.price {
 .pack {
   font-size: 1.1rem;
 }
+
+#country {
+  position: fixed;
+  right: 300px;
+
+  border-radius: 20px;
+  padding: 3px;
+  margin-top: 2px;
+  background-color: #009ee3;
+  border: 1px solid #006b95;
+}
