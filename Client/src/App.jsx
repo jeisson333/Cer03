@@ -35,7 +35,7 @@ function App() {
     "/newProduct",
     "/newsales",
     "/home",
-    "/detail",
+    "/detail/",
     "/subscription",
     "/subscription/checkout",
     "/subscription/success",
