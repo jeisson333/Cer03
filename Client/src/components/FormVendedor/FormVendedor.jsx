@@ -3,29 +3,27 @@ import Style from "./FormVendedor.module.css";
 
 const FormVendedor = () => {
   const [form, setForm] = useState({
-    primerNombre: "",
-    segundoNombre: "",
-    primerApellido: "",
-    segundoApellido: "",
-    tipoDocumento: "",
-    numeroDocumento: "",
-    sucursal: "",
-    email: "",
-    usuario: "",
-    contraseña: "",
+    usuario_vendedor: "",
+    contraseña_vendedor: "",
+    primer_nombre: "",
+    segundo_nombre: "",
+    primer_apellido: "",
+    segundo_apellido: "",
+    tipo_documento: "",
+    numero_documento: "",
+    vendedor_sucursal: "",
   });
 
   const [errors, setErrors] = useState({
-    primerNombre: "",
-    segundoNombre: "",
-    primerApellido: "",
-    segundoApellido: "",
-    tipoDocumento: "",
-    numeroDocumento: "",
-    sucursal: "",
-    email: "",
-    usuario: "",
-    contraseña: "",
+    usuario_vendedor: "",
+    contraseña_vendedor: "",
+    primer_nombre: "",
+    segundo_nombre: "",
+    primer_apellido: "",
+    segundo_apellido: "",
+    tipo_documento: "",
+    numero_documento: "",
+    vendedor_sucursal: "",
   });
 
   const handleInputChange = (event) => {
@@ -112,11 +110,11 @@ const FormVendedor = () => {
           <input
             type="text"
             className={Style.formInput}
-            name="primerNombre"
-            value={form.primerNombre}
+            name="primer_nombre"
+            value={form.primer_nombre}
             onChange={handleInputChange}
           />
-          <span className={Style.formError}>{errors.primerNombre}</span>
+          <span className={Style.formError}>{errors.primer_nombre}</span>
         </div>
 
         <div className={Style.formGroup}>
@@ -124,11 +122,11 @@ const FormVendedor = () => {
           <input
             type="text"
             className={Style.formInput}
-            name="segundoNombre"
-            value={form.segundoNombre}
+            name="segundo_nombre"
+            value={form.segundo_nombre}
             onChange={handleInputChange}
           />
-          <span className={Style.formError}>{errors.segundoNombre}</span>
+          <span className={Style.formError}>{errors.segundo_nombre}</span>
         </div>
 
         <div className={Style.formGroup}>
@@ -136,11 +134,11 @@ const FormVendedor = () => {
           <input
             type="text"
             className={Style.formInput}
-            name="primerApellido"
-            value={form.primerApellido}
+            name="primer_apellido"
+            value={form.primer_apellido}
             onChange={handleInputChange}
           />
-          <span className={Style.formError}>{errors.primerApellido}</span>
+          <span className={Style.formError}>{errors.primer_apellido}</span>
         </div>
 
         <div className={Style.formGroup}>
@@ -148,47 +146,49 @@ const FormVendedor = () => {
           <input
             type="text"
             className={Style.formInput}
-            name="segundoApellido"
-            value={form.segundoApellido}
+            name="segundo_apellido"
+            value={form.segundo_apellido}
             onChange={handleInputChange}
           />
-          <span className={Style.formError}>{errors.segundoApellido}</span>
+          <span className={Style.formError}>{errors.segundo_apellido}</span>
+        </div>
+
+        <div className={Style.formGroup}>
+          <label className={Style.formLabel}>Tipo de Documento: </label>
+          <select
+            className={Style.formInput}
+            name="tipo_documento"
+            value={form.tipo_documento}
+            onChange={handleInputChange}
+          >
+            <option></option>
+          </select>
+          <span className={Style.formError}>{errors.tipo_documento}</span>
         </div>
 
         <div className={Style.formGroup}>
           <label className={Style.formLabel}>Número de Documento: </label>
           <input
-            type="text"
+            type="number"
             className={Style.formInput}
-            name="numeroDocumento"
-            value={form.numeroDocumento}
+            name="numero_documento"
+            value={form.numero_documento}
             onChange={handleInputChange}
           />
-          <span className={Style.formError}>{errors.numeroDocumento}</span>
+          <span className={Style.formError}>{errors.numero_documento}</span>
         </div>
 
         <div className={Style.formGroup}>
           <label className={Style.formLabel}>Sucursal: </label>
-          <input
-            type="text"
+          <select
             className={Style.formInput}
-            name="sucursal"
-            value={form.sucursal}
+            name="vendedor_sucursal"
+            value={form.vendedor_sucursal}
             onChange={handleInputChange}
-          />
-          <span className={Style.formError}>{errors.sucursal}</span>
-        </div>
-
-        <div className={Style.formGroup}>
-          <label className={Style.formLabel}>Email: </label>
-          <input
-            type="text"
-            className={Style.formInput}
-            name="email"
-            value={form.email}
-            onChange={handleInputChange}
-          />
-          <span className={Style.formError}>{errors.email}</span>
+          >
+            <option></option>
+          </select>
+          <span className={Style.formError}>{errors.vendedor_sucursal}</span>
         </div>
 
         <div className={Style.formGroup}>
@@ -196,11 +196,11 @@ const FormVendedor = () => {
           <input
             type="text"
             className={Style.formInput}
-            name="usuario"
-            value={form.usuario}
+            name="usuario_vendedor"
+            value={form.usuario_vendedor}
             onChange={handleInputChange}
           />
-          <span className={Style.formError}>{errors.usuario}</span>
+          <span className={Style.formError}>{errors.usuario_vendedor}</span>
         </div>
 
         <div className={Style.formGroup}>
@@ -208,11 +208,11 @@ const FormVendedor = () => {
           <input
             type="password"
             className={Style.formInput}
-            name="contraseña"
-            value={form.contraseña}
+            name="contraseña_vendedor"
+            value={form.contraseña_vendedor}
             onChange={handleInputChange}
           />
-          <span className={Style.formError}>{errors.contraseña}</span>
+          <span className={Style.formError}>{errors.contraseña_vendedor}</span>
         </div>
 
         <button
