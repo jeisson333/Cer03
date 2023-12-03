@@ -9,6 +9,7 @@ import {
   GET_USER,
   SIGN_OUT,
   SIDEBAR,
+  ACTION_CART,
 } from "./action-types.js";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -127,5 +128,11 @@ export const changeSidebar = (boolean) => {
   return {
     type: SIDEBAR,
     payload: boolean,
+  };
+};
+
+export const actionCart = () => {
+  return {
+    type: ACTION_CART,
   };
 };

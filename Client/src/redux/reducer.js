@@ -8,6 +8,7 @@ import {
   GET_USER,
   SIGN_OUT,
   SIDEBAR,
+  ACTION_CART,
 } from "./action-types.js";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -19,6 +20,7 @@ const initialState = {
   totalPages: 1,
   authentication: false,
   sidebarActive: false,
+  actionCart: false,
 };
 
 function reducer(state = initialState, action) {
@@ -71,6 +73,7 @@ function reducer(state = initialState, action) {
         "auth",
         {
           idBranch: action.payload?.idBranch,
+          // idUser: action.payload?.idUser,
           role: action.payload?.role,
           branch: action.payload?.branch,
         },
@@ -85,6 +88,9 @@ function reducer(state = initialState, action) {
 
     case SIDEBAR:
       return { ...state, sidebarActive: action.payload };
+
+    case ACTION_CART:
+      return { ...state, actionCart: state.actionCart ? false : true };
 
     default:
       return { ...state };
