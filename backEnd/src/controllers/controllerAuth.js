@@ -6,6 +6,7 @@ const singIn = async (email, password) => {
   let role;
   let idBranch;
   let sucursal = "";
+  let idUser;
   const empresaPromise = EMPRESA.findOne({
     where: {
       email: email,
