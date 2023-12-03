@@ -1,6 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+
 import ProdCart from "../ProdCart/ProdCart";
 
 import styles from "./Cart.module.css";
@@ -43,12 +46,12 @@ const Cart = () => {
           if (quantity.type === "add") {
             setTotalPrice(
               totalPrice +
-                quantity[key].value * (quantity[key].quantity - quantity.before)
+                quantity[key]?.value * (quantity[key].quantity - quantity.before)
             );
           } else if (quantity.type === "remove") {
             setTotalPrice(
               totalPrice -
-                quantity[key].value * (quantity[key].quantity - quantity.before)
+                quantity[key]?.value * (quantity[key].quantity - quantity.before)
             );
           }
         }
@@ -91,8 +94,19 @@ const Cart = () => {
     }
   }, [cartRemove.detect]);
   console.log(quantity);
+
+  const [isVisible, setIsVisible] = useState(false);
+  const toggleVisible = () =>{
+    setIsVisible(!isVisible);
+  }
+
+  console.log(isVisible)
   return (
-    <div className={styles.container}>
+    <div className={styles.bigContainer}>
+      <button onClick={toggleVisible} className={styles.toggleButton}>
+        <FontAwesomeIcon icon={faCartShopping}/>
+      </button>
+    <div className={isVisible ? styles.container : styles.containerNOT}>
       <div className={styles.header}>
       <h2 className={styles.title}>Productos a Comprar</h2>
       <div className={styles.divider}></div>
@@ -111,12 +125,13 @@ const Cart = () => {
          
         })}
       </div>
-      <div>
+      <div className={styles.buttonHolder}>
         <p>Precio Total: {totalPrice}</p>
         <button className = {styles.comprar} onClick={() => console.log("Elija el metodo de pago")}>
           Comprar
         </button>
       </div>
+    </div>
     </div>
   );
 };

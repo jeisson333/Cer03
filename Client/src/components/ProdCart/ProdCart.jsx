@@ -12,7 +12,7 @@ const ProdCart = ({
   return (
     <div className={styles.prodCart}>
       <div className={styles.close}>
-       <button onClick={deleteProdCart} name={product.PRODUCTO.id_producto}>X
+       <button onClick={deleteProdCart} name={product.PRODUCTO.id_producto}> X
           {/* <FontAwesomeIcon onClick={deleteProdCart} name={product.PRODUCTO.id_producto} className={styles.trash} icon={faTrash}/> */}
         </button>
         </div>

@@ -1,22 +1,4 @@
-@keyframes fade-id{
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
-}
-
-@keyframes fade-out{
-    100%{
-        opacity: 0;;
-    }
-    0%{
-        opacity: 1;
-    }
-}
-
-@keyframes slide-right{
+@keyframes slide-in{
     0%{
         transform: translateX(100%);
     }
@@ -25,12 +7,35 @@
     }
 }
 
+.toggleButton{
+    height: 59px;
+    width: 70px;
+     /* border: 1px solid rgb(195, 194, 194);; */
+}
+
+.bigContainer{
+    display: flex;
+    overflow: hidden;
+    background: rgb(255, 255, 255);
+    /* border: 1px solid rgb(195, 194, 194);; */
+}
+
+
+
+
 .container{
     display: block;
     background: rgb(255, 255, 255);
     text-align: center;
     font-weight: 350;
-    /* width: 530px; */
+}
+
+
+.containerNOT{
+    display: none;
+    background: rgb(255, 255, 255);
+    text-align: center;
+    font-weight: 350;
 }
 
 .title{
@@ -59,6 +64,14 @@
     cursor: pointer;
     border-radius: 5px;
     color: #fff;
+}
+
+.buttonHolder{
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 10px;
 }
 
 .comprar:hover{
