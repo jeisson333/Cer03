@@ -64,24 +64,7 @@ const NewSales = () => {
   );
 };
 
-// return (
-//   <div className={Style.divMain}>
-//     <div className={Style.holder}>
-//     <Filters
-//       conditions={conditions}
-//       setConditions={setConditions}
-//       sucursales={sucursales}
-//       totalPages={totalPages}
-//       handlerChange={handlerChange}
-//       handlerSubmit={handlerSubmit}
-//     />
-//     <Products />
-//     </div>
-//     <Cart />
 
-
-//   </div>
-// );
 
 
 export default NewSales;
