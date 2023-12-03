@@ -36,6 +36,11 @@ function App() {
     "/newsales",
     "/home",
     "/detail",
+    "/subscription",
+    "/subscription/checkout",
+    "/subscription/success",
+    "/subscription/failure",
+    "/subscription/pending",
   ];
   const withoutSide = ["/", "/contact", "/about", "/landingPage", "/signIn"];
 
@@ -67,6 +72,23 @@ function App() {
           <Route path="/products" element={<Inventory />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/newProduct" element={<CreateProduct />} />
+          <Route path="/subscription" element={<Subscription />} />
+          <Route
+            path="/subscription/checkout"
+            element={<SubscriptionCheckout />}
+          />
+          <Route
+            path="/subscription/success"
+            element={<SubscriptionSuccess />}
+          />
+          <Route
+            path="/subscription/failure"
+            element={<SubscriptionFailure />}
+          />
+          <Route
+            path="/subscription/pending"
+            element={<SubscriptionPending />}
+          />
         </Route>
 
         {/* user */}
@@ -87,15 +109,6 @@ function App() {
 
         {/* 404 error */}
         <Route path="*" element={<Error />} />
-        <Route path="/sales" element={<Sales idBranch={idBranch} />} />
-        <Route path="/subscription" element={<Subscription />} />
-        <Route
-          path="/subscription/checkout"
-          element={<SubscriptionCheckout />}
-        />
-        <Route path="/subscription/success" element={<SubscriptionSuccess />} />
-        <Route path="/subscription/failure" element={<SubscriptionFailure />} />
-        <Route path="/subscription/pending" element={<SubscriptionPending />} />
       </Routes>
     </div>
   );

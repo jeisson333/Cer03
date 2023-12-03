@@ -61,7 +61,7 @@ const Subscription = () => {
       <header>
         <h1>Nuestros Precios</h1>
         <div className="toggle">
-          <label>Anual</label>
+          <label>Mensual</label>
           <div className="toggle-btn">
             <input
               type="checkbox"
@@ -73,7 +73,7 @@ const Subscription = () => {
               <div className="circle"></div>
             </label>
           </div>
-          <label>Mensual</label>
+          <label>Anual</label>
         </div>
       </header>
 
