@@ -13,15 +13,23 @@ const Cart = () => {
   const dispatch = useDispatch();
   const detectActionCart = useSelector((state) => state.actionCart);
   const [products, setProducts] = useState(
-    JSON.parse(localStorage.getItem("cart")) || []
+    JSON.parse(localStorage.getItem(`${cookies.get("auth").idUser}|Cart`)) || []
   );
   const [totalPrice, setTotalPrice] = useState(
-    JSON.parse(localStorage.getItem("totalAmountCart")) || 0
+    JSON.parse(
+      localStorage.getItem(`${cookies.get("auth").idUser}|totalAmount`)
+    ) || 0
   );
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem("cart"))) {
-      setProducts([...JSON.parse(localStorage.getItem("cart"))]);
+    if (
+      JSON.parse(localStorage.getItem(`${cookies.get("auth").idUser}|Cart`))
+    ) {
+      setProducts([
+        ...JSON.parse(
+          localStorage.getItem(`${cookies.get("auth").idUser}|Cart`)
+        ),
+      ]);
     } else {
       setProducts([]);
     }
@@ -34,9 +42,16 @@ const Cart = () => {
       (prodCart) => (totalAmount += prodCart.valor_venta * prodCart.amount)
     );
 
-    localStorage.setItem("totalAmountCart", JSON.stringify(totalAmount));
+    localStorage.setItem(
+      `${cookies.get("auth").idUser}|totalAmount`,
+      JSON.stringify(totalAmount)
+    );
 
-    setTotalPrice(JSON.parse(localStorage.getItem("totalAmountCart")));
+    setTotalPrice(
+      JSON.parse(
+        localStorage.getItem(`${cookies.get("auth").idUser}|totalAmount`)
+      )
+    );
   }, [products]);
 
   const changeAmount = (event) => {
@@ -50,7 +65,10 @@ const Cart = () => {
         } else return prodCart;
       });
 
-      localStorage.setItem("cart", JSON.stringify(prodChangeAmount));
+      localStorage.setItem(
+        `${cookies.get("auth").idUser}|Cart`,
+        JSON.stringify(prodChangeAmount)
+      );
 
       dispatch(actionCart());
     }
@@ -61,13 +79,16 @@ const Cart = () => {
       (prodCart) => prodCart.id !== event.target.name
     );
 
-    localStorage.setItem("cart", JSON.stringify(cartFiltered));
+    localStorage.setItem(
+      `${cookies.get("auth").idUser}|Cart`,
+      JSON.stringify(cartFiltered)
+    );
 
     dispatch(actionCart());
   };
 
   const deleteAllProducts = () => {
-    localStorage.clear();
+    localStorage.removeItem(`${cookies.get("auth").idUser}|Cart`);
 
     dispatch(actionCart());
   };

@@ -9,7 +9,9 @@ const cookies = new Cookies();
 
 const Product = ({ product }) => {
   const dispatch = useDispatch();
-  const inCart = JSON.parse(localStorage.getItem("cart")) || [];
+  const inCart =
+    JSON.parse(localStorage.getItem(`${cookies.get("auth").idUser}|Cart`)) ||
+    [];
   // console.log(cookies.get("auth").idUser);
   const cartHandler = () => {
     if (
@@ -29,7 +31,10 @@ const Product = ({ product }) => {
         amount: product.stock ? 1 : 0,
       });
 
-      localStorage.setItem("cart", JSON.stringify(inCart));
+      localStorage.setItem(
+        `${cookies.get("auth").idUser}|Cart`,
+        JSON.stringify(inCart)
+      );
 
       dispatch(actionCart());
     }

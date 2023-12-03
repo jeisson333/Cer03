@@ -73,7 +73,7 @@ function reducer(state = initialState, action) {
         "auth",
         {
           idBranch: action.payload?.idBranch,
-          // idUser: action.payload?.idUser,
+          idUser: action.payload?.idUser,
           role: action.payload?.role,
           branch: action.payload?.branch,
         },
