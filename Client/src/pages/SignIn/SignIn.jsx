@@ -1,17 +1,19 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUser, getSucursales } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import { getUser } from "../../redux/actions";
 import Style from "./SignIn.module.css";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { gapi } from "gapi-script";
 import { decodeToken } from "react-jwt";
 const client_id = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
-export default function SignIn({ setIsActive }) {
+export default function SignIn() {
   const dispatch = useDispatch();
-  const dataUser = useSelector((state) => state.auth);
+  const dataUser = cookies.get("auth");
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -19,13 +21,8 @@ export default function SignIn({ setIsActive }) {
   });
 
   useEffect(() => {
-    setIsActive(true);
-  }, []);
-
-  useEffect(() => {
     if (Object.keys(dataUser).length > 1) {
       navigate("/home");
-      dispatch(getSucursales(dataUser?.idBranch));
     }
     function start() {
       gapi.auth2.init({
@@ -46,25 +43,16 @@ export default function SignIn({ setIsActive }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(getUser(user));
-
-    // Buscar el usuario en el array por el nombre de usuario
-    // const user = users.find((user) => user.userName === username);
-
-    // if (user) {
-    //   // Verificar si la contraseña coincide
-    //   if (user.password === password) {
-    //
-    //   } else {
-    //     alert("Contraseña incorrecta");
-    //   }
-    // } else {
-    //   alert("Usuario no encontrado");
-    // }
   };
 
   const onSucess = (credentialResponse) => {
     const { email, sub } = decodeToken(credentialResponse?.credential);
-    console.log(email, sub);
+    const user = {
+      email: email,
+      password: sub,
+    };
+    console.log(user);
+    dispatch(getUser(user));
   };
 
   const onFailure = (res) => {
@@ -91,8 +79,16 @@ export default function SignIn({ setIsActive }) {
           name="password"
         />
         <input type="submit" value="Ingresar" className={Style.inputSubmit} />
+        <div
+          style={{
+            marginTop: "3vh",
+            justifyContent: "center",
+            display: "flex",
+          }}
+        >
+          <GoogleLogin onSuccess={onSucess} onError={onFailure}></GoogleLogin>
+        </div>
       </form>
-      <GoogleLogin onSuccess={onSucess} onError={onFailure}></GoogleLogin>;
     </div>
   );
 }

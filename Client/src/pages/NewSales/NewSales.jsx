@@ -10,9 +10,12 @@ import Cart from "../../components/Cart/Cart";
 //styles
 import Style from "./NewSales.module.css";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 const NewSales = () => {
   const dispatch = useDispatch();
-  const { idBranch, branch } = useSelector((state) => state.auth);
+  const { idBranch, branch } = cookies.get("auth");
   const totalPages = useSelector((state) => state.totalPages);
   const sucursales = useSelector((state) => state.sucursales);
 
@@ -43,27 +46,42 @@ const NewSales = () => {
 
   // }
 
+  return (
+    <div className={Style.divMain}>
+      <Filters
+        conditions={conditions}
+        setConditions={setConditions}
+        sucursales={sucursales}
+        totalPages={totalPages}
+        handlerChange={handlerChange}
+        handlerSubmit={handlerSubmit}
+      />
+      <Products />
+      <Cart />
 
-
-return (
-  <div className={Style.divMain}>
-    <div className={Style.holder}>
-    <Filters
-      conditions={conditions}
-      setConditions={setConditions}
-      sucursales={sucursales}
-      totalPages={totalPages}
-      handlerChange={handlerChange}
-      handlerSubmit={handlerSubmit}
-    />
-    <Products />
+      <div></div>
     </div>
-    <Cart />
-
-
-  </div>
-);
+  );
 };
+
+// return (
+//   <div className={Style.divMain}>
+//     <div className={Style.holder}>
+//     <Filters
+//       conditions={conditions}
+//       setConditions={setConditions}
+//       sucursales={sucursales}
+//       totalPages={totalPages}
+//       handlerChange={handlerChange}
+//       handlerSubmit={handlerSubmit}
+//     />
+//     <Products />
+//     </div>
+//     <Cart />
+
+
+//   </div>
+// );
 
 
 export default NewSales;

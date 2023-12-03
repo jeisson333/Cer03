@@ -46,6 +46,7 @@ const singIn = async (email, password) => {
       });
       if (!modelSucursal) throw new Error("Sucursal not exist");
       idBranch = modelSucursal?.sucursal_empresa;
+      idUser = vendedor?.id_vendedor;
       role = "user";
       sucursal = modelSucursal?.nombre_sucursal;
       date = modelEmpresa?.fecha_licencia;
@@ -59,6 +60,7 @@ const singIn = async (email, password) => {
   const token = jwt.sign(
     {
       idBranch: idBranch,
+      idUser: idUser ? idUser : null,
       role: role,
       branch: sucursal,
       exp: Date.now() / 1000 + 60 * 1440,

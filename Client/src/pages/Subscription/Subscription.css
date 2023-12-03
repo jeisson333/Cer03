@@ -1,0 +1,148 @@
+header {
+  color: #065374;
+  margin: 0.1rem auto 2rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0%;
+}
+.container {
+  font-family: "montserrat", sans-serif;
+  margin-top: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0%;
+}
+
+.toggle {
+  margin-top: 0.5rem;
+  color: hsl(200, 90%, 16%);
+  display: flex;
+  align-items: center;
+}
+.toggle-btn {
+  margin: 0 1rem;
+}
+.checkbox {
+  display: none;
+}
+.sub {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 117, 234, 1) 0%,
+    rgba(0, 100, 141, 1) 100%
+  );
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 1.6rem;
+  width: 3.3rem;
+  border-radius: 1.6rem;
+  padding: 0.3rem;
+}
+
+.circle {
+  background-color: #fff;
+  height: 1.4rem;
+  width: 1.4rem;
+  border-radius: 50%;
+}
+.checkbox:checked + .sub {
+  justify-content: flex-end;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.card {
+  background-color: #fff;
+  color: hsl(200, 90%, 16%);
+  border-radius: 0.8rem;
+}
+.cards .card.active {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 100, 141, 1) 0%,
+    rgb(0, 177, 234, 1) 100%
+  );
+  color: #fff;
+  display: flex;
+  align-items: center;
+  transform: scale(1.1);
+  z-index: 1;
+}
+ul {
+  margin: 2.6rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+ul li {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 0;
+}
+ul li.price {
+  font-size: 3rem;
+  color: hsl(200, 90%, 16%);
+  padding-bottom: 2rem;
+}
+.shadow {
+  box-shadow: -5px 5px 15px 1px rgba(0, 0, 0, 0.1);
+}
+.card.active .price {
+  color: #fff;
+}
+.btn {
+  margin-top: 1rem;
+  height: 2.6rem;
+  width: 13.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 177, 234, 1) 0%,
+    rgb(117, 223, 255, 1) 100%
+  );
+  color: hsl(200, 90%, 16%);
+  outline: none;
+  border: 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.active-btn {
+  background: #fff;
+  color: hsl(200, 90%, 16%);
+}
+.bottonBar {
+  border-bottom: 2px solid hsl(198, 100%, 42%);
+}
+.card.active .bottonBar {
+  border-bottom: 2px solid hsl(200, 90%, 16%);
+}
+
+.pack {
+  font-size: 1.1rem;
+}
+
+#country {
+  position: fixed;
+  right: 300px;
+
+  border-radius: 20px;
+  padding: 3px;
+  margin-top: 2px;
+  background-color: #009ee3;
+  border: 1px solid #006b95;
+}

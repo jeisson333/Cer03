@@ -25,16 +25,16 @@ const newProduct = async ({ values }) => {
   newProduct.setCATALOGO_UNIVERSAL(values?.tipo_producto);
   newProduct.setEMPRESA(values?.idBranch);
 
-  for (let index = 0; index < BranchProduct.length; index++) {
+  for (let index = 0; index < values?.stock.length; index++) {
     let [inventoryNewProduct] = await INVENTARIO_PRODUCTO.findOrCreate({
       where: {
-        stock: 0,
+        stock: values?.stock[index].count,
         inventario_producto: newProduct?.id_producto,
-        inventario_sucursal: BranchProduct[index]?.id_sucursal,
+        inventario_sucursal: values?.stock[index].id,
       },
     });
     inventoryNewProduct.setPRODUCTO(newProduct?.id_producto);
-    inventoryNewProduct.setSUCURSAL(BranchProduct[index]?.id_sucursal);
+    inventoryNewProduct.setSUCURSAL(values?.stock[index].id);
   }
 };
 

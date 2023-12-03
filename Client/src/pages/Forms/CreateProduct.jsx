@@ -1,20 +1,31 @@
 /* eslint-disable react/prop-types */
 import validation from "./validation";
 import { useEffect, useState } from "react";
-import { getTypeProducts, postNewProduct } from "../../redux/actions";
+import {
+  getTypeProducts,
+  postNewProduct,
+  getSucursales,
+} from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-
 import styles from "./CreateProduct.module.css";
+import Swal from "sweetalert2";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 export function CreateProduct() {
-  const { idBranch } = useSelector((state) => state.auth);
+  const { idBranch } = cookies.get("auth");
   const [newProduct, setNewProduct] = useState({
     idBranch: idBranch,
   });
+  const [stockSucursal, setStockSucursal] = useState({});
+  const [stockCount, setStockCount] = useState();
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+
+  const allTypeProducts = useSelector((state) => state.allTypeProducts);
+  const sucursales = useSelector((state) => state.sucursales);
+  const dispatch = useDispatch();
 
   const handleChangeProduct = (event) => {
     switch (event.target.name) {
@@ -44,8 +55,57 @@ export function CreateProduct() {
         });
         break;
     }
-
     // console.log(newProduct);
+  };
+
+  const handleStockSucursal = (event) => {
+    setStockSucursal(event.target.value);
+  };
+
+  const handleStockCount = (event) => {
+    setStockCount(event.target.value);
+  };
+
+  const handleAddStock = () => {
+    if (stockCount != "" && stockSucursal != "") {
+      let stock = newProduct?.stock ? newProduct?.stock : [];
+      let name;
+      for (let index = 0; index < stock.length; index++) {
+        if (stockSucursal == stock[index].id) {
+          setStockCount("");
+          setStockSucursal("");
+          return false;
+        }
+      }
+      for (let index = 0; index < sucursales.length; index++) {
+        if (sucursales[index].id_sucursal == stockSucursal)
+          name = sucursales[index].nombre_sucursal;
+      }
+      stock.push({
+        id: stockSucursal,
+        count: parseInt(stockCount),
+        name: name,
+      });
+      setNewProduct({
+        ...newProduct,
+        stock: stock,
+      });
+      const selectSucursal = document.getElementById("sucursal");
+      if (selectSucursal) selectSucursal.selectedIndex = 0;
+      setStockSucursal("");
+      setStockCount("");
+    }
+  };
+
+  const handleRemoveStock = () => {
+    let filterStock = newProduct?.stock;
+    filterStock.pop();
+    setNewProduct({
+      ...newProduct,
+      stock: filterStock,
+    });
+    const selectSucursal = document.getElementById("sucursal");
+    if (selectSucursal) selectSucursal.selectedIndex = 0;
   };
 
   const onSubmit = (event) => {
@@ -59,11 +119,9 @@ export function CreateProduct() {
     navigate("/products");
   };
 
-  const allTypeProducts = useSelector((state) => state.allTypeProducts);
-  const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getTypeProducts());
+    dispatch(getSucursales(idBranch));
     setErrors(validation({ newProduct }));
   }, [newProduct]);
 
@@ -192,6 +250,55 @@ export function CreateProduct() {
             </label>
           </div>
         </div>
+        <div className={styles.buttonHolder}>
+          <h2 className={styles.title}>Inventario del producto</h2>
+        </div>
+        <div className={styles.buttonHolder}>
+          <div className={styles.indHolder}>
+            <label>
+              <span>Sucursal </span>
+              <select
+                className={styles.select}
+                onChange={handleStockSucursal}
+                id="sucursal"
+                value={stockSucursal}
+              >
+                <option value=""></option>
+                {sucursales?.map((sucursal, index) => (
+                  <option key={index} value={sucursal.id_sucursal}>
+                    {sucursal.nombre_sucursal}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div className={styles.indHolder}>
+            <label>
+              <span>Stock </span>
+              <input
+                onChange={handleStockCount}
+                type="number"
+                min={1}
+                name="stockCount"
+                value={stockCount}
+              />
+              <button onClick={handleAddStock} type="button">
+                +
+              </button>
+              <button onClick={handleRemoveStock} type="button">
+                -
+              </button>
+            </label>
+          </div>
+        </div>
+        {newProduct?.stock?.map((stock, index) => (
+          <>
+            <p key={index}>
+              {stock?.name} {stock?.count}
+            </p>
+          </>
+        ))}
+
         <div className={styles.buttonHolder}>
           <button type="button" className={styles.delete} onClick={resetForm}>
             Borrar

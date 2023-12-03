@@ -17,34 +17,53 @@ import Experiments from "./pages/Experiments/Experiments";
 import NewSales from "./pages/NewSales/NewSales";
 import RequireAuth from "./pages/RequireAuth/RequireAuth";
 import Error from "./pages/Error/Error";
+import { changeSidebar } from "./redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import Subscription from "./pages/Subscription/Subscription";
+import SubscriptionCheckout from "./pages/SubscriptionCheckout/SubscriptionCheckout";
+import SubscriptionSuccess from "./pages/SubscriptionCheckout/SubscriptionSuccess";
+import SubscriptionFailure from "./pages/SubscriptionCheckout/SubscriptionFailure";
+import SubscriptionPending from "./pages/SubscriptionCheckout/SubscriptionPending";
 
 function App() {
   const location = useLocation();
-  // const idBranch = "6f722d7f-515b-4705-a007-84b07317cc20"; //Api_key
-  const [isActive, setIsActive] = useState(false);
+  const dispatch = useDispatch();
+  const { sidebarActive } = useSelector((state) => state);
+  const withSide = [
+    "/products",
+    "/settings",
+    "/newProduct",
+    "/newsales",
+    "/home",
+    "/detail/",
+    "/subscription",
+    "/subscription/checkout",
+    "/subscription/success",
+    "/subscription/failure",
+    "/subscription/pending",
+  ];
+  const withoutSide = ["/", "/contact", "/about", "/landingPage", "/signIn"];
 
   useEffect(() => {
-    setIsActive(
-      location.pathname === "/contact" ||
-        location.pathname === "/about" ||
-        location.pathname === "/landingPage" ||
-        location.pathname === "/" ||
-        location.pathname === "/signin" ||
-        location.pathname === "*"
-    );
-  }, [location]);
+    if (withoutSide.find((route) => route === location.pathname)) {
+      dispatch(changeSidebar(false));
+    } else if (withSide.find((route) => route === location.pathname)) {
+      dispatch(changeSidebar(true));
+    } else {
+      dispatch(changeSidebar(false));
+    }
+  }, [location.pathname]);
 
-  const navClass = !isActive ? "siderBarPosition" : "prueba";
+  const navClass = sidebarActive ? "siderBarPosition" : "prueba";
 
   return (
     <div className={navClass}>
-      {!isActive && <NavBAr />}
+      {sidebarActive && <NavBAr />}
       <Routes>
         {/* public */}
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/registerForm" element={<RegisterForm />} />
-        <Route path="/detail" element={<Detail />} />
-        <Route path="/signIn" element={<SignIn setIsActive={setIsActive} />} />
+        <Route path="/signIn" element={<SignIn />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
 
@@ -53,17 +72,34 @@ function App() {
           <Route path="/products" element={<Inventory />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/newProduct" element={<CreateProduct />} />
+          <Route path="/subscription" element={<Subscription />} />
+          <Route
+            path="/subscription/checkout"
+            element={<SubscriptionCheckout />}
+          />
+          <Route
+            path="/subscription/success"
+            element={<SubscriptionSuccess />}
+          />
+          <Route
+            path="/subscription/failure"
+            element={<SubscriptionFailure />}
+          />
+          <Route
+            path="/subscription/pending"
+            element={<SubscriptionPending />}
+          />
         </Route>
 
         {/* user */}
         <Route element={<RequireAuth authRoles={["user"]} />}>
           <Route path="/newsales" element={<NewSales />} />
-          <Route path="/detail" element={<Detail />} />
         </Route>
 
         {/* admin and user */}
         <Route element={<RequireAuth authRoles={["admin", "user"]} />}>
           <Route path="/home" element={<Home />} />
+          <Route path="/detail" element={<Detail />} />
         </Route>
 
         {/* sin nada */}
@@ -72,69 +108,10 @@ function App() {
         <Route path="/test" element={<Experiments />} />
 
         {/* 404 error */}
-        <Route path="*" element={<Error setIsActive={setIsActive} />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );
 }
-
-// const location = useLocation();
-// // const idBranch = "6f722d7f-515b-4705-a007-84b07317cc20"; //Api_key
-// const [isActive, setIsActive] = useState(false);
-
-// useEffect(() => {
-//   setIsActive(
-//     location.pathname === "/contact" ||
-//       location.pathname === "/about" ||
-//       location.pathname === "/landingPage" ||
-//       location.pathname === "/" ||
-//       location.pathname === "/signin" ||
-//       location.pathname === "*"
-//   );
-// }, [location]);
-
-// const navClass = !isActive ? "siderBarPosition" : "prueba";
-
-// return (
-//   <div className={navClass}>
-//     {!isActive && <NavBAr />}
-//     <Routes>
-//       {/* public */}
-//       <Route exact path="/" element={<LandingPage />} />
-//       <Route path="/registerForm" element={<RegisterForm />} />
-//       <Route path="/detail" element={<Detail />} />
-//       <Route path="/signIn" element={<SignIn />} />
-//       <Route path="/about" element={<About />} />
-//       <Route path="/contact" element={<Contact />} />
-
-//       {/* admin */}
-//       <Route element={<RequireAuth authRoles={["admin"]} />}>
-//         <Route path="/products" element={<Inventory />} />
-//         <Route path="/settings" element={<Settings />} />
-//         <Route path="/newProduct" element={<CreateProduct />} />
-//       </Route>
-
-//       {/* user */}
-//       <Route element={<RequireAuth authRoles={["user"]} />}>
-//         <Route path="/newsales" element={<NewSales />} />
-//         <Route path="/detail" element={<Detail />} />
-//       </Route>
-
-//       {/* admin and user */}
-//       <Route element={<RequireAuth authRoles={["admin", "user"]} />}>
-//         <Route path="/home" element={<Home />} />
-//       </Route>
-
-//       {/* sin nada */}
-//       <Route path="/registerForm" element={<RegisterForm />} />
-//       <Route path="/sales" element={<Sales />} />
-//       <Route path="/checkout" element={<Checkout />} />
-//       <Route path="/test" element={<Experiments />} />
-
-//       {/* 404 error */}
-//       <Route path="*" element={<Error setIsActive={setIsActive} />} />
-//     </Routes>
-//   </div>
-// );
 
 export default App;

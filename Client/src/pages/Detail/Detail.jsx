@@ -2,23 +2,24 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { Fade, Rotate } from "react-reveal";
-import { useSelector } from "react-redux";
+import { Rotate } from "react-awesome-reveal";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const Detail = () => {
-  const { idBranch } = useSelector((state) => state.auth);
+  const { idBranch } = cookies.get("auth");
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const name = query.get("name");
   const sucursal = query.get("sucursal");
-
+  const url = import.meta.env.VITE_BASE_URL;
   const [product, setProducts] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
         const { data } = await axios.post(
-          `http://localhost:3001/products/?name=${name}&sucursal=${sucursal}`,
+          `${url}/products?name=${name}&sucursal=${sucursal}`,
           {
             id: idBranch,
           }

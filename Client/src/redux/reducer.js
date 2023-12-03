@@ -7,17 +7,20 @@ import {
   REMOVE_CART,
   GET_USER,
   SIGN_OUT,
+  SIDEBAR,
+  ACTION_CART,
 } from "./action-types.js";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const initialState = {
   products: [],
   allTypeProducts: [],
   sucursales: [],
   totalPages: 1,
-  auth: {}, //to edit code
   authentication: false,
-  inCart: [],
-  cartRemove: { id: "", detect: false },
+  sidebarActive: false,
+  actionCart: false,
 };
 
 function reducer(state = initialState, action) {
@@ -33,8 +36,6 @@ function reducer(state = initialState, action) {
         ...state,
         products: action.payload.data,
         totalPages: action.payload.info.pages,
-        // currentPages: action.payload.info.currentPages,
-        // pages: action.payload.info.pages,
       };
     case POST_NEWPRODUCT:
       return { ...state };
@@ -46,38 +47,50 @@ function reducer(state = initialState, action) {
       };
 
     case ADD_CART:
-      return {
-        ...state,
-        inCart: [...state.inCart, action.payload],
-      };
+      cookies.set("inCart", [...cookies.get("inCart"), action.payload], {
+        path: "/",
+      });
+      return { ...state };
     case REMOVE_CART:
-      return {
-        ...state,
-        cartRemove: {
-          id: action.payload,
-          detect: state.cartRemove.detect ? false : true,
-        },
-        inCart: [...state.inCart].filter((product) => {
+      cookies.set(
+        "inCart",
+        [...cookies.get("inCart")].filter((product) => {
           return product.PRODUCTO.id_producto !== action.payload;
         }),
-      };
+        { path: "/" }
+      );
+      cookies.set(
+        "cartRemove",
+        {
+          id: action.payload,
+          detect: cookies.get("cartRemove").detect ? false : true,
+        },
+        { path: "/" }
+      );
+      return { ...state };
     case GET_USER:
-      return {
-        ...state,
-        auth: {
+      cookies.set(
+        "auth",
+        {
           idBranch: action.payload?.idBranch,
+          idUser: action.payload?.idUser,
           role: action.payload?.role,
           branch: action.payload?.branch,
         },
-      };
+        { path: "/" }
+      );
+      return { ...state };
     case SIGN_OUT:
-      return {
-        ...state,
-        auth: {},
-        cartRemove: { id: "", detect: false },
-        products: [],
-        inCart: [],
-      };
+      cookies.set("auth", {}, { path: "/" });
+      cookies.set("inCart", [], { path: "/" });
+      cookies.set("cartRemove", { id: "", detect: false }, { path: "/" });
+      return { ...state };
+
+    case SIDEBAR:
+      return { ...state, sidebarActive: action.payload };
+
+    case ACTION_CART:
+      return { ...state, actionCart: state.actionCart ? false : true };
 
     default:
       return { ...state };

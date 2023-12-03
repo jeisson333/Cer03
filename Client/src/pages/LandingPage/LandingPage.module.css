@@ -1,0 +1,91 @@
+.main_container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #ffffff; /* Color de fondo principal */
+  color: #333; /* Color de texto principal */
+}
+
+.flex_container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  margin-top: 120px;
+}
+
+.text_section {
+  width: 50%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center; /* Centra el título */
+}
+
+.description {
+  margin-bottom: 1rem;
+  text-align: center; /* Centra el texto */
+}
+
+.slideshow_container {
+  width: 50%;
+  padding: 8px;
+}
+
+.advantages_container {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+}
+
+.additional_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.additional_wrapper {
+  width: 80%; /* Ajusta el ancho según tus necesidades */
+  display: flex;
+  justify-content: space-between; /* Espaciado entre el texto y la imagen */
+  align-items: center;
+  margin-top: -150px; /* Centra verticalmente */
+}
+
+.additional_text_container {
+  width: 48%; /* Ajusta el ancho del contenedor de texto según tus necesidades */
+  background-color: #1a365d; /* Color azul para el contenedor del texto */
+  padding: 16px;
+  color: #ffffff; /* Color de texto blanco */
+  border-radius: 12px; /* Agrega un borde redondeado al contenedor de texto */
+  text-align: left;
+  margin-left: 20%;
+  padding: 3%; /* Ajusta la alineación a la izquierda */
+}
+
+.additional_title {
+  font-size: 2rem; /* Ajusta el tamaño del título según tus necesidades */
+  font-weight: bold;
+  margin-bottom: 8px; /* Espaciado inferior del título */
+}
+
+.additional_image {
+  width: 48%; /* Ajusta el ancho de la imagen según tus necesidades */
+  text-align: right;
+}
+
+.additional_image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 300px; /* Ajusta la altura máxima según tus necesidades */
+  border-radius: 12px; /* Agrega un borde redondeado a la imagen */
+}
