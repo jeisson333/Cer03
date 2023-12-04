@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { actionCart } from "../../redux/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { toast, Toaster } from "react-hot-toast";
 
 import ProdCart from "../ProdCart/ProdCart";
 
@@ -126,10 +127,11 @@ const Cart = () => {
           <p>Precio Total: {totalPrice}</p>
           <button
             className={styles.comprar}
-            onClick={() => console.log("Elija el metodo de pago")}
+            onClick={() => toast.success("Compra creada!")}
           >
             Comprar
           </button>
+          <Toaster position="top-right" />
           <button onClick={deleteAllProducts}>Delete all</button>
         </div>
       </div>
