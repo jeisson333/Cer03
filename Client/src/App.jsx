@@ -25,6 +25,7 @@ import SubscriptionCheckout from "./pages/SubscriptionCheckout/SubscriptionCheck
 import SubscriptionSuccess from "./pages/SubscriptionCheckout/SubscriptionSuccess";
 import SubscriptionFailure from "./pages/SubscriptionCheckout/SubscriptionFailure";
 import SubscriptionPending from "./pages/SubscriptionCheckout/SubscriptionPending";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const location = useLocation();
@@ -60,6 +61,7 @@ function App() {
   return (
     <div className={navClass}>
       {sidebarActive && <NavBAr />}
+      <Toaster position="top-right" />
       <Routes>
         {/* public */}
         <Route exact path="/" element={<LandingPage />} />

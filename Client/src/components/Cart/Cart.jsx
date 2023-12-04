@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { actionCart } from "../../redux/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 import ProdCart from "../ProdCart/ProdCart";
 
@@ -131,7 +131,6 @@ const Cart = () => {
           >
             Comprar
           </button>
-          <Toaster position="top-right" />
           <button onClick={deleteAllProducts}>Delete all</button>
         </div>
       </div>
