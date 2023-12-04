@@ -1,5 +1,5 @@
 const mercadopage = require("mercadopago");
-const { PAGO_TOKEN } = process.env;
+const { PAGO_TOKEN, BASE_URL } = process.env;
 
 const getMercadoPagoController = async ({ info }) => {
   const { subscription, totalPay, currency, quantity } = info;
@@ -19,9 +19,9 @@ const getMercadoPagoController = async ({ info }) => {
     ],
     auto_return: "approved",
     back_urls: {
-      success: "http://localhost:5173/subscription/success",
-      failure: "http://localhost:5173/subscription/failure",
-      pending: "http://localhost:5173/subscription/pending",
+      success: `${BASE_URL}/subscription/success`,
+      failure: `${BASE_URL}/subscription/failure`,
+      pending: `${BASE_URL}/subscription/pending`,
     },
     notification_url:
       "https://5942-45-238-182-200.ngrok.io/paymentGateways/webhook",
