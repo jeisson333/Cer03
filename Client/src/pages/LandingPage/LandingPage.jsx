@@ -122,7 +122,6 @@ const LandingPage = () => {
         </Fade>
       </div>
       <Footer />
-      <Toaster position="top-right" />
     </div>
   );
 };

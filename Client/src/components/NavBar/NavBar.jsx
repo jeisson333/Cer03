@@ -125,7 +125,6 @@ const NavBAr = () => {
               icon={<IoIosLogOut />}
               text="Cerrar sesión"
             />
-            <Toaster position="top-right" />
           </div>
         )}
         <div className={style.divider}></div>
