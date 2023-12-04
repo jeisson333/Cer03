@@ -23,6 +23,7 @@ const getMercadoPagoController = async ({ info }) => {
       failure: `${BASE_URL}/subscription/failure`,
       pending: `${BASE_URL}/subscription/pending`,
     },
+
     notification_url:
       "https://5942-45-238-182-200.ngrok.io/paymentGateways/webhook",
   });
