@@ -1,5 +1,6 @@
 import {
   GET_PRODUCTS,
+  ERROR_PRODUCTS,
   POST_NEWPRODUCT,
   GET_TYPEPRODUCTS,
   GET_SUCURSAL,
@@ -38,6 +39,12 @@ function reducer(state = initialState, action) {
         ...state,
         products: action.payload.data,
         totalPages: action.payload.info.pages,
+        newProduct: false,
+      };
+    case ERROR_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload,
         newProduct: false,
       };
     case POST_NEWPRODUCT:
