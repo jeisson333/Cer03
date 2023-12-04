@@ -11,7 +11,7 @@ import styles from "./Cart.module.css";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-const Cart = () => {
+const Cart = ({comprar}) => {
   const dispatch = useDispatch();
   const detectActionCart = useSelector((state) => state.actionCart);
   const [products, setProducts] = useState(
@@ -101,16 +101,18 @@ const Cart = () => {
     setIsVisible(!isVisible);
   }
 
-  console.log(isVisible)
+ 
   return (
     <div className={styles.bigContainer}>
-      <button onClick={toggleVisible} className={styles.toggleButton}>
+      <button onClick={toggleVisible} className={isVisible ? styles.hideToggle : styles.toggleButton}>
         <FontAwesomeIcon icon={faCartShopping}/>
-      </button>
+      </button> 
     <div className={isVisible ? styles.container : styles.containerNOT}>
       <div className={styles.header}>
+      <button onClick={toggleVisible} className={styles.toggleButton2}>
+        <FontAwesomeIcon icon={faCartShopping}/>
+      </button> 
         <h2 className={styles.title}>Productos a Comprar</h2>
-        <div className={styles.divider}></div>
       </div>
       <div className={styles.cards}>
         {products?.map((product) => {
@@ -128,13 +130,14 @@ const Cart = () => {
         <p>Precio Total: {totalPrice}</p>
         <button
           className={styles.comprar}
-          onClick={() => console.log("Elija el metodo de pago")}
+          onClick={comprar}
         >
           Comprar
         </button>
-        <button onClick={deleteAllProducts}>Delete all</button>
+        <button className={styles.delete} onClick={deleteAllProducts}>Eliminar todos</button>
       </div>
     </div>
+
     </div>
   );
 };

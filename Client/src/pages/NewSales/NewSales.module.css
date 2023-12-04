@@ -22,3 +22,55 @@
   margin: 0 auto;
   /* width: 67vw; */
 }
+
+.modal{
+  position: fixed;
+  top: 20%;
+  left: 30%;
+  right: 30%;
+  bottom: 30%;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(216, 215, 215);
+  color: #001832;
+  /* font-size: 25px; */
+  font-weight: 400;
+  text-align: center;
+  display: grid;
+  place-items: center;
+}
+
+.modalNOT{
+  display: none;
+}
+
+.modal h1{
+  font-size: 30px;
+}
+
+.comprar {
+  width: 120px;
+  height: 38px;
+  background: rgb(83, 219, 52);
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.delete {
+  width: 120px;
+  height: 38px;
+  background: rgb(201, 0, 0);
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.comprar:hover {
+background-color: rgb(65, 176, 40);
+}
+
+.delete:hover{
+  background: rgb(120, 1, 1);
+}

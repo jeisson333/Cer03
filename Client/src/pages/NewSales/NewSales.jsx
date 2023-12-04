@@ -41,30 +41,44 @@ const NewSales = () => {
     });
   };
 
-  // funtion addToCart(event)
-  // const cartHandler = (event) => {
+  const [isModal, setIsModal] = useState(false);
 
-  // }
-
-  return (
-    <div className={Style.divMain}>
-      <Filters
-        conditions={conditions}
-        setConditions={setConditions}
-        sucursales={sucursales}
-        totalPages={totalPages}
-        handlerChange={handlerChange}
-        handlerSubmit={handlerSubmit}
-      />
-      <Products />
-      <Cart />
-
-      <div></div>
+  const comprar = () =>{
+    setIsModal(true);
+  }
+  const cancelar = () =>{
+    setIsModal(false);
+  }
+console.log("isModal", isModal)
+return (
+  <div className={Style.divMain}>
+    <div className={Style.holder}>
+    <Filters
+      conditions={conditions}
+      setConditions={setConditions}
+      sucursales={sucursales}
+      totalPages={totalPages}
+      handlerChange={handlerChange}
+      handlerSubmit={handlerSubmit}
+    />
+    <Products />
     </div>
-  );
-};
+    <Cart 
+      comprar={comprar}/>
+    <section className={isModal ? Style.modal : Style.modalNOT}>
+      <div>
+        <h1>Seleccione el método de pago</h1>
+        <h2>!!Estamos trabajando aun en esta parte!!</h2>
+      </div>
+      <div>
+        <button className={Style.comprar}>Continuar</button>
+        <button className={Style.delete} onClick={cancelar}>Cancelar</button>
+      </div>
+    </section>
 
 
-
+  </div>
+);
+}
 
 export default NewSales;

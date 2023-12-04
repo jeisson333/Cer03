@@ -1,26 +1,25 @@
-@keyframes slide-in{
-    0%{
-        transform: translateX(100%);
-    }
-    100%{
-        transform: translateX(0%);
-    }
-}
+
 
 .toggleButton{
-    height: 59px;
+    height: 50px;
     width: 70px;
-     /* border: 1px solid rgb(195, 194, 194);; */
+}
+
+.hideToggle{
+    display: none;
+}
+
+.toggleButton2{
+    height: 50px;
+    width: 70px;
+    margin-left: 20px;
 }
 
 .bigContainer{
-    display: flex;
     overflow: hidden;
     background: rgb(255, 255, 255);
-    /* border: 1px solid rgb(195, 194, 194);; */
+    display: flex;
 }
-
-
 
 
 .container{
@@ -28,6 +27,7 @@
     background: rgb(255, 255, 255);
     text-align: center;
     font-weight: 350;
+    width: 360px;
 }
 
 
@@ -40,6 +40,15 @@
 
 .title {
   font-weight: 700;
+}
+
+.header{
+    display: flex;
+}
+
+.header h2{
+    min-width: 500px;
+    text-align: start;
 }
 
 .container h2 {
@@ -81,6 +90,20 @@
     margin-right: 10px;
 }
 
+.delete {
+    width: 120px;
+    height: 38px;
+    background: rgb(201, 0, 0);
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #fff;
+  }
+
 .comprar:hover {
   background-color: rgb(65, 176, 40);
+}
+
+.delete:hover{
+    background: rgb(120, 1, 1);
 }
