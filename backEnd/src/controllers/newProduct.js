@@ -36,6 +36,7 @@ const newProduct = async ({ values }) => {
     inventoryNewProduct.setPRODUCTO(newProduct?.id_producto);
     inventoryNewProduct.setSUCURSAL(values?.stock[index].id);
   }
+  return { msg: "Se creo el producto exitosamente" };
 };
 
 module.exports = {

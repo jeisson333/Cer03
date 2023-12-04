@@ -13,18 +13,6 @@ const cookies = new Cookies();
 const LandingPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   cookies.set("auth", {}, { path: "/" });
-  cookies.set("inCart", [], { path: "/" });
-  cookies.set("cartRemove", { id: "", detect: false }, { path: "/" });
-  cookies.set(
-    "quantity",
-    {
-      id: "",
-      type: "",
-      before: 0,
-      detect: false,
-    },
-    { path: "/" }
-  );
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? testimonialsData.length - 1 : prevIndex - 1
