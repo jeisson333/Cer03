@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { gapi } from "gapi-script";
 import { decodeToken } from "react-jwt";
+import { toast, Toaster } from "react-hot-toast";
 const client_id = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -23,6 +24,7 @@ export default function SignIn() {
   useEffect(() => {
     if (Object.keys(dataUser).length > 1) {
       navigate("/home");
+      toast.success("Se inicio sesion correctamente");
     }
     function start() {
       gapi.auth2.init({

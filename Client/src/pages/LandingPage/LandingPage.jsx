@@ -7,6 +7,7 @@ import Header from "../../components/Header/Header";
 import Testimonials from "../../components/Testimonials/Testimonials";
 import Footer from "../../components/Footer/Footer";
 import Cookies from "universal-cookie";
+import { toast, Toaster } from "react-hot-toast";
 const cookies = new Cookies();
 
 const LandingPage = () => {
@@ -133,6 +134,7 @@ const LandingPage = () => {
         </Fade>
       </div>
       <Footer />
+      <Toaster position="top-right" />
     </div>
   );
 };

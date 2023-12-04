@@ -12,6 +12,7 @@ import logoCer03 from "../../components/image/logocer03.jpeg";
 import { useDispatch } from "react-redux";
 import { signOut } from "../../redux/actions";
 import Cookies from "universal-cookie";
+import { toast, Toaster } from "react-hot-toast";
 const cookies = new Cookies();
 
 const SidebarLink = ({ to, icon, text, Onclick }) => {
@@ -44,6 +45,7 @@ const NavBAr = () => {
   const handleSignOut = () => {
     navigate("/");
     dispatch(signOut());
+    toast.success("Sesion cerrada");
   };
 
   return (
@@ -123,6 +125,7 @@ const NavBAr = () => {
               icon={<IoIosLogOut />}
               text="Cerrar sesión"
             />
+            <Toaster position="top-right" />
           </div>
         )}
         <div className={style.divider}></div>
