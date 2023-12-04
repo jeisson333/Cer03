@@ -95,46 +95,44 @@ const Cart = () => {
     dispatch(actionCart());
   };
 
-
-  const [isVisible, setIsVisible] = useState(false);
-  const toggleVisible = () =>{
+  const [isVisible, setIsVisible] = useState(true);
+  const toggleVisible = () => {
     setIsVisible(!isVisible);
-  }
+  };
 
-  console.log(isVisible)
   return (
     <div className={styles.bigContainer}>
       <button onClick={toggleVisible} className={styles.toggleButton}>
-        <FontAwesomeIcon icon={faCartShopping}/>
+        <FontAwesomeIcon icon={faCartShopping} />
       </button>
-    <div className={isVisible ? styles.container : styles.containerNOT}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Productos a Comprar</h2>
-        <div className={styles.divider}></div>
+      <div className={isVisible ? styles.container : styles.containerNOT}>
+        <div className={styles.header}>
+          <h2 className={styles.title}>Productos a Comprar</h2>
+          <div className={styles.divider}></div>
+        </div>
+        <div className={styles.cards}>
+          {products?.map((product) => {
+            return (
+              <ProdCart
+                key={product?.id}
+                product={product}
+                changeAmount={changeAmount}
+                deleteProdCart={deleteProdCart}
+              />
+            );
+          })}
+        </div>
+        <div className={styles.buttonHolder}>
+          <p>Precio Total: {totalPrice}</p>
+          <button
+            className={styles.comprar}
+            onClick={() => console.log("Elija el metodo de pago")}
+          >
+            Comprar
+          </button>
+          <button onClick={deleteAllProducts}>Delete all</button>
+        </div>
       </div>
-      <div className={styles.cards}>
-        {products?.map((product) => {
-          return (
-            <ProdCart
-              key={product?.id}
-              product={product}
-              changeAmount={changeAmount}
-              deleteProdCart={deleteProdCart}
-            />
-          );
-        })}
-      </div>
-      <div className={styles.buttonHolder}>
-        <p>Precio Total: {totalPrice}</p>
-        <button
-          className={styles.comprar}
-          onClick={() => console.log("Elija el metodo de pago")}
-        >
-          Comprar
-        </button>
-        <button onClick={deleteAllProducts}>Delete all</button>
-      </div>
-    </div>
     </div>
   );
 };
