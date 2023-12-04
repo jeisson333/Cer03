@@ -12,7 +12,7 @@ import styles from "./Cart.module.css";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-const Cart = ({comprar}) => {
+const Cart = ({ comprar }) => {
   const dispatch = useDispatch();
   const detectActionCart = useSelector((state) => state.actionCart);
   const [products, setProducts] = useState(
@@ -101,43 +101,44 @@ const Cart = ({comprar}) => {
     setIsVisible(!isVisible);
   };
 
- 
   return (
     <div className={styles.bigContainer}>
-      <button onClick={toggleVisible} className={isVisible ? styles.hideToggle : styles.toggleButton}>
-        <FontAwesomeIcon icon={faCartShopping}/>
-      </button> 
-    <div className={isVisible ? styles.container : styles.containerNOT}>
-      <div className={styles.header}>
-      <button onClick={toggleVisible} className={styles.toggleButton2}>
-        <FontAwesomeIcon icon={faCartShopping}/>
-      </button> 
-        <h2 className={styles.title}>Productos a Comprar</h2>
+      <button
+        onClick={toggleVisible}
+        className={isVisible ? styles.hideToggle : styles.toggleButton}
+      >
+        <FontAwesomeIcon icon={faCartShopping} />
+      </button>
+      <div className={isVisible ? styles.container : styles.containerNOT}>
+        <div className={styles.header}>
+          <button onClick={toggleVisible} className={styles.toggleButton2}>
+            <FontAwesomeIcon icon={faCartShopping} />
+          </button>
+          <h2 className={styles.title}>Productos a Comprar</h2>
+        </div>
+        <div className={styles.divider}></div>
+        <div className={styles.cards}>
+          {products?.map((product) => {
+            return (
+              <ProdCart
+                key={product?.id}
+                product={product}
+                changeAmount={changeAmount}
+                deleteProdCart={deleteProdCart}
+              />
+            );
+          })}
+        </div>
+        <div className={styles.buttonHolder}>
+          <p>Precio Total: {totalPrice}</p>
+          <button className={styles.comprar} onClick={comprar}>
+            Comprar
+          </button>
+          <button className={styles.delete} onClick={deleteAllProducts}>
+            Eliminar todos
+          </button>
+        </div>
       </div>
-      <div className={styles.cards}>
-        {products?.map((product) => {
-          return (
-            <ProdCart
-              key={product?.id}
-              product={product}
-              changeAmount={changeAmount}
-              deleteProdCart={deleteProdCart}
-            />
-          );
-        })}
-      </div>
-      <div className={styles.buttonHolder}>
-        <p>Precio Total: {totalPrice}</p>
-        <button
-          className={styles.comprar}
-          onClick={comprar}
-        >
-          Comprar
-        </button>
-        <button className={styles.delete} onClick={deleteAllProducts}>Eliminar todos</button>
-      </div>
-    </div>
-
     </div>
   );
 };
