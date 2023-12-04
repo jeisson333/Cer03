@@ -326,6 +326,7 @@ export function CreateProduct() {
                   !newProduct.valor_venta ||
                   !newProduct.peso ||
                   !newProduct.tipo_producto ||
+                  !newProduct.stock ||
                   errors.nombre_producto ||
                   errors.image ||
                   errors.valor_compra ||
