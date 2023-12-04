@@ -1,6 +1,7 @@
 import { isExpired, decodeToken } from "react-jwt";
 import {
   GET_PRODUCTS,
+  ERROR_PRODUCTS,
   POST_NEWPRODUCT,
   GET_TYPEPRODUCTS,
   GET_SUCURSAL,
@@ -29,7 +30,10 @@ export const getProducts = (idBranch, conditions) => {
         payload: data,
       });
     } catch (error) {
-      console.log(error.message);
+      return dispatch({
+        type: ERROR_PRODUCTS,
+        payload: [],
+      });
     }
   };
 };
