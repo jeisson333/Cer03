@@ -5,7 +5,8 @@ import {
   GET_SUCURSAL,
   ADD_CART,
   REMOVE_CART,
-  GET_USER,
+  SIGN_IN,
+  SIGN_UP,
   SIGN_OUT,
   SIDEBAR,
   ACTION_CART,
@@ -21,6 +22,7 @@ const initialState = {
   authentication: false,
   sidebarActive: false,
   actionCart: false,
+  newProduct: false,
 };
 
 function reducer(state = initialState, action) {
@@ -36,9 +38,10 @@ function reducer(state = initialState, action) {
         ...state,
         products: action.payload.data,
         totalPages: action.payload.info.pages,
+        newProduct: false,
       };
     case POST_NEWPRODUCT:
-      return { ...state };
+      return { ...state, newProduct: true };
 
     case GET_SUCURSAL:
       return {
@@ -68,7 +71,19 @@ function reducer(state = initialState, action) {
         { path: "/" }
       );
       return { ...state };
-    case GET_USER:
+    case SIGN_IN:
+      cookies.set(
+        "auth",
+        {
+          idBranch: action.payload?.idBranch,
+          idUser: action.payload?.idUser,
+          role: action.payload?.role,
+          branch: action.payload?.branch,
+        },
+        { path: "/" }
+      );
+      return { ...state };
+    case SIGN_UP:
       cookies.set(
         "auth",
         {
@@ -82,8 +97,6 @@ function reducer(state = initialState, action) {
       return { ...state };
     case SIGN_OUT:
       cookies.set("auth", {}, { path: "/" });
-      cookies.set("inCart", [], { path: "/" });
-      cookies.set("cartRemove", { id: "", detect: false }, { path: "/" });
       return { ...state };
 
     case SIDEBAR:

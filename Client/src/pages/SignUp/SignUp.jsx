@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { signIn } from "../../redux/actions";
-import Style from "./SignIn.module.css";
+import { signUp } from "../../redux/actions";
+import Style from "./SignUp.module.css";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { gapi } from "gapi-script";
@@ -11,11 +11,12 @@ const client_id = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-export default function SignIn() {
+export default function SignUp() {
   const dispatch = useDispatch();
   const dataUser = cookies.get("auth");
   const navigate = useNavigate();
   const [user, setUser] = useState({
+    nombre_empresa: "",
     email: "",
     password: "",
   });
@@ -42,7 +43,7 @@ export default function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(signIn(user));
+    dispatch(signUp(user));
   };
 
   const onSucess = (credentialResponse) => {
@@ -51,7 +52,7 @@ export default function SignIn() {
       email: email,
       password: sub,
     };
-    dispatch(signIn(user));
+    dispatch(signUp(user));
   };
 
   const onFailure = (res) => {
@@ -60,8 +61,16 @@ export default function SignIn() {
   return (
     <div className={Style.container}>
       <form onSubmit={handleSubmit} className={Style.containerForm}>
-        <h1 className={Style.title}>Iniciar Sesion</h1>
-        <label className={Style.label}>Usuario</label>
+        <h1 className={Style.title}>Registra tu negocio</h1>
+        <label className={Style.label}>Nombre de tu negocio</label>
+        <input
+          type="text"
+          value={user?.nombre_empresa}
+          onChange={handleUser}
+          className={Style.input}
+          name="nombre_empresa"
+        />
+        <label className={Style.label}>Email</label>
         <input
           type="text"
           value={user?.email}
@@ -77,7 +86,7 @@ export default function SignIn() {
           className={Style.input}
           name="password"
         />
-        <input type="submit" value="Ingresar" className={Style.inputSubmit} />
+        <input type="submit" value="Registar" className={Style.inputSubmit} />
         <div
           style={{
             marginTop: "3vh",
@@ -88,9 +97,9 @@ export default function SignIn() {
           <GoogleLogin
             onSuccess={onSucess}
             onError={onFailure}
-            width={"500px"}
-            text="signin_with"
+            text="signup_with"
             useOneTap={false}
+            type="icon"
           ></GoogleLogin>
         </div>
       </form>
