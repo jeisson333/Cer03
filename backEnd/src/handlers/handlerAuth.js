@@ -6,7 +6,7 @@ const singInHandler = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(401).send("imcomplete information");
+      return res.status(401).send("incomplete information");
     }
 
     const response = await singIn(email, password);

@@ -67,11 +67,6 @@ export default function About() {
             </h3>
           </div>
         </div>
-        <NavLink to="/">
-          <h2 className={styles.goBack}>
-            <FontAwesomeIcon icon={faLeftLong} /> Volver
-          </h2>{" "}
-        </NavLink>
       </div>
     </div>
   );

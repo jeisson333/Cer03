@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import { Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCart } from "../../redux/actions";
 
 import style from "./Product.module.css";
@@ -12,7 +13,6 @@ const Product = ({ product }) => {
   const inCart =
     JSON.parse(localStorage.getItem(`${cookies.get("auth").idUser}|Cart`)) ||
     [];
-  // console.log(cookies.get("auth").idUser);
   const cartHandler = () => {
     if (
       inCart &&

@@ -10,8 +10,8 @@ const SubscriptionCheckout = () => {
   const totalPay = query.get("totalPay");
   const currency_id = query.get("currency_id");
   const quantity = query.get("quantity");
-
   const [checkout, setCheckout] = useState([]);
+
   console.log(subscription, totalPay, currency_id, quantity);
   useEffect(() => {
     (async () => {
@@ -25,16 +25,17 @@ const SubscriptionCheckout = () => {
       }
     })();
   }, []);
-  console.log(checkout.init_point);
+
+  useEffect(() => {
+    if (checkout?.init_point) window.location.href = checkout.init_point;
+  }, [checkout]);
   const handleSubmit = () => {
     window.location.href = checkout.init_point;
   };
 
   return (
     <div>
-      <h1>Medios de pago:</h1>
-      <p>Mercado Pago:</p>
-      <button onClick={handleSubmit}>Pagar</button>
+      <h1>Cargando....</h1>
     </div>
   );
 };

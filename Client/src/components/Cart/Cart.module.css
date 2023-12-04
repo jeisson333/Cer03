@@ -28,14 +28,39 @@
     text-align: center;
     font-weight: 350;
     width: 360px;
+
 }
 
+.toggleButton {
+  height: 59px;
+  width: 70px;
+  /* border: 1px solid rgb(195, 194, 194);; */
+}
 
-.containerNOT{
-    display: none;
-    background: rgb(255, 255, 255);
-    text-align: center;
-    font-weight: 350;
+.bigContainer {
+  display: flex;
+  overflow: hidden;
+  background: rgb(255, 255, 255);
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  /* border: 1px solid rgb(195, 194, 194);; */
+}
+
+.container {
+  display: block;
+  background: rgb(255, 255, 255);
+  text-align: center;
+  font-weight: 350;
+  /* width: 25%; */
+}
+
+.containerNOT {
+  display: none;
+  background: rgb(255, 255, 255);
+  text-align: center;
+  font-weight: 350;
 }
 
 .title {
@@ -74,20 +99,20 @@
   color: #fff;
 }
 
-.buttonHolder{
-    /* border: 1px solid black; */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-right: 10px;
+.buttonHolder {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 10px;
 }
 
-.buttonHolder{
-    /* border: 1px solid black; */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-right: 10px;
+.buttonHolder {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 10px;
 }
 
 .delete {

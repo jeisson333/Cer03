@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faTrash } from "@fortawesome/free-solid-svg-icons";
 

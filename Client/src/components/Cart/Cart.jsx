@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { actionCart } from "../../redux/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-hot-toast";
 
 import ProdCart from "../ProdCart/ProdCart";
 
@@ -95,11 +96,10 @@ const Cart = ({comprar}) => {
     dispatch(actionCart());
   };
 
-
-  const [isVisible, setIsVisible] = useState(false);
-  const toggleVisible = () =>{
+  const [isVisible, setIsVisible] = useState(true);
+  const toggleVisible = () => {
     setIsVisible(!isVisible);
-  }
+  };
 
  
   return (
