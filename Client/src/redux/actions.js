@@ -1,12 +1,14 @@
 import { isExpired, decodeToken } from "react-jwt";
 import {
   GET_PRODUCTS,
+  ERROR_PRODUCTS,
   POST_NEWPRODUCT,
   GET_TYPEPRODUCTS,
   GET_SUCURSAL,
   ADD_CART,
   REMOVE_CART,
-  GET_USER,
+  SIGN_IN,
+  SIGN_UP,
   SIGN_OUT,
   SIDEBAR,
   ACTION_CART,
@@ -28,7 +30,10 @@ export const getProducts = (idBranch, conditions) => {
         payload: data,
       });
     } catch (error) {
-      console.log(error.message);
+      return dispatch({
+        type: ERROR_PRODUCTS,
+        payload: [],
+      });
     }
   };
 };
@@ -99,7 +104,7 @@ export const removeCart = (productId) => {
   };
 };
 
-export const getUser = (user) => {
+export const signIn = (user) => {
   return async function (dispatch) {
     try {
       const url = `${baseUrl}/auth/sing-in`;
@@ -108,7 +113,25 @@ export const getUser = (user) => {
       const isMyTokenExpired = isExpired(data);
       if (isMyTokenExpired) throw new Error("Expired token");
       return dispatch({
-        type: GET_USER,
+        type: SIGN_IN,
+        payload: myDecodedToken,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const signUp = (user) => {
+  return async function (dispatch) {
+    try {
+      const url = `${baseUrl}/auth/sing-up`;
+      const { data } = await axios.post(url, user);
+      const myDecodedToken = decodeToken(data);
+      const isMyTokenExpired = isExpired(data);
+      if (isMyTokenExpired) throw new Error("Expired token");
+      return dispatch({
+        type: SIGN_UP,
         payload: myDecodedToken,
       });
     } catch (error) {

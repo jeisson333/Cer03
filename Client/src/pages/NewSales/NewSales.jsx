@@ -41,10 +41,14 @@ const NewSales = () => {
     });
   };
 
-  // funtion addToCart(event)
-  // const cartHandler = (event) => {
+  const [isModal, setIsModal] = useState(false);
 
-  // }
+  const comprar = () => {
+    setIsModal(true);
+  };
+  const cancelar = () => {
+    setIsModal(false);
+  };
 
   return (
     <div className={Style.divMain}>
@@ -59,7 +63,19 @@ const NewSales = () => {
         />
         <Products />
       </div>
-      <Cart />
+      <Cart comprar={comprar} />
+      <section className={isModal ? Style.modal : Style.modalNOT}>
+        <div>
+          <h1>Seleccione el método de pago</h1>
+          <h2>!!Estamos trabajando aun en esta parte!!</h2>
+        </div>
+        <div>
+          <button className={Style.comprar}>Continuar</button>
+          <button className={Style.delete} onClick={cancelar}>
+            Cancelar
+          </button>
+        </div>
+      </section>
     </div>
   );
 };

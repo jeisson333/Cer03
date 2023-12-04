@@ -27,6 +27,14 @@
   justify-content: flex-end;
 }
 
+/* .close button{
+  border: 1px solid black;
+  width: 20px;
+} */
+
+.hola{
+  border: 1px solid black;
+}
 .trash{
   color: rgb(201, 0, 0);
 }

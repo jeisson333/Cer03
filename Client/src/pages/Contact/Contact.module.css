@@ -1,68 +1,67 @@
-.contactPage{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
+.contactPage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
 }
 
-.bigTitle{
-    width: 100vw;
-    text-align: center;
-    color: #18A0FB;
-    margin-left: 10px;
-    margin-right: 10px;
+.bigTitle {
+  width: 100vw;
+  text-align: center;
+  color: #18a0fb;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.boxHolder{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    /* border: 2px solid black; */
+.boxHolder {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid black; */
 }
 
-.contactBox{
-    border-top: 9px solid #001832;
-    border-bottom: 1px solid rgb(164, 163, 163);
-    border-left: 1px solid rgb(164, 163, 163);
-    border-right: 1px solid rgb(164, 163, 163);
-    border-radius: 12px;
-    box-shadow: 10px 5px 13px #18A0FB;
-    width: 240px;
-    height: 300px;
-    text-align: center;
-    margin: 25px;
-    /* background-color: rgb(237, 231, 223); */
+.contactBox {
+  border-top: 9px solid #001832;
+  border-bottom: 1px solid rgb(164, 163, 163);
+  border-left: 1px solid rgb(164, 163, 163);
+  border-right: 1px solid rgb(164, 163, 163);
+  border-radius: 12px;
+  box-shadow: 10px 5px 13px #18a0fb;
+  width: 240px;
+  height: 300px;
+  text-align: center;
+  margin: 25px;
+  /* background-color: rgb(237, 231, 223); */
 }
 
-
-.title{
-    color: #18A0FB;
-    /* text-align: center; */
+.title {
+  color: #18a0fb;
+  /* text-align: center; */
 }
 
-.icon{
-    font-size: 45px;
-    margin: 5px;
-    cursor: pointer;
+.icon {
+  font-size: 45px;
+  margin: 5px;
+  cursor: pointer;
 }
 
-.icon:hover{
-    color: #02458d;
+.icon:hover {
+  color: #02458d;
 }
 
-.goHolder{
-    width: 100vw;
+.goHolder {
+  width: 100vw;
 }
 
-.goBack{
-    margin-left: 25px;
-    color: #001832;
-    cursor: pointer;
-    /* width: 100vw; */
+.goBack {
+  margin-left: 25px;
+  color: #001832;
+  cursor: pointer;
+  /* width: 100vw; */
 }
 
-.goBack:hover{
-    color: #02458d;
+.goBack:hover {
+  color: #02458d;
 }

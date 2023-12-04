@@ -30,6 +30,13 @@ const singIn = async (email, password) => {
       idBranch = empresa?.id_empresa;
       date = empresa?.fecha_licencia;
       role = "admin";
+
+      modelSucursal = await SUCURSAL.findAll({
+        where: {
+          sucursal_empresa: empresa?.id_empresa,
+        },
+      });
+      sucursal = modelSucursal[0]?.nombre_sucursal;
     }
   } else {
     if (vendedor?.contraseña_vendedor != password)

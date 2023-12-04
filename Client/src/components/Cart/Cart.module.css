@@ -1,28 +1,51 @@
-@keyframes fade-id {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+
+
+.toggleButton{
+    height: 50px;
+    width: 70px;
 }
 
-@keyframes fade-out {
-  100% {
-    opacity: 0;
-  }
-  0% {
-    opacity: 1;
-  }
+.hideToggle{
+    display: none;
 }
 
-@keyframes slide-right {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
+.toggleButton2{
+    height: 50px;
+    width: 70px;
+    margin-left: 20px;
+}
+
+.bigContainer{
+    overflow: hidden;
+    background: rgb(255, 255, 255);
+    display: flex;
+}
+
+
+.container{
+    display: block;
+    background: rgb(255, 255, 255);
+    text-align: center;
+    font-weight: 350;
+    width: 360px;
+
+}
+
+.toggleButton {
+  height: 59px;
+  width: 70px;
+  /* border: 1px solid rgb(195, 194, 194);; */
+}
+
+.bigContainer {
+  display: flex;
+  overflow: hidden;
+  background: rgb(255, 255, 255);
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  /* border: 1px solid rgb(195, 194, 194);; */
 }
 
 .container {
@@ -30,12 +53,27 @@
   background: rgb(255, 255, 255);
   text-align: center;
   font-weight: 350;
-  height: 100%;
-  /* width: 530px; */
+  /* width: 25%; */
+}
+
+.containerNOT {
+  display: none;
+  background: rgb(255, 255, 255);
+  text-align: center;
+  font-weight: 350;
 }
 
 .title {
   font-weight: 700;
+}
+
+.header{
+    display: flex;
+}
+
+.header h2{
+    min-width: 500px;
+    text-align: start;
 }
 
 .container h2 {
@@ -61,6 +99,36 @@
   color: #fff;
 }
 
+.buttonHolder {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 10px;
+}
+
+.buttonHolder {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 10px;
+}
+
+.delete {
+    width: 120px;
+    height: 38px;
+    background: rgb(201, 0, 0);
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #fff;
+  }
+
 .comprar:hover {
   background-color: rgb(65, 176, 40);
+}
+
+.delete:hover{
+    background: rgb(120, 1, 1);
 }

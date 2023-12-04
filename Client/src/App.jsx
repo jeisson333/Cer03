@@ -8,6 +8,7 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import RegisterForm from "./pages/RegisterForm/RegisterForm";
 import About from "./pages/About/About";
 import SignIn from "./pages/SignIn/SignIn";
+import SignUp from "./pages/SignUp/SignUp";
 import Contact from "./pages/Contact/Contact";
 import Settings from "./pages/Settings/Settings";
 import NavBAr from "./components/NavBar/NavBar";
@@ -24,6 +25,7 @@ import SubscriptionCheckout from "./pages/SubscriptionCheckout/SubscriptionCheck
 import SubscriptionSuccess from "./pages/SubscriptionCheckout/SubscriptionSuccess";
 import SubscriptionFailure from "./pages/SubscriptionCheckout/SubscriptionFailure";
 import SubscriptionPending from "./pages/SubscriptionCheckout/SubscriptionPending";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const location = useLocation();
@@ -35,7 +37,7 @@ function App() {
     "/newProduct",
     "/newsales",
     "/home",
-    "/detail",
+    "/detail/",
     "/subscription",
     "/subscription/checkout",
     "/subscription/success",
@@ -59,14 +61,15 @@ function App() {
   return (
     <div className={navClass}>
       {sidebarActive && <NavBAr />}
+      <Toaster position="top-right" />
       <Routes>
         {/* public */}
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/registerForm" element={<RegisterForm />} />
         <Route path="/signIn" element={<SignIn />} />
+        <Route path="/signUp" element={<SignUp />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-
         {/* admin */}
         <Route element={<RequireAuth authRoles={["admin"]} />}>
           <Route path="/products" element={<Inventory />} />
@@ -90,23 +93,19 @@ function App() {
             element={<SubscriptionPending />}
           />
         </Route>
-
         {/* user */}
         <Route element={<RequireAuth authRoles={["user"]} />}>
           <Route path="/newsales" element={<NewSales />} />
         </Route>
-
         {/* admin and user */}
         <Route element={<RequireAuth authRoles={["admin", "user"]} />}>
           <Route path="/home" element={<Home />} />
           <Route path="/detail" element={<Detail />} />
         </Route>
-
         {/* sin nada */}
         <Route path="/registerForm" element={<RegisterForm />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/test" element={<Experiments />} />
-
         {/* 404 error */}
         <Route path="*" element={<Error />} />
       </Routes>
