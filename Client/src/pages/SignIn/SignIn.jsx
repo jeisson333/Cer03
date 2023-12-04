@@ -51,7 +51,6 @@ export default function SignIn() {
       email: email,
       password: sub,
     };
-    console.log(user);
     dispatch(getUser(user));
   };
 
@@ -86,7 +85,11 @@ export default function SignIn() {
             display: "flex",
           }}
         >
-          <GoogleLogin onSuccess={onSucess} onError={onFailure}></GoogleLogin>
+          <GoogleLogin
+            onSuccess={onSucess}
+            onError={onFailure}
+            width={"500px"}
+          ></GoogleLogin>
         </div>
       </form>
     </div>

@@ -16,9 +16,6 @@ export default function Home() {
           id: idBranch,
         });
         setSales(data.data);
-        // sales.forEach((sale) => {
-        //   console.log(Object.keys(sale));
-        // });
       } catch (error) {
         throw Error(error.message);
       }

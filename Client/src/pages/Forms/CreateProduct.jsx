@@ -55,7 +55,6 @@ export function CreateProduct() {
         });
         break;
     }
-    // console.log(newProduct);
   };
 
   const handleStockSucursal = (event) => {
@@ -136,8 +135,7 @@ export function CreateProduct() {
       valor_venta: "",
     });
   };
-  // console.log(newProduct);
-  // console.log(errors)
+
   return (
     <form onSubmit={onSubmit}>
       <div className={styles.cargarProductos}>

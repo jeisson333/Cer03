@@ -55,13 +55,7 @@ export default function Contact() {
           </p>
         </div>
       </div>
-      <div className={styles.goHolder}>
-        <NavLink to="/">
-          <h2 className={styles.goBack}>
-            <FontAwesomeIcon icon={faLeftLong} /> Volver
-          </h2>{" "}
-        </NavLink>
-      </div>
+      <div className={styles.goHolder}></div>
     </div>
   );
 }

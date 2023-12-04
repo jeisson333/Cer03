@@ -48,23 +48,23 @@ const NewSales = () => {
 
   return (
     <div className={Style.divMain}>
-      <Filters
-        conditions={conditions}
-        setConditions={setConditions}
-        sucursales={sucursales}
-        totalPages={totalPages}
-        handlerChange={handlerChange}
-        handlerSubmit={handlerSubmit}
-      />
-      <Products />
+      <div>
+        <Filters
+          conditions={conditions}
+          setConditions={setConditions}
+          sucursales={sucursales}
+          totalPages={totalPages}
+          handlerChange={handlerChange}
+          handlerSubmit={handlerSubmit}
+        />
+        <Products />
+      </div>
+
       <Cart />
 
       <div></div>
     </div>
   );
 };
-
-
-
 
 export default NewSales;
