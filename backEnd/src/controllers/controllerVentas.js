@@ -125,20 +125,23 @@ const getVentas = async ({ conditions, idBranch }) => {
 };
 
 const postVenta = async ({ body }) => {
-  const create = await VENTA.create({
-    metodo_pago: body?.payment,
-    venta_sucursal: body?.sucursal,
+  const venta = await VENTA.create({
+    metodo_pago: body.payment,
+    venta_sucursal: body.sucursal,
   });
 
-  // let response = [];
+  venta.setSUCURSAL(body.sucursal);
+  venta.setCATALOGO_UNIVERSAL(body.payment);
 
   body?.products.forEach(async (product) => {
-    await DETALLES_VENTA.create({
+    let detalleVenta = await DETALLES_VENTA.create({
       cantidad_producto: product.amount,
-      venta_producto: product.id,
-      detalles_venta: create.id_venta,
+      venta_producto: product.id_producto,
+      detalles_venta: venta.id_venta,
     });
-    // console.log(createVenta);
+
+    detalleVenta.setPRODUCTO(product.id);
+    detalleVenta.setVENTum(venta.id_venta);
 
     const invProd = await INVENTARIO_PRODUCTO.findOne({
       where: {
@@ -148,11 +151,13 @@ const postVenta = async ({ body }) => {
     });
 
     invProd.set({
-      stock: product.amount,
+      stock: product.totalStock,
     });
 
     await invProd.save();
   });
+
+  return venta;
 };
 
 module.exports = {

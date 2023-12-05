@@ -28,7 +28,7 @@ const NewSales = () => {
   });
   const [isModal, setIsModal] = useState(false);
   const [payment, setPayment] = useState({
-    name: paymentMethods[0].nombre_catalogo,
+    name: paymentMethods[0]?.nombre_catalogo,
   });
 
   useEffect(() => {
