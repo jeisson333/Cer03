@@ -1,9 +1,13 @@
 const { Router } = require("express");
 
-const { getVentasHandler } = require("../handlers/handlerVentas.js");
+const {
+  getVentasHandler,
+  postVentasHandler,
+} = require("../handlers/handlerVentas.js");
 
 routeVentas = Router();
 
 routeVentas.post("/", getVentasHandler);
+routeVentas.post("/nuevaventa", postVentasHandler);
 
 module.exports = routeVentas;

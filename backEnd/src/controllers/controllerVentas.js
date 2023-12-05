@@ -4,6 +4,7 @@ const {
   SUCURSAL,
   CATALOGO_UNIVERSAL,
   PRODUCTO,
+  INVENTARIO_PRODUCTO,
 } = require("../database/db");
 const { handlerFilters, handlerApiFormat } = require("./controllerPages");
 const { Op, Sequelize } = require("sequelize");
@@ -123,6 +124,38 @@ const getVentas = async ({ conditions, idBranch }) => {
   return handlerApiFormat(sales, pageNumber, count, limit);
 };
 
+const postVenta = async ({ body }) => {
+  const create = await VENTA.create({
+    metodo_pago: body?.payment,
+    venta_sucursal: body?.sucursal,
+  });
+
+  // let response = [];
+
+  body?.products.forEach(async (product) => {
+    await DETALLES_VENTA.create({
+      cantidad_producto: product.amount,
+      venta_producto: product.id,
+      detalles_venta: create.id_venta,
+    });
+    // console.log(createVenta);
+
+    const invProd = await INVENTARIO_PRODUCTO.findOne({
+      where: {
+        inventario_sucursal: body.sucursal,
+        inventario_producto: product.id,
+      },
+    });
+
+    invProd.set({
+      stock: product.amount,
+    });
+
+    await invProd.save();
+  });
+};
+
 module.exports = {
   getVentas,
+  postVenta,
 };
