@@ -17,7 +17,7 @@ const SubscriptionSuccess = () => {
     (async () => {
       try {
         const { data } = await axios.post(
-          `https://de86-45-238-182-161.ngrok.io/paymentGateways/webhook?data.id=${collectionId}&type=payment`
+          `https://cer03-dev-dhmt.4.us-1.fl0.io/paymentGateways/webhook?data.id=${collectionId}&type=payment`
         );
 
         // setVerifyId(data);
@@ -30,13 +30,11 @@ const SubscriptionSuccess = () => {
 
   const sendMail = async (verifyId) => {
     try {
-      console.log("entro");
       if (verifyId?.body) {
-        console.log("No entro");
         await axios.post(`${url}/email`, {
           email:
             "lucasescudero5629@gmail.com,david@castromora.lat,jeissonosorio97@gmail.com",
-          tittle: "Compra Exitosa!!!",
+          tittle: "Compra Exitosa!",
           text: `Tipo de suscripción : ${verifyId?.body?.description} <br />
           Transacción id: ${verifyId?.body?.id} <br/>
           Estado: ${verifyId?.body?.status} <br/>
@@ -53,9 +51,7 @@ const SubscriptionSuccess = () => {
     <div className={style.container}>
       <h1 className={style.tittle}>Transacción exitosa</h1>
       <p className={style.text}>Transacción id: {collectionId}</p>
-      <p className={style.text}>
-        Estado: {<spam className={style.textApproved}>{collectionStatus}</spam>}
-      </p>
+      <p className={style.text}>Estado:{collectionStatus}</p>
       <p className={style.text}>
         Identificación de preferencia: {preferenceId}
       </p>

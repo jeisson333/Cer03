@@ -24,7 +24,7 @@ const getMercadoPagoController = async ({ info }) => {
     },
 
     notification_url:
-      "https://de86-45-238-182-161.ngrok.io/paymentGateways/webhook",
+      "https://cer03-dev-dhmt.4.us-1.fl0.io/paymentGateways/webhook",
   });
 
   return result.body;
