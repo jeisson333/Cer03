@@ -59,20 +59,26 @@ const Cart = ({ comprar }) => {
 
   const changeAmount = (event) => {
     if (event.target.value) {
-      let prodChangeAmount = products.map((prodCart) => {
-        if (prodCart.amount !== 0 && prodCart.id === event.target.name) {
-          if (prodCart.amount < event.target.value)
-            return { ...prodCart, amount: ++prodCart.amount };
-          else if (prodCart.amount > event.target.value)
-            return { ...prodCart, amount: --prodCart.amount };
-        } else return prodCart;
+      let newAmount = parseInt(event.target.value);
+      let filterProduct = products.find(
+        (product) => product?.id == event.target.name
+      );
+      if (filterProduct) {
+        let stockProduct = parseInt(filterProduct?.stock);
+        if (newAmount > stockProduct) filterProduct.amount = stockProduct;
+        else if (newAmount < 1) filterProduct.amount = 1;
+        else {
+          filterProduct.amount = newAmount;
+        }
+      }
+      products.forEach((product, index) => {
+        if (product?.id == filterProduct?.id) products[index] = filterProduct;
       });
 
       localStorage.setItem(
         `${cookies.get("auth").idUser}|Cart`,
-        JSON.stringify(prodChangeAmount)
+        JSON.stringify(products)
       );
-
       dispatch(actionCart());
     }
   };
@@ -99,6 +105,13 @@ const Cart = ({ comprar }) => {
   const [isVisible, setIsVisible] = useState(true);
   const toggleVisible = () => {
     setIsVisible(!isVisible);
+  };
+
+  const handleCartBuy = () => {
+    if (products.length) comprar();
+    else {
+      toast.error("El carro debe contener mínimo un producto!");
+    }
   };
 
   return (
@@ -130,8 +143,8 @@ const Cart = ({ comprar }) => {
           })}
         </div>
         <div className={styles.buttonHolder}>
-          <p>Precio Total: {totalPrice}</p>
-          <button className={styles.comprar} onClick={comprar}>
+          <p style={{ fontWeight: "bold" }}>Precio Total: ${totalPrice}</p>
+          <button className={styles.comprar} onClick={handleCartBuy}>
             Comprar
           </button>
           <button className={styles.delete} onClick={deleteAllProducts}>

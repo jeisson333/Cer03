@@ -1,34 +1,30 @@
-
-
-.toggleButton{
-    height: 50px;
-    width: 70px;
+.toggleButton {
+  height: 50px;
+  width: 70px;
 }
 
-.hideToggle{
-    display: none;
+.hideToggle {
+  display: none;
 }
 
-.toggleButton2{
-    height: 50px;
-    width: 70px;
-    margin-left: 20px;
+.toggleButton2 {
+  height: 50px;
+  width: 70px;
+  margin-left: 20px;
 }
 
-.bigContainer{
-    /* overflow: hidden; */
-    background: rgb(255, 255, 255);
-    display: flex;
+.bigContainer {
+  /* overflow: hidden; */
+  background: rgb(255, 255, 255);
+  display: flex;
 }
 
-
-.container{
-    display: block;
-    background: rgb(255, 255, 255);
-    text-align: center;
-    font-weight: 350;
-    width: 360px;
-
+.container {
+  display: block;
+  background: rgb(255, 255, 255);
+  text-align: center;
+  font-weight: 350;
+  width: 360px;
 }
 
 .toggleButton {
@@ -67,13 +63,13 @@
   font-weight: 700;
 }
 
-.header{
-    display: flex;
+.header {
+  display: flex;
 }
 
-.header h2{
-    min-width: 500px;
-    text-align: start;
+.header h2 {
+  min-width: 500px;
+  text-align: start;
 }
 
 .container h2 {
@@ -96,40 +92,31 @@
   margin: 10px;
   cursor: pointer;
   border-radius: 5px;
-  color: #fff;
+  color: #000000;
 }
 
 .buttonHolder {
   /* border: 1px solid black; */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-right: 10px;
-}
-
-.buttonHolder {
-  /* border: 1px solid black; */
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   align-items: flex-end;
   margin-right: 10px;
 }
 
 .delete {
-    width: 120px;
-    height: 38px;
-    background: rgb(201, 0, 0);
-    margin: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    color: #fff;
-  }
+  width: 120px;
+  height: 38px;
+  background: rgb(201, 0, 0);
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #ffffff;
+}
 
 .comprar:hover {
   background-color: rgb(65, 176, 40);
 }
 
-.delete:hover{
-    background: rgb(120, 1, 1);
+.delete:hover {
+  background: rgb(120, 1, 1);
 }
-
