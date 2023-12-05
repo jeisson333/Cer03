@@ -1,4 +1,4 @@
-const { PAGO_TOKEN } = process.env;
+const { PASS_CORRE } = process.env;
 const nodemailer = require("nodemailer");
 
 const postEmailController = async ({ data }) => {
@@ -9,7 +9,7 @@ const postEmailController = async ({ data }) => {
     auth: {
       // TODO: replace `user` and `pass` values from <https://forwardemail.net>
       user: "jeissonosorio97@gmail.com",
-      pass: "harbcpnpfnzgpyvx",
+      pass: PASS_CORRE,
     },
   });
 
