@@ -85,3 +85,17 @@
   font-weight: bold;
   color: #2d3748;
 }
+
+@media (max-width: 800px){
+
+
+  .quote{
+    font-size: small;
+  }
+
+  .authorNameText{
+    font-size: 10px
+  }
+
+  
+}

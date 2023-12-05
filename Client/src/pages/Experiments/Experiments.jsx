@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Loading from "../../components/Loading/Loading";
 
 export default function experiments() {
   // const [test, setTest] = useState("");
@@ -17,5 +18,12 @@ export default function experiments() {
   //     });
   // }, []);
 
-  return <h1>A</h1>;
+  return (
+    <div>
+      
+    </div>
+    // <div>
+    //   <Loading/>
+    // </div>
+  );
 }

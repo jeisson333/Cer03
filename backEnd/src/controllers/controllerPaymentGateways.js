@@ -7,7 +7,6 @@ const getMercadoPagoController = async ({ info }) => {
   mercadopage.configure({
     access_token: PAGO_TOKEN,
   });
-
   const result = await mercadopage.preferences.create({
     items: [
       {
@@ -25,17 +24,24 @@ const getMercadoPagoController = async ({ info }) => {
     },
 
     notification_url:
-      "https://5942-45-238-182-200.ngrok.io/paymentGateways/webhook",
+      "https://2940-45-238-182-161.ngrok.io/paymentGateways/webhook",
   });
 
   return result.body;
 };
 const getWebHookController = async (infoQuery) => {
-  if (infoQuery.type === "payment") {
-    const data = await mercadopage.payment.findById(infoQuery["data.id"]);
-    console.log(data);
+  try {
+    if (infoQuery.type === "payment") {
+      const data = await mercadopage.payment.findById(infoQuery["data.id"]);
+      console.log(data);
+    } else {
+      throw Error("Error");
+    }
+    return data;
+  } catch (error) {
+    console.log(error);
+    return { error: error.message };
   }
-  return data;
 };
 
 module.exports = {

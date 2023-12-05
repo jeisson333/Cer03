@@ -1,7 +1,7 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import Loading from "../../components/Loading/Loading";
 
 const SubscriptionCheckout = () => {
   const location = useLocation();
@@ -29,13 +29,14 @@ const SubscriptionCheckout = () => {
   useEffect(() => {
     if (checkout?.init_point) window.location.href = checkout.init_point;
   }, [checkout]);
+
   const handleSubmit = () => {
     window.location.href = checkout.init_point;
   };
 
   return (
     <div>
-      <h1>Cargando....</h1>
+      <Loading />
     </div>
   );
 };

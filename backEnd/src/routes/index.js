@@ -10,7 +10,7 @@ const productsRouter = require("./productsRouter.js");
 const routeSucursales = require("./routeSucursales.js");
 //const routeSaveJsonInDB = require('./saveJsonInDBRouter.js');
 const routeCatalogos = require("./routeCatalogo.js");
-
+const routeEmail = require("./routeEmail.js");
 const routePaymentGateways = require("./routePaymentGateways.js");
 const routeSales = require("./routePaymentSales.js");
 const { verifyToken } = require("../middlewares/authJWT.js");
@@ -28,5 +28,6 @@ router.use("/sucursales", routeSucursales);
 router.use("/catalogos", routeCatalogos);
 router.use("/paymentGateways", routePaymentGateways);
 router.use("/paymentSales", routeSales);
+router.use("/email", routeEmail);
 
 module.exports = router;
