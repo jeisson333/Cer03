@@ -16,7 +16,7 @@
 }
 
 .bigContainer{
-    overflow: hidden;
+    /* overflow: hidden; */
     background: rgb(255, 255, 255);
     display: flex;
 }
@@ -132,3 +132,4 @@
 .delete:hover{
     background: rgb(120, 1, 1);
 }
+

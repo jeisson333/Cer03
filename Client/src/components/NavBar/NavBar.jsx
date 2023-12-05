@@ -49,7 +49,7 @@ const NavBAr = () => {
   };
 
   return (
-    <div>
+    <div className={style.bigContent}>
       <div className={style.content}>
         <div className={style.logoContent}>
           {/* <TfiAlignJustify /> */}

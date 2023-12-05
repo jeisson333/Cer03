@@ -106,13 +106,13 @@ const LandingPage = () => {
           <div className={Style.additional_wrapper}>
             <div className={Style.additional_text_container}>
               <h2 className={Style.additional_title}>Administra tu negocio</h2>
-              <p>
+              <p className={Style.additional_description}>
                 Con Cer03 prodras administrar 100% de forma digital tu negocio,
                 aumentando asi, la velocidad con la que consultas tu inventario
                 y ventas.
               </p>
             </div>
-            <div className={Style.additional_image}>
+            <div>
               <img
                 src="https://previews.123rf.com/images/yupiramos/yupiramos1802/yupiramos180210134/95204193-computadora-port%C3%A1til-con-estad%C3%ADsticas.jpg"
                 alt="una imagen aca"

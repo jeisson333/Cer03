@@ -67,3 +67,9 @@ h2 {
   background: rgb(195, 194, 194);
   margin: 24px 0;
 }
+/* 
+@media (max-width: 800px){
+  .content{
+    width: 200px;
+  }
+} */

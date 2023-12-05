@@ -15,6 +15,7 @@
 }
 
 .boxHolder {
+
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -64,4 +65,10 @@
 
 .goBack:hover {
   color: #02458d;
+}
+
+@media (max-width: 800px){
+  .boxHolder{
+    margin-top: 70px;
+  }
 }
