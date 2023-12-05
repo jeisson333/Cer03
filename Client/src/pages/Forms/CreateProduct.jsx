@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "./CreateProduct.module.css";
 import Swal from "sweetalert2";
+import Loading from "../../components/Loading/Loading";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
@@ -341,7 +342,9 @@ export function CreateProduct() {
           </div>
         </form>
       ) : (
-        <h1>Loading...</h1>
+        <div>
+          <Loading />
+        </div>
       )}
     </>
   );
