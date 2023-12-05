@@ -1,4 +1,4 @@
-const { PASS_CORRE } = process.env;
+const { PASS_CORREO, USER_CORREO } = process.env;
 const nodemailer = require("nodemailer");
 
 const postEmailController = async ({ data }) => {
@@ -8,8 +8,8 @@ const postEmailController = async ({ data }) => {
     secure: true,
     auth: {
       // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-      user: "jeissonosorio97@gmail.com",
-      pass: PASS_CORRE,
+      user: USER_CORREO,
+      pass: PASS_CORREO,
     },
   });
 
@@ -34,7 +34,6 @@ const postEmailController = async ({ data }) => {
   }
 
   main().catch(console.error);
-  return await main();
 };
 
 module.exports = {
