@@ -24,7 +24,7 @@ const getMercadoPagoController = async ({ info }) => {
     },
 
     notification_url:
-      "https://2940-45-238-182-161.ngrok.io/paymentGateways/webhook",
+      "https://cer03-dev-dhmt.4.us-1.fl0.io/paymentGateways/webhook",
   });
 
   return result.body;
@@ -33,11 +33,11 @@ const getWebHookController = async (infoQuery) => {
   try {
     if (infoQuery.type === "payment") {
       const data = await mercadopage.payment.findById(infoQuery["data.id"]);
-      console.log(data);
+
+      return data;
     } else {
-      throw Error("Error");
+      throw new Error("Not payment");
     }
-    return data;
   } catch (error) {
     console.log(error);
     return { error: error.message };

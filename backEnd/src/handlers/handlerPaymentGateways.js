@@ -14,6 +14,7 @@ const getPaymentGateways = async (req, res) => {
 };
 const getWebHook = async (req, res) => {
   try {
+    console.log(req.query);
     const response = await getWebHookController(req.query);
     res.status(200).json(response);
   } catch (error) {
