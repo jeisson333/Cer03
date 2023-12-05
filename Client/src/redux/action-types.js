@@ -10,3 +10,4 @@ export const SIGN_UP = "SIGN_UP";
 export const SIGN_OUT = "SIGN_OUT";
 export const SIDEBAR = "SIDEBAR";
 export const ACTION_CART = "ACTION_CART";
+export const GET_PAYMENTS = "GET_PAYMENTS";

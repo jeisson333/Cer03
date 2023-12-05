@@ -15,6 +15,7 @@ const cookies = new Cookies();
 const Cart = ({ comprar }) => {
   const dispatch = useDispatch();
   const detectActionCart = useSelector((state) => state.actionCart);
+  const payments = useSelector((state) => state.paymentMethods);
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem(`${cookies.get("auth").idUser}|Cart`)) || []
   );

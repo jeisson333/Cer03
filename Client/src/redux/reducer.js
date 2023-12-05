@@ -11,6 +11,7 @@ import {
   SIGN_OUT,
   SIDEBAR,
   ACTION_CART,
+  GET_PAYMENTS,
 } from "./action-types.js";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -18,6 +19,7 @@ const cookies = new Cookies();
 const initialState = {
   products: [],
   allTypeProducts: [],
+  paymentMethods: [],
   sucursales: [],
   totalPages: 1,
   authentication: false,
@@ -32,6 +34,12 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         allTypeProducts: action.payload?.data,
+      };
+
+    case GET_PAYMENTS:
+      return {
+        ...state,
+        paymentMethods: action.payload?.data,
       };
 
     case GET_PRODUCTS:

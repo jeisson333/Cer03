@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../redux/actions";
+import { getPayments, getProducts } from "../../redux/actions";
 
 //components
 import Products from "../../components/Products/Products";
@@ -16,8 +16,9 @@ const cookies = new Cookies();
 const NewSales = () => {
   const dispatch = useDispatch();
   const { idBranch, branch } = cookies.get("auth");
-  const totalPages = useSelector((state) => state.totalPages);
-  const sucursales = useSelector((state) => state.sucursales);
+  const { paymentMethods, totalPages, sucursales } = useSelector(
+    (state) => state
+  );
 
   const [search, setSearch] = useState("");
   const [conditions, setConditions] = useState({
@@ -25,10 +26,18 @@ const NewSales = () => {
     page: 1,
     page_size: 6,
   });
+  const [isModal, setIsModal] = useState(false);
+  const [payment, setPayment] = useState({
+    name: paymentMethods[0].nombre_catalogo,
+  });
 
   useEffect(() => {
     dispatch(getProducts(idBranch, conditions)); //nueva action con filtro de sucursal
   }, [conditions]);
+
+  useEffect(() => {
+    dispatch(getPayments());
+  }, []);
 
   const handlerChange = (event) => {
     setSearch(event.target.value);
@@ -41,13 +50,18 @@ const NewSales = () => {
     });
   };
 
-  const [isModal, setIsModal] = useState(false);
-
   const comprar = () => {
     setIsModal(true);
   };
   const cancelar = () => {
     setIsModal(false);
+  };
+
+  const paymentChange = (event) => {
+    setPayment({
+      ...payment,
+      name: event.target.value,
+    });
   };
 
   return (
@@ -67,10 +81,23 @@ const NewSales = () => {
       <section className={isModal ? Style.modal : Style.modalNOT}>
         <div>
           <h1>Seleccione el método de pago</h1>
-          <h2>!!Estamos trabajando aun en esta parte!!</h2>
+          <select name="payment" id="payment" onChange={paymentChange}>
+            {paymentMethods?.map((method) => {
+              return (
+                <option key={method.id_catalogo} value={method.nombre_catalogo}>
+                  {method.nombre_catalogo}
+                </option>
+              );
+            })}
+          </select>
         </div>
         <div>
-          <button className={Style.comprar}>Continuar</button>
+          <button
+            className={Style.comprar}
+            onClick={() => console.log("accion de comprar")}
+          >
+            Continuar
+          </button>
           <button className={Style.delete} onClick={cancelar}>
             Cancelar
           </button>

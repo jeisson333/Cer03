@@ -12,6 +12,7 @@ import {
   SIGN_OUT,
   SIDEBAR,
   ACTION_CART,
+  GET_PAYMENTS,
 } from "./action-types.js";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -46,6 +47,22 @@ export const getTypeProducts = () => {
       );
       return dispatch({
         type: GET_TYPEPRODUCTS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const getPayments = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `${baseUrl}/catalogos?tipo_catalogo=fdda2874-f53f-4784-a535-0bffb786ef8f`
+      );
+      return dispatch({
+        type: GET_PAYMENTS,
         payload: response.data,
       });
     } catch (error) {
