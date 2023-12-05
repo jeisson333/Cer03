@@ -12,37 +12,42 @@ const SubscriptionSuccess = () => {
   const collectionId = params.get("collection_id");
   const collectionStatus = params.get("collection_status");
   const preferenceId = params.get("preference_id");
-  const [verifyId, setVerifyId] = useState({});
+  // const [verifyId, setVerifyId] = useState({});
   useEffect(() => {
     (async () => {
       try {
         const { data } = await axios.post(
-          `https://b569-45-238-182-161.ngrok.io/paymentGateways/webhook?data.id=${collectionId}&type=payment`
+          `https://de86-45-238-182-161.ngrok.io/paymentGateways/webhook?data.id=${collectionId}&type=payment`
         );
 
-        setVerifyId(data);
+        // setVerifyId(data);
+        await sendMail(data);
       } catch (error) {
         throw Error(error.message);
       }
     })();
   }, []);
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const { data } = await axios.post(`${url}/email`, {
-  //         email:
-  //           "lucasescudero5629@gmail.com,david@castromora.lat,jeissonosorio97@gmail.com",
-  //         tittle: "Compra Exitosa",
-  //         text: `Compra Exitosa <br /> id:  `,
-  //       });
 
-  //       setVerifyId(data);
-  //     } catch (error) {
-  //       throw Error(error.message);
-  //     }
-  //   })();
-  // }, []);
-  console.log(verifyId);
+  const sendMail = async (verifyId) => {
+    try {
+      console.log("entro");
+      if (verifyId?.body) {
+        console.log("No entro");
+        await axios.post(`${url}/email`, {
+          email:
+            "lucasescudero5629@gmail.com,david@castromora.lat,jeissonosorio97@gmail.com",
+          tittle: "Compra Exitosa!!!",
+          text: `Tipo de suscripción : ${verifyId?.body?.description} <br />
+          Transacción id: ${verifyId?.body?.id} <br/>
+          Estado: ${verifyId?.body?.status} <br/>
+          Precio: ${verifyId?.body?.transaction_details?.total_paid_amount} <br/>
+          `,
+        });
+      }
+    } catch (error) {
+      throw Error(error.message);
+    }
+  };
 
   return (
     <div className={style.container}>

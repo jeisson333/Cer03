@@ -24,13 +24,14 @@ const getMercadoPagoController = async ({ info }) => {
     },
 
     notification_url:
-      "https://cer03-dev-dhmt.4.us-1.fl0.io/paymentGateways/webhook",
+      "https://de86-45-238-182-161.ngrok.io/paymentGateways/webhook",
   });
 
   return result.body;
 };
 const getWebHookController = async (infoQuery) => {
   try {
+    console.log("entra");
     if (infoQuery.type === "payment") {
       const data = await mercadopage.payment.findById(infoQuery["data.id"]);
 
