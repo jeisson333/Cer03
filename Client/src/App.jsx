@@ -61,7 +61,7 @@ function App() {
   return (
     <div className={navClass}>
       {sidebarActive && <NavBAr />}
-      <Toaster position="top-right" />
+      <Toaster position="top-center" reverseOrder={false} />
       <Routes>
         {/* public */}
         <Route exact path="/" element={<LandingPage />} />
