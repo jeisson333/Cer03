@@ -25,6 +25,16 @@
   align-items: center;
 }
 
-.goBack{
+.goBack {
   width: 100vw;
+}
+
+.buttons {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.buttons:hover {
+  transform: scale(1.2);
 }
