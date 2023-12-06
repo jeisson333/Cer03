@@ -55,7 +55,7 @@
 .selected {
   display: flex;
   justify-content: center;
-  margin: 0 15px 0 15px;
+  margin: 5px 15px 5px 15px;
   background-color: aqua;
   /* padding: 5px; */
   padding-right: 5px;
@@ -71,4 +71,5 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin: 5px;
 }
