@@ -142,7 +142,7 @@ export const signIn = (user) => {
 export const signUp = (user) => {
   return async function (dispatch) {
     try {
-      const url = `${baseUrl}/auth/sing-up`;
+      const url = `${baseUrl}/empresa/sign-up`;
       const { data } = await axios.post(url, user);
       const myDecodedToken = decodeToken(data);
       const isMyTokenExpired = isExpired(data);
