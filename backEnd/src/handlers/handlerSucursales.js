@@ -19,7 +19,7 @@ const getAllSucursales = async (req, res) => {
 const postNewSucursales = async (req, res) => {
   try {
     const { nombre_sucursales, idBranch } = req.body;
-
+    console.log(nombre_sucursales, idBranch);
     if (!nombre_sucursales?.length || !idBranch)
       res.status(400).json({ error: "Faltan datos" });
 

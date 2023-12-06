@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
+import axios from "axios";
+const baseUrl = import.meta.env.VITE_BASE_URL;
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 import Style from "./AfterSignUp.module.css";
 
 const AfterSignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const dataUser = cookies.get("auth");
   const [input, setInput] = useState("");
   const [sucursales, setSucursales] = useState([]);
 
@@ -37,7 +43,11 @@ const AfterSignUp = () => {
   const handlerSubmit = (event) => {
     event.preventDefault();
     if (sucursales.length) {
-      //funcion para postear sucursales
+      const url = `${baseUrl}/sucursales/post-sucursales`;
+      axios.post(url, {
+        idBranch: dataUser.idBranch,
+        nombre_sucursales: sucursales,
+      });
       navigate("/home");
     }
   };
