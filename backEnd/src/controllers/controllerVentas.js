@@ -134,27 +134,29 @@ const postVenta = async ({ body }) => {
   venta.setCATALOGO_UNIVERSAL(body.payment);
 
   body?.products.forEach(async (product) => {
-    let detalleVenta = await DETALLES_VENTA.create({
-      cantidad_producto: product.amount,
-      venta_producto: product.id_producto,
-      detalles_venta: venta.id_venta,
-    });
+    if (product.stock) {
+      let detalleVenta = await DETALLES_VENTA.create({
+        cantidad_producto: product.amount,
+        venta_producto: product.id_producto,
+        detalles_venta: venta.id_venta,
+      });
 
-    detalleVenta.setPRODUCTO(product.id);
-    detalleVenta.setVENTum(venta.id_venta);
+      detalleVenta.setPRODUCTO(product.id);
+      detalleVenta.setVENTum(venta.id_venta);
 
-    const invProd = await INVENTARIO_PRODUCTO.findOne({
-      where: {
-        inventario_sucursal: body.sucursal,
-        inventario_producto: product.id,
-      },
-    });
+      const invProd = await INVENTARIO_PRODUCTO.findOne({
+        where: {
+          inventario_sucursal: body.sucursal,
+          inventario_producto: product.id,
+        },
+      });
 
-    invProd.set({
-      stock: product.totalStock,
-    });
+      invProd.set({
+        stock: product.totalStock,
+      });
 
-    await invProd.save();
+      await invProd.save();
+    }
   });
 
   return venta;
