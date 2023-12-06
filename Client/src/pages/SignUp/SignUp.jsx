@@ -23,7 +23,7 @@ export default function SignUp() {
 
   useEffect(() => {
     if (Object.keys(dataUser).length > 1) {
-      navigate("/home");
+      navigate("/sign-up/sucursales");
     }
     function start() {
       gapi.auth2.init({

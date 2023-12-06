@@ -26,6 +26,7 @@ import SubscriptionSuccess from "./pages/SubscriptionCheckout/SubscriptionSucces
 import SubscriptionFailure from "./pages/SubscriptionCheckout/SubscriptionFailure";
 import SubscriptionPending from "./pages/SubscriptionCheckout/SubscriptionPending";
 import { Toaster } from "react-hot-toast";
+import AfterSignUp from "./pages/AfterSignUp/AfterSignUp";
 
 function App() {
   const location = useLocation();
@@ -92,6 +93,7 @@ function App() {
             path="/subscription/pending"
             element={<SubscriptionPending />}
           />
+          <Route path="/sign-up/sucursales" element={<AfterSignUp />} />
         </Route>
         {/* user */}
         <Route element={<RequireAuth authRoles={["user"]} />}>
