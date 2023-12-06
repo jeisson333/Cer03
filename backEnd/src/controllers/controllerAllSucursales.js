@@ -35,6 +35,18 @@ const controllerAllSucursales = async (conditions, idBranch) => {
   return handlerApiFormat(sucursales, pageNumber, count.length, limit);
 };
 
+const controllerCreateSucursales = ({ nombre_sucursales, idBranch }) => {
+  nombre_sucursales?.forEach(async (nombre_sucursal) => {
+    const createSucursal = await SUCURSAL.create({
+      nombre_sucursal: nombre_sucursal,
+      sucursal_empresa: idBranch,
+    });
+
+    createSucursal.setEMPRESA(idBranch);
+  });
+};
+
 module.exports = {
   controllerAllSucursales,
+  controllerCreateSucursales,
 };

@@ -68,9 +68,6 @@ const AfterSignUp = () => {
           ))}
         </div>
         <input type="submit" value="Registar" className={Style.inputSubmit} />
-        {/* <button onClick={handlerSubmit} className={Style.inputSubmit}>
-          Registrar
-        </button> */}
       </form>
     </div>
   );
