@@ -14,7 +14,7 @@ const postEmpresa = async ({ nombre_empresa, email, password }) => {
     nombre_empresa: nombre_empresa,
     email: email,
     password: password,
-    fecha_licencia: Date.now() / 1000,
+    fecha_licencia: Date.now(),
   });
 
   return "Se ha creado la empresa";
