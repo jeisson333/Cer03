@@ -4,6 +4,9 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Rotate } from "react-awesome-reveal";
 import Cookies from "universal-cookie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import style from "../Detail/Detail.module.css";
 const cookies = new Cookies();
 
 const Detail = () => {
@@ -63,6 +66,11 @@ const Detail = () => {
               <p className="mb-2">
                 Precio Venta: ${product[0]?.PRODUCTO?.valor_venta}
               </p>
+              <button className={`${style.buttons} mr-6`}>Agregar Stock</button>
+              <button className={style.buttons}>
+                Eliminar.
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
             </div>
           </div>
         </Rotate>
