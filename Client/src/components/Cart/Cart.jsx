@@ -15,7 +15,7 @@ const cookies = new Cookies();
 const Cart = ({ comprar }) => {
   const dispatch = useDispatch();
   const detectActionCart = useSelector((state) => state.actionCart);
-  const payments = useSelector((state) => state.paymentMethods);
+  // const payments = useSelector((state) => state.paymentMethods);
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem(`${cookies.get("auth").idUser}|Cart`)) || []
   );
@@ -24,6 +24,7 @@ const Cart = ({ comprar }) => {
       localStorage.getItem(`${cookies.get("auth").idUser}|totalAmount`)
     ) || 0
   );
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     if (
@@ -103,14 +104,15 @@ const Cart = ({ comprar }) => {
     dispatch(actionCart());
   };
 
-  const [isVisible, setIsVisible] = useState(true);
   const toggleVisible = () => {
     setIsVisible(!isVisible);
   };
 
   const handleCartBuy = () => {
-    if (products.length) comprar();
-    else {
+    if (products.length) {
+      if (totalPrice === 0) toast.error("El precio total no puede ser 0!");
+      else comprar();
+    } else {
       toast.error("El carro debe contener mínimo un producto!");
     }
   };
