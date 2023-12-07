@@ -15,6 +15,7 @@ module.exports = (sequelize) => {
       usuario_vendedor: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
 
       contraseña_vendedor: {
@@ -45,6 +46,7 @@ module.exports = (sequelize) => {
       numero_documento: {
         type: DataTypes.BIGINT,
         allowNull: false,
+        unique: true,
       },
 
       //TipoDocumento UUID [ref: - CATALOGO_UNIVERSAL.id_catalogo]
