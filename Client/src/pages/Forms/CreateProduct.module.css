@@ -120,3 +120,14 @@
   color: rgb(201, 0, 0);
   font-weight: 100;
 }
+
+.inventarioHolder{
+  display: flex;
+  flex-direction: wrap;
+}
+
+@media (max-width:800px){
+  .inventarioHolder{
+    display: block;
+  }
+}

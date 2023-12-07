@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Loading from "../../components/Loading/Loading";
+import Graph from "../../components/Graph/Graph";
 
 export default function experiments() {
   // const [test, setTest] = useState("");
@@ -18,9 +18,12 @@ export default function experiments() {
   //     });
   // }, []);
 
+
+
   return (
+
     <div>
-      
+      <Graph data1={12} data2={16} data3={5} name1={'Dato1'} name2={'Dato2'} name3={'Dato3'} />
     </div>
     // <div>
     //   <Loading/>
