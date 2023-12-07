@@ -42,7 +42,7 @@ const Detail = () => {
             className="w-96 h-50 object-cover rounded-lg overflow-hidden shadow-2xl items-center justify-center mt-20"
             src={product[0]?.PRODUCTO?.image}
             alt={product[0]?.PRODUCTO?.nombre_producto}
-            style={{ maxWidth: "200px", maxHeight: "200px" }}
+            style={{ maxWidth: "300px", maxHeight: "250px" }}
           />
         </div>
 
