@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../redux/actions";
 import Style from "./SignIn.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { gapi } from "gapi-script";
 import { decodeToken } from "react-jwt";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 const client_id = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -62,7 +62,15 @@ export default function SignIn() {
   return (
     <div className={Style.container}>
       <form onSubmit={handleSubmit} className={Style.containerForm}>
-        <h1 className={Style.title}>Iniciar Sesion</h1>
+        <div className={Style.divTittle}>
+          <h1 className={Style.title}>Iniciar Sesion</h1>
+          <NavLink to="/signUp">
+            <button type="button" className={Style.SignUp}>
+              Registrate
+            </button>
+          </NavLink>
+        </div>
+
         <label className={Style.label}>Usuario</label>
         <input
           type="text"
