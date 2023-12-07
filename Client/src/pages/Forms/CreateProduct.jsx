@@ -263,7 +263,7 @@ export function CreateProduct() {
             <div className={styles.buttonHolder}>
               <h2 className={styles.title}>Inventario del producto</h2>
             </div>
-            <div className={styles.buttonHolder}>
+            <div className={styles.inventarioHolder}>
               <div className={styles.indHolder}>
                 <label>
                   <span>Sucursal </span>
