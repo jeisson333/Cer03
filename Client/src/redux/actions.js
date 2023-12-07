@@ -3,6 +3,7 @@ import {
   GET_PRODUCTS,
   ERROR_PRODUCTS,
   POST_NEWPRODUCT,
+  GET_DOCUMENTS,
   GET_TYPEPRODUCTS,
   GET_SUCURSAL,
   ADD_CART,
@@ -13,6 +14,7 @@ import {
   SIDEBAR,
   ACTION_CART,
   GET_PAYMENTS,
+  POST_SALEMEN,
 } from "./action-types.js";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -49,8 +51,8 @@ export const getTypeProducts = () => {
         type: GET_TYPEPRODUCTS,
         payload: response.data,
       });
-    } catch (error) {
-      console.log(error.message);
+    } catch ({ response }) {
+      console.log(response.data);
     }
   };
 };
@@ -65,8 +67,24 @@ export const getPayments = () => {
         type: GET_PAYMENTS,
         payload: response.data,
       });
-    } catch (error) {
-      console.log(error.message);
+    } catch ({ response }) {
+      console.log(response.data);
+    }
+  };
+};
+
+export const getDocuments = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `${baseUrl}/catalogos?tipo_catalogo=671d795f-bb6b-47d1-bf13-c639b58472b6`
+      );
+      return dispatch({
+        type: GET_DOCUMENTS,
+        payload: response.data,
+      });
+    } catch ({ response }) {
+      console.log(response.data);
     }
   };
 };
@@ -84,8 +102,8 @@ export const getSucursales = (idBranch, conditions) => {
         type: GET_SUCURSAL,
         payload: data,
       });
-    } catch (error) {
-      console.log(error.message);
+    } catch ({ response }) {
+      console.log(response.data);
     }
   };
 };
@@ -103,6 +121,23 @@ export const postNewProduct = (input) => {
       });
     } catch (error) {
       console.log(error.message);
+    }
+  };
+};
+
+export const postSaleMen = (saleMen) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.post(
+        `${baseUrl}/vendedor/newClient`,
+        saleMen
+      );
+      return dispatch({
+        type: POST_SALEMEN,
+        payload: data,
+      });
+    } catch ({ response }) {
+      console.log(response.data);
     }
   };
 };
@@ -133,8 +168,8 @@ export const signIn = (user) => {
         type: SIGN_IN,
         payload: myDecodedToken,
       });
-    } catch (error) {
-      console.log(error.message);
+    } catch ({ response }) {
+      console.log(response.data);
     }
   };
 };
@@ -151,8 +186,8 @@ export const signUp = (user) => {
         type: SIGN_UP,
         payload: myDecodedToken,
       });
-    } catch (error) {
-      console.log(error.message);
+    } catch ({ response }) {
+      console.log(response.data);
     }
   };
 };

@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Style from "./FormVendedor.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getDocuments, getSucursales, postSaleMen } from "../../redux/actions";
+
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const FormVendedor = () => {
-  const [form, setForm] = useState({
-    usuario_vendedor: "",
-    contraseña_vendedor: "",
-    primer_nombre: "",
-    segundo_nombre: "",
-    primer_apellido: "",
-    segundo_apellido: "",
-    tipo_documento: "",
-    numero_documento: "",
-    vendedor_sucursal: "",
-  });
+  const dispatch = useDispatch();
+  const { documents, sucursales } = useSelector((state) => state);
+  const { idBranch } = cookies.get("auth");
+
+  const [form, setForm] = useState({});
 
   const [errors, setErrors] = useState({
     usuario_vendedor: "",
@@ -26,6 +25,11 @@ const FormVendedor = () => {
     vendedor_sucursal: "",
   });
 
+  useEffect(() => {
+    dispatch(getDocuments());
+    dispatch(getSucursales(idBranch));
+  }, []);
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
@@ -35,6 +39,7 @@ const FormVendedor = () => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     if (!hayErrores()) {
+      dispatch(postSaleMen(form));
       console.log("Datos del formulario:", form);
     } else {
       console.log("Hay errores en el formulario. No se puede enviar.");
@@ -162,6 +167,11 @@ const FormVendedor = () => {
             onChange={handleInputChange}
           >
             <option></option>
+            {documents?.map((document, index) => (
+              <option key={index} value={document.id_catalogo}>
+                {document.nombre_catalogo}
+              </option>
+            ))}
           </select>
           <span className={Style.formError}>{errors.tipo_documento}</span>
         </div>
@@ -187,6 +197,11 @@ const FormVendedor = () => {
             onChange={handleInputChange}
           >
             <option></option>
+            {sucursales?.map((sucursal, index) => (
+              <option key={index} value={sucursal.id_sucursal}>
+                {sucursal.nombre_sucursal}
+              </option>
+            ))}
           </select>
           <span className={Style.formError}>{errors.vendedor_sucursal}</span>
         </div>

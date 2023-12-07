@@ -2,7 +2,9 @@ import {
   GET_PRODUCTS,
   ERROR_PRODUCTS,
   POST_NEWPRODUCT,
+  GET_DOCUMENTS,
   GET_TYPEPRODUCTS,
+  POST_SALEMEN,
   GET_SUCURSAL,
   ADD_CART,
   REMOVE_CART,
@@ -21,11 +23,12 @@ const initialState = {
   allTypeProducts: [],
   paymentMethods: [],
   sucursales: [],
+  documents: [],
   totalPages: 1,
-  authentication: false,
+  newProduct: false,
   sidebarActive: false,
   actionCart: false,
-  newProduct: false,
+  msg: "",
 };
 
 function reducer(state = initialState, action) {
@@ -41,7 +44,11 @@ function reducer(state = initialState, action) {
         ...state,
         paymentMethods: action.payload?.data,
       };
-
+    case GET_DOCUMENTS:
+      return {
+        ...state,
+        documents: action.payload?.data,
+      };
     case GET_PRODUCTS:
       return {
         ...state,
@@ -57,6 +64,9 @@ function reducer(state = initialState, action) {
       };
     case POST_NEWPRODUCT:
       return { ...state, newProduct: true };
+
+    case POST_SALEMEN:
+      return { ...state };
 
     case GET_SUCURSAL:
       return {

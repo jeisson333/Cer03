@@ -20,7 +20,7 @@ const router = Router();
 // Configurar los routers
 router.use("/auth", routeAuth);
 router.use("/empresa", routeEmpresa);
-router.use("/vendedor", verifyToken, routeVendedor);
+router.use("/vendedor", routeVendedor);
 router.use("/ventas", routeVentas);
 router.use("/products", productsRouter);
 router.use("/sucursales", routeSucursales);
