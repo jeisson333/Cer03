@@ -1,12 +1,5 @@
-.divMain {
-  display: grid;
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: center; /* Centrar verticalmente */
-  height: 100vh; /* Opcional: Ajustar el alto al 100% del viewport */
-}
-
 .tittle {
-  font-size: 3vw;
+  font-size: 2vw;
 }
 
 .info {
@@ -38,4 +31,13 @@
 
 .buttons:hover {
   transform: scale(1.2);
+}
+.container {
+  position: fixed;
+  background-color: red;
+  width: 50%;
+  height: 50%;
+}
+.closedModal {
+  display: none;
 }

@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import style from "../Detail/Detail.module.css";
+import EditProduct from "./EditProduct";
 const cookies = new Cookies();
 
 const Detail = () => {
@@ -23,7 +24,20 @@ const Detail = () => {
   const sucursal = query.get("sucursal");
   const url = import.meta.env.VITE_BASE_URL;
   const [product, setProducts] = useState([]);
-
+  const [modalProduct, setModalProduct] = useState(false);
+  const [sucursales, setSucursales] = useState([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await axios.post(`${url}/products?name=${name}`, {
+          id: idBranch,
+        });
+        setSucursales(data.data);
+      } catch (error) {
+        throw Error(error.message);
+      }
+    })();
+  }, []);
   useEffect(() => {
     (async () => {
       try {
@@ -39,6 +53,9 @@ const Detail = () => {
       }
     })();
   }, []);
+  const modalEditProduc = () => {
+    setModalProduct(!modalProduct);
+  };
 
   useEffect(() => {
     if (msg.length > 2) {
@@ -64,7 +81,7 @@ const Detail = () => {
             className="w-96 h-50 object-cover rounded-lg overflow-hidden shadow-2xl items-center justify-center mt-20"
             src={product[0]?.PRODUCTO?.image}
             alt={product[0]?.PRODUCTO?.nombre_producto}
-            style={{ maxWidth: "200px", maxHeight: "200px" }}
+            style={{ maxWidth: "300px", maxHeight: "250px" }}
           />
         </div>
 
@@ -89,7 +106,12 @@ const Detail = () => {
               <p className="mb-2">
                 Precio Venta: ${product[0]?.PRODUCTO?.valor_venta}
               </p>
-              <button className={`${style.buttons} mr-6`}>Agregar Stock</button>
+              <button
+                onClick={modalEditProduc}
+                className={`${style.buttons} mr-6`}
+              >
+                Agregar Stock
+              </button>
               <button className={style.buttons} onClick={handleDeleteProduct}>
                 Eliminar
                 <FontAwesomeIcon icon={faTrash} />
@@ -97,6 +119,12 @@ const Detail = () => {
             </div>
           </div>
         </Rotate>
+      </div>
+      <div className={modalProduct ? style.container : style.closedModal}>
+        <EditProduct
+          sucursales={sucursales}
+          modalEditProduc={modalEditProduc}
+        />
       </div>
     </div>
   );
