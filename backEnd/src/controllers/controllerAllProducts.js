@@ -4,7 +4,7 @@ const {
   INVENTARIO_PRODUCTO,
   SUCURSAL,
 } = require("../database/db");
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 const { handlerFilters, handlerApiFormat } = require("./controllerPages");
 
 const obtainAllProducts = async ({ conditions, idBranch }) => {
@@ -109,6 +109,36 @@ const obtainAllProducts = async ({ conditions, idBranch }) => {
   return handlerApiFormat(products, pageNumber, count, limit);
 };
 
+const updateProduct = async ({ conditions }) => {
+  try {
+    const { stock, id_sucursal, id_producto } = conditions;
+    const result = await INVENTARIO_PRODUCTO.update(
+      { stock: stock },
+      {
+        where: {
+          inventario_sucursal: id_sucursal,
+          inventario_producto: id_producto,
+        },
+      }
+    );
+
+    if (result[0] === 0) {
+      throw new Error(`Product '${id_producto}' in '${id_sucursal}' not found`);
+    }
+
+    return INVENTARIO_PRODUCTO.findAll({
+      where: {
+        inventario_sucursal: id_sucursal,
+        inventario_producto: id_producto,
+      },
+    });
+  } catch (error) {
+    console.error("Error:", error.message);
+    throw error;
+  }
+};
+
 module.exports = {
   obtainAllProducts,
+  updateProduct,
 };

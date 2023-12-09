@@ -1,5 +1,7 @@
+const { response } = require("express");
 const {
   obtainAllProducts,
+  updateProduct,
 } = require("../controllers/controllerAllProducts.js");
 const { newProduct } = require("../controllers/newProduct.js");
 
@@ -26,7 +28,20 @@ const postNewProduct = async (req, res) => {
   }
 };
 
+const editProductHandler = async (req, res) => {
+  try {
+    const id_producto = req.params;
+    const conditions = req.query;
+
+    const response = await updateProduct({ id_producto, conditions });
+    return res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllProducts,
   postNewProduct,
+  editProductHandler,
 };
