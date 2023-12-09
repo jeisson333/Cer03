@@ -62,12 +62,30 @@ export function CreateProduct() {
 
 	const handleChangeImage = (event) => {
 		const file = event.target.files[0];
-		setNewProduct({
-			...newProduct,
-			image: file,
-		});
-		console.log(file, 'holaaa');
+		//setNewProduct({ ...newProduct, image: file });
+		setFileToBase(file);
 	};
+	const setFileToBase = (file) => {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onloadend = () => {
+			const imageUrl = reader.result; // Obtén el resultado del FileReader
+
+			// Aquí puedes crear un objeto URL a partir del resultado
+			// Por ejemplo, podrías hacer algo como esto:
+
+			// Ahora puedes asignar la URL a tu objeto newProduct.image
+			setNewProduct({ ...newProduct, image: imageUrl });
+		};
+	};
+
+	/*const setFileToBase = (file) => {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onloadend = () => {
+			setNewProduct({ ...newProduct, image: reader.result });
+		};
+	};*/
 
 	const handleStockSucursal = (event) => {
 		setStockSucursal(event.target.value);
@@ -157,7 +175,7 @@ export function CreateProduct() {
 	return (
 		<>
 			{!wait ? (
-				<form onSubmit={onSubmit}>
+				<form onSubmit={onSubmit} encType='multipart/form-data'>
 					<div className={styles.cargarProductos}>
 						<h2>Cargar producto</h2>
 						<div className={styles.divider}></div>
@@ -258,14 +276,14 @@ export function CreateProduct() {
 									<span>Imagen (URL) </span>
 									<input
 										type='file'
-										id='inputImagen'
+										id='image'
 										accept='image/'
 										onChange={handleChangeImage}
 										name='image'
 									/>
 									{newProduct.image && (
 										<img
-											src={URL.createObjectURL(newProduct.image)}
+											src={newProduct.image}
 											alt='Imagen seleccionada'
 											style={{ maxWidth: '100px', maxHeight: '100px' }}
 										/>

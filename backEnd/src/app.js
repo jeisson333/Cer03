@@ -9,10 +9,6 @@ const cors = require('cors');
 const { CLOUD_NAME, CLOUD_KEY, CLOUD_SECRET } = process.env;
 //configuracion cloudinary
 
-const multer = require('multer');
-// Configuración de Multer
-const storage = multer.memoryStorage(); // Almacenar archivos en memoria
-const upload = multer({ storage });
 const cloudinary = require('cloudinary').v2;
 
 cloudinary.config({
