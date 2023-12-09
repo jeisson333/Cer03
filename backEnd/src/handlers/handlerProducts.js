@@ -1,5 +1,7 @@
 const {
   obtainAllProducts,
+  disableProduct,
+  enableProduct,
 } = require("../controllers/controllerAllProducts.js");
 const { newProduct } = require("../controllers/newProduct.js");
 
@@ -26,7 +28,32 @@ const postNewProduct = async (req, res) => {
   }
 };
 
+const deleteProduct = async (req, res) => {
+  try {
+    const { id_producto, nombre_sucursal } = req.query;
+    const response = await disableProduct({
+      id_producto,
+      nombre_sucursal,
+    });
+    return res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const restoreProduct = async (req, res) => {
+  try {
+    const { id_inventario_producto } = req.body;
+    const response = await enableProduct({ id_inventario_producto });
+    return res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllProducts,
   postNewProduct,
+  deleteProduct,
+  restoreProduct,
 };

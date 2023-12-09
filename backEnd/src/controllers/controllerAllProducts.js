@@ -109,6 +109,46 @@ const obtainAllProducts = async ({ conditions, idBranch }) => {
   return handlerApiFormat(products, pageNumber, count, limit);
 };
 
+const disableProduct = async ({ id_producto, nombre_sucursal }) => {
+  const sucursal = await SUCURSAL.findOne({
+    where: {
+      nombre_sucursal: nombre_sucursal,
+    },
+  });
+
+  const inventario = await INVENTARIO_PRODUCTO.findOne({
+    where: {
+      inventario_producto: id_producto,
+      inventario_sucursal: sucursal?.id_sucursal,
+    },
+  });
+
+  const rowsAffected = await INVENTARIO_PRODUCTO.destroy({
+    where: {
+      id_inventario_producto: inventario?.id_inventario_producto,
+    },
+  });
+  if (rowsAffected === 0)
+    throw new Error({ error: "No se elimino el producto" });
+
+  return { msg: "Se elimino el producto exitosamente" };
+};
+
+const enableProduct = async ({ id_inventario_producto }) => {
+  const product = await INVENTARIO_PRODUCTO.restore({
+    where: {
+      id_inventario_producto: id_inventario_producto,
+    },
+  });
+
+  if (!product) throw new Error({ error: "No se restauro el producto" });
+  else {
+    return { msg: "Se restauro el producto exitosamente" };
+  }
+};
+
 module.exports = {
   obtainAllProducts,
+  disableProduct,
+  enableProduct,
 };
