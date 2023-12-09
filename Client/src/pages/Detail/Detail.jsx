@@ -1,16 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProduct } from "../../redux/actions";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Rotate } from "react-awesome-reveal";
 import Cookies from "universal-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Swal from "sweetalert2";
 import style from "../Detail/Detail.module.css";
 const cookies = new Cookies();
 
 const Detail = () => {
-  const { idBranch } = cookies.get("auth");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { idBranch, branch } = cookies.get("auth");
+  const { msg } = useSelector((state) => state);
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const name = query.get("name");
@@ -33,6 +39,22 @@ const Detail = () => {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    if (msg.length > 2) {
+      Swal.fire({
+        title: "SUCCESS!",
+        text: msg,
+        icon: "success",
+      });
+      navigate("/products");
+    }
+  }, [product]);
+
+  const handleDeleteProduct = async () => {
+    await dispatch(deleteProduct(product[0]?.PRODUCTO?.id_producto, branch));
+    setProducts({});
+  };
 
   return (
     <div className="flex justify-center items-center h-screen p-4 bg-gray-300">
@@ -68,8 +90,8 @@ const Detail = () => {
                 Precio Venta: ${product[0]?.PRODUCTO?.valor_venta}
               </p>
               <button className={`${style.buttons} mr-6`}>Agregar Stock</button>
-              <button className={style.buttons}>
-                Eliminar.
+              <button className={style.buttons} onClick={handleDeleteProduct}>
+                Eliminar
                 <FontAwesomeIcon icon={faTrash} />
               </button>
             </div>

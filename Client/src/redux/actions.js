@@ -3,6 +3,7 @@ import {
   GET_PRODUCTS,
   ERROR_PRODUCTS,
   POST_NEWPRODUCT,
+  DELETE_PRODUCT,
   GET_DOCUMENTS,
   GET_TYPEPRODUCTS,
   GET_SUCURSAL,
@@ -153,6 +154,21 @@ export const removeCart = (productId) => {
   return {
     type: REMOVE_CART,
     payload: productId,
+  };
+};
+
+export const deleteProduct = (id_producto, nombre_sucursal) => {
+  return async function (dispatch) {
+    try {
+      const url = `${baseUrl}/products/?id_producto=${id_producto}&nombre_sucursal=${nombre_sucursal}`;
+      const { data } = await axios.delete(url);
+      return dispatch({
+        type: DELETE_PRODUCT,
+        payload: data,
+      });
+    } catch ({ response }) {
+      console.log(response.data);
+    }
   };
 };
 

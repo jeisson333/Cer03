@@ -2,6 +2,7 @@ import {
   GET_PRODUCTS,
   ERROR_PRODUCTS,
   POST_NEWPRODUCT,
+  DELETE_PRODUCT,
   GET_DOCUMENTS,
   GET_TYPEPRODUCTS,
   POST_SALEMEN,
@@ -55,6 +56,7 @@ function reducer(state = initialState, action) {
         products: action.payload.data,
         totalPages: action.payload.info.pages,
         newProduct: false,
+        msg: "",
       };
     case ERROR_PRODUCTS:
       return {
@@ -64,6 +66,8 @@ function reducer(state = initialState, action) {
       };
     case POST_NEWPRODUCT:
       return { ...state, newProduct: true };
+    case DELETE_PRODUCT:
+      return { ...state, msg: action.payload?.msg };
 
     case POST_SALEMEN:
       return { ...state };
