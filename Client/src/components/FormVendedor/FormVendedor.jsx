@@ -107,10 +107,27 @@ const FormVendedor = () => {
     setErrors(nuevosErrores);
   };
 
+  const deleteFields = () =>{
+    setForm({
+      ...form,
+      contraseña_vendedor: "",
+      numero_documento: "",
+      primer_apellido: "",
+      primer_nombre: "",
+      segundo_apellido: "",
+      segundo_nombre: "",
+      usuario_vendedor: ""
+    })
+  }
+
+  console.log(form);
   return (
     <form className={Style.formContainer} onSubmit={handleFormSubmit}>
+      <h2>Registrar Vendedor</h2>
       <div className={Style.container}>
+      <div className={Style.formSame}>
         <div className={Style.formGroup}>
+          
           <label className={Style.formLabel}>Primer Nombre: </label>
           <input
             type="text"
@@ -120,9 +137,10 @@ const FormVendedor = () => {
             onChange={handleInputChange}
           />
           <span className={Style.formError}>{errors.primer_nombre}</span>
-        </div>
+          
+          </div>
 
-        <div className={Style.formGroup}>
+          <div className={Style.formGroup}>
           <label className={Style.formLabel}>Segundo Nombre: </label>
           <input
             type="text"
@@ -133,7 +151,10 @@ const FormVendedor = () => {
           />
           <span className={Style.formError}>{errors.segundo_nombre}</span>
         </div>
+      
+        </div>
 
+        <div className={Style.formSame}>
         <div className={Style.formGroup}>
           <label className={Style.formLabel}>Primer Apellido: </label>
           <input
@@ -145,7 +166,6 @@ const FormVendedor = () => {
           />
           <span className={Style.formError}>{errors.primer_apellido}</span>
         </div>
-
         <div className={Style.formGroup}>
           <label className={Style.formLabel}>Segundo Apellido: </label>
           <input
@@ -157,6 +177,8 @@ const FormVendedor = () => {
           />
           <span className={Style.formError}>{errors.segundo_apellido}</span>
         </div>
+        </div>
+     
 
         <div className={Style.formGroup}>
           <label className={Style.formLabel}>Tipo de Documento: </label>
@@ -206,6 +228,7 @@ const FormVendedor = () => {
           <span className={Style.formError}>{errors.vendedor_sucursal}</span>
         </div>
 
+        <div className={Style.formSame}>
         <div className={Style.formGroup}>
           <label className={Style.formLabel}>Usuario: </label>
           <input
@@ -217,7 +240,6 @@ const FormVendedor = () => {
           />
           <span className={Style.formError}>{errors.usuario_vendedor}</span>
         </div>
-
         <div className={Style.formGroup}>
           <label className={Style.formLabel}>Contraseña: </label>
           <input
@@ -229,7 +251,8 @@ const FormVendedor = () => {
           />
           <span className={Style.formError}>{errors.contraseña_vendedor}</span>
         </div>
-
+        </div>   
+        <div className={Style.buttonHolder}>
         <button
           type="submit"
           className={`${Style.formButton} ${Style.formSubmit}`}
@@ -237,6 +260,13 @@ const FormVendedor = () => {
         >
           Guardar
         </button>
+        <button 
+        className={Style.deleteButton}
+        onClick={deleteFields}>
+          Borrar todo
+        </button>
+        </div>
+      
       </div>
     </form>
   );
