@@ -107,7 +107,7 @@ const FormVendedor = () => {
     setErrors(nuevosErrores);
   };
 
-  const deleteFields = () =>{
+  const deleteFields = () => {
     setForm({
       ...form,
       contraseña_vendedor: "",
@@ -116,69 +116,64 @@ const FormVendedor = () => {
       primer_nombre: "",
       segundo_apellido: "",
       segundo_nombre: "",
-      usuario_vendedor: ""
-    })
-  }
+      usuario_vendedor: "",
+    });
+  };
 
-  console.log(form);
   return (
     <form className={Style.formContainer} onSubmit={handleFormSubmit}>
       <h2>Registrar Vendedor</h2>
       <div className={Style.container}>
-      <div className={Style.formSame}>
-        <div className={Style.formGroup}>
-          
-          <label className={Style.formLabel}>Primer Nombre: </label>
-          <input
-            type="text"
-            className={Style.formInput}
-            name="primer_nombre"
-            value={form.primer_nombre}
-            onChange={handleInputChange}
-          />
-          <span className={Style.formError}>{errors.primer_nombre}</span>
-          
+        <div className={Style.formSame}>
+          <div className={Style.formGroup}>
+            <label className={Style.formLabel}>Primer Nombre: </label>
+            <input
+              type="text"
+              className={Style.formInput}
+              name="primer_nombre"
+              value={form.primer_nombre}
+              onChange={handleInputChange}
+            />
+            <span className={Style.formError}>{errors.primer_nombre}</span>
           </div>
 
           <div className={Style.formGroup}>
-          <label className={Style.formLabel}>Segundo Nombre: </label>
-          <input
-            type="text"
-            className={Style.formInput}
-            name="segundo_nombre"
-            value={form.segundo_nombre}
-            onChange={handleInputChange}
-          />
-          <span className={Style.formError}>{errors.segundo_nombre}</span>
-        </div>
-      
+            <label className={Style.formLabel}>Segundo Nombre: </label>
+            <input
+              type="text"
+              className={Style.formInput}
+              name="segundo_nombre"
+              value={form.segundo_nombre}
+              onChange={handleInputChange}
+            />
+            <span className={Style.formError}>{errors.segundo_nombre}</span>
+          </div>
         </div>
 
         <div className={Style.formSame}>
-        <div className={Style.formGroup}>
-          <label className={Style.formLabel}>Primer Apellido: </label>
-          <input
-            type="text"
-            className={Style.formInput}
-            name="primer_apellido"
-            value={form.primer_apellido}
-            onChange={handleInputChange}
-          />
-          <span className={Style.formError}>{errors.primer_apellido}</span>
+          <div className={Style.formGroup}>
+            <label className={Style.formLabel}>Primer Apellido: </label>
+            <input
+              type="text"
+              className={Style.formInput}
+              name="primer_apellido"
+              value={form.primer_apellido}
+              onChange={handleInputChange}
+            />
+            <span className={Style.formError}>{errors.primer_apellido}</span>
+          </div>
+          <div className={Style.formGroup}>
+            <label className={Style.formLabel}>Segundo Apellido: </label>
+            <input
+              type="text"
+              className={Style.formInput}
+              name="segundo_apellido"
+              value={form.segundo_apellido}
+              onChange={handleInputChange}
+            />
+            <span className={Style.formError}>{errors.segundo_apellido}</span>
+          </div>
         </div>
-        <div className={Style.formGroup}>
-          <label className={Style.formLabel}>Segundo Apellido: </label>
-          <input
-            type="text"
-            className={Style.formInput}
-            name="segundo_apellido"
-            value={form.segundo_apellido}
-            onChange={handleInputChange}
-          />
-          <span className={Style.formError}>{errors.segundo_apellido}</span>
-        </div>
-        </div>
-     
 
         <div className={Style.formGroup}>
           <label className={Style.formLabel}>Tipo de Documento: </label>
@@ -229,44 +224,43 @@ const FormVendedor = () => {
         </div>
 
         <div className={Style.formSame}>
-        <div className={Style.formGroup}>
-          <label className={Style.formLabel}>Usuario: </label>
-          <input
-            type="text"
-            className={Style.formInput}
-            name="usuario_vendedor"
-            value={form.usuario_vendedor}
-            onChange={handleInputChange}
-          />
-          <span className={Style.formError}>{errors.usuario_vendedor}</span>
+          <div className={Style.formGroup}>
+            <label className={Style.formLabel}>Usuario: </label>
+            <input
+              type="text"
+              className={Style.formInput}
+              name="usuario_vendedor"
+              value={form.usuario_vendedor}
+              onChange={handleInputChange}
+            />
+            <span className={Style.formError}>{errors.usuario_vendedor}</span>
+          </div>
+          <div className={Style.formGroup}>
+            <label className={Style.formLabel}>Contraseña: </label>
+            <input
+              type="password"
+              className={Style.formInput}
+              name="contraseña_vendedor"
+              value={form.contraseña_vendedor}
+              onChange={handleInputChange}
+            />
+            <span className={Style.formError}>
+              {errors.contraseña_vendedor}
+            </span>
+          </div>
         </div>
-        <div className={Style.formGroup}>
-          <label className={Style.formLabel}>Contraseña: </label>
-          <input
-            type="password"
-            className={Style.formInput}
-            name="contraseña_vendedor"
-            value={form.contraseña_vendedor}
-            onChange={handleInputChange}
-          />
-          <span className={Style.formError}>{errors.contraseña_vendedor}</span>
-        </div>
-        </div>   
         <div className={Style.buttonHolder}>
-        <button
-          type="submit"
-          className={`${Style.formButton} ${Style.formSubmit}`}
-          disabled={hayErrores()}
-        >
-          Guardar
-        </button>
-        <button 
-        className={Style.deleteButton}
-        onClick={deleteFields}>
-          Borrar todo
-        </button>
+          <button
+            type="submit"
+            className={`${Style.formButton} ${Style.formSubmit}`}
+            disabled={hayErrores()}
+          >
+            Guardar
+          </button>
+          <button className={Style.deleteButton} onClick={deleteFields}>
+            Borrar todo
+          </button>
         </div>
-      
       </div>
     </form>
   );

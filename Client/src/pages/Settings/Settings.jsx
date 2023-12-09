@@ -1,30 +1,25 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Style from "./Settings.module.css";
 import FormVendedor from "../../components/FormVendedor/FormVendedor";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 const Settings = () => {
-  const [sucursales, setSucursales] = useState([]);
   const url = import.meta.env.VITE_BASE_URL;
   const { idBranch } = cookies.get("auth");
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axios.post(`${url}/sucursales`, {
-          id: idBranch,
-        });
-        setSucursales(data.data);
-      } catch (error) {
-        throw Error(error.message);
-      }
-    })();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div>
-      <FormVendedor />
+      <div>
+        <button className={Style.Btn}>Vendedores</button>
+        <button>Producto</button>
+      </div>
+      <div>
+        <FormVendedor />
+      </div>
     </div>
   );
 
