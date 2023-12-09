@@ -14,3 +14,4 @@ export const SIDEBAR = "SIDEBAR";
 export const ACTION_CART = "ACTION_CART";
 export const GET_PAYMENTS = "GET_PAYMENTS";
 export const POST_SALEMEN = "POST_SALEMEN";
+export const CREATE_TYPE = "CREATE_TYPE";

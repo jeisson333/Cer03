@@ -15,6 +15,7 @@ import {
   SIDEBAR,
   ACTION_CART,
   GET_PAYMENTS,
+  CREATE_TYPE,
 } from "./action-types.js";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -134,6 +135,8 @@ function reducer(state = initialState, action) {
     case ACTION_CART:
       return { ...state, actionCart: state.actionCart ? false : true };
 
+    case CREATE_TYPE:
+      return { ...state, allTypeProducts: action.payload };
     default:
       return { ...state };
   }

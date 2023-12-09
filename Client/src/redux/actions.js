@@ -16,6 +16,7 @@ import {
   ACTION_CART,
   GET_PAYMENTS,
   POST_SALEMEN,
+  CREATE_TYPE,
 } from "./action-types.js";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -225,5 +226,24 @@ export const changeSidebar = (boolean) => {
 export const actionCart = () => {
   return {
     type: ACTION_CART,
+  };
+};
+
+export const createTypeProduct = (types) => {
+  return async function (dispatch) {
+    try {
+      const url = `${baseUrl}/catalogos`;
+      const response = await axios.post(url, {
+        names: types,
+        catalogue_type: "3890c641-32e7-49cf-864e-de62c04efb1b",
+      });
+
+      return dispatch({
+        type: CREATE_TYPE,
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
