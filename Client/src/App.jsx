@@ -29,6 +29,9 @@ import { Toaster } from "react-hot-toast";
 import AfterSignUp from "./pages/AfterSignUp/AfterSignUp";
 import FormTypeProduct from "./pages/FormTypeProduct/FormTypeProduct";
 import SaleDetail from "./pages/SaleDetail/SaleDetail";
+import FormVendedor from "./components/FormVendedor/FormVendedor";
+import SettingsProductos from "./pages/SettingsProductos/SettingsProductos";
+import DeleteProductos from "./pages/DeleteProductos/DeleteProductos";
 
 function App() {
   const location = useLocation();
@@ -46,6 +49,9 @@ function App() {
     "/subscription/success",
     "/subscription/failure",
     "/subscription/pending",
+    "/settingsProductos",
+    "/newSeller",
+    "/deleteProduct",
   ];
   const withoutSide = ["/", "/contact", "/about", "/landingPage", "/signIn"];
 
@@ -79,6 +85,9 @@ function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/newProduct" element={<CreateProduct />} />
           <Route path="/subscription" element={<Subscription />} />
+          <Route path="/newSeller" element={<FormVendedor />} />
+          <Route path="/settingsProductos" element={<SettingsProductos />} />
+          <Route path="/deleteProduct" element={<DeleteProductos />} />
           <Route
             path="/subscription/checkout"
             element={<SubscriptionCheckout />}
