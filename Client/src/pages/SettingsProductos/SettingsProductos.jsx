@@ -9,7 +9,7 @@ const SettingsProductos = () => {
   };
 
   return (
-    <div>
+    <div className={Style.contenido}>
       <button className={Style.Btn} onClick={navigateToDeleteProductos}>
         Eliminar
       </button>

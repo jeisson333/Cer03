@@ -1,3 +1,16 @@
+.contenido {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 100vh;
+}
+
+@media (max-width: 800px) {
+  .contenido {
+    flex-direction: column;
+  }
+}
 .Btn {
   width: 130px;
   height: 40px;

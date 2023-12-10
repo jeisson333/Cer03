@@ -21,16 +21,14 @@ const Settings = () => {
   useEffect(() => {}, []);
 
   return (
-    <div>
-      <div>
-        <button className={Style.Btn} onClick={navigateToFormVendedor}>
-          Vendedores
-        </button>
-        <button className={Style.Btn} onClick={navigateToSettingsProductos}>
-          Producto
-        </button>
-        <button className={Style.Btn}>Sucursales</button>
-      </div>
+    <div className={Style.contenido}>
+      <button className={Style.Btn} onClick={navigateToFormVendedor}>
+        Vendedores
+      </button>
+      <button className={Style.Btn} onClick={navigateToSettingsProductos}>
+        Producto
+      </button>
+      <button className={Style.Btn}>Sucursales</button>
     </div>
   );
 };
