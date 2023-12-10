@@ -8,6 +8,7 @@ const {
 } = require("../database/db");
 const { handlerFilters, handlerApiFormat } = require("./controllerPages");
 const { Op, Sequelize } = require("sequelize");
+const { conn } = require("../database/db");
 
 const getVentas = async ({ conditions, idBranch }) => {
   if (!idBranch?.id) throw new Error("The query need Product's branch");
@@ -162,7 +163,49 @@ const postVenta = async ({ body }) => {
   return venta;
 };
 
+const getVentaDetail = async ({ id }) => {
+  const venta = await VENTA.findOne({
+    attributes: ["id_venta", "metodo_pago", "createdAt", "venta_sucursal"],
+    where: { id_venta: id },
+    include: [
+      {
+        attributes: ["id_detalles_venta", "cantidad_producto"],
+        model: DETALLES_VENTA,
+        where: {
+          detalles_venta: id,
+        },
+        include: [
+          {
+            attributes: [
+              "id_producto",
+              "nombre_producto",
+              "image",
+              "peso",
+              "valor_venta",
+              "valor_compra",
+              "tipo_producto",
+            ],
+            model: PRODUCTO,
+            where: {
+              id_producto: (
+                await DETALLES_VENTA.findOne({
+                  where: {
+                    detalles_venta: id,
+                  },
+                })
+              ).venta_producto,
+            },
+          },
+        ],
+      },
+    ],
+  });
+
+  return venta;
+};
+
 module.exports = {
   getVentas,
   postVenta,
+  getVentaDetail,
 };

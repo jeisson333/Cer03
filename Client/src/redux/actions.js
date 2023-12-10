@@ -17,6 +17,7 @@ import {
   GET_PAYMENTS,
   POST_SALEMEN,
   CREATE_TYPE,
+  GET_SALE_DETAIL,
 } from "./action-types.js";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -241,6 +242,21 @@ export const createTypeProduct = (types) => {
       return dispatch({
         type: CREATE_TYPE,
         payload: response,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getSaleDetail = (id) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios(`${baseUrl}/ventas/${id}`);
+
+      return dispatch({
+        type: GET_SALE_DETAIL,
+        payload: data,
       });
     } catch (error) {
       console.log(error);

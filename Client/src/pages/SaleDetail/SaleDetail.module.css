@@ -1,0 +1,7 @@
+.product {
+  display: flex;
+}
+
+.product > img {
+  width: 200px;
+}

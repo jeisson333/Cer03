@@ -28,6 +28,7 @@ import SubscriptionPending from "./pages/SubscriptionCheckout/SubscriptionPendin
 import { Toaster } from "react-hot-toast";
 import AfterSignUp from "./pages/AfterSignUp/AfterSignUp";
 import FormTypeProduct from "./pages/FormTypeProduct/FormTypeProduct";
+import SaleDetail from "./pages/SaleDetail/SaleDetail";
 
 function App() {
   const location = useLocation();
@@ -110,6 +111,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/test" element={<Experiments />} />
         <Route path="/form" element={<FormTypeProduct />} />
+        <Route path="/home/:id" element={<SaleDetail />} />
         {/* 404 error */}
         <Route path="*" element={<Error />} />
       </Routes>

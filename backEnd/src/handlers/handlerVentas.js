@@ -1,4 +1,8 @@
-const { getVentas, postVenta } = require("../controllers/controllerVentas.js");
+const {
+  getVentas,
+  postVenta,
+  getVentaDetail,
+} = require("../controllers/controllerVentas.js");
 
 const getVentasHandler = async (req, res) => {
   try {
@@ -24,7 +28,22 @@ const postVentasHandler = async (req, res) => {
   }
 };
 
+const getVentaDetailHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) return res.status(400).json({ error: "Faltan datos" });
+
+    const response = await getVentaDetail({ id });
+
+    return res.status(200).json(response);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getVentasHandler,
   postVentasHandler,
+  getVentaDetailHandler,
 };
