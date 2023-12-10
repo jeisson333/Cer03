@@ -21,7 +21,7 @@ export default function Home() {
       }
     })();
   }, []);
-
+  console.log(sales);
   return (
     <div className={styles.container}>
       <div className={`${styles.movimientos}`}>
@@ -50,7 +50,7 @@ export default function Home() {
                 ].slice(1)}`}
               </td>
               <td>
-                <Link to="/home">
+                <Link to={`/home/${producto["VENTum.id_venta"]}`}>
                   <button>Detalles</button>
                 </Link>
               </td>

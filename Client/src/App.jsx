@@ -114,13 +114,13 @@ function App() {
         <Route element={<RequireAuth authRoles={["admin", "user"]} />}>
           <Route path="/home" element={<Home />} />
           <Route path="/detail" element={<Detail />} />
+          <Route path="/home/:id" element={<SaleDetail />} />
         </Route>
         {/* sin nada */}
         <Route path="/registerForm" element={<RegisterForm />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/test" element={<Experiments />} />
         <Route path="/form" element={<FormTypeProduct />} />
-        <Route path="/home/:id" element={<SaleDetail />} />
         {/* 404 error */}
         <Route path="*" element={<Error />} />
       </Routes>
