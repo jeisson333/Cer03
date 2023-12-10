@@ -37,32 +37,35 @@ function App() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { sidebarActive } = useSelector((state) => state);
-  const withSide = [
-    "/products",
-    "/settings",
-    "/newProduct",
-    "/newsales",
-    "/home",
-    "/detail/",
-    "/subscription",
-    "/subscription/checkout",
-    "/subscription/success",
-    "/subscription/failure",
-    "/subscription/pending",
-    "/settingsProductos",
-    "/newSeller",
-    "/deleteProduct",
+  // const withSide = [
+  //   "/products",
+  //   "/settings",
+  //   "/newProduct",
+  //   "/newsales",
+  //   "/home",
+  //   "/detail/",
+  //   "/subscription",
+  //   "/subscription/checkout",
+  //   "/subscription/success",
+  //   "/subscription/failure",
+  //   "/subscription/pending",
+  //   "/settingsProductos",
+  //   "/newSeller",
+  //   "/deleteProduct",
+  // ];
+  const withoutSide = [
+    "/",
+    "/contact",
+    "/about",
+    "/landingPage",
+    "/signIn",
+    "/signUp",
   ];
-  const withoutSide = ["/", "/contact", "/about", "/landingPage", "/signIn"];
 
   useEffect(() => {
     if (withoutSide.find((route) => route === location.pathname)) {
       dispatch(changeSidebar(false));
-    } else if (withSide.find((route) => route === location.pathname)) {
-      dispatch(changeSidebar(true));
-    } else {
-      dispatch(changeSidebar(false));
-    }
+    } else dispatch(changeSidebar(true));
   }, [location.pathname]);
 
   const navClass = sidebarActive ? "siderBarPosition" : "prueba";
@@ -74,7 +77,7 @@ function App() {
       <Routes>
         {/* public */}
         <Route exact path="/" element={<LandingPage />} />
-        <Route path="/registerForm" element={<RegisterForm />} />
+        {/* <Route path="/registerForm" element={<RegisterForm />} /> */}
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/about" element={<About />} />
@@ -116,11 +119,13 @@ function App() {
           <Route path="/detail" element={<Detail />} />
           <Route path="/home/:id" element={<SaleDetail />} />
         </Route>
+
         {/* sin nada */}
-        <Route path="/registerForm" element={<RegisterForm />} />
-        <Route path="/checkout" element={<Checkout />} />
+        {/* <Route path="/registerForm" element={<RegisterForm />} /> */}
+        {/* <Route path="/checkout" element={<Checkout />} /> */}
         <Route path="/test" element={<Experiments />} />
         <Route path="/form" element={<FormTypeProduct />} />
+
         {/* 404 error */}
         <Route path="*" element={<Error />} />
       </Routes>
