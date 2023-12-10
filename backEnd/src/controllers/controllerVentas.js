@@ -164,41 +164,46 @@ const postVenta = async ({ body }) => {
 };
 
 const getVentaDetail = async ({ id }) => {
-  const venta = await VENTA.findOne({
-    attributes: ["id_venta", "metodo_pago", "createdAt", "venta_sucursal"],
-    where: { id_venta: id },
+  const venta = await DETALLES_VENTA.findOne({
+    attributes: [],
     include: [
       {
-        attributes: ["id_detalles_venta", "cantidad_producto"],
-        model: DETALLES_VENTA,
+        attributes: ["id_venta", "createdAt"],
+        model: VENTA,
         where: {
-          detalles_venta: id,
+          id_venta: id,
         },
         include: [
           {
-            attributes: [
-              "id_producto",
-              "nombre_producto",
-              "image",
-              "peso",
-              "valor_venta",
-              "valor_compra",
-              "tipo_producto",
-            ],
-            model: PRODUCTO,
-            where: {
-              id_producto: (
-                await DETALLES_VENTA.findOne({
-                  where: {
-                    detalles_venta: id,
-                  },
-                })
-              ).venta_producto,
-            },
+            model: CATALOGO_UNIVERSAL,
+            attributes: ["id_catalogo", "nombre_catalogo"],
+          },
+          {
+            model: SUCURSAL,
+            attributes: ["id_sucursal", "nombre_sucursal"],
           },
         ],
+        required: true,
+      },
+      {
+        model: PRODUCTO,
+        attributes: [
+          [
+            Sequelize.fn(
+              "ARRAY_AGG",
+              Sequelize.literal(
+                `JSON_BUILD_OBJECT(\'id\', id_producto, \'nombre\', nombre_producto, \'image\',image,\'Peso\',peso,\'Precio de venta\',valor_venta)`
+              )
+            ),
+            "info",
+          ],
+        ],
+        required: true,
+        duplicating: false,
       },
     ],
+    group: ["detalles_venta", "id_venta", "id_catalogo", "id_sucursal"],
+    raw: true,
   });
 
   return venta;
