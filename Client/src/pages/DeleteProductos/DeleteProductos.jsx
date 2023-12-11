@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts, getSucursales } from "../../redux/actions";
+import { deleteProduct } from "../../redux/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -33,7 +34,7 @@ const DeleteProductos = () => {
     }
   }, [conditions]);
 
-  const handleDeleteProduct = async () => {
+  const handleDeleteProduct = async (id_producto) => {
     Swal.fire({
       title: "¿Estás seguro?",
       text: "¡No podrás revertir esto!",
@@ -50,13 +51,11 @@ const DeleteProductos = () => {
           icon: "success",
         });
         // Si el usuario ha confirmado, ejecuta la acción de borrar el producto
-        dispatch(deleteProduct(product[0]?.PRODUCTO?.id_producto, branch));
+        dispatch(deleteProduct(id_producto, branch));
         setProducts({});
-        navigate("/products");
       }
     });
   };
-
   return (
     <div>
       <div>
