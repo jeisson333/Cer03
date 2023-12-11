@@ -8,14 +8,26 @@ const cookies = new Cookies();
 
 export default function Home() {
   const [sales, setSales] = useState([]);
-  const { idBranch } = cookies.get("auth");
+  const { idBranch, role, branch } = cookies.get("auth");
+
+  console.log(branch);
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.post(`${url}/ventas`, {
-          id: idBranch,
-        });
-        setSales(data.data);
+        if (role === "admin") {
+          const { data } = await axios.post(`${url}/ventas`, {
+            id: idBranch,
+          });
+          setSales(data.data);
+        } else {
+          const { data } = await axios.post(
+            `${url}/ventas?sucursal=${branch}`,
+            {
+              id: idBranch,
+            }
+          );
+          setSales(data.data);
+        }
       } catch (error) {
         throw Error(error.message);
       }
@@ -32,7 +44,8 @@ export default function Home() {
         <thead>
           <tr>
             <th>Fecha</th>
-            <th>Valor $</th>
+            {role === "admin" && <th>Sucursal</th>}
+            <th>Metodo de Pago</th>
             <th>Detalles</th>
           </tr>
         </thead>
@@ -42,12 +55,18 @@ export default function Home() {
               <td>
                 {new Date(producto["VENTum.createdAt"])?.toLocaleString()}
               </td>
+              {role === "admin" && (
+                <td>{producto["VENTum.SUCURSAL.nombre_sucursal"]}</td>
+              )}
               <td>
-                {`${producto[
+                {/* {`${producto[
                   "VENTum.CATALOGO_UNIVERSAL.nombre_catalogo"
                 ][0].toUpperCase()}${producto[
                   "VENTum.CATALOGO_UNIVERSAL.nombre_catalogo"
-                ].slice(1)}`}
+                ].slice(1)}`} */}
+                {producto[
+                  "VENTum.CATALOGO_UNIVERSAL.nombre_catalogo"
+                ].toUpperCase()}
               </td>
               <td>
                 <Link to={`/home/${producto["VENTum.id_venta"]}`}>
