@@ -30,6 +30,7 @@ import AfterSignUp from "./pages/AfterSignUp/AfterSignUp";
 import FormTypeProduct from "./pages/FormTypeProduct/FormTypeProduct";
 import SaleDetail from "./pages/SaleDetail/SaleDetail";
 import FormVendedor from "./components/FormVendedor/FormVendedor";
+import Papelera from "./components/Papelera/Papelera";
 
 import DeleteProductos from "./pages/DeleteProductos/DeleteProductos";
 
@@ -90,6 +91,7 @@ function App() {
           <Route path="/subscription" element={<Subscription />} />
           <Route path="/newSeller" element={<FormVendedor />} />
           <Route path="/deleteProduct" element={<DeleteProductos />} />
+          <Route path="/papelera" element={<Papelera />} />
           <Route
             path="/subscription/checkout"
             element={<SubscriptionCheckout />}

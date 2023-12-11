@@ -11,6 +11,9 @@ const Settings = () => {
   const { idBranch } = cookies.get("auth");
   const navigate = useNavigate();
 
+  const navigateToPapelera = () => {
+    navigate("/papelera");
+  };
   const navigateToDeleteProductos = () => {
     navigate("/deleteProduct");
   };
@@ -38,6 +41,9 @@ const Settings = () => {
           Eliminar
         </button>
         <button className={Style.Btn}>Actualizar Inventario</button>
+        <button className={Style.Btn} onClick={navigateToPapelera}>
+          Papelera de Reciclaje
+        </button>
       </div>
       <div>
         <h2>Sucursales</h2>
