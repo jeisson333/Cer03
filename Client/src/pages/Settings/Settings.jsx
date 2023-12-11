@@ -11,8 +11,8 @@ const Settings = () => {
   const { idBranch } = cookies.get("auth");
   const navigate = useNavigate();
 
-  const navigateToSettingsProductos = () => {
-    navigate("/settingsProductos");
+  const navigateToDeleteProductos = () => {
+    navigate("/deleteProduct");
   };
   const navigateToFormVendedor = () => {
     navigate("/newSeller");
@@ -22,13 +22,23 @@ const Settings = () => {
 
   return (
     <div className={Style.contenido}>
-      <button className={Style.Btn} onClick={navigateToFormVendedor}>
-        Vendedores
-      </button>
-      <button className={Style.Btn} onClick={navigateToSettingsProductos}>
-        Producto
-      </button>
-      <button className={Style.Btn}>Sucursales</button>
+      <div>
+        <h2>Vendedores</h2>
+        <button className={Style.Btn} onClick={navigateToFormVendedor}>
+          Vendedores
+        </button>
+      </div>
+      <div>
+        <h2>Productos</h2>
+        <button className={Style.Btn} onClick={navigateToDeleteProductos}>
+          Eliminar
+        </button>
+        <button className={Style.Btn}>Actualizar Inventario</button>
+      </div>
+      <div>
+        <h2>Sucursales</h2>
+        <button className={Style.Btn}>Sucursales</button>
+      </div>
     </div>
   );
 };

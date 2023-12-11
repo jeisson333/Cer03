@@ -12,6 +12,7 @@ import styles from "./CreateProduct.module.css";
 import Swal from "sweetalert2";
 import Loading from "../../components/Loading/Loading";
 import Cookies from "universal-cookie";
+
 const cookies = new Cookies();
 
 export function CreateProduct() {
@@ -60,6 +61,33 @@ export function CreateProduct() {
         break;
     }
   };
+
+  const handleChangeImage = (event) => {
+    const file = event.target.files[0];
+    //setNewProduct({ ...newProduct, image: file });
+    setFileToBase(file);
+  };
+  const setFileToBase = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      const imageUrl = reader.result; // Obtén el resultado del FileReader
+
+      // Aquí puedes crear un objeto URL a partir del resultado
+      // Por ejemplo, podrías hacer algo como esto:
+
+      // Ahora puedes asignar la URL a tu objeto newProduct.image
+      setNewProduct({ ...newProduct, image: imageUrl });
+    };
+  };
+
+  /*const setFileToBase = (file) => {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onloadend = () => {
+			setNewProduct({ ...newProduct, image: reader.result });
+		};
+	};*/
 
   const handleStockSucursal = (event) => {
     setStockSucursal(event.target.value);
@@ -149,7 +177,7 @@ export function CreateProduct() {
   return (
     <>
       {!wait ? (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} encType="multipart/form-data">
           <div className={styles.cargarProductos}>
             <h2>Cargar producto</h2>
             <div className={styles.divider}></div>
@@ -171,7 +199,6 @@ export function CreateProduct() {
                   )}
                 </label>
               </div>
-
               <div className={styles.indHolder}>
                 <label>
                   <span>Tipo de producto </span>
@@ -220,7 +247,6 @@ export function CreateProduct() {
                   )}
                 </label>
               </div>
-
               <div className={styles.indHolder}>
                 <label>
                   <span>Valor venta: $ </span>
@@ -241,19 +267,27 @@ export function CreateProduct() {
             <div className={styles.createContainer}>
               <div className={styles.indHolder}>
                 <span>Imagen</span>
-                <img
-                  className={styles.image}
-                  src={newProduct.image}
-                  alt="Aqui puedes ver tu imagen"
-                />
+                {/*<img
+									className={styles.image}
+									src={newProduct.image}
+									alt='Aqui puedes ver tu imagen'
+                  />*/}
                 <label>
                   <span>Imagen (URL) </span>
                   <input
-                    onChange={handleChangeProduct}
-                    type="url"
+                    type="file"
+                    id="image"
+                    accept="image/"
+                    onChange={handleChangeImage}
                     name="image"
-                    value={newProduct.image}
                   />
+                  {newProduct.image && (
+                    <img
+                      src={newProduct.image}
+                      alt="Imagen seleccionada"
+                      style={{ maxWidth: "100px", maxHeight: "100px" }}
+                    />
+                  )}
                   {errors.image != "" && (
                     <p className={styles.errors}>{errors.image}</p>
                   )}
@@ -263,7 +297,7 @@ export function CreateProduct() {
             <div className={styles.buttonHolder}>
               <h2 className={styles.title}>Inventario del producto</h2>
             </div>
-            <div className={styles.inventarioHolder}>
+            <div className={styles.buttonHolder}>
               <div className={styles.indHolder}>
                 <label>
                   <span>Sucursal </span>
@@ -329,7 +363,6 @@ export function CreateProduct() {
                   !newProduct.tipo_producto ||
                   !newProduct.stock ||
                   errors.nombre_producto ||
-                  errors.image ||
                   errors.valor_compra ||
                   errors.valor_venta ||
                   errors.peso ||

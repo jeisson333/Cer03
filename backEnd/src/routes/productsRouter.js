@@ -1,4 +1,7 @@
 const { Router } = require("express");
+const multer = require("multer"); // Middleware para gestionar archivos para cloudinary
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 const {
   getAllProducts,
@@ -11,7 +14,7 @@ const {
 productsRouter = Router();
 
 productsRouter.post("/", getAllProducts);
-productsRouter.post("/newproduct", postNewProduct);
+productsRouter.post("/newproduct", upload.single("imagen"), postNewProduct);
 productsRouter.delete("/", deleteProduct);
 productsRouter.post("/restoreproduct", restoreProduct);
 productsRouter.put("/:id", editProductHandler);
