@@ -31,7 +31,6 @@ const getMercadoPagoController = async ({ info }) => {
 };
 const getWebHookController = async (infoQuery) => {
   try {
-    console.log("entra");
     if (infoQuery.type === "payment") {
       const data = await mercadopage.payment.findById(infoQuery["data.id"]);
 

@@ -13,6 +13,7 @@ const SubscriptionSuccess = () => {
   const collectionStatus = params.get("collection_status");
   const preferenceId = params.get("preference_id");
   // const [verifyId, setVerifyId] = useState({});
+
   useEffect(() => {
     (async () => {
       try {

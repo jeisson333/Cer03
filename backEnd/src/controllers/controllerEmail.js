@@ -17,7 +17,7 @@ const postEmailController = async ({ data }) => {
   async function main() {
     // send mail with defined transport object
     const info = await transporter.sendMail({
-      from: '"Penelope de Cer0" <jeissonosorio97@gmail.com>', // sender address
+      from: '"Penelope de Cer0" <cer03pf@gmail.com>', // sender address
       to: data.email, // list of receivers
       subject: data.tittle, // Subject line
       text: data.text, // plain text body
