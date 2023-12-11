@@ -252,10 +252,14 @@ const getVentaDetail = async ({ id }) => {
     ...venta,
     details: [],
   };
+  let totalValue = 0;
 
   details.forEach((product) => {
     response.details.push(product);
+    totalValue += product.cantidad_producto * product.PRODUCTO.valor_venta;
   });
+
+  response.totalValue = totalValue;
 
   return response;
 };
