@@ -40,10 +40,10 @@ const Settings = () => {
         <button className={Style.Btn} onClick={navigateToDeleteProductos}>
           Eliminar
         </button>
-        <button className={Style.Btn}>Actualizar Inventario</button>
         <button className={Style.Btn} onClick={navigateToPapelera}>
-          Papelera de Reciclaje
+          Restaurar
         </button>
+        <button className={Style.Btn}>Actualizar Inventario</button>
       </div>
       <div>
         <h2>Sucursales</h2>
