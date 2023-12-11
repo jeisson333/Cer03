@@ -53,8 +53,19 @@ const Detail = () => {
       }
     })();
   }, []);
-  const modalEditProduc = () => {
+  const modalEditProduc = async () => {
     setModalProduct(!modalProduct);
+    try {
+      const { data } = await axios.post(
+        `${url}/products?name=${name}&sucursal=${sucursal}`,
+        {
+          id: idBranch,
+        }
+      );
+      setProducts(data.data);
+    } catch (error) {
+      throw Error(error.message);
+    }
   };
 
   const handleDeleteProduct = async () => {
