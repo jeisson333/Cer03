@@ -122,8 +122,8 @@ export const postNewProduct = (input) => {
         type: POST_NEWPRODUCT,
         payload: data,
       });
-    } catch (error) {
-      console.log(error.message);
+    } catch ({ response }) {
+      console.log(response.data);
     }
   };
 };

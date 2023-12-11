@@ -33,7 +33,7 @@ const SubscriptionSuccess = () => {
       if (verifyId?.body) {
         await axios.post(`${url}/email`, {
           email:
-            "lucasescudero5629@gmail.com,david@castromora.lat,jeissonosorio97@gmail.com",
+            "lucasescudero5629@gmail.com,david@castromora.lat,jeissonosorio97@gmail.com,joselo99_dc@hotmail.com",
           tittle: "Compra Exitosa!",
           text: `Tipo de suscripción : ${verifyId?.body?.description} <br />
           Transacción id: ${verifyId?.body?.id} <br/>
