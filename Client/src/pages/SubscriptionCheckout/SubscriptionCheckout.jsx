@@ -10,6 +10,7 @@ const SubscriptionCheckout = () => {
   const totalPay = query.get("totalPay");
   const currency_id = query.get("currency_id");
   const quantity = query.get("quantity");
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const [checkout, setCheckout] = useState([]);
 
   console.log(subscription, totalPay, currency_id, quantity);
@@ -17,7 +18,7 @@ const SubscriptionCheckout = () => {
     (async () => {
       try {
         const { data } = await axios.post(
-          `http://localhost:3001/paymentGateways?subscription=${subscription}&totalPay=${totalPay}&currency_id=${currency_id}&quantity=${quantity}`
+          `${baseUrl}/paymentGateways/?subscription=${subscription}&totalPay=${totalPay}&currency_id=${currency_id}&quantity=${quantity}`
         );
         setCheckout(data);
       } catch (error) {
