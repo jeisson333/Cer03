@@ -62,34 +62,41 @@ const DeleteProductos = () => {
       <div>
         <h2>Productos</h2>
       </div>
-      <table>
+      <table className="table-auto border-collapse border border-blue-800">
         <thead>
           <tr>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Tipo</th>
-            <th>Sucursal</th>
-            <th>Eliminar</th>
+            <th className="border border-blue-600 p-3">Imagen</th>
+            <th className="border border-blue-600 p-3">Nombre</th>
+            <th className="border border-blue-600 p-3">Tipo</th>
+            <th className="border border-blue-600 p-3">Sucursal</th>
+            <th className="border border-blue-600 p-3">Eliminar</th>
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
-            <tr key={product.id_producto}>
-              <td>
+          {products.map((product, index) => (
+            <tr key={index}>
+              <td className="border border-blue-600 p-3">
                 <img
-                  src={product.image}
-                  alt={product.nombre_producto}
+                  src={product?.PRODUCTO?.image}
+                  alt={product?.PRODUCTO?.nombre_producto}
                   className="w-20 h-20 rounded-lg object-cover"
                 />
               </td>
-              <td>{product.nombre_producto}</td>
-              <td>
-                {product.CATALOGO_UNIVERSAL &&
-                  product.CATALOGO_UNIVERSAL.nombre_catalogo}
+              <td className="border border-blue-600 p-3">
+                {product?.PRODUCTO?.nombre_producto}
               </td>
-              <td>{product.sucursal}</td>
-              <td>
-                <button onClick={handleDeleteProduct}>
+              <td className="border border-blue-600 p-3">
+                {product?.PRODUCTO?.CATALOGO_UNIVERSAL?.nombre_catalogo}
+              </td>
+              <td className="border border-blue-600 p-3">
+                {product?.SUCURSAL.nombre_sucursal}
+              </td>
+              <td className="border border-blue-600 p-3">
+                <button
+                  onClick={() =>
+                    handleDeleteProduct(product?.PRODUCTO?.id_producto)
+                  }
+                >
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
               </td>
