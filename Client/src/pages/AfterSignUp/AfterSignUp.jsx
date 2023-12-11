@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
+import { changeSidebar } from "../../redux/actions";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 import Cookies from "universal-cookie";
@@ -14,6 +15,10 @@ const AfterSignUp = () => {
   const dataUser = cookies.get("auth");
   const [input, setInput] = useState("");
   const [sucursales, setSucursales] = useState([]);
+
+  useEffect(() => {
+    dispatch(changeSidebar(false));
+  }, []);
 
   const handlerInput = (event) => {
     setInput(event.target.value);
