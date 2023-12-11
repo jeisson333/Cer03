@@ -8,14 +8,26 @@ const cookies = new Cookies();
 
 export default function Home() {
   const [sales, setSales] = useState([]);
-  const { idBranch } = cookies.get("auth");
+  const { idBranch, role, branch } = cookies.get("auth");
+
+  console.log(branch);
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.post(`${url}/ventas`, {
-          id: idBranch,
-        });
-        setSales(data.data);
+        if (role === "admin") {
+          const { data } = await axios.post(`${url}/ventas`, {
+            id: idBranch,
+          });
+          setSales(data.data);
+        } else {
+          const { data } = await axios.post(
+            `${url}/ventas?sucursal=${branch}`,
+            {
+              id: idBranch,
+            }
+          );
+          setSales(data.data);
+        }
       } catch (error) {
         throw Error(error.message);
       }
