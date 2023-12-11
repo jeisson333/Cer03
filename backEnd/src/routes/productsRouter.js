@@ -5,6 +5,7 @@ const upload = multer({ storage });
 
 const {
   getAllProducts,
+  getAllDisableProducts,
   postNewProduct,
   deleteProduct,
   restoreProduct,
@@ -14,6 +15,7 @@ const {
 productsRouter = Router();
 
 productsRouter.post("/", getAllProducts);
+productsRouter.post("/deletesProducts", getAllDisableProducts);
 productsRouter.post("/newproduct", upload.single("imagen"), postNewProduct);
 productsRouter.delete("/", deleteProduct);
 productsRouter.post("/restoreproduct", restoreProduct);

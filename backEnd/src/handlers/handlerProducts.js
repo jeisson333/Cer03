@@ -1,5 +1,6 @@
 const {
   obtainAllProducts,
+  obtainDisableProducts,
   disableProduct,
   enableProduct,
   updateProduct,
@@ -13,6 +14,17 @@ const getAllProducts = async (req, res) => {
     const idBranch = req.body;
     const response = await obtainAllProducts({ conditions, idBranch });
 
+    return res.status(200).json(response);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
+const getAllDisableProducts = async (req, res) => {
+  try {
+    const conditions = req.query;
+    const idBranch = req.body;
+    const response = await obtainDisableProducts({ conditions, idBranch });
     return res.status(200).json(response);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -71,6 +83,7 @@ const editProductHandler = async (req, res) => {
 
 module.exports = {
   getAllProducts,
+  getAllDisableProducts,
   postNewProduct,
   deleteProduct,
   restoreProduct,
