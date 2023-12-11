@@ -12,15 +12,16 @@ const SaleDetail = () => {
   const { saleDetail } = useSelector((state) => state);
 
   useEffect(() => {
-    if (id) dispatch(getSaleDetail(id));
+    dispatch(getSaleDetail(id));
   }, []);
-  console.log(saleDetail.details);
+
   return (
     <div>
       {/* <h2>{saleDetail.id_venta}</h2> */}
       <h2>{saleDetail["CATALOGO_UNIVERSAL.nombre_catalogo"]?.toUpperCase()}</h2>
-      <h2>{saleDetail?.createdAt}</h2>
+      <h2>{new Date(saleDetail?.createdAt)?.toLocaleString()}</h2>
       <h2>{saleDetail["SUCURSAL.nombre_sucursal"]}</h2>
+      <h2>Total Vendido: ${saleDetail?.totalValue}</h2>
       <div>
         {saleDetail?.details?.map((product) => (
           <div key={product.id_detalles_venta} className={styles.product}>
@@ -32,6 +33,7 @@ const SaleDetail = () => {
             <h2>{product.PRODUCTO.peso}</h2>
             <h2>{product.PRODUCTO.valor_venta}</h2>
             <h2>{product.cantidad_producto}</h2>
+            <h2>${product.PRODUCTO.valor_venta * product.cantidad_producto}</h2>
           </div>
         ))}
       </div>
