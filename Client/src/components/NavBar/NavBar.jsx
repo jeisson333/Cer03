@@ -100,12 +100,13 @@ const NavBAr = () => {
         )}
         {role === "user" && (
           <div>
-            <div className={style.divider}></div>
+            {/* <div className={style.divider}></div>
             <SidebarLink
               to="/settings"
               icon={<CiSettings />}
               text="Configuraciones"
             />
+            <div className={style.divider}></div> */}
             <div className={style.divider}></div>
             <SidebarLink
               to="/home"
