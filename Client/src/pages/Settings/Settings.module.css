@@ -1,5 +1,6 @@
 .contenido {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 30px;
@@ -14,6 +15,7 @@
 .Btn {
   width: 130px;
   height: 40px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
