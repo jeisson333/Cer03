@@ -3,6 +3,7 @@ import {
   ERROR_PRODUCTS,
   POST_NEWPRODUCT,
   DELETE_PRODUCT,
+  RESTORE_PRODUCT,
   GET_DOCUMENTS,
   GET_TYPEPRODUCTS,
   POST_SALEMEN,
@@ -70,6 +71,8 @@ function reducer(state = initialState, action) {
     case POST_NEWPRODUCT:
       return { ...state, newProduct: true };
     case DELETE_PRODUCT:
+      return { ...state, msg: action.payload?.msg };
+    case RESTORE_PRODUCT:
       return { ...state, msg: action.payload?.msg };
 
     case POST_SALEMEN:

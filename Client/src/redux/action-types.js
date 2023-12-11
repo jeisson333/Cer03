@@ -16,3 +16,4 @@ export const GET_PAYMENTS = "GET_PAYMENTS";
 export const POST_SALEMEN = "POST_SALEMEN";
 export const CREATE_TYPE = "CREATE_TYPE";
 export const GET_SALE_DETAIL = "GET_SALE_DETAIL";
+export const RESTORE_PRODUCT = "RESTORE_PRODUCT";

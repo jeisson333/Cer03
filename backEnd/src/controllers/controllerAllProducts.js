@@ -157,7 +157,7 @@ const obtainDisableProducts = async ({ conditions, idBranch }) => {
   });
 
   const productsPromise = INVENTARIO_PRODUCTO.findAll({
-    attributes: ["stock"],
+    attributes: ["stock", "id_inventario_producto"],
     where: {
       deletedAt: {
         [Op.not]: null,

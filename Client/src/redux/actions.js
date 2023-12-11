@@ -4,6 +4,7 @@ import {
   ERROR_PRODUCTS,
   POST_NEWPRODUCT,
   DELETE_PRODUCT,
+  RESTORE_PRODUCT,
   GET_DOCUMENTS,
   GET_TYPEPRODUCTS,
   GET_SUCURSAL,
@@ -166,6 +167,23 @@ export const deleteProduct = (id_producto, nombre_sucursal) => {
       const { data } = await axios.delete(url);
       return dispatch({
         type: DELETE_PRODUCT,
+        payload: data,
+      });
+    } catch ({ response }) {
+      console.log(response.data);
+    }
+  };
+};
+
+export const restoreProduct = (id_inventario_producto) => {
+  return async function (dispatch) {
+    try {
+      const url = `${baseUrl}/products/restoreproduct`;
+      const { data } = await axios.post(url, {
+        id_inventario_producto: id_inventario_producto,
+      });
+      return dispatch({
+        type: RESTORE_PRODUCT,
         payload: data,
       });
     } catch ({ response }) {
