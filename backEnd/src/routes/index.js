@@ -27,7 +27,7 @@ router.use("/sucursales", routeSucursales);
 //router.use("/database", routeSaveJsonInDB);
 router.use("/catalogos", routeCatalogos);
 router.use("/paymentGateways", routePaymentGateways);
-router.use("/paymentSales", routeSales);
+// router.use("/paymentSales", routeSales);
 router.use("/email", routeEmail);
 
 module.exports = router;

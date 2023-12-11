@@ -17,7 +17,7 @@ const SubscriptionSuccess = () => {
     (async () => {
       try {
         const { data } = await axios.post(
-          `https://cer03-dev-dhmt.4.us-1.fl0.io/paymentGateways/webhook?data.id=${collectionId}&type=payment`
+          `https://cer03-dev-dhmt.4.us-1.fl0.io/paymentGateways/webhook?client_id=${collectionId}&type=payment`
         );
 
         // setVerifyId(data);
