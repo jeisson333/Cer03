@@ -4,6 +4,7 @@ const { CLOUD_NAME, CLOUD_KEY, CLOUD_SECRET } = process.env;
 
 const multer = require('multer'); // Middleware para gestionar archivos para cloudinary
 const cloudinary = require('cloudinary').v2;
+
 cloudinary.config({
 	cloud_name: CLOUD_NAME,
 	api_key: CLOUD_KEY,
@@ -12,7 +13,7 @@ cloudinary.config({
 
 // Configurar Multer para gestionar archivos en la solicitud
 
-const newProduct = async ({ values }) => {
+const newProduct = async ({ values, result }) => {
 	if (!values?.idBranch) throw new Error("The query need Product's branch");
 
 	const BranchProductPromise = SUCURSAL.findAll({
@@ -21,11 +22,7 @@ const newProduct = async ({ values }) => {
 		},
 	});
 	// para cloudinary
-	console.log(values.image, '----img------');
 
-	const result = await cloudinary.uploader.upload(values.image);
-
-	console.log('-----P------', result, values.image);
 	const newProductPromise = PRODUCTO.findOrCreate({
 		where: {
 			nombre_producto: values?.nombre_producto,
