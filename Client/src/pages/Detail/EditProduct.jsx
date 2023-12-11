@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./Detail.module.css";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import Swal from "sweetalert2";
 const cookies = new Cookies();
 
 const EditProduct = ({ modalEditProduc, sucursales }) => {
@@ -78,13 +79,17 @@ const EditProduct = ({ modalEditProduc, sucursales }) => {
           id: idBranch,
         }
       );
-      alert("stock actualizado con exito: " + data[0].stock);
+      Swal.fire({
+        title: "SUCCESS!",
+        text: "Genial! Se actualizo con exito el stock",
+        icon: "success",
+      });
     } catch (error) {
       throw Error(error.message);
     }
     await modalEditProduc();
   };
-  console.log(errors);
+
   const miSet = new Set();
   for (let error in errors) {
     if (errors.hasOwnProperty(error)) {
