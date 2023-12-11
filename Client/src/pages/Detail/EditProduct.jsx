@@ -51,6 +51,11 @@ const EditProduct = ({ modalEditProduc, sucursales }) => {
       const ids = sucursales.find(
         (i) => i.SUCURSAL.nombre_sucursal === event.target.value
       );
+      if (event.target.value == "")
+        setErrors({
+          ...errors,
+          [event.target.name]: `Campo ${event.target.name} inválido`,
+        });
       setUpdateStock({
         ...updateStock,
         productoid: ids.PRODUCTO.id_producto,
@@ -111,6 +116,7 @@ const EditProduct = ({ modalEditProduc, sucursales }) => {
           onChange={handleChange}
           className={style.selectModal}
         >
+          <option value=""></option>
           {sucursales.map((sl, key) => {
             return (
               <option
