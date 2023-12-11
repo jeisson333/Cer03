@@ -18,11 +18,11 @@ const SaleDetail = () => {
   return (
     <div>
       {/* <h2>{saleDetail.id_venta}</h2> */}
-      <h2>{saleDetail["CATALOGO_UNIVERSAL.nombre_catalogo"].toUpperCase()}</h2>
-      <h2>{saleDetail.createdAt}</h2>
+      <h2>{saleDetail["CATALOGO_UNIVERSAL.nombre_catalogo"]?.toUpperCase()}</h2>
+      <h2>{saleDetail?.createdAt}</h2>
       <h2>{saleDetail["SUCURSAL.nombre_sucursal"]}</h2>
       <div>
-        {saleDetail.details.map((product) => (
+        {saleDetail?.details?.map((product) => (
           <div key={product.id_detalles_venta} className={styles.product}>
             <img
               src={product.PRODUCTO.image}
