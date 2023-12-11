@@ -18,6 +18,10 @@ const Settings = () => {
     navigate("/newSeller");
   };
 
+  const navigateToFormSucursal = () => {
+    navigate("/sign-up/sucursales");
+  };
+
   useEffect(() => {}, []);
 
   return (
@@ -37,7 +41,9 @@ const Settings = () => {
       </div>
       <div>
         <h2>Sucursales</h2>
-        <button className={Style.Btn}>Sucursales</button>
+        <button className={Style.Btn} onClick={navigateToFormSucursal}>
+          Sucursales
+        </button>
       </div>
     </div>
   );
