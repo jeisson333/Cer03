@@ -19,50 +19,75 @@ const SaleDetail = () => {
     <div className={styles.container}>
       {/* <h2>{saleDetail.id_venta}</h2> */}
       <h1 className={styles.title}> Detalles Venta</h1>
-      <div className={styles.productChart}>
-        <div className={styles.tableHeader}>
-        <h1 className={styles.imageText}>Imagen</h1>
-        <h1 className={styles.name}>Nombre</h1>
-        <h1 className={styles.name}>Peso</h1>
-        <h1 className={styles.name}>Valor venta</h1>
-        <h1 className={styles.name}>Cantidad</h1>
-        <h1 className={styles.name}>Total productos</h1>
-        </div>  
-        {saleDetail?.details?.map((product) => (
-          <div key={product.id_detalles_venta} className={styles.product}>
-            <img
-              className={styles.imagen}
-              src={product.PRODUCTO.image}
-              alt={product.PRODUCTO.id_producto}
-            />
-            <div className={styles.infoContainer}>
-            <h2>{product.PRODUCTO.nombre_producto}</h2>
-            </div>
 
-            <div className={styles.digitContainer}>
-            <h2>{product.PRODUCTO.peso}</h2>
-            </div>
-            
-            <div className={styles.digitContainer}>
-            <h2>{product.PRODUCTO.valor_venta}</h2>
-            </div>
-            
-            <div className={styles.digitContainer}>
-            <h2>{product.cantidad_producto}</h2>
-            </div>
-            
-            <div className={styles.digitContainer}>
-            <h2>${product.PRODUCTO.valor_venta * product.cantidad_producto}</h2>
-            </div>
-            
-          </div>
-        ))}
-        <div className={styles.infoSale}>
-        <h2>{saleDetail["CATALOGO_UNIVERSAL.nombre_catalogo"]?.toUpperCase()}</h2>
-        <h2>{new Date(saleDetail?.createdAt)?.toLocaleString()}</h2>
-        <h2>{saleDetail["SUCURSAL.nombre_sucursal"]}</h2>
-        <h2><strong>Total Vendido:</strong> ${saleDetail?.totalValue}</h2>
-        </div>
+      <div className={styles.infoSale}>
+        <h2>
+          <strong>Fecha: </strong>
+          {new Date(saleDetail?.createdAt)?.toLocaleString()}
+        </h2>
+        <h2>
+          <strong>Sucursal: </strong>
+          {saleDetail["SUCURSAL.nombre_sucursal"]}
+        </h2>
+        <h2>
+          <strong>Metodo de pago: </strong>
+          {saleDetail["CATALOGO_UNIVERSAL.nombre_catalogo"]?.toUpperCase()}
+        </h2>
+      </div>
+
+      <div className="flex justify-center">
+        <table className="table-auto border-collapse border border-blue-800">
+          <thead>
+            <tr>
+              <th className="border border-black-600 p-3">Imagen</th>
+              <th className="border border-black-600 p-3">Nombre</th>
+              <th className="border border-black-600 p-3">Peso</th>
+              <th className="border border-black-600 p-3">Valor venta</th>
+              <th className="border border-black-600 p-3">Cantidad</th>
+              <th className="border border-black-600 p-3">Total productos</th>
+            </tr>
+          </thead>
+          <tbody>
+            {saleDetail?.details?.map((product, i) => (
+              <tr key={i}>
+                <td className="border border-black-600 p-3">
+                  <img
+                    className={styles.imagen}
+                    src={product.PRODUCTO.image}
+                    alt={product.PRODUCTO.id_producto}
+                  />
+                </td>
+                <td className="border border-black-600 p-3">
+                  {product.PRODUCTO.nombre_producto}
+                </td>
+                <td className="border border-black-600 p-3">
+                  {product.PRODUCTO.peso}
+                </td>
+                <td className="border border-black-600 p-3">
+                  {product.PRODUCTO.valor_venta}
+                </td>
+                <td className="border border-black-600 p-3">
+                  {product.cantidad_producto}
+                </td>
+                <td className="border border-black-600 p-3">
+                  ${product.PRODUCTO.valor_venta * product.cantidad_producto}
+                </td>
+              </tr>
+            ))}
+            <tr>
+              <td className="border border-black-600 p-3"></td>
+              <td className="border border-black-600 p-3"></td>
+              <td className="border border-black-600 p-3"></td>
+              <td className="border border-black-600 p-3"></td>
+              <td className="border border-black-600 p-3">
+                <strong>Total Vendido:</strong>
+              </td>
+              <td className="border border-black-600 p-3">
+                ${saleDetail?.totalValue}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
