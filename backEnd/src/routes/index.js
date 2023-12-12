@@ -8,11 +8,11 @@ const routeVentas = require("./routeVentas.js");
 const routeVendedor = require("./routeVendedor.js");
 const productsRouter = require("./productsRouter.js");
 const routeSucursales = require("./routeSucursales.js");
-//const routeSaveJsonInDB = require('./saveJsonInDBRouter.js');
 const routeCatalogos = require("./routeCatalogo.js");
 const routeEmail = require("./routeEmail.js");
 const routePaymentGateways = require("./routePaymentGateways.js");
 const routeSales = require("./routePaymentSales.js");
+const routeReview = require("./routeReview.js");
 const { verifyToken } = require("../middlewares/authJWT.js");
 
 const router = Router();
@@ -24,10 +24,14 @@ router.use("/vendedor", routeVendedor);
 router.use("/ventas", routeVentas);
 router.use("/products", productsRouter);
 router.use("/sucursales", routeSucursales);
-//router.use("/database", routeSaveJsonInDB);
 router.use("/catalogos", routeCatalogos);
 router.use("/paymentGateways", routePaymentGateways);
 // router.use("/paymentSales", routeSales);
 router.use("/email", routeEmail);
+router.use("/review", routeReview);
+
+// json chargue bd
+// const routeSaveJsonInDB = require("./saveJsonInDBRouter.js");
+// router.use("/database", routeSaveJsonInDB);
 
 module.exports = router;
