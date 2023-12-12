@@ -33,6 +33,7 @@ import FormVendedor from "./components/FormVendedor/FormVendedor";
 import Papelera from "./components/Papelera/Papelera";
 
 import DeleteProductos from "./pages/DeleteProductos/DeleteProductos";
+import FormBranch from "./pages/FormBranch/FormBranch";
 
 function App() {
   const location = useLocation();
@@ -110,6 +111,7 @@ function App() {
             element={<SubscriptionPending />}
           />
           <Route path="/sign-up/sucursales" element={<AfterSignUp />} />
+          <Route path="/review" element={<FormBranch />} />
         </Route>
         {/* user */}
         <Route element={<RequireAuth authRoles={["user"]} />}>

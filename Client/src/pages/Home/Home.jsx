@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { somethingReview } from "../../redux/actions";
 import axios from "axios";
 import styles from "./Home.module.css";
 const url = import.meta.env.VITE_BASE_URL;
@@ -7,13 +9,14 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 export default function Home() {
+  const dispatch = useDispatch();
   const [sales, setSales] = useState([]);
   const { idBranch, role, branch } = cookies.get("auth");
 
-  console.log(branch);
   useEffect(() => {
     (async () => {
       try {
+        dispatch(somethingReview(idBranch, "find", null));
         if (role === "admin") {
           const { data } = await axios.post(`${url}/ventas`, {
             id: idBranch,
@@ -33,7 +36,7 @@ export default function Home() {
       }
     })();
   }, []);
-  console.log(sales);
+
   return (
     <div className={styles.container}>
       <div className={`${styles.movimientos}`}>
