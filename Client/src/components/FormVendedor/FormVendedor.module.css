@@ -7,7 +7,7 @@
   background: rgb(255, 255, 255);
 }
 
-.formContainer h2{
+.formContainer h2 {
   text-align: center;
   font-size: 20px;
   font-weight: 600;
@@ -33,7 +33,7 @@
   border-radius: 5px;
 }
 
-.formSame{
+.formSame {
   display: flex;
 }
 
@@ -59,7 +59,7 @@
   margin-bottom: 10px;
 }
 
-.buttonHolder{
+.buttonHolder {
   display: flex;
   margin: 15px;
   justify-content: center;
@@ -77,7 +77,7 @@
   margin: 4px;
 }
 
-.formButton:hover{
+.formButton:hover {
   background-color: #3457ba !important;
 }
 
@@ -86,7 +86,7 @@
   cursor: not-allowed;
 }
 
-.deleteButton{
+.deleteButton {
   padding: 10px;
   background: rgb(201, 0, 0);
   color: white;
@@ -98,14 +98,16 @@
   margin: 4px;
 }
 
-.deleteButton:hover{
+.deleteButton:hover {
   background: rgb(120, 1, 1);
 }
 
-@media (max-width: 600px){
-  .formContainer{
+@media (max-width: 600px) {
+  .formContainer {
     max-width: 350px;
   }
 }
 
-/* Add any additional styles as needed */
+.errors {
+  color: rgb(158, 0, 0);
+}
