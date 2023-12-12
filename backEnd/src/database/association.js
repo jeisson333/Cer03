@@ -36,6 +36,7 @@ const handlerAssociationModels = ({ sequelize }) => {
     SUCURSAL,
     VENDEDOR,
     VENTA,
+    REVIEW,
   } = sequelize.models;
 
   CATALOGO_UNIVERSAL.hasOne(CATALOGO_UNIVERSAL, {
@@ -47,6 +48,18 @@ const handlerAssociationModels = ({ sequelize }) => {
   CATALOGO_UNIVERSAL.belongsTo(CATALOGO_UNIVERSAL, {
     foreignKey: {
       name: "tipo_catalogo",
+    },
+  });
+
+  CATALOGO_UNIVERSAL.hasOne(EMPRESA, {
+    foreignKey: {
+      name: "tipo_subcripcion",
+    },
+  });
+
+  EMPRESA.belongsTo(CATALOGO_UNIVERSAL, {
+    foreignKey: {
+      name: "tipo_subcripcion",
     },
   });
 
@@ -203,6 +216,18 @@ const handlerAssociationModels = ({ sequelize }) => {
   DETALLES_VENTA.belongsTo(VENTA, {
     foreignKey: {
       name: "detalles_venta",
+    },
+  });
+
+  CATALOGO_UNIVERSAL.hasOne(REVIEW, {
+    foreignKey: {
+      name: "empresa_review",
+    },
+  });
+
+  REVIEW.belongsTo(CATALOGO_UNIVERSAL, {
+    foreignKey: {
+      name: "empresa_review",
     },
   });
 };
