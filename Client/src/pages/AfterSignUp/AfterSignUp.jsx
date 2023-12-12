@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import { changeSidebar } from "../../redux/actions";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 import Cookies from "universal-cookie";
+import { IoMdAdd } from "react-icons/io";
 const cookies = new Cookies();
 
 import Style from "./AfterSignUp.module.css";
@@ -61,7 +62,7 @@ const AfterSignUp = () => {
     <div className={Style.container}>
       <form onSubmit={handlerSubmit} className={Style.containerForm}>
         <h2>Ya has creado tu empresa!</h2>
-        <h2>Ahora registremos tus sucursales</h2>
+        <p>Ahora registremos tus sucursales</p>
         <label>Nombre de la sucursal: </label>
         <input
           type="text"
@@ -70,7 +71,9 @@ const AfterSignUp = () => {
           className={Style.input}
           name="sucursal"
         />
-        <button onClick={addSucursal}>Agregar</button>
+        <button onClick={addSucursal}>
+          <IoMdAdd />
+        </button>
 
         <div className={Style.labels}>
           {sucursales?.map((sucursal, i) => (
