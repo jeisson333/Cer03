@@ -1,6 +1,7 @@
 const {
   getEmpresa,
   postEmpresa,
+  updateEmpresa,
 } = require("../controllers/controllerEmpresa.js");
 const { singIn } = require("../controllers/controllerAuth.js");
 
@@ -30,9 +31,20 @@ const getEmpresaHandler = async (req, res) => {
   }
 };
 
+const updateEmpresaHandler = async (req, res) => {
+  try {
+    const values = req.body;
+    const response = await updateEmpresa({ values });
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 //para el get empresa nos tenemos que meter con los token y las auth de terceros
 
 module.exports = {
   getEmpresaHandler,
   postEmpresaHandler,
+  updateEmpresaHandler,
 };

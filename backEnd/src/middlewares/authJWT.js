@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const SECRET = process.env.SECRET;
+const JWT_SIGN_IN = process.env.JWT_SIGN_IN;
 
 // autorizacion JWT
 
@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
     return res.status(401).json({ msg: "access denied, Token not provided" });
   }
 
-  const payload = jwt.verify(token, SECRET);
+  const payload = jwt.verify(token, JWT_SIGN_IN);
   // validar tiempo en que expira el token
   if (Date.now() / 1000 > payload.exp) {
     return res.status(401).send({ error: "token expired" });

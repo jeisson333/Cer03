@@ -1,12 +1,18 @@
-const { EMPRESA, VENDEDOR, SUCURSAL } = require("../database/db");
+const {
+  EMPRESA,
+  VENDEDOR,
+  SUCURSAL,
+  CATALOGO_UNIVERSAL,
+} = require("../database/db");
 const jwt = require("jsonwebtoken");
-const SECRET = process.env.SECRET;
+const JWT_SIGN_IN = process.env.JWT_SIGN_IN;
 const singIn = async (email, password) => {
   let date;
   let role;
   let idBranch;
   let sucursal = "";
   let idUser;
+  let tipo_subcripcion;
   const empresaPromise = EMPRESA.findOne({
     where: {
       email: email,
@@ -30,12 +36,22 @@ const singIn = async (email, password) => {
       idBranch = empresa?.id_empresa;
       date = empresa?.fecha_licencia;
       role = "admin";
-
-      modelSucursal = await SUCURSAL.findAll({
+      const modelSucursalPromise = SUCURSAL.findAll({
         where: {
           sucursal_empresa: empresa?.id_empresa,
         },
       });
+      const modelSubcripcionPromise = CATALOGO_UNIVERSAL.findOne({
+        where: {
+          id_catalogo: empresa?.tipo_subcripcion,
+        },
+      });
+
+      const [modelSucursal, modelSubcripcion] = await Promise.all([
+        modelSucursalPromise,
+        modelSubcripcionPromise,
+      ]);
+      tipo_subcripcion = modelSubcripcion?.nombre_catalogo;
       sucursal = modelSucursal[0]?.nombre_sucursal;
     }
   } else {
@@ -52,12 +68,19 @@ const singIn = async (email, password) => {
           id_empresa: modelSucursal?.sucursal_empresa,
         },
       });
+      const modelSubcripcion = await CATALOGO_UNIVERSAL.findOne({
+        where: {
+          id_catalogo: modelEmpresa?.tipo_subcripcion,
+        },
+      });
+
       if (!modelSucursal) throw new Error("Sucursal not exist");
       idBranch = modelSucursal?.sucursal_empresa;
       idUser = vendedor?.id_vendedor;
       role = "user";
       sucursal = modelSucursal?.nombre_sucursal;
       date = modelEmpresa?.fecha_licencia;
+      tipo_subcripcion = modelSubcripcion?.nombre_catalogo;
     }
   }
   const dayMS = 1000 * 60 * 60 * 24;
@@ -72,8 +95,9 @@ const singIn = async (email, password) => {
       role: role,
       branch: sucursal,
       exp: Date.now() / 1000 + 60 * 1440,
+      subscription: tipo_subcripcion,
     },
-    SECRET
+    JWT_SIGN_IN
   );
   return token;
 };
@@ -81,4 +105,3 @@ const singIn = async (email, password) => {
 module.exports = {
   singIn,
 };
-/*var token = jwt.sign({ foo: 'bar' }, 'shhhhh');*/

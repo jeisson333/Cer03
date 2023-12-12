@@ -6,9 +6,10 @@ const { saveSaleMen } = require("./saveVendedor");
 const { saveVenta } = require("./saveVentas");
 
 const saveJsonInDB = () => {
-  const catalogoPromise = saveCatalogo();
-  const empresaPromise = saveEmpresa();
-  Promise.all([catalogoPromise, empresaPromise])
+  saveCatalogo()
+    .then(() => {
+      return saveEmpresa();
+    })
     .then(() => {
       return saveSucursal();
     })
