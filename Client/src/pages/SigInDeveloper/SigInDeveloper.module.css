@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: aqua;
+  background-image: url("../../assets/45500326.jpg");
+  background-size: cover;
+}
+
+.containerForm {
+  width: fit-content;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(71, 162, 227, 0.5);
+  /* Azul rey con 50% de opacidad */
+  font-size: 2em;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  /* Ajusta el valor de desenfoque según tus preferencias */
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.inputSubmit {
+  width: 100%;
+  padding: 10px;
+  border: solid;
+  border-radius: 4px;
+  color: #ffffff;
+  /* Azul rey */
+  cursor: pointer;
+}
+
+.inputSubmit:hover {
+  color: #000000;
+}
+
+.divTittle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.SignUp {
+  font-size: large;
+  position: fixed;
+  right: 0;
+  margin-right: 2vh;
+  border: solid;
+  color: white;
+  border-color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+
+.SignUp:hover {
+  color: black;
+  border-color: black;
+}
