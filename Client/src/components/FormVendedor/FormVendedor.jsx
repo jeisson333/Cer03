@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Style from "./FormVendedor.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getDocuments, getSucursales, postSaleMen } from "../../redux/actions";
+import validations from "./validations";
 
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -13,17 +14,7 @@ const FormVendedor = () => {
 
   const [form, setForm] = useState({});
 
-  const [errors, setErrors] = useState({
-    usuario_vendedor: "",
-    contraseña_vendedor: "",
-    primer_nombre: "",
-    segundo_nombre: "",
-    primer_apellido: "",
-    segundo_apellido: "",
-    tipo_documento: "",
-    numero_documento: "",
-    vendedor_sucursal: "",
-  });
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     dispatch(getDocuments());
@@ -33,7 +24,7 @@ const FormVendedor = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
-    validarCampo(name, value);
+    // validarCampo(name, value);
   };
 
   const handleFormSubmit = (event) => {
@@ -46,79 +37,65 @@ const FormVendedor = () => {
     }
   };
 
-  const hayErrores = () => {
-    return Object.values(errors).some((error) => error !== "");
+  const contentSomething = () => {
+    if (
+      !form.primer_nombre ||
+      !form.segundo_nombre ||
+      !form.primer_apellido ||
+      !form.segundo_apellido ||
+      !form.tipo_documento ||
+      !form.numero_documento ||
+      !form.vendedor_sucursal ||
+      !form.usuario_vendedor ||
+      !form.contraseña_vendedor
+    )
+      return true;
+
+    return false;
   };
 
-  const validarCampo = (name, value) => {
-    let nuevosErrores = { ...errors };
-
-    switch (name) {
-      case "primerNombre":
-      case "segundoNombre":
-      case "primerApellido":
-      case "segundoApellido":
-        if (/^[A-Za-záéíóúüñÑ\s]+$/.test(value)) {
-          nuevosErrores[name] = "";
-        } else {
-          nuevosErrores[name] = `El ${name} no puede contener números`;
-        }
-        break;
-      case "numeroDocumento":
-        if (/^[1-9]\d*$/.test(value)) {
-          nuevosErrores[name] = "";
-        } else {
-          nuevosErrores[name] = "Ingrese un número válido y positivo";
-        }
-        break;
-      case "sucursal":
-        if (/^[A-Za-z0-9\s]+$/.test(value)) {
-          nuevosErrores[name] = "";
-        } else {
-          nuevosErrores[name] = "Ingrese una sucursal válida";
-        }
-        break;
-      case "email":
-        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-          nuevosErrores[name] = "";
-        } else {
-          nuevosErrores[name] = "Ingrese un correo electrónico válido";
-        }
-        break;
-      case "usuario":
-        if (/^[A-Za-z0-9]+$/.test(value)) {
-          nuevosErrores[name] = "";
-        } else {
-          nuevosErrores[name] =
-            "Ingrese un nombre de usuario válido (solo letras y números)";
-        }
-        break;
-      case "contraseña":
-        if (value.length >= 6) {
-          nuevosErrores[name] = "";
-        } else {
-          nuevosErrores[name] =
-            "La contraseña debe tener al menos 6 caracteres";
-        }
-        break;
-      default:
-        break;
-    }
-    setErrors(nuevosErrores);
+  const notSubmit = () => {
+    if (
+      !form.primer_nombre ||
+      !form.segundo_nombre ||
+      !form.primer_apellido ||
+      !form.segundo_apellido ||
+      !form.tipo_documento ||
+      !form.numero_documento ||
+      !form.vendedor_sucursal ||
+      !form.usuario_vendedor ||
+      !form.contraseña_vendedor ||
+      errors.primer_nombre ||
+      errors.segundo_nombre ||
+      errors.primer_apellido ||
+      errors.segundo_apellido ||
+      errors.tipo_documento ||
+      errors.numero_documento ||
+      errors.vendedor_sucursal ||
+      errors.usuario_vendedor ||
+      errors.contraseña_vendedor
+    )
+      return true;
   };
 
   const deleteFields = () => {
     setForm({
       ...form,
       contraseña_vendedor: "",
+      tipo_documento: "",
       numero_documento: "",
       primer_apellido: "",
       primer_nombre: "",
       segundo_apellido: "",
       segundo_nombre: "",
       usuario_vendedor: "",
+      vendedor_sucursal: "",
     });
   };
+
+  useEffect(() => {
+    setErrors(validations(form));
+  }, [form]);
 
   return (
     <form className={Style.formContainer} onSubmit={handleFormSubmit}>
@@ -134,7 +111,9 @@ const FormVendedor = () => {
               value={form.primer_nombre}
               onChange={handleInputChange}
             />
-            <span className={Style.formError}>{errors.primer_nombre}</span>
+            {errors.primer_nombre && (
+              <p className={Style.errors}>{errors.primer_nombre}</p>
+            )}
           </div>
 
           <div className={Style.formGroup}>
@@ -146,7 +125,10 @@ const FormVendedor = () => {
               value={form.segundo_nombre}
               onChange={handleInputChange}
             />
-            <span className={Style.formError}>{errors.segundo_nombre}</span>
+            {/* <span className={Style.formError}>{errors.segundo_nombre}</span> */}
+            {errors.segundo_nombre && (
+              <p className={Style.errors}>{errors.segundo_nombre}</p>
+            )}
           </div>
         </div>
 
@@ -160,7 +142,10 @@ const FormVendedor = () => {
               value={form.primer_apellido}
               onChange={handleInputChange}
             />
-            <span className={Style.formError}>{errors.primer_apellido}</span>
+            {/* <span className={Style.formError}>{errors.primer_apellido}</span> */}
+            {errors.primer_apellido && (
+              <p className={Style.errors}>{errors.primer_apellido}</p>
+            )}
           </div>
           <div className={Style.formGroup}>
             <label className={Style.formLabel}>Segundo Apellido: </label>
@@ -171,7 +156,10 @@ const FormVendedor = () => {
               value={form.segundo_apellido}
               onChange={handleInputChange}
             />
-            <span className={Style.formError}>{errors.segundo_apellido}</span>
+            {/* <span className={Style.formError}>{errors.segundo_apellido}</span> */}
+            {errors.segundo_apellido && (
+              <p className={Style.errors}>{errors.segundo_apellido}</p>
+            )}
           </div>
         </div>
 
@@ -190,7 +178,10 @@ const FormVendedor = () => {
               </option>
             ))}
           </select>
-          <span className={Style.formError}>{errors.tipo_documento}</span>
+          {/* <span className={Style.formError}>{errors.tipo_documento}</span> */}
+          {errors.tipo_documento && (
+            <p className={Style.errors}>{errors.tipo_documento}</p>
+          )}
         </div>
 
         <div className={Style.formGroup}>
@@ -202,7 +193,10 @@ const FormVendedor = () => {
             value={form.numero_documento}
             onChange={handleInputChange}
           />
-          <span className={Style.formError}>{errors.numero_documento}</span>
+          {/* <span className={Style.formError}>{errors.numero_documento}</span> */}
+          {errors.numero_documento && (
+            <p className={Style.errors}>{errors.numero_documento}</p>
+          )}
         </div>
 
         <div className={Style.formGroup}>
@@ -220,7 +214,10 @@ const FormVendedor = () => {
               </option>
             ))}
           </select>
-          <span className={Style.formError}>{errors.vendedor_sucursal}</span>
+          {/* <span className={Style.formError}>{errors.vendedor_sucursal}</span> */}
+          {errors.vendedor_sucursal && (
+            <p className={Style.errors}>{errors.vendedor_sucursal}</p>
+          )}
         </div>
 
         <div className={Style.formSame}>
@@ -233,8 +230,11 @@ const FormVendedor = () => {
               value={form.usuario_vendedor}
               onChange={handleInputChange}
             />
-            <span className={Style.formError}>{errors.usuario_vendedor}</span>
+            {errors.usuario_vendedor && (
+              <p className={Style.errors}>{errors.usuario_vendedor}</p>
+            )}
           </div>
+
           <div className={Style.formGroup}>
             <label className={Style.formLabel}>Contraseña: </label>
             <input
@@ -244,20 +244,25 @@ const FormVendedor = () => {
               value={form.contraseña_vendedor}
               onChange={handleInputChange}
             />
-            <span className={Style.formError}>
-              {errors.contraseña_vendedor}
-            </span>
+            {errors.contraseña_vendedor && (
+              <p className={Style.errors}>{errors.contraseña_vendedor}</p>
+            )}
           </div>
         </div>
+
         <div className={Style.buttonHolder}>
           <button
             type="submit"
             className={`${Style.formButton} ${Style.formSubmit}`}
-            disabled={hayErrores()}
+            disabled={notSubmit()}
           >
             Guardar
           </button>
-          <button className={Style.deleteButton} onClick={deleteFields}>
+          <button
+            className={Style.deleteButton}
+            onClick={deleteFields}
+            disabled={contentSomething()}
+          >
             Borrar todo
           </button>
         </div>
