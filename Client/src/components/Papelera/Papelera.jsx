@@ -5,6 +5,7 @@ import { FaTrashRestore } from "react-icons/fa";
 import { restoreProduct } from "../../redux/actions";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
+import Style from "./Papelera.module.css";
 
 const cookies = new Cookies();
 
@@ -52,36 +53,36 @@ function Papelera({}) {
 
   return (
     <div className="flex justify-center">
-      <table className="table-auto border-collapse border border-blue-800">
+      <table className={Style.table}>
         <thead>
           <tr>
-            <th className="border border-blue-600 p-3">Imagen</th>
-            <th className="border border-blue-600 p-3">Nombre</th>
-            <th className="border border-blue-600 p-3">Tipo</th>
-            <th className="border border-blue-600 p-3">Sucursal</th>
-            <th className="border border-blue-600 p-3">Restaurar</th>
+            <th className={Style.cell}>Imagen</th>
+            <th className={Style.cell}>Nombre</th>
+            <th className={Style.cell}>Tipo</th>
+            <th className={Style.cell}>Sucursal</th>
+            <th className={Style.cell}>Restaurar</th>
           </tr>
         </thead>
         <tbody>
           {itemsBorrados?.map((product, index) => (
             <tr key={index}>
-              <td className="border border-blue-600 p-3">
+              <td className={Style.cell}>
                 <img
                   src={product?.PRODUCTO?.image}
                   alt={product?.PRODUCTO?.nombre_producto}
                   className="w-20 h-20 rounded-lg object-cover"
                 />
               </td>
-              <td className="border border-blue-600 p-3">
+              <td className={Style.cell}>
                 {product?.PRODUCTO?.nombre_producto}
               </td>
-              <td className="border border-blue-600 p-3">
+              <td className={Style.cell}>
                 {product?.PRODUCTO?.CATALOGO_UNIVERSAL?.nombre_catalogo}
               </td>
-              <td className="border border-blue-600 p-3">
+              <td className={Style.cell}>
                 {product?.SUCURSAL.nombre_sucursal}
               </td>
-              <td className="border border-blue-600 p-3">
+              <td className={Style.cell}>
                 <button
                   onClick={() =>
                     handleRestoreProduct(product?.id_inventario_producto)
