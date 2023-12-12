@@ -25,6 +25,9 @@ const Header = () => {
           <NavLink to="/signIn">
             <button className={Style.loginButton}>Log In</button>
           </NavLink>
+          <NavLink to="/signInDeveloper">
+            <button className={Style.loginButton}>Developer</button>
+          </NavLink>
         </div>
       </div>
     </nav>
