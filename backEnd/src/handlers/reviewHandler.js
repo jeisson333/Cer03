@@ -8,7 +8,7 @@ const postReviewHandler = async (req, res) => {
     const { title, score, description, branch } = req.body;
 
     if (!title || !score || !description || !branch)
-      return res.status(400).json({ message: "Faltan datos" });
+      return res.status(400).json({ error: "Faltan datos" });
 
     const response = await postReviewController({
       title,
@@ -24,7 +24,7 @@ const postReviewHandler = async (req, res) => {
     else
       return res
         .status(400)
-        .json({ message: "No se ha podido enviar la review" });
+        .json({ error: "No se ha podido enviar la review" });
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -34,7 +34,7 @@ const getReviewHandler = async (req, res) => {
   try {
     const { branch } = req.body;
 
-    if (!branch) return res.status(400).json({ message: "Faltan datos" });
+    if (!branch) return res.status(400).json({ error: "Faltan datos" });
 
     const response = await getReviewController({
       branch,
