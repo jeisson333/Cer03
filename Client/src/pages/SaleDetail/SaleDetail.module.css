@@ -10,6 +10,9 @@
   margin-top: 15px;
   color: #001832;
 }
+.infoSale {
+  margin-left: 150px;
+}
 
 .imagen {
   /* width: 140px; */
@@ -20,4 +23,16 @@
   .imagen {
     width: 50px;
   }
+}
+
+.cell {
+  border: 2px solid black;
+  padding: 10px;
+  text-align: center;
+}
+
+.table {
+  width: auto;
+  border-collapse: collapse;
+  margin-top: 30px;
 }

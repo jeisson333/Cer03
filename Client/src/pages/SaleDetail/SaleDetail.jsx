@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSaleDetail } from "../../redux/actions";
 
-import styles from "./SaleDetail.module.css";
+import Style from "./SaleDetail.module.css";
 
 const SaleDetail = () => {
   const dispatch = useDispatch();
@@ -16,11 +16,11 @@ const SaleDetail = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={Style.container}>
       {/* <h2>{saleDetail.id_venta}</h2> */}
-      <h1 className={styles.title}> Detalles Venta</h1>
+      <h1 className={Style.title}> Detalles Venta</h1>
 
-      <div className={styles.infoSale}>
+      <div className={Style.infoSale}>
         <h2>
           <strong>Fecha: </strong>
           {new Date(saleDetail?.createdAt)?.toLocaleString()}
@@ -36,55 +36,47 @@ const SaleDetail = () => {
       </div>
 
       <div className="flex justify-center">
-        <table className="table-auto border-collapse border border-blue-800">
+        <table className={Style.table}>
           <thead>
             <tr>
-              <th className="border border-black-600 p-3">Imagen</th>
-              <th className="border border-black-600 p-3">Nombre</th>
-              <th className="border border-black-600 p-3">Peso</th>
-              <th className="border border-black-600 p-3">Valor venta</th>
-              <th className="border border-black-600 p-3">Cantidad</th>
-              <th className="border border-black-600 p-3">Total productos</th>
+              <th className={Style.cell}>Imagen</th>
+              <th className={Style.cell}>Nombre</th>
+              <th className={Style.cell}>Peso</th>
+              <th className={Style.cell}>Valor venta</th>
+              <th className={Style.cell}>Cantidad</th>
+              <th className={Style.cell}>Total productos</th>
             </tr>
           </thead>
           <tbody>
             {saleDetail?.details?.map((product, i) => (
               <tr key={i}>
-                <td className="border border-black-600 p-3">
+                <td className={Style.cell}>
                   <img
-                    className={styles.imagen}
+                    className={Style.imagen}
                     src={product.PRODUCTO.image}
                     alt={product.PRODUCTO.id_producto}
                   />
                 </td>
-                <td className="border border-black-600 p-3">
+                <td className={Style.cell}>
                   {product.PRODUCTO.nombre_producto}
                 </td>
-                <td className="border border-black-600 p-3">
-                  {product.PRODUCTO.peso}
-                </td>
-                <td className="border border-black-600 p-3">
-                  {product.PRODUCTO.valor_venta}
-                </td>
-                <td className="border border-black-600 p-3">
-                  {product.cantidad_producto}
-                </td>
-                <td className="border border-black-600 p-3">
+                <td className={Style.cell}>{product.PRODUCTO.peso}</td>
+                <td className={Style.cell}>{product.PRODUCTO.valor_venta}</td>
+                <td className={Style.cell}>{product.cantidad_producto}</td>
+                <td className={Style.cell}>
                   ${product.PRODUCTO.valor_venta * product.cantidad_producto}
                 </td>
               </tr>
             ))}
             <tr>
-              <td className="border border-black-600 p-3"></td>
-              <td className="border border-black-600 p-3"></td>
-              <td className="border border-black-600 p-3"></td>
-              <td className="border border-black-600 p-3"></td>
-              <td className="border border-black-600 p-3">
+              <td className={Style.cell}></td>
+              <td className={Style.cell}></td>
+              <td className={Style.cell}></td>
+              <td className={Style.cell}></td>
+              <td className={Style.cell}>
                 <strong>Total Vendido:</strong>
               </td>
-              <td className="border border-black-600 p-3">
-                ${saleDetail?.totalValue}
-              </td>
+              <td className={Style.cell}>${saleDetail?.totalValue}</td>
             </tr>
           </tbody>
         </table>
