@@ -18,6 +18,7 @@ import {
   GET_PAYMENTS,
   CREATE_TYPE,
   GET_SALE_DETAIL,
+  SOMETHING_REVIEW,
 } from "./action-types.js";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -34,6 +35,7 @@ const initialState = {
   actionCart: false,
   msg: "",
   saleDetail: {},
+  review: false,
 };
 
 function reducer(state = initialState, action) {
@@ -148,6 +150,9 @@ function reducer(state = initialState, action) {
         ...state,
         saleDetail: action.payload,
       };
+
+    case SOMETHING_REVIEW:
+      return { ...state, review: true };
 
     default:
       return { ...state };

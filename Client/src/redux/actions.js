@@ -19,6 +19,7 @@ import {
   POST_SALEMEN,
   CREATE_TYPE,
   GET_SALE_DETAIL,
+  SOMETHING_REVIEW,
 } from "./action-types.js";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -276,6 +277,29 @@ export const getSaleDetail = (id) => {
         type: GET_SALE_DETAIL,
         payload: data,
       });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const somethingReview = (idBranch, action, form) => {
+  return async function (dispatch) {
+    try {
+      if (action === "submit") {
+        const response = await axios.post(`${baseUrl}/review/post`, {
+          title: form.titulo,
+          score: form.puntuacion,
+          description: form.descripcion,
+          branch: idBranch,
+        });
+      }
+
+      const find = await axios.post(`${baseUrl}/review/get`, {
+        branch: idBranch,
+      });
+
+      if (!find.message) return dispatch({ type: SOMETHING_REVIEW });
     } catch (error) {
       console.log(error);
     }

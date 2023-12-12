@@ -9,7 +9,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { CiBadgeDollar } from "react-icons/ci";
 import style from "./SideBar.module.css";
 import logoCer03 from "../../components/image/logocer03.jpeg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../redux/actions";
 import Cookies from "universal-cookie";
 import { toast } from "react-hot-toast";
@@ -41,6 +41,7 @@ const NavBAr = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { role } = cookies.get("auth");
+  const { review } = useSelector((state) => state);
 
   const handleSignOut = () => {
     navigate("/");
@@ -73,6 +74,13 @@ const NavBAr = () => {
               icon={<CiBadgeDollar />}
               text="Suscripción"
             />
+            {!review && (
+              <SidebarLink
+                to="/review"
+                icon={<CiBadgeDollar />}
+                text="Review"
+              />
+            )}
             <div className={style.divider}></div>
             <SidebarLink
               to="/home"
