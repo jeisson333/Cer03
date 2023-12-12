@@ -89,33 +89,33 @@ const DeleteProductos = () => {
         <table className="table-auto border-collapse border border-blue-800">
           <thead>
             <tr>
-              <th className="border border-blue-600 p-3">Imagen</th>
-              <th className="border border-blue-600 p-3">Nombre</th>
-              <th className="border border-blue-600 p-3">Tipo</th>
-              <th className="border border-blue-600 p-3">Sucursal</th>
-              <th className="border border-blue-600 p-3">Eliminar</th>
+              <th className="border border-black-600 p-3">Imagen</th>
+              <th className="border border-black-600 p-3">Nombre</th>
+              <th className="border border-black-600 p-3">Tipo</th>
+              <th className="border border-black-600 p-3">Sucursal</th>
+              <th className="border border-black-600 p-3">Eliminar</th>
             </tr>
           </thead>
           <tbody>
             {products?.map((product, index) => (
               <tr key={index}>
-                <td className="border border-blue-600 p-3">
+                <td className="border border-black-600 p-3">
                   <img
                     src={product?.PRODUCTO?.image}
                     alt={product?.PRODUCTO?.nombre_producto}
                     className="w-20 h-20 rounded-lg object-cover"
                   />
                 </td>
-                <td className="border border-blue-600 p-3">
+                <td className="border border-black-600 p-3">
                   {product?.PRODUCTO?.nombre_producto}
                 </td>
-                <td className="border border-blue-600 p-3">
+                <td className="border border-black-600 p-3">
                   {product?.PRODUCTO?.CATALOGO_UNIVERSAL?.nombre_catalogo}
                 </td>
-                <td className="border border-blue-600 p-3">
+                <td className="border border-black-600 p-3">
                   {product?.SUCURSAL.nombre_sucursal}
                 </td>
-                <td className="border border-blue-600 p-3">
+                <td className="border border-black-100 p-3">
                   <button
                     onClick={() =>
                       handleDeleteProduct(product?.PRODUCTO?.id_producto)

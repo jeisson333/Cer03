@@ -54,3 +54,17 @@
   transform: translate(5px, 5px);
   transition-duration: 0.3s;
 }
+
+.divider{
+  display: flex;
+}
+
+.usableHolder{
+  margin-right: 25px;
+  display: grid;
+  place-items: center;
+}
+
+.usableHolder h2{
+  font-weight: 700;
+}
