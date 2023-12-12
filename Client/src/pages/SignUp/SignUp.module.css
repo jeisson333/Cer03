@@ -47,6 +47,9 @@
   /* Azul rey */
   cursor: pointer;
 }
+.inputSubmit:disabled {
+  cursor: not-allowed;
+}
 
 .inputSubmit:hover {
   color: #000000;
@@ -58,4 +61,10 @@
   right: 15%;
   width: 60%;
   height: 50vh;
+}
+.errorMessage {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }

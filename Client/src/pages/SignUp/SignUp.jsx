@@ -23,6 +23,27 @@ export default function SignUp() {
     password: "",
   });
   const [googleUser, setGoogleUser] = useState(false);
+  const [errors, setErrors] = useState({
+    nombre_empresa: "Formulario incompleto!",
+    email: "Formulario incompleto!",
+    password: "Formulario incompleto!",
+  });
+  const validate = (user, name) => {
+    const validationRegex = {
+      nombre_empresa: /^[a-zA-Z0-9\s-]{3,200}$/,
+      email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+      password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+    };
+
+    if (name in validationRegex) {
+      const regex = validationRegex[name];
+      if (!regex.test(user[name])) {
+        setErrors({ ...errors, [name]: `Campo ${name} inválido` });
+      } else {
+        setErrors({ ...errors, [name]: "" });
+      }
+    }
+  };
 
   useEffect(() => {
     if (Object.keys(dataUser).length > 1) {
@@ -42,6 +63,26 @@ export default function SignUp() {
       ...user,
       [event.target.name]: event.target.value,
     });
+    validate(
+      {
+        ...user,
+        [event.target.name]: event.target.value,
+      },
+      event.target.name
+    );
+  };
+  const disableFunction = () => {
+    let disabledAux = 0;
+    for (let error in errors) {
+      if (errors.hasOwnProperty(error)) {
+        if (errors[error] !== "") {
+          disabledAux++;
+        }
+      }
+    }
+    if (disabledAux > 0) {
+      return true;
+    } else return false;
   };
 
   const handleErrorGoogle = () => {
@@ -70,6 +111,13 @@ export default function SignUp() {
   const onFailure = (res) => {
     console.log("TE HE MIRADO A LOS OJOSSSSSSSSSSSS ", res);
   };
+  const miSet = new Set();
+  for (let error in errors) {
+    if (errors.hasOwnProperty(error)) {
+      miSet.add(errors[error]);
+    }
+  }
+
   return (
     <div className={Style.container}>
       <form onSubmit={handleSubmit} className={Style.containerForm}>
@@ -98,7 +146,13 @@ export default function SignUp() {
           className={Style.input}
           name="password"
         />
-        <input type="submit" value="Registar" className={Style.inputSubmit} />
+        <p className={Style.errorMessage}>{Array.from(miSet).join(", ")}</p>
+        <input
+          type="submit"
+          value="Registar"
+          disabled={disableFunction()}
+          className={Style.inputSubmit}
+        />
         <div
           style={{
             marginTop: "3vh",

@@ -20,6 +20,7 @@ export default function SignIn() {
     email: "",
     password: "",
   });
+  const [loginConfirm, setLoginConfirm] = useState("");
 
   useEffect(() => {
     if (Object.keys(dataUser).length > 1) {
@@ -42,9 +43,9 @@ export default function SignIn() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(signIn(user));
+    setLoginConfirm(await dispatch(signIn(user)));
   };
 
   const onSucess = (credentialResponse) => {
@@ -87,6 +88,11 @@ export default function SignIn() {
           className={Style.input}
           name="password"
         />
+        <p className={Style.errorMessage}>
+          {loginConfirm?.data?.error
+            ? loginConfirm?.data?.error
+            : loginConfirm?.data}
+        </p>
         <input type="submit" value="Ingresar" className={Style.inputSubmit} />
         <div
           style={{

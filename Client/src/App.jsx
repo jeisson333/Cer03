@@ -62,6 +62,7 @@ function App() {
     "/landingPage",
     "/signIn",
     "/signUp",
+    "/sign-up/sucursales",
     "/signInDeveloper",
   ];
 
