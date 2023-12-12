@@ -219,13 +219,13 @@ const handlerAssociationModels = ({ sequelize }) => {
     },
   });
 
-  CATALOGO_UNIVERSAL.hasOne(REVIEW, {
+  EMPRESA.hasOne(REVIEW, {
     foreignKey: {
       name: "empresa_review",
     },
   });
 
-  REVIEW.belongsTo(CATALOGO_UNIVERSAL, {
+  REVIEW.belongsTo(EMPRESA, {
     foreignKey: {
       name: "empresa_review",
     },
