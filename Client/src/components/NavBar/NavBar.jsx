@@ -67,7 +67,7 @@ const NavBAr = () => {
         {role === "admin" && (
           <div className={style.side}>
             <h3>
-              <strong>Usuario:</strong> {subscription.toUpperCase()}
+              <strong>Usuario:</strong> {subscription?.toUpperCase()}
             </h3>
             <div className={style.divider}></div>
             <SidebarLink
