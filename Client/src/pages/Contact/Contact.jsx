@@ -19,6 +19,7 @@ export default function Contact() {
   return (
     <div className={styles.contactPage}>
       <Header />
+
       <div>
         <h1 className={styles.bigTitle}>Contáctanos</h1>
       </div>
