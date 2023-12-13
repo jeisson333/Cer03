@@ -20,6 +20,7 @@ import {
   GET_SALE_DETAIL,
   SOMETHING_REVIEW,
   GET_GANANCIAS_SUCURSALES,
+  GET_CANTIDAD_VENDEDORES,
 } from "./action-types.js";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -38,6 +39,7 @@ const initialState = {
   saleDetail: {},
   review: false,
   gananciaSucursales: [],
+  cantidadVendedores: [],
 };
 
 function reducer(state = initialState, action) {
@@ -159,6 +161,9 @@ function reducer(state = initialState, action) {
 
     case GET_GANANCIAS_SUCURSALES:
       return { ...state, gananciaSucursales: [...action.payload] };
+
+    case GET_CANTIDAD_VENDEDORES:
+      return { ...state, cantidadVendedores: [...action.payload] };
 
     default:
       return { ...state };

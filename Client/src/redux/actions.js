@@ -21,6 +21,7 @@ import {
   GET_SALE_DETAIL,
   SOMETHING_REVIEW,
   GET_GANANCIAS_SUCURSALES,
+  GET_CANTIDAD_VENDEDORES,
 } from "./action-types.js";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -338,6 +339,23 @@ export const getGananciasSucursales = (idBranch) => {
 
       return dispatch({
         type: GET_GANANCIAS_SUCURSALES,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getCantidadVendedores = (idBranch) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.post(`${baseUrl}/info/cantidad-vendedores`, {
+        branch: idBranch,
+      });
+
+      return dispatch({
+        type: GET_CANTIDAD_VENDEDORES,
         payload: data,
       });
     } catch (error) {
