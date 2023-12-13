@@ -1,6 +1,7 @@
 const {
   singUpDeveloper,
   singInDeveloper,
+  getTotalBranchsController,
 } = require("../controllers/controllerDevelopers");
 
 //const { singIn } = require('../controllers/controllerAuth.js');
@@ -30,13 +31,23 @@ const postSingInDevelopersHandler = async (req, res) => {
     const { email, password } = req.body;
 
     const response = await singInDeveloper({ email, password });
-    res.status(200).json(response);
+    return res.status(200).json(response);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    return res.status(400).json({ error: error.message });
+  }
+};
+
+const getTotalBranchsHandler = async (req, res) => {
+  try {
+    const response = await getTotalBranchsController();
+    return res.status(200).json(response);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
   }
 };
 
 module.exports = {
   postSingUpDevelopersHandler,
   postSingInDevelopersHandler,
+  getTotalBranchsHandler,
 };

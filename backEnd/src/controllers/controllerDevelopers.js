@@ -1,5 +1,5 @@
-const { DEVELOPER } = require("../database/db");
-const { Op } = require("sequelize");
+const { DEVELOPER, EMPRESA, SUCURSAL } = require("../database/db");
+const { Op, Sequelize } = require("sequelize");
 const JWT_DEVELOPERS = process.env.JWT_DEVELOPERS;
 const jwt = require("jsonwebtoken");
 
@@ -36,7 +36,30 @@ const singInDeveloper = async ({ email, password }) => {
   }
 };
 
+const getTotalBranchsController = async () => {
+  const cantidad = await EMPRESA.count({
+    attributes: [
+      "id_empresa",
+      "nombre_empresa",
+      [
+        Sequelize.fn("ARRAY_AGG", Sequelize.literal(`nombre_sucursal`)),
+        "sucursales",
+      ],
+    ],
+    include: [
+      {
+        model: SUCURSAL,
+        attributes: [],
+      },
+    ],
+    group: ["id_empresa", "nombre_empresa"],
+  });
+
+  return cantidad;
+};
+
 module.exports = {
   singUpDeveloper,
   singInDeveloper,
+  getTotalBranchsController,
 };
