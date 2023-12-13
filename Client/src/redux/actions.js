@@ -218,10 +218,13 @@ export const restoreProduct = (id_inventario_producto) => {
   };
 };
 
-export const signIn = (user) => {
+export const signIn = (user, developer) => {
   return async function (dispatch) {
     try {
-      const url = `${baseUrl}/auth/sing-in`;
+      const url = `${baseUrl}/${
+        developer ? `developers/sing-in` : `auth/sing-in`
+      }`;
+
       const { data } = await axios.post(url, user);
       const myDecodedToken = decodeToken(data);
       const isMyTokenExpired = isExpired(data);
@@ -334,7 +337,7 @@ export const somethingReview = (idBranch, action, form) => {
   return async function (dispatch) {
     try {
       if (action === "submit") {
-        const response = await axios.post(`${baseUrl}/review/post`, {
+        await axios.post(`${baseUrl}/review/post`, {
           title: form.titulo,
           score: form.puntuacion,
           description: form.descripcion,

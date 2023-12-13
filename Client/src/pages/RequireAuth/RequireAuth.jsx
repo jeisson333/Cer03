@@ -11,6 +11,9 @@ const RequireAuth = ({
   try {
     const { role, subscription } = cookies.get("auth");
     if (authRoles.find((authRole) => authRole === role)) {
+      if (role == "developer") {
+        return <Outlet />;
+      }
       if (Typesubscription.find((type) => type === subscription))
         return <Outlet />;
     } else {

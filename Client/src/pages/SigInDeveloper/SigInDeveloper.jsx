@@ -20,8 +20,8 @@ export default function SignInDeveloper() {
   });
 
   useEffect(() => {
-    if (Object.keys(dataUser).length > 1) {
-      navigate("/home");
+    if (Object.keys(dataUser).length >= 1) {
+      navigate("/dashboardDeveloper");
       toast.success("Se inicio sesion correctamente");
     }
     function start() {
@@ -42,7 +42,7 @@ export default function SignInDeveloper() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(signIn(user));
+    dispatch(signIn(user, "developer"));
   };
 
   return (
