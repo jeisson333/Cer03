@@ -21,7 +21,7 @@ export default function Contact() {
       <Header />
 
       <div>
-        <h1 className={styles.bigTitle}>Contáctanos</h1>
+        <h1 className={styles.bigTitle}></h1>
       </div>
       <div className={styles.boxHolder}>
         <div className={styles.contactBox}>
