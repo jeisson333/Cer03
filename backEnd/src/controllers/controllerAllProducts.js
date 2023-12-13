@@ -264,6 +264,13 @@ const enableProduct = async ({ id_inventario_producto }) => {
 const updateProduct = async ({ conditions }) => {
   try {
     const { stock, id_sucursal, id_producto } = conditions;
+    await INVENTARIO_PRODUCTO.findOrCreate({
+      where: {
+        inventario_sucursal: id_sucursal,
+        inventario_producto: id_producto,
+      },
+    });
+
     const result = await INVENTARIO_PRODUCTO.update(
       { stock: stock },
       {

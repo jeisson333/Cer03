@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
 
       stock: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
 
       //InventarioProducto UUID [ref: > PRODUCTO.id_producto]
