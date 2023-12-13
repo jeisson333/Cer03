@@ -67,7 +67,7 @@ const DashboardAdmin = () => {
     let total = 0;
 
     array.forEach((element) => {
-      total += parseInt(element[toAccess]);
+      total += element[toAccess];
     });
 
     return total;
@@ -111,8 +111,8 @@ const DashboardAdmin = () => {
     <div>
       {/* ganancia por sucursal */}
       <div className={styles.gananciasGraph}>
-        <div>
-          <h2>Total vendido por sucursal</h2>
+        <div className={styles.graphContainer}>
+          <h2 className={styles.graphTitle}>Total vendido por sucursal</h2>
           <ResponsiveContainer width="50%" aspect={2}>
             <BarChart
               data={ganSucOrder}
@@ -134,41 +134,47 @@ const DashboardAdmin = () => {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        {sucSorted[0]?.total !==
-        sucSorted[gananciaSucursales.length - 1]?.total ? (
-          <div className={styles.ganSucDetails}>
-            <p>
-              <strong>Sucursal con menor ganancia:</strong> {sucSorted[0]?.name}
-            </p>
-            <p>
-              <strong>Sucursal con mayor ganancia:</strong>{" "}
-              {sucSorted[gananciaSucursales.length - 1]?.name}
-            </p>
-          </div>
-        ) : null}
-        <p>
-          <strong>Total juntando todas las sucursales:</strong> ${sucTotal}
-        </p>
-        {sucSorted[0]?.total !==
-        sucSorted[gananciaSucursales.length - 1]?.total ? (
-          <div>
-            <label>Orden: </label>
-            <select
-              name="gananciaSucursales"
-              onChange={selectHandler}
-              value={sucOrder}
-            >
-              <option value=""></option>
-              <option value="ASC">Menor a mayor</option>
-              <option value="DESC">Mayor a menor</option>
-            </select>
-          </div>
-        ) : null}
+        <div className={styles.graphDetails}>
+          {sucSorted[0]?.total !==
+          sucSorted[gananciaSucursales.length - 1]?.total ? (
+            <div className={styles.ganSucDetails}>
+              <p>
+                <strong>Sucursal con menor ganancia:</strong>{" "}
+                {sucSorted[0]?.name}
+              </p>
+              <p>
+                <strong>Sucursal con mayor ganancia:</strong>{" "}
+                {sucSorted[gananciaSucursales.length - 1]?.name}
+              </p>
+            </div>
+          ) : null}
+          <p>
+            <strong>Total juntando todas las sucursales:</strong> ${sucTotal}
+          </p>
+          {sucSorted[0]?.total !==
+          sucSorted[gananciaSucursales.length - 1]?.total ? (
+            <div>
+              <label>Orden: </label>
+              <select
+                name="gananciaSucursales"
+                onChange={selectHandler}
+                value={sucOrder}
+              >
+                <option value=""></option>
+                <option value="ASC">Menor a mayor</option>
+                <option value="DESC">Mayor a menor</option>
+              </select>
+            </div>
+          ) : null}
+        </div>
       </div>
+      <div className={styles.dividerLine}></div>
       {/* cantidad de vendedores */}
       <div className={styles.gananciasGraph}>
-        <div>
-          <h2>Cantidad de vendedores por sucursal</h2>
+        <div div className={styles.graphContainer}>
+          <h2 className={styles.graphTitle}>
+            Cantidad de vendedores por sucursal
+          </h2>
           <ResponsiveContainer width="50%" aspect={2}>
             <BarChart
               data={cantVendOrder}
@@ -190,38 +196,40 @@ const DashboardAdmin = () => {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        {vendSorted[0]?.count !==
-        vendSorted[cantidadVendedores.length - 1]?.count ? (
-          <div className={styles.ganSucDetails}>
-            <p>
-              <strong>Sucursal con menor cantidad de empleados:</strong>{" "}
-              {vendSorted[0]?.nombre_sucursal}
-            </p>
-            <p>
-              <strong>Sucursal con mayor cantidad de empleados:</strong>{" "}
-              {vendSorted[cantidadVendedores.length - 1]?.nombre_sucursal}
-            </p>
-          </div>
-        ) : null}
-        <p>
-          <strong>Total juntando todas las sucursales:</strong> {vendTotal}{" "}
-          vendedores.
-        </p>
-        {vendSorted[0]?.count !==
-        vendSorted[cantidadVendedores.length - 1]?.count ? (
-          <div>
-            <label>Orden: </label>
-            <select
-              name="cantidadVendedores"
-              onChange={selectHandler}
-              value={vendOrder}
-            >
-              <option value=""></option>
-              <option value="ASC">Menor a mayor</option>
-              <option value="DESC">Mayor a menor</option>
-            </select>
-          </div>
-        ) : null}
+        <div className={styles.graphDetails}>
+          {vendSorted[0]?.count !==
+          vendSorted[cantidadVendedores.length - 1]?.count ? (
+            <div className={styles.ganSucDetails}>
+              <p>
+                <strong>Sucursal con menor cantidad de empleados:</strong>{" "}
+                {vendSorted[0]?.nombre_sucursal}
+              </p>
+              <p>
+                <strong>Sucursal con mayor cantidad de empleados:</strong>{" "}
+                {vendSorted[cantidadVendedores.length - 1]?.nombre_sucursal}
+              </p>
+            </div>
+          ) : null}
+          <p>
+            <strong>Total juntando todas las sucursales:</strong> {vendTotal}{" "}
+            vendedores.
+          </p>
+          {vendSorted[0]?.count !==
+          vendSorted[cantidadVendedores.length - 1]?.count ? (
+            <div>
+              <label>Orden: </label>
+              <select
+                name="cantidadVendedores"
+                onChange={selectHandler}
+                value={vendOrder}
+              >
+                <option value=""></option>
+                <option value="ASC">Menor a mayor</option>
+                <option value="DESC">Mayor a menor</option>
+              </select>
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   );
