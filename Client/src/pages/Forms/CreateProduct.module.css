@@ -5,7 +5,7 @@
   margin-top: 8px;
 }
 
-.cargarProductos h2{
+.cargarProductos h2 {
   padding: 10px 5rem 0 5px;
   font-size: 25px;
   font-weight: 600;
@@ -27,7 +27,7 @@
   margin: 20px;
 }
 
-.title{
+.title {
   text-align: center;
   font-size: 24px;
   font-weight: 500;
@@ -43,17 +43,14 @@
   margin-top: 50px;
 }
 
-
-
 .indHolder {
   margin: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  
 }
 
-.indHolder span{
+.indHolder span {
   font-weight: 600;
 }
 
@@ -97,10 +94,10 @@
 }
 
 .submit:hover {
-  background-color: rgb(65, 176, 40) !important
+  background-color: rgb(65, 176, 40) !important;
 }
 
-.delete{
+.delete {
   width: 120px;
   height: 38px;
   margin: 10px;
@@ -111,9 +108,8 @@
   border: none;
 }
 
-.delete:hover{
+.delete:hover {
   background-color: rgb(153, 2, 2) !important;
-
 }
 
 .errors {
@@ -121,13 +117,26 @@
   font-weight: 100;
 }
 
-.inventarioHolder{
+.inventarioHolder {
   display: flex;
   flex-direction: wrap;
 }
 
-@media (max-width:800px){
-  .inventarioHolder{
+@media (max-width: 800px) {
+  .inventarioHolder {
     display: block;
   }
+}
+
+.addBtn {
+  margin: 5px;
+  border: 2px solid;
+  background-color: rgb(55, 255, 0) !important;
+  font-weight: bold;
+}
+.restBtn {
+  margin: 5px;
+  border: 2px solid;
+  background-color: rgb(255, 0, 0) !important;
+  font-weight: bold;
 }

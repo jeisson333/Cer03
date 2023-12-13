@@ -1,4 +1,38 @@
+:root {
+  --curious-blue-50: #eff9ff;
+  --curious-blue-200: #b6e7ff;
+  --curious-blue-500: #009ee3;
+  --curious-blue-700: #006dab;
+  --curious-blue-800: #005c8d;
+  --curious-blue-950: #04304d;
+}
+.graphTitle {
+  font-size: 1.3rem;
+  color: var(--curious-blue-700);
+  margin-bottom: 10px;
+}
 .gananciasGraph {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  height: 200px;
+  padding-top: 10px;
+}
+
+.graphContainer,
+.graphDetails {
+  width: 50%;
+  height: 100%;
+}
+
+.ganSucDetails {
+  padding: 20px;
   margin: 20px;
-  /* display: flex; */
+  color: var(--curious-blue-800);
+}
+.dividerLine {
+  height: 2px;
+  width: 100%;
+  background-color: var(--curious-blue-200);
+  margin: 0 20px;
 }

@@ -326,10 +326,18 @@ export function CreateProduct() {
                     name="stockCount"
                     value={stockCount}
                   />
-                  <button onClick={handleAddStock} type="button">
+                  <button
+                    className={styles.addBtn}
+                    onClick={handleAddStock}
+                    type="button"
+                  >
                     +
                   </button>
-                  <button onClick={handleRemoveStock} type="button">
+                  <button
+                    className={styles.restBtn}
+                    onClick={handleRemoveStock}
+                    type="button"
+                  >
                     -
                   </button>
                 </label>

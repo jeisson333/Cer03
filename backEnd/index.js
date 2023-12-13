@@ -4,7 +4,7 @@ const createCatalogueType = require("./src/helpers/createCatalogueType.js");
 const PORT = process.env.PORT || 3001;
 
 conn
-  .sync({ force: false })
+  .sync({ alter: true })
   .then(() => {
     createCatalogueType();
     server.listen(PORT, () => {

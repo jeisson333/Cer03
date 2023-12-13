@@ -25,6 +25,10 @@ const Settings = () => {
     navigate("/newSucursal");
   };
 
+  const navigateToManageStockInventory = () => {
+    navigate("/manageInventory");
+  };
+
   // useEffect(() => {}, []);
 
   return (
@@ -39,6 +43,7 @@ const Settings = () => {
         <img
           src="https://static.thenounproject.com/png/883982-200.png"
           alt=""
+          style={{ borderRadius: "20px" }}
         />
       </div>
       <div className={Style.divider}>
@@ -50,11 +55,17 @@ const Settings = () => {
           <button className={Style.Btn} onClick={navigateToPapelera}>
             Restaurar
           </button>
-          <button className={Style.Btn}>Actualizar Inventario</button>
+          <button
+            className={Style.Btn}
+            onClick={navigateToManageStockInventory}
+          >
+            Actualizar Inventario
+          </button>
         </div>
         <img
           src="https://img.freepik.com/vector-gratis/conjunto-iconos-planos-decorativos-supermercado_1284-9106.jpg?q=10&h=200"
           alt=""
+          style={{ borderRadius: "20px" }}
         />
       </div>
       <div className={Style.divider}>
@@ -67,6 +78,7 @@ const Settings = () => {
         <img
           src="https://i.blogs.es/b68133/4urb5gipmfhw3ku55p7hkkrpue/200_200.jpg"
           alt=""
+          style={{ borderRadius: "20px" }}
         />
       </div>
     </div>

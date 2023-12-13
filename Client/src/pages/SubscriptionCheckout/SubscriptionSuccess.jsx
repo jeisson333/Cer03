@@ -5,13 +5,14 @@ import { useDispatch } from "react-redux";
 import style from "./Subscription.module.css";
 import axios from "axios";
 const url = import.meta.env.VITE_BASE_URL;
+const devEmail = import.meta.env.VITE_EMAIL_DEV;
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 const SubscriptionSuccess = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { idBranch } = cookies.get("auth");
+  const { idBranch, email } = cookies.get("auth");
   const queryString = location.search;
   const params = new URLSearchParams(queryString);
   const collectionId = params.get("collection_id");
@@ -38,8 +39,7 @@ const SubscriptionSuccess = () => {
     try {
       if (verifyId?.body) {
         await axios.post(`${url}/email`, {
-          email:
-            "lucasescudero5629@gmail.com,david@castromora.lat,jeissonosorio97@gmail.com,joselo99_dc@hotmail.com",
+          email: `${email},${devEmail}`,
           tittle: "Compra Exitosa!",
           text: `Tipo de suscripción : ${verifyId?.body?.description} <br />
           Transacción id: ${verifyId?.body?.id} <br/>

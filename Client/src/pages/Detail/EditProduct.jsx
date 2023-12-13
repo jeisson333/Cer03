@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import style from "./Detail.module.css";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import Swal from "sweetalert2";
 const cookies = new Cookies();
 
-const EditProduct = ({ modalEditProduc, sucursales }) => {
+const EditProduct = ({ modalEditProduc, sucursales, product }) => {
   const url = import.meta.env.VITE_BASE_URL;
   const { idBranch } = cookies.get("auth");
   const dataParams = {
@@ -49,7 +51,7 @@ const EditProduct = ({ modalEditProduc, sucursales }) => {
   const handleChange = (event) => {
     if (event.target.name === "sucursales") {
       const ids = sucursales.find(
-        (i) => i.SUCURSAL.nombre_sucursal === event.target.value
+        (i) => i.nombre_sucursal === event.target.value
       );
       if (event.target.value == "")
         setErrors({
@@ -58,8 +60,8 @@ const EditProduct = ({ modalEditProduc, sucursales }) => {
         });
       setUpdateStock({
         ...updateStock,
-        productoid: ids.PRODUCTO.id_producto,
-        sucursal: ids.SUCURSAL.id_sucursal,
+        productoid: product[0]?.PRODUCTO.id_producto,
+        sucursal: ids.id_sucursal,
       });
     } else {
       setUpdateStock({
@@ -89,8 +91,8 @@ const EditProduct = ({ modalEditProduc, sucursales }) => {
         text: "Genial! Se actualizo con exito el stock",
         icon: "success",
       });
-    } catch (error) {
-      throw Error(error.message);
+    } catch ({ response }) {
+      throw Error(response.data);
     }
     await modalEditProduc();
   };
@@ -108,7 +110,7 @@ const EditProduct = ({ modalEditProduc, sucursales }) => {
       </div>
       <div>
         <h2 className={style.tittle}>
-          {sucursales[0]?.PRODUCTO?.nombre_producto}
+          {product[0]?.PRODUCTO?.nombre_producto}
         </h2>
         <p className={style.info}>Sucursal</p>
         <select
@@ -121,10 +123,10 @@ const EditProduct = ({ modalEditProduc, sucursales }) => {
             return (
               <option
                 key={key}
-                value={sl.SUCURSAL.nombre_sucursal}
+                value={sl.nombre_sucursal}
                 className={style.optionModal}
               >
-                {sl.SUCURSAL.nombre_sucursal}
+                {sl.nombre_sucursal}
               </option>
             );
           })}

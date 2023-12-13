@@ -37,6 +37,7 @@ import FormReview from "./pages/FormReview/FormReview";
 import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
 import FormSucursales from "./pages/FormSucursales/FormSucursales";
 import DashboardDeveloper from "./pages/DashboardDeveloper/DashboardDeveloper";
+import ManageInventory from "./pages/ManageInventory/ManageInventory";
 
 function App() {
   const location = useLocation();
@@ -97,6 +98,7 @@ function App() {
           <Route path="/newProduct" element={<CreateProduct />} />
           <Route path="/newSeller" element={<FormVendedor />} />
           <Route path="/deleteProduct" element={<DeleteProductos />} />
+          <Route path="/manageInventory" element={<ManageInventory />} />
           <Route path="/dashboard" element={<DashboardAdmin />} />
           <Route path="/papelera" element={<Papelera />} />
           <Route
