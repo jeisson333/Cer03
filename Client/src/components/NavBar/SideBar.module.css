@@ -68,6 +68,10 @@ h2 {
   background: rgb(195, 194, 194);
   margin: 24px 0;
 }
+
+.side > h3 {
+  margin-left: 25%;
+}
 /* 
 @media (max-width: 800px){
   .content{
