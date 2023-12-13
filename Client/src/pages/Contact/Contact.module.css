@@ -9,13 +9,14 @@
 .bigTitle {
   width: 100vw;
   text-align: center;
-  color: #18a0fb;
+  color: #000000;
   margin-left: 10px;
   margin-right: 10px;
+  margin-top: 20px;
+  font-size: x-large;
 }
 
 .boxHolder {
-
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -29,8 +30,8 @@
   border-left: 1px solid rgb(164, 163, 163);
   border-right: 1px solid rgb(164, 163, 163);
   border-radius: 12px;
-  box-shadow: 10px 5px 13px #18a0fb;
-  width: 240px;
+  box-shadow: 10px 5px 13px #1a365d;
+  width: 250px;
   height: 300px;
   text-align: center;
   margin: 25px;
@@ -39,6 +40,8 @@
 
 .title {
   color: #18a0fb;
+  margin-top: 10px;
+  margin-bottom: 10px;
   /* text-align: center; */
 }
 
@@ -67,8 +70,27 @@
   color: #02458d;
 }
 
-@media (max-width: 800px){
-  .boxHolder{
+@media (max-width: 800px) {
+  .boxHolder {
     margin-top: 70px;
   }
+}
+
+.text {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.link {
+  margin-top: 20px;
+  cursor: pointer;
+}
+.link:hover {
+  color: #02458d;
+}
+.textWithBackground {
+  background-image: url("../../assets/Contactanos.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: black;
+  border-radius: 20px;
 }
