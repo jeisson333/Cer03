@@ -33,7 +33,7 @@ import FormVendedor from "./components/FormVendedor/FormVendedor";
 import Papelera from "./components/Papelera/Papelera";
 import SignInDeveloper from "./pages/SigInDeveloper/SigInDeveloper";
 import DeleteProductos from "./pages/DeleteProductos/DeleteProductos";
-import FormBranch from "./pages/FormBranch/FormBranch";
+import FormReview from "./pages/FormReview/FormReview";
 import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
 
 function App() {
@@ -115,7 +115,7 @@ function App() {
             element={<SubscriptionPending />}
           />
           <Route path="/sign-up/sucursales" element={<AfterSignUp />} />
-          <Route path="/review" element={<FormBranch />} />
+          <Route path="/review" element={<FormReview />} />
         </Route>
         {/* user */}
         <Route element={<RequireAuth authRoles={["user"]} />}>
