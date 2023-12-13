@@ -4,6 +4,7 @@ import {
   ERROR_PRODUCTS,
   POST_NEWPRODUCT,
   DELETE_PRODUCT,
+  GET_DELETES_PRODUCTS,
   RESTORE_PRODUCT,
   GET_DOCUMENTS,
   GET_TYPEPRODUCTS,
@@ -37,6 +38,28 @@ export const getProducts = (idBranch, conditions) => {
 
       return dispatch({
         type: GET_PRODUCTS,
+        payload: data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_PRODUCTS,
+        payload: [],
+      });
+    }
+  };
+};
+
+export const getDeleteProducts = (idBranch, conditions) => {
+  return async function (dispatch) {
+    try {
+      const queryParams = new URLSearchParams(conditions).toString();
+      const url = conditions
+        ? `${baseUrl}/products/deletesProducts?${queryParams}`
+        : `${baseUrl}/products/deletesProducts`;
+      const { data } = await axios.post(url, { id: idBranch });
+
+      return dispatch({
+        type: GET_DELETES_PRODUCTS,
         payload: data,
       });
     } catch (error) {
