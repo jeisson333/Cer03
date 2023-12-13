@@ -1,4 +1,10 @@
-const { SUCURSAL, VENTA, DETALLES_VENTA, PRODUCTO } = require("../database/db");
+const {
+  SUCURSAL,
+  VENTA,
+  DETALLES_VENTA,
+  PRODUCTO,
+  VENDEDOR,
+} = require("../database/db");
 const { Sequelize } = require("sequelize");
 
 const getGananciaSucursalesController = async ({ branch, conditions }) => {
@@ -71,6 +77,36 @@ const getGananciaSucursalesController = async ({ branch, conditions }) => {
   return [];
 };
 
+const getCantidadVendedoresController = async ({ branch }) => {
+  const cantidad = await SUCURSAL.count({
+    attributes: [
+      "id_sucursal",
+      "nombre_sucursal",
+      // [Sequelize.fn("COUNT", Sequelize.literal(`id_vendedor`))],
+    ],
+    where: {
+      sucursal_empresa: branch,
+    },
+    include: [
+      // {
+      //   model: SUCURSAL,
+      //   attributes: ["nombre_sucursal"],
+      //   where: {
+      //     sucursal_empresa: branch,
+      //   },
+      // },
+      {
+        model: VENDEDOR,
+        attributes: [],
+      },
+    ],
+    group: ["id_sucursal", "nombre_sucursal"],
+  });
+
+  return cantidad;
+};
+
 module.exports = {
   getGananciaSucursalesController,
+  getCantidadVendedoresController,
 };
