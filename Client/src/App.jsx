@@ -33,7 +33,9 @@ import FormVendedor from "./components/FormVendedor/FormVendedor";
 import Papelera from "./components/Papelera/Papelera";
 import SignInDeveloper from "./pages/SigInDeveloper/SigInDeveloper";
 import DeleteProductos from "./pages/DeleteProductos/DeleteProductos";
-import FormBranch from "./pages/FormBranch/FormBranch";
+import FormReview from "./pages/FormReview/FormReview";
+import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
+import FormSucursales from "./pages/FormSucursales/FormSucursales";
 
 function App() {
   const location = useLocation();
@@ -95,6 +97,7 @@ function App() {
           <Route path="/subscription" element={<Subscription />} />
           <Route path="/newSeller" element={<FormVendedor />} />
           <Route path="/deleteProduct" element={<DeleteProductos />} />
+          <Route path="/dashboard" element={<DashboardAdmin />} />
           <Route path="/papelera" element={<Papelera />} />
           <Route
             path="/subscription/checkout"
@@ -113,7 +116,8 @@ function App() {
             element={<SubscriptionPending />}
           />
           <Route path="/sign-up/sucursales" element={<AfterSignUp />} />
-          <Route path="/review" element={<FormBranch />} />
+          <Route path="/review" element={<FormReview />} />
+          <Route path="/newSucursal" element={<FormSucursales />} />
         </Route>
         {/* user */}
         <Route element={<RequireAuth authRoles={["user"]} />}>

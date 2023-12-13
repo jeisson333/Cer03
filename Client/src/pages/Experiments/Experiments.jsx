@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import FormVendedor from "../../components/FormVendedor/FormVendedor";
+import Graph from "../../components/Graph/Graph";
 
 export default function experiments() {
   // const [test, setTest] = useState("");
@@ -18,17 +19,19 @@ export default function experiments() {
   //     });
   // }, []);
 
-
-
   return (
-
     <div>
-      <FormVendedor/>
+      <div>
+        <Graph
+          data1={12}
+          data2={16}
+          data3={5}
+          value1={"Dato1"}
+          value2={"Dato2"}
+          value3={"Dato3"}
+        />
+      </div>
     </div>
-
-    // <div>
-    //   <Graph data1={12} data2={16} data3={5} name1={'Dato1'} name2={'Dato2'} name3={'Dato3'} />
-    // </div>
     // <div>
     //   <Loading/>
     // </div>

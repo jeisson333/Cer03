@@ -164,53 +164,6 @@ const postVenta = async ({ body }) => {
 };
 
 const getVentaDetail = async ({ id }) => {
-  // const venta = await DETALLES_VENTA.findOne({
-  //   attributes: ["cantidad_producto"],
-  //   include: [
-  //     {
-  //       attributes: ["id_venta", "createdAt"],
-  //       model: VENTA,
-  //       where: {
-  //         id_venta: id,
-  //       },
-  //       include: [
-  //         {
-  //           model: CATALOGO_UNIVERSAL,
-  //           attributes: ["id_catalogo", "nombre_catalogo"],
-  //         },
-  //         {
-  //           model: SUCURSAL,
-  //           attributes: ["id_sucursal", "nombre_sucursal"],
-  //         },
-  //       ],
-  //       required: true,
-  //     },
-  //     {
-  //       model: PRODUCTO,
-  //       attributes: [
-  //         [
-  //           Sequelize.fn(
-  //             "ARRAY_AGG",
-  //             Sequelize.literal(
-  //               `JSON_BUILD_OBJECT(\'id\', id_producto, \'nombre\', nombre_producto, \'image\',image,\'Peso\',peso,\'Precio de venta\',valor_venta)`
-  //             )
-  //           ),
-  //           "info",
-  //         ],
-  //       ],
-  //       required: true,
-  //       duplicating: false,
-  //     },
-  //   ],
-  //   group: [
-  //     "detalles_venta",
-  //     "cantidad_producto",
-  //     "id_venta",
-  //     "id_catalogo",
-  //     "id_sucursal",
-  //   ],
-  //   raw: true,
-  // });
   const venta = await VENTA.findOne({
     attributes: ["id_venta", "createdAt"],
     where: { id_venta: id },

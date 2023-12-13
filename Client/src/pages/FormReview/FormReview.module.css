@@ -1,0 +1,109 @@
+/* FormReview.module.css */
+
+:root {
+  --curious-blue-500: #009ee3;
+  --curious-blue-700: #006dab;
+  --curious-blue-800: #005c8d;
+  --curious-blue-900: #064d74;
+  --curious-blue-950: #04304d;
+  --green-save: #2ecc71;
+  --red-delete: #e74c3c;
+}
+
+.formContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid var(--curious-blue-500);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  color: var(--curious-blue-950);
+  font-size: 25px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.formSame {
+  flex: 1 0 100%;
+
+  margin-right: 0;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formLabel {
+  display: flex;
+  margin-bottom: 5px;
+  color: var(--curious-blue-950);
+}
+
+.formInput,
+.puntuacion,
+.formInput,
+.formSubmit,
+.deleteButton {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.formInput,
+.puntuacion,
+.description {
+  /* width: 100%; */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.errors {
+  color: red;
+  margin-top: 5px;
+}
+
+.buttonHolder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formSubmit {
+  background-color: var(--green-save);
+  color: #fff;
+  cursor: pointer;
+  width: 70px;
+  margin-right: 30px;
+}
+
+.deleteButton {
+  background-color: var(--red-delete);
+  color: #fff;
+  cursor: pointer;
+  width: 150px;
+}
+
+.divider {
+  height: 1px;
+  width: 99%;
+  background: rgb(195, 194, 194);
+  margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+  .formSame {
+    flex: 1 0 100%;
+    margin-right: 0;
+  }
+}

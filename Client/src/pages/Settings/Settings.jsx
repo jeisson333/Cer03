@@ -22,43 +22,52 @@ const Settings = () => {
   };
 
   const navigateToFormSucursal = () => {
-    navigate("/sign-up/sucursales");
+    navigate("/newSucursal");
   };
 
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   return (
     <div className={Style.contenido}>
       <div className={Style.divider}>
         <div className={Style.usableHolder}>
-        <h2>Vendedores</h2>
-        <button className={Style.Btn} onClick={navigateToFormVendedor}>
-          Vendedores
-        </button>
+          <h2>Vendedores</h2>
+          <button className={Style.Btn} onClick={navigateToFormVendedor}>
+            Vendedores
+          </button>
         </div>
-        <img src="https://static.thenounproject.com/png/883982-200.png" alt="" />
+        <img
+          src="https://static.thenounproject.com/png/883982-200.png"
+          alt=""
+        />
       </div>
       <div className={Style.divider}>
         <div className={Style.usableHolder}>
-        <h2>Productos</h2>
-        <button className={Style.Btn} onClick={navigateToDeleteProductos}>
-          Eliminar
-        </button>
-        <button className={Style.Btn} onClick={navigateToPapelera}>
-          Restaurar
-        </button>
-        <button className={Style.Btn}>Actualizar Inventario</button>
+          <h2>Productos</h2>
+          <button className={Style.Btn} onClick={navigateToDeleteProductos}>
+            Eliminar
+          </button>
+          <button className={Style.Btn} onClick={navigateToPapelera}>
+            Restaurar
+          </button>
+          <button className={Style.Btn}>Actualizar Inventario</button>
         </div>
-        <img src="https://img.freepik.com/vector-gratis/conjunto-iconos-planos-decorativos-supermercado_1284-9106.jpg?q=10&h=200" alt="" />
+        <img
+          src="https://img.freepik.com/vector-gratis/conjunto-iconos-planos-decorativos-supermercado_1284-9106.jpg?q=10&h=200"
+          alt=""
+        />
       </div>
       <div className={Style.divider}>
         <div className={Style.usableHolder}>
-        <h2>Sucursales</h2>
-        <button className={Style.Btn} onClick={navigateToFormSucursal}>
-          Sucursales
-        </button>
+          <h2>Sucursales</h2>
+          <button className={Style.Btn} onClick={navigateToFormSucursal}>
+            Sucursales
+          </button>
         </div>
-        <img src="https://i.blogs.es/b68133/4urb5gipmfhw3ku55p7hkkrpue/200_200.jpg" alt="" />
+        <img
+          src="https://i.blogs.es/b68133/4urb5gipmfhw3ku55p7hkkrpue/200_200.jpg"
+          alt=""
+        />
       </div>
     </div>
   );

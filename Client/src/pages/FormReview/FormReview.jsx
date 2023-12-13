@@ -6,7 +6,7 @@ import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 import { useNavigate } from "react-router-dom";
 
-import Style from "./FormBranch.module.css";
+import Style from "./FormReview.module.css";
 
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -79,7 +79,8 @@ const FormBranch = () => {
 
   return (
     <form className={Style.formContainer} onSubmit={handleFormSubmit}>
-      <h2>Review</h2>
+      <h2 className={Style.title}>Review</h2>
+      <div className={Style.divider}></div>
       <div className={Style.container}>
         <div className={Style.formSame}>
           <div className={Style.formGroup}>
@@ -130,12 +131,8 @@ const FormBranch = () => {
         </div>
 
         <div className={Style.buttonHolder}>
-          <button
-            type="submit"
-            className={`${Style.formButton} ${Style.formSubmit}`}
-            disabled={notSubmit()}
-          >
-            Guardar
+          <button className={Style.formSubmit} disabled={notSubmit()}>
+            Enviar
           </button>
           <button
             className={Style.deleteButton}
