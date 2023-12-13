@@ -93,7 +93,6 @@ function App() {
           <Route path="/products" element={<Inventory />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/newProduct" element={<CreateProduct />} />
-          <Route path="/subscription" element={<Subscription />} />
           <Route path="/newSeller" element={<FormVendedor />} />
           <Route path="/deleteProduct" element={<DeleteProductos />} />
           <Route path="/dashboard" element={<DashboardAdmin />} />
@@ -116,6 +115,10 @@ function App() {
           />
           <Route path="/sign-up/sucursales" element={<AfterSignUp />} />
           <Route path="/review" element={<FormReview />} />
+        </Route>
+        {/* admin without subcription*/}
+        <Route element={<RequireAuth authRoles={(["admin"], ["free"])} />}>
+          <Route path="/subscription" element={<Subscription />} />
         </Route>
         {/* user */}
         <Route element={<RequireAuth authRoles={["user"]} />}>

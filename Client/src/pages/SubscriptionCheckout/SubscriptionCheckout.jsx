@@ -12,8 +12,6 @@ const SubscriptionCheckout = () => {
   const quantity = query.get("quantity");
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const [checkout, setCheckout] = useState([]);
-
-  console.log(subscription, totalPay, currency_id, quantity);
   useEffect(() => {
     (async () => {
       try {
@@ -30,10 +28,6 @@ const SubscriptionCheckout = () => {
   useEffect(() => {
     if (checkout?.init_point) window.location.href = checkout.init_point;
   }, [checkout]);
-
-  const handleSubmit = () => {
-    window.location.href = checkout.init_point;
-  };
 
   return (
     <div>

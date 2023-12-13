@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { updateSubcription } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 import style from "./Subscription.module.css";
 import axios from "axios";
 const url = import.meta.env.VITE_BASE_URL;
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const SubscriptionSuccess = () => {
   const location = useLocation();
-
+  const dispatch = useDispatch();
+  const { idBranch } = cookies.get("auth");
   const queryString = location.search;
   const params = new URLSearchParams(queryString);
   const collectionId = params.get("collection_id");
   const collectionStatus = params.get("collection_status");
   const preferenceId = params.get("preference_id");
+
   // const [verifyId, setVerifyId] = useState({});
 
   useEffect(() => {
@@ -41,6 +47,9 @@ const SubscriptionSuccess = () => {
           Precio: ${verifyId?.body?.transaction_details?.total_paid_amount} <br/>
           `,
         });
+        dispatch(
+          updateSubcription(verifyId?.body?.description.toLowerCase(), idBranch)
+        );
       }
     } catch (error) {
       throw Error(error.message);

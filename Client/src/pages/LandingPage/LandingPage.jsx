@@ -12,7 +12,9 @@ const cookies = new Cookies();
 
 const LandingPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  cookies.set("auth", {}, { path: "/" });
+  const auth = cookies.get("auth");
+  if (!auth) cookies.set("auth", {}, { path: "/" });
+
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? testimonialsData.length - 1 : prevIndex - 1

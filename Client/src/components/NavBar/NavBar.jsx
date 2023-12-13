@@ -42,7 +42,7 @@ const SidebarLink = ({ to, icon, text, Onclick }) => {
 const NavBAr = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { role } = cookies.get("auth");
+  const { role, subscription } = cookies.get("auth");
   const { review } = useSelector((state) => state);
 
   const handleSignOut = () => {
@@ -66,16 +66,19 @@ const NavBAr = () => {
 
         {role === "admin" && (
           <div>
+            <h3>{subscription}</h3>
             <SidebarLink
               to="/settings"
               icon={<CiSettings />}
               text="Configuraciones"
             />
-            <SidebarLink
-              to="/subscription"
-              icon={<CiBadgeDollar />}
-              text="Suscripción"
-            />
+            {subscription == "free" && (
+              <SidebarLink
+                to="/subscription"
+                icon={<CiBadgeDollar />}
+                text="Suscripción"
+              />
+            )}
             {!review && (
               <SidebarLink
                 to="/review"

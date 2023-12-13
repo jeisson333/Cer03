@@ -212,6 +212,28 @@ export const signIn = (user) => {
   };
 };
 
+export const updateSubcription = (name_subcripcion, idBranch) => {
+  return async function (dispatch) {
+    try {
+      const url = `${baseUrl}/empresa/`;
+      const { data } = await axios.put(url, {
+        name_subcripcion: name_subcripcion,
+        idBranch: idBranch,
+      });
+      const myDecodedToken = decodeToken(data);
+      const isMyTokenExpired = isExpired(data);
+      if (isMyTokenExpired) throw new Error("Expired token");
+      return dispatch({
+        type: SIGN_IN,
+        payload: myDecodedToken,
+      });
+    } catch ({ response }) {
+      console.log(response.data);
+      return response;
+    }
+  };
+};
+
 export const signUp = (user) => {
   return async function (dispatch) {
     try {
