@@ -13,6 +13,7 @@ const routeEmail = require("./routeEmail.js");
 const routePaymentGateways = require("./routePaymentGateways.js");
 const routeSales = require("./routePaymentSales.js");
 const routeReview = require("./routeReview.js");
+const routeInfo = require("./routeInfo.js");
 const { verifyToken } = require("../middlewares/authJWT.js");
 
 const router = Router();
@@ -29,6 +30,7 @@ router.use("/paymentGateways", routePaymentGateways);
 // router.use("/paymentSales", routeSales);
 router.use("/email", routeEmail);
 router.use("/review", routeReview);
+router.use("/info", routeInfo);
 
 // json chargue bd
 // const routeSaveJsonInDB = require("./saveJsonInDBRouter.js");

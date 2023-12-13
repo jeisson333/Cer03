@@ -20,6 +20,7 @@ import {
   CREATE_TYPE,
   GET_SALE_DETAIL,
   SOMETHING_REVIEW,
+  GET_GANANCIAS_SUCURSALES,
 } from "./action-types.js";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -300,6 +301,23 @@ export const somethingReview = (idBranch, action, form) => {
       });
 
       if (!find.message) return dispatch({ type: SOMETHING_REVIEW });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getGananciasSucursales = (idBranch) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.post(`${baseUrl}/info/ganancia-sucursales`, {
+        branch: idBranch,
+      });
+
+      return dispatch({
+        type: GET_GANANCIAS_SUCURSALES,
+        payload: data,
+      });
     } catch (error) {
       console.log(error);
     }

@@ -34,6 +34,7 @@ import Papelera from "./components/Papelera/Papelera";
 
 import DeleteProductos from "./pages/DeleteProductos/DeleteProductos";
 import FormBranch from "./pages/FormBranch/FormBranch";
+import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
 
 function App() {
   const location = useLocation();
@@ -92,6 +93,7 @@ function App() {
           <Route path="/subscription" element={<Subscription />} />
           <Route path="/newSeller" element={<FormVendedor />} />
           <Route path="/deleteProduct" element={<DeleteProductos />} />
+          <Route path="/dashboard" element={<DashboardAdmin />} />
           <Route path="/papelera" element={<Papelera />} />
           <Route
             path="/subscription/checkout"
