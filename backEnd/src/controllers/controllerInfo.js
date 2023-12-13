@@ -1,7 +1,7 @@
 const { SUCURSAL, VENTA, DETALLES_VENTA, PRODUCTO } = require("../database/db");
 const { Sequelize } = require("sequelize");
 
-const getGananciaSucursalesController = async ({ branch }) => {
+const getGananciaSucursalesController = async ({ branch, conditions }) => {
   const sucursales = await SUCURSAL.findAll({
     attributes: ["id_sucursal", "nombre_sucursal"],
     where: {

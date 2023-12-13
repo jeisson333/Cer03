@@ -4,11 +4,15 @@ const {
 
 const getGananciaSucursalesHandler = async (req, res) => {
   try {
+    const conditions = req.query;
     const { branch } = req.body;
 
     if (!branch) return res.status(400).json({ error: "Faltan datos" });
 
-    const response = await getGananciaSucursalesController({ branch });
+    const response = await getGananciaSucursalesController({
+      branch,
+      conditions,
+    });
 
     if (!response)
       return res
