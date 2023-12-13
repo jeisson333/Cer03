@@ -22,7 +22,6 @@ const DashboardAdmin = () => {
   const { idBranch } = cookies.get("auth");
   const { gananciaSucursales } = useSelector((state) => state);
   const [ganSucOrder, setGanSucOrder] = useState([]);
-  const [extremes, setExtremes] = useState({});
   const [sorted, setSorted] = useState([]);
   const [orderSelect, setOrderSelect] = useState("");
 
@@ -38,11 +37,6 @@ const DashboardAdmin = () => {
         return first.total > second.total;
       })
     );
-
-    setExtremes({
-      minName: sorted[0]?.name,
-      maxname: sorted[gananciaSucursales.length - 1]?.name,
-    });
   }, [gananciaSucursales]);
 
   useEffect(() => {
@@ -90,10 +84,11 @@ const DashboardAdmin = () => {
         </div>
         <div className={styles.ganSucDetails}>
           <p>
-            <strong>Sucursal con menor ganancia:</strong> {extremes.minName}
+            <strong>Sucursal con menor ganancia:</strong> {sorted[0]?.name}
           </p>
           <p>
-            <strong>Sucursal con mayor ganancia:</strong> {extremes.maxname}
+            <strong>Sucursal con mayor ganancia:</strong>{" "}
+            {sorted[gananciaSucursales.length - 1]?.name}
           </p>
         </div>
         <div>
@@ -101,7 +96,7 @@ const DashboardAdmin = () => {
           <select
             name="gananciaSucursales"
             onChange={selectHandler}
-            value={orderSelect.order}
+            value={orderSelect}
           >
             <option value=""></option>
             <option value="ASC">Menor a mayor</option>
