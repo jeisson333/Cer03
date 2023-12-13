@@ -1,5 +1,6 @@
 import {
   GET_PRODUCTS,
+  GET_DELETES_PRODUCTS,
   ERROR_PRODUCTS,
   POST_NEWPRODUCT,
   DELETE_PRODUCT,
@@ -26,6 +27,7 @@ const cookies = new Cookies();
 
 const initialState = {
   products: [],
+  deleteProducts: [],
   allTypeProducts: [],
   paymentMethods: [],
   sucursales: [],
@@ -65,6 +67,12 @@ function reducer(state = initialState, action) {
         totalPages: action.payload.info.pages,
         newProduct: false,
         msg: "",
+      };
+    case GET_DELETES_PRODUCTS:
+      return {
+        ...state,
+        deleteProducts: action.payload.data,
+        totalPages: action.payload.info.pages,
       };
     case ERROR_PRODUCTS:
       return {

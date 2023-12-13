@@ -1,31 +1,45 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { FaTrashRestore } from "react-icons/fa";
 import { restoreProduct } from "../../redux/actions";
 import Swal from "sweetalert2";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getSucursales, getDeleteProducts } from "../../redux/actions";
+import Filters from "../../components/Filters/Filters";
 import Style from "./Papelera.module.css";
 
 const cookies = new Cookies();
 
-function Papelera({}) {
+function Papelera() {
   const dispatch = useDispatch();
   const { idBranch, branch } = cookies.get("auth");
   const [flagRestoreProduct, setFlagRestoreProduct] = useState(false);
-  const url = import.meta.env.VITE_BASE_URL;
+  const totalPages = useSelector((state) => state.totalPages);
+  const sucursales = useSelector((state) => state.sucursales);
+  const [search, setSearch] = useState("");
+  const [conditions, setConditions] = useState({
+    sucursal: branch ? branch : sucursales[0]?.nombre_sucursal,
+    page: 1,
+    page_size: 15,
+  });
   const [itemsBorrados, SetItemsBorrados] = useState([]);
+
   useEffect(() => {
-    (async () => {
-      try {
-        const data = await axios.post(`${url}/products/deletesProducts`, {
-          id: idBranch,
-        });
-        console.log(data);
-        SetItemsBorrados(data.data.data);
-      } catch (error) {}
-    })();
-  }, [flagRestoreProduct]);
+    dispatch(getSucursales(idBranch));
+  }, []);
+
+  useEffect(() => {
+    if (conditions.sucursal) {
+      dispatch(getDeleteProducts(idBranch, conditions)).then((data) => {
+        if (data && data.payload) {
+          SetItemsBorrados(data.payload.data);
+        } else {
+          console.log("Data is not in the expected format:", data);
+        }
+      });
+    }
+  }, [conditions, flagRestoreProduct]);
 
   // console.log(data?.data.data[0]?.PRODUCTO?.id_producto);
   const handleRestoreProduct = (id_inventario_producto) => {
@@ -51,50 +65,74 @@ function Papelera({}) {
     });
   };
 
+  const handlerChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const handlerSubmit = () => {
+    setConditions({
+      ...conditions,
+      name: search,
+    });
+  };
+
   return (
-    <div className="flex justify-center">
-      <table className={Style.table}>
-        <thead>
-          <tr>
-            <th className={Style.cell}>Imagen</th>
-            <th className={Style.cell}>Nombre</th>
-            <th className={Style.cell}>Tipo</th>
-            <th className={Style.cell}>Sucursal</th>
-            <th className={Style.cell}>Restaurar</th>
-          </tr>
-        </thead>
-        <tbody>
-          {itemsBorrados?.map((product, index) => (
-            <tr key={index}>
-              <td className={Style.cell}>
-                <img
-                  src={product?.PRODUCTO?.image}
-                  alt={product?.PRODUCTO?.nombre_producto}
-                  className="w-20 h-20 rounded-lg object-cover"
-                />
-              </td>
-              <td className={Style.cell}>
-                {product?.PRODUCTO?.nombre_producto}
-              </td>
-              <td className={Style.cell}>
-                {product?.PRODUCTO?.CATALOGO_UNIVERSAL?.nombre_catalogo}
-              </td>
-              <td className={Style.cell}>
-                {product?.SUCURSAL.nombre_sucursal}
-              </td>
-              <td className={Style.cell}>
-                <button
-                  onClick={() =>
-                    handleRestoreProduct(product?.id_inventario_producto)
-                  }
-                >
-                  <FaTrashRestore />
-                </button>
-              </td>
+    <div>
+      <div className="flex justify-center">
+        <h2>Productos Eliminados</h2>
+      </div>
+      <Filters
+        conditions={conditions}
+        setConditions={setConditions}
+        sucursales={sucursales}
+        totalPages={totalPages}
+        handlerChange={handlerChange}
+        handlerSubmit={handlerSubmit}
+      />
+      <div className="flex justify-center">
+        <table className={Style.table}>
+          <thead>
+            <tr>
+              <th className={Style.cell}>Imagen</th>
+              <th className={Style.cell}>Nombre</th>
+              <th className={Style.cell}>Tipo</th>
+              <th className={Style.cell}>Sucursal</th>
+              <th className={Style.cell}>Restaurar</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {itemsBorrados?.map((product, index) => (
+              <tr key={index}>
+                <td className={Style.cell}>
+                  <img
+                    src={product?.PRODUCTO?.image}
+                    alt={product?.PRODUCTO?.nombre_producto}
+                    className="w-20 h-20 rounded-lg object-cover"
+                  />
+                </td>
+                <td className={Style.cell}>
+                  {product?.PRODUCTO?.nombre_producto}
+                </td>
+                <td className={Style.cell}>
+                  {product?.PRODUCTO?.CATALOGO_UNIVERSAL?.nombre_catalogo}
+                </td>
+                <td className={Style.cell}>
+                  {product?.SUCURSAL.nombre_sucursal}
+                </td>
+                <td className={Style.cell}>
+                  <button
+                    onClick={() =>
+                      handleRestoreProduct(product?.id_inventario_producto)
+                    }
+                  >
+                    <FaTrashRestore />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
