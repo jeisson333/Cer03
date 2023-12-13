@@ -78,11 +78,11 @@ const getGananciaSucursalesController = async ({ branch, conditions }) => {
 };
 
 const getCantidadVendedoresController = async ({ branch }) => {
-  const cantidad = await SUCURSAL.count({
+  const cantidad = await SUCURSAL.findAll({
     attributes: [
       "id_sucursal",
       "nombre_sucursal",
-      // [Sequelize.fn("COUNT", Sequelize.literal(`id_vendedor`))],
+      [Sequelize.fn("COUNT", Sequelize.literal(`id_vendedor`)), "count"],
     ],
     where: {
       sucursal_empresa: branch,
