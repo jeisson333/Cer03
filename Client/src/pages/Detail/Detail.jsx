@@ -25,19 +25,7 @@ const Detail = () => {
   const url = import.meta.env.VITE_BASE_URL;
   const [product, setProducts] = useState([]);
   const [modalProduct, setModalProduct] = useState(false);
-  const [sucursales, setSucursales] = useState([]);
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axios.post(`${url}/products?name=${name}`, {
-          id: idBranch,
-        });
-        setSucursales(data.data);
-      } catch (error) {
-        throw Error(error.message);
-      }
-    })();
-  }, []);
+  const sucursales = useSelector((state) => state.sucursales);
   useEffect(() => {
     (async () => {
       try {
@@ -141,6 +129,7 @@ const Detail = () => {
       </div>
       <div className={modalProduct ? style.container : style.closedModal}>
         <EditProduct
+          product={product}
           sucursales={sucursales}
           modalEditProduc={modalEditProduc}
         />
