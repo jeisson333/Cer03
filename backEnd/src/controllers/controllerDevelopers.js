@@ -4,6 +4,7 @@ const JWT_DEVELOPERS = process.env.JWT_DEVELOPERS;
 const jwt = require('jsonwebtoken');
 
 const singUpDeveloper = async ({ email, password }) => {
+	console.log(email, password, 'controllerrrrr');
 	const create = await DEVELOPER.findOne({
 		where: { email: email },
 	});

@@ -1,13 +1,16 @@
 const {
 	singUpDeveloper,
 	singInDeveloper,
-} = require('../controllers/controllerEmpresa.js');
+} = require('../controllers/controllerDevelopers');
 
 //const { singIn } = require('../controllers/controllerAuth.js');
 
 const postSingUpDevelopersHandler = async (req, res) => {
 	try {
 		const { email, password } = req.body;
+		const body = req.body;
+
+		console.log(body, 'handlerrrrr');
 		const complete = await singUpDeveloper({ email, password });
 
 		if (complete === 'este usuario ya existe') {

@@ -6,7 +6,7 @@ const {
 
 routeDevelopers = Router();
 
-routeDevelopers.post('/sign-up', postSingUpDevelopersHandler);
+routeDevelopers.post('/sing-up', postSingUpDevelopersHandler);
 
 routeDevelopers.post('/sing-in', postSingInDevelopersHandler);
 
