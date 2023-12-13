@@ -35,6 +35,7 @@ import SignInDeveloper from "./pages/SigInDeveloper/SigInDeveloper";
 import DeleteProductos from "./pages/DeleteProductos/DeleteProductos";
 import FormReview from "./pages/FormReview/FormReview";
 import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
+import FormSucursales from "./pages/FormSucursales/FormSucursales";
 
 function App() {
   const location = useLocation();
@@ -115,6 +116,7 @@ function App() {
           />
           <Route path="/sign-up/sucursales" element={<AfterSignUp />} />
           <Route path="/review" element={<FormReview />} />
+          <Route path="/newSucursal" element={<FormSucursales />} />
         </Route>
         {/* admin without subcription*/}
         <Route element={<RequireAuth authRoles={(["admin"], ["free"])} />}>
