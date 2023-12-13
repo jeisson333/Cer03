@@ -63,7 +63,7 @@ const AfterSignUp = () => {
       <form onSubmit={handlerSubmit} className={Style.containerForm}>
         <h2>Ya has creado tu empresa!</h2>
         <p>Ahora registremos tus sucursales</p>
-        <label>Nombre de la sucursal: </label>
+        <label className={Style.labelSucursal}>Nombre de la sucursal: </label>
         <input
           type="text"
           value={input}
@@ -71,7 +71,7 @@ const AfterSignUp = () => {
           className={Style.input}
           name="sucursal"
         />
-        <button onClick={addSucursal}>
+        <button onClick={addSucursal} className={Style.buttonAdd}>
           <IoMdAdd />
         </button>
 

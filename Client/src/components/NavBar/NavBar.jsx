@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../redux/actions";
 import Cookies from "universal-cookie";
 import { toast } from "react-hot-toast";
+import { MdOutlineRateReview } from "react-icons/md";
+
 const cookies = new Cookies();
 
 const SidebarLink = ({ to, icon, text, Onclick }) => {
@@ -77,7 +79,7 @@ const NavBAr = () => {
             {!review && (
               <SidebarLink
                 to="/review"
-                icon={<CiBadgeDollar />}
+                icon={<MdOutlineRateReview />}
                 text="Review"
               />
             )}
