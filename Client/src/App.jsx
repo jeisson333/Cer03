@@ -31,7 +31,7 @@ import FormTypeProduct from "./pages/FormTypeProduct/FormTypeProduct";
 import SaleDetail from "./pages/SaleDetail/SaleDetail";
 import FormVendedor from "./components/FormVendedor/FormVendedor";
 import Papelera from "./components/Papelera/Papelera";
-
+import SignInDeveloper from "./pages/SigInDeveloper/SigInDeveloper";
 import DeleteProductos from "./pages/DeleteProductos/DeleteProductos";
 import FormBranch from "./pages/FormBranch/FormBranch";
 import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
@@ -63,6 +63,8 @@ function App() {
     "/landingPage",
     "/signIn",
     "/signUp",
+    "/sign-up/sucursales",
+    "/signInDeveloper",
   ];
 
   useEffect(() => {
@@ -82,6 +84,7 @@ function App() {
         <Route exact path="/" element={<LandingPage />} />
         {/* <Route path="/registerForm" element={<RegisterForm />} /> */}
         <Route path="/signIn" element={<SignIn />} />
+        <Route path="/signInDeveloper" element={<SignInDeveloper />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

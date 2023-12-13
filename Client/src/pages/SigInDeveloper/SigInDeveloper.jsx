@@ -2,17 +2,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../redux/actions";
-import Style from "./SignIn.module.css";
-import { useNavigate, NavLink } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
+import Style from "./SigInDeveloper.module.css";
+import { useNavigate } from "react-router-dom";
 import { gapi } from "gapi-script";
-import { decodeToken } from "react-jwt";
 import { toast } from "react-hot-toast";
 const client_id = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-export default function SignIn() {
+export default function SignInDeveloper() {
   const dispatch = useDispatch();
   const dataUser = cookies.get("auth");
   const navigate = useNavigate();
@@ -20,7 +18,6 @@ export default function SignIn() {
     email: "",
     password: "",
   });
-  const [loginConfirm, setLoginConfirm] = useState("");
 
   useEffect(() => {
     if (Object.keys(dataUser).length > 1) {
@@ -43,33 +40,16 @@ export default function SignIn() {
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    setLoginConfirm(await dispatch(signIn(user)));
-  };
-
-  const onSucess = (credentialResponse) => {
-    const { email, sub } = decodeToken(credentialResponse?.credential);
-    const user = {
-      email: email,
-      password: sub,
-    };
     dispatch(signIn(user));
   };
 
-  const onFailure = (res) => {
-    console.log("TE HE MIRADO A LOS OJOSSSSSSSSSSSS ", res);
-  };
   return (
     <div className={Style.container}>
       <form onSubmit={handleSubmit} className={Style.containerForm}>
         <div className={Style.divTittle}>
           <h1 className={Style.title}>Iniciar Sesion</h1>
-          <NavLink to="/signUp">
-            <button type="button" className={Style.SignUp}>
-              Registrate
-            </button>
-          </NavLink>
         </div>
 
         <label className={Style.label}>Usuario</label>
@@ -88,11 +68,6 @@ export default function SignIn() {
           className={Style.input}
           name="password"
         />
-        <p className={Style.errorMessage}>
-          {loginConfirm?.data?.error
-            ? loginConfirm?.data?.error
-            : loginConfirm?.data}
-        </p>
         <input type="submit" value="Ingresar" className={Style.inputSubmit} />
         <div
           style={{
@@ -100,15 +75,7 @@ export default function SignIn() {
             justifyContent: "center",
             display: "flex",
           }}
-        >
-          <GoogleLogin
-            onSuccess={onSucess}
-            onError={onFailure}
-            width={"500px"}
-            text="signin_with"
-            useOneTap={false}
-          ></GoogleLogin>
-        </div>
+        ></div>
       </form>
     </div>
   );

@@ -74,3 +74,9 @@
   color: black;
   border-color: black;
 }
+.errorMessage {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}

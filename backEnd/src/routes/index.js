@@ -15,6 +15,7 @@ const routeSales = require("./routePaymentSales.js");
 const routeReview = require("./routeReview.js");
 const routeInfo = require("./routeInfo.js");
 const { verifyToken } = require("../middlewares/authJWT.js");
+const routeDevelopers = require("./routeDevelopers.js");
 
 const router = Router();
 
@@ -27,6 +28,7 @@ router.use("/products", productsRouter);
 router.use("/sucursales", routeSucursales);
 router.use("/catalogos", routeCatalogos);
 router.use("/paymentGateways", routePaymentGateways);
+router.use("/developers", routeDevelopers);
 // router.use("/paymentSales", routeSales);
 router.use("/email", routeEmail);
 router.use("/review", routeReview);

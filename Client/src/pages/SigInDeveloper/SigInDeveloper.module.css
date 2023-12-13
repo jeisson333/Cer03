@@ -4,7 +4,7 @@
   justify-content: center;
   height: 100vh;
   background-color: aqua;
-  background-image: url("../../assets/3349370.jpg");
+  background-image: url("../../assets/45500326.jpg");
   background-size: cover;
 }
 
@@ -13,7 +13,7 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: rgba(52, 152, 219, 0.5);
+  background-color: rgba(71, 162, 227, 0.5);
   /* Azul rey con 50% de opacidad */
   font-size: 2em;
   color: rgb(0, 0, 0);
@@ -47,24 +47,30 @@
   /* Azul rey */
   cursor: pointer;
 }
-.inputSubmit:disabled {
-  cursor: not-allowed;
-}
 
 .inputSubmit:hover {
   color: #000000;
 }
 
-.modal {
-  position: fixed;
-  top: 27%;
-  right: 15%;
-  width: 60%;
-  height: 50vh;
+.divTittle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.errorMessage {
-  color: #ff0000;
-  font-size: 14px;
-  margin-top: -10px;
-  margin-bottom: 10px;
+
+.SignUp {
+  font-size: large;
+  position: fixed;
+  right: 0;
+  margin-right: 2vh;
+  border: solid;
+  color: white;
+  border-color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+
+.SignUp:hover {
+  color: black;
+  border-color: black;
 }

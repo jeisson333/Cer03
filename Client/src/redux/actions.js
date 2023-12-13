@@ -207,7 +207,7 @@ export const signIn = (user) => {
         payload: myDecodedToken,
       });
     } catch ({ response }) {
-      console.log(response.data);
+      return response;
     }
   };
 };
@@ -225,7 +225,7 @@ export const signUp = (user) => {
         payload: myDecodedToken,
       });
     } catch ({ response }) {
-      console.log(response.data);
+      return response;
     }
   };
 };
