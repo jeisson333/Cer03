@@ -4,6 +4,7 @@ import {
   ERROR_PRODUCTS,
   POST_NEWPRODUCT,
   DELETE_PRODUCT,
+  GET_DELETES_PRODUCTS,
   RESTORE_PRODUCT,
   GET_DOCUMENTS,
   GET_TYPEPRODUCTS,
@@ -21,6 +22,7 @@ import {
   GET_SALE_DETAIL,
   SOMETHING_REVIEW,
   GET_GANANCIAS_SUCURSALES,
+  GET_CANTIDAD_VENDEDORES,
 } from "./action-types.js";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -36,6 +38,28 @@ export const getProducts = (idBranch, conditions) => {
 
       return dispatch({
         type: GET_PRODUCTS,
+        payload: data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: ERROR_PRODUCTS,
+        payload: [],
+      });
+    }
+  };
+};
+
+export const getDeleteProducts = (idBranch, conditions) => {
+  return async function (dispatch) {
+    try {
+      const queryParams = new URLSearchParams(conditions).toString();
+      const url = conditions
+        ? `${baseUrl}/products/deletesProducts?${queryParams}`
+        : `${baseUrl}/products/deletesProducts`;
+      const { data } = await axios.post(url, { id: idBranch });
+
+      return dispatch({
+        type: GET_DELETES_PRODUCTS,
         payload: data,
       });
     } catch (error) {
@@ -338,6 +362,23 @@ export const getGananciasSucursales = (idBranch) => {
 
       return dispatch({
         type: GET_GANANCIAS_SUCURSALES,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getCantidadVendedores = (idBranch) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.post(`${baseUrl}/info/cantidad-vendedores`, {
+        branch: idBranch,
+      });
+
+      return dispatch({
+        type: GET_CANTIDAD_VENDEDORES,
         payload: data,
       });
     } catch (error) {

@@ -1,5 +1,6 @@
 import {
   GET_PRODUCTS,
+  GET_DELETES_PRODUCTS,
   ERROR_PRODUCTS,
   POST_NEWPRODUCT,
   DELETE_PRODUCT,
@@ -20,12 +21,14 @@ import {
   GET_SALE_DETAIL,
   SOMETHING_REVIEW,
   GET_GANANCIAS_SUCURSALES,
+  GET_CANTIDAD_VENDEDORES,
 } from "./action-types.js";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 const initialState = {
   products: [],
+  deleteProducts: [],
   allTypeProducts: [],
   paymentMethods: [],
   sucursales: [],
@@ -38,6 +41,7 @@ const initialState = {
   saleDetail: {},
   review: false,
   gananciaSucursales: [],
+  cantidadVendedores: [],
 };
 
 function reducer(state = initialState, action) {
@@ -65,6 +69,12 @@ function reducer(state = initialState, action) {
         totalPages: action.payload.info.pages,
         newProduct: false,
         msg: "",
+      };
+    case GET_DELETES_PRODUCTS:
+      return {
+        ...state,
+        deleteProducts: action.payload.data,
+        totalPages: action.payload.info.pages,
       };
     case ERROR_PRODUCTS:
       return {
@@ -159,6 +169,9 @@ function reducer(state = initialState, action) {
 
     case GET_GANANCIAS_SUCURSALES:
       return { ...state, gananciaSucursales: [...action.payload] };
+
+    case GET_CANTIDAD_VENDEDORES:
+      return { ...state, cantidadVendedores: [...action.payload] };
 
     default:
       return { ...state };

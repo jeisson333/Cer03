@@ -1,6 +1,6 @@
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Checkout from "./pages/Checkout/Checkout";
 import Home from "./pages/Home/Home";
 import Inventory from "./pages/Inventory/Inventory";
@@ -119,7 +119,11 @@ function App() {
           <Route path="/newSucursal" element={<FormSucursales />} />
         </Route>
         {/* admin without subcription*/}
-        <Route element={<RequireAuth authRoles={(["admin"], ["free"])} />}>
+        <Route
+          element={
+            <RequireAuth authRoles={["admin"]} Typesubscription={["free"]} />
+          }
+        >
           <Route path="/subscription" element={<Subscription />} />
         </Route>
         {/* user */}

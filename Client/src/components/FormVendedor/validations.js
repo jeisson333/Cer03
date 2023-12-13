@@ -26,8 +26,6 @@ const validations = (input) => {
 
     if (!input.primer_nombre)
       errors.primer_nombre = "*El campo no puede estar vacio";
-    if (!input.segundo_nombre)
-      errors.segundo_nombre = "*El campo no puede estar vacio";
   }
 
   if (input.segundo_apellido) {
@@ -38,8 +36,7 @@ const validations = (input) => {
 
     if (!input.primer_nombre)
       errors.primer_nombre = "*El campo no puede estar vacio";
-    if (!input.segundo_nombre)
-      errors.segundo_nombre = "*El campo no puede estar vacio";
+
     if (!input.primer_apellido)
       errors.primer_apellido = "*El nombre no puede contener numeros";
   }
@@ -47,12 +44,9 @@ const validations = (input) => {
   if (input.tipo_documento) {
     if (!input.primer_nombre)
       errors.primer_nombre = "*El campo no puede estar vacio";
-    if (!input.segundo_nombre)
-      errors.segundo_nombre = "*El campo no puede estar vacio";
+
     if (!input.primer_apellido)
       errors.primer_apellido = "*El nombre no puede contener numeros";
-    if (!input.segundo_apellido)
-      errors.segundo_apellido = "*El nombre no puede contener numeros";
   }
 
   if (input.numero_documento) {
@@ -63,12 +57,10 @@ const validations = (input) => {
 
     if (!input.primer_nombre)
       errors.primer_nombre = "*El campo no puede estar vacio";
-    if (!input.segundo_nombre)
-      errors.segundo_nombre = "*El campo no puede estar vacio";
+
     if (!input.primer_apellido)
       errors.primer_apellido = "*El nombre no puede contener numeros";
-    if (!input.segundo_apellido)
-      errors.segundo_apellido = "*El nombre no puede contener numeros";
+
     if (!input.tipo_documento)
       errors.tipo_documento = "*El campo no puede estar vacio";
   }
@@ -76,12 +68,10 @@ const validations = (input) => {
   if (input.vendedor_sucursal) {
     if (!input.primer_nombre)
       errors.primer_nombre = "*El campo no puede estar vacio";
-    if (!input.segundo_nombre)
-      errors.segundo_nombre = "*El campo no puede estar vacio";
+
     if (!input.primer_apellido)
       errors.primer_apellido = "*El nombre no puede contener numeros";
-    if (!input.segundo_apellido)
-      errors.segundo_apellido = "*El nombre no puede contener numeros";
+
     if (!input.tipo_documento)
       errors.tipo_documento = "*El campo no puede estar vacio";
     if (!input.numero_documento)
@@ -91,12 +81,10 @@ const validations = (input) => {
   if (input.usuario_vendedor) {
     if (!input.primer_nombre)
       errors.primer_nombre = "*El campo no puede estar vacio";
-    if (!input.segundo_nombre)
-      errors.segundo_nombre = "*El campo no puede estar vacio";
+
     if (!input.primer_apellido)
       errors.primer_apellido = "*El nombre no puede contener numeros";
-    if (!input.segundo_apellido)
-      errors.segundo_apellido = "*El nombre no puede contener numeros";
+
     if (!input.tipo_documento)
       errors.tipo_documento = "*El campo no puede estar vacio";
     if (!input.numero_documento)
@@ -108,12 +96,10 @@ const validations = (input) => {
   if (input.contraseña_vendedor) {
     if (!input.primer_nombre)
       errors.primer_nombre = "*El campo no puede estar vacio";
-    if (!input.segundo_nombre)
-      errors.segundo_nombre = "*El campo no puede estar vacio";
+
     if (!input.primer_apellido)
       errors.primer_apellido = "*El nombre no puede contener numeros";
-    if (!input.segundo_apellido)
-      errors.segundo_apellido = "*El nombre no puede contener numeros";
+
     if (!input.tipo_documento)
       errors.tipo_documento = "*El campo no puede estar vacio";
     if (!input.numero_documento)
@@ -126,9 +112,7 @@ const validations = (input) => {
 
   if (
     input.primer_nombre &&
-    input.segundo_nombre &&
     input.primer_apellido &&
-    input.segundo_apellido &&
     input.tipo_documento &&
     input.numero_documento &&
     input.vendedor_sucursal &&

@@ -29,9 +29,10 @@ const FormVendedor = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    if (!hayErrores()) {
+    if (!notSubmit()) {
       dispatch(postSaleMen(form));
       console.log("Datos del formulario:", form);
+      deleteFields();
     } else {
       console.log("Hay errores en el formulario. No se puede enviar.");
     }
@@ -40,9 +41,7 @@ const FormVendedor = () => {
   const contentSomething = () => {
     if (
       !form.primer_nombre ||
-      !form.segundo_nombre ||
       !form.primer_apellido ||
-      !form.segundo_apellido ||
       !form.tipo_documento ||
       !form.numero_documento ||
       !form.vendedor_sucursal ||
@@ -57,9 +56,7 @@ const FormVendedor = () => {
   const notSubmit = () => {
     if (
       !form.primer_nombre ||
-      !form.segundo_nombre ||
       !form.primer_apellido ||
-      !form.segundo_apellido ||
       !form.tipo_documento ||
       !form.numero_documento ||
       !form.vendedor_sucursal ||
