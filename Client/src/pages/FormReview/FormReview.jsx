@@ -80,6 +80,7 @@ const FormBranch = () => {
   return (
     <form className={Style.formContainer} onSubmit={handleFormSubmit}>
       <h2 className={Style.title}>Review</h2>
+      <div className={Style.divider}></div>
       <div className={Style.container}>
         <div className={Style.formSame}>
           <div className={Style.formGroup}>
@@ -131,7 +132,7 @@ const FormBranch = () => {
 
         <div className={Style.buttonHolder}>
           <button className={Style.formSubmit} disabled={notSubmit()}>
-            Guardar
+            Enviar
           </button>
           <button
             className={Style.deleteButton}
