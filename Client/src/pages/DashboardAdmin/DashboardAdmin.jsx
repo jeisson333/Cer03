@@ -67,7 +67,7 @@ const DashboardAdmin = () => {
     let total = 0;
 
     array.forEach((element) => {
-      total += element[toAccess];
+      total += parseInt(element[toAccess]);
     });
 
     return total;
