@@ -27,39 +27,6 @@ const LandingPage = () => {
     );
   };
 
-  const testimonialsData = [
-    {
-      id: 1,
-      name: "Juan Pérez",
-      quote:
-        "¡Increíble experiencia! Me encanta la comunidad y la conexión que proporciona Cer03.",
-    },
-    {
-      id: 2,
-      name: "María García",
-      quote:
-        "Cer03 ha cambiado la forma en que interactúo con mi vecindario. Estoy muy agradecida.",
-    },
-    {
-      id: 3,
-      name: "María García",
-      quote:
-        "Cer03 ha cambiado la forma en que interactúo con mi vecindario. Estoy muy agradecida.",
-    },
-    {
-      id: 4,
-      name: "María García",
-      quote:
-        "Cer03 ha cambiado la forma en que interactúo con mi vecindario. Estoy muy agradecida.",
-    },
-    {
-      id: 5,
-      name: "María García",
-      quote:
-        "Cer03 ha cambiado la forma en que interactúo con mi vecindario. Estoy muy agradecida.",
-    },
-  ];
-
   return (
     <div className={Style.main_container}>
       <Header />
