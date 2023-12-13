@@ -29,6 +29,8 @@
   position: relative;
   overflow: hidden;
   transition-duration: 0.3s;
+  margin-bottom: 15px;
+  margin-left: 20px;
 }
 
 .Btn::before {
@@ -55,16 +57,21 @@
   transition-duration: 0.3s;
 }
 
-.divider{
+.divider {
   display: flex;
+  border: 2px solid;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 }
 
-.usableHolder{
+.usableHolder {
   margin-right: 25px;
   display: grid;
   place-items: center;
 }
 
-.usableHolder h2{
-  font-weight: 700;
+.usableHolder h2 {
+  font-weight: 800;
+  margin-top: 10px;
 }
