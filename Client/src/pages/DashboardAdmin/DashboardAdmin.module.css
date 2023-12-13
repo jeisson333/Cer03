@@ -6,29 +6,6 @@
   --curious-blue-800: #005c8d;
   --curious-blue-950: #04304d;
 }
-/* 
-.dividerLine {
-  height: 1px;
-  width: 100%;
-  background-color: var(--curious-blue-200);
-  margin: 0 20px;
-}
-
-.graphContainer {
-  width: 50%;
-}
-
-.graphTitle {
-  font-size: 2rem;
-  color: var(--curious-blue-700);
-  margin-bottom: 20px;
-}
-
-.ganSucDetails {
-  margin-top: 10px;
-  
-} */
-/* DashboardAdmin.module.css */
 .graphTitle {
   font-size: 1.3rem;
   color: var(--curious-blue-700);
@@ -39,16 +16,18 @@
   justify-content: space-between;
   margin-bottom: 25px;
   height: 200px;
+  padding-top: 10px;
 }
 
 .graphContainer,
 .graphDetails {
-  width: 50%; /* Ajusta según tus preferencias */
-  height: 100%; /* Ocupa el 100% de la altura del contenedor padre */
+  width: 50%;
+  height: 100%;
 }
 
 .ganSucDetails {
-  margin-top: 10px;
+  padding: 20px;
+  margin: 20px;
   color: var(--curious-blue-800);
 }
 .dividerLine {

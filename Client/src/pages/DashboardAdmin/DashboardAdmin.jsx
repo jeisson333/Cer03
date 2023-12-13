@@ -67,7 +67,7 @@ const DashboardAdmin = () => {
     let total = 0;
 
     array.forEach((element) => {
-      total += element[toAccess];
+      total += parseInt(element[toAccess]);
     });
 
     return total;
@@ -113,7 +113,7 @@ const DashboardAdmin = () => {
       <div className={styles.gananciasGraph}>
         <div className={styles.graphContainer}>
           <h2 className={styles.graphTitle}>Total vendido por sucursal</h2>
-          <ResponsiveContainer width="50%" aspect={2}>
+          <ResponsiveContainer width="100%" aspect={2}>
             <BarChart
               data={ganSucOrder}
               width={500}
@@ -175,7 +175,7 @@ const DashboardAdmin = () => {
           <h2 className={styles.graphTitle}>
             Cantidad de vendedores por sucursal
           </h2>
-          <ResponsiveContainer width="50%" aspect={2}>
+          <ResponsiveContainer width="100%" aspect={2}>
             <BarChart
               data={cantVendOrder}
               width={500}

@@ -56,8 +56,7 @@ const FormSucursales = () => {
   return (
     <div className={Style.container}>
       <form onSubmit={handlerSubmit} className={Style.containerForm}>
-        <h2>Ya has creado tu empresa!</h2>
-        <p>Ahora registremos tus sucursales</p>
+        <h2 className={Style.title}>Registra tus sucursales</h2>
         <label className={Style.labelSucursal}>Nombre de la sucursal: </label>
         <input
           type="text"

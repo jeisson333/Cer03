@@ -1,0 +1,88 @@
+:root {
+  --curious-blue-50: #eff9ff;
+  --curious-blue-100: #def2ff;
+  --curious-blue-200: #b6e7ff;
+  --curious-blue-300: #75d7ff;
+  --curious-blue-400: #2cc3ff;
+  --curious-blue-500: #009ee3;
+  --curious-blue-600: #0089d4;
+  --curious-blue-700: #006dab;
+  --curious-blue-800: #005c8d;
+  --curious-blue-900: #064d74;
+  --curious-blue-950: #04304d;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--curious-blue-50);
+}
+
+.containerForm {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid var(--curious-blue-500);
+  border-radius: 8px;
+  background-color: var(--curious-blue-300);
+}
+
+.labelSucursal {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--curious-blue-500);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.buttonAdd {
+  background-color: var(--curious-blue-500);
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.labels {
+  margin-top: 16px;
+}
+
+.selected {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--curious-blue-200);
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid var(--curious-blue-500);
+  border-radius: 4px;
+}
+
+.inputSubmit {
+  background-color: var(--curious-blue-800);
+  color: var(--curious-blue-950);
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.title {
+  font-size: 1.2em;
+  color: var(--curious-blue-950);
+}
