@@ -18,20 +18,23 @@
 .title {
   /* margin: 0 auto; */
   color: #18a0fb;
-  font-size: 40px;
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
 }
 
 .body {
   font-size: large;
-  font-weight: 500;
+  flex: 0 0 70%;
+  margin: 10px;
   /* margin: 0 auto; */
 }
 
 .secondBlock {
   display: flex;
+  justify-content: space-between;
   /* border: 2px solid black; */
-  justify-content: center;
-  align-items: center;
+
   /* height: 30vh; */
 }
 
@@ -40,8 +43,12 @@
   /* height: 20px; */
   margin: 15px;
   /* border: 2px solid black; */
+  text-align: center;
+  display: grid;
 }
-
+.blueBackground {
+  background-color: #1a365d;
+}
 .goBack {
   margin-left: 25px;
   color: #001832;
@@ -60,4 +67,36 @@
   .smallBlockHolder {
     width: 80vw;
   }
+}
+
+.container {
+  display: flex;
+}
+
+.text {
+  flex: 0 0 70%;
+}
+
+.image {
+  flex: 0 0 30%;
+}
+.textWithBackground {
+  background-image: url("../../assets/NHistoria.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: black;
+  border-radius: 20px;
+}
+.whiteText {
+  color: white;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  border-radius: 20px;
 }
