@@ -1,13 +1,17 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const {
-	postSingUpDevelopersHandler,
-	postSingInDevelopersHandler,
-} = require('../handlers/handlersDevelopers');
+  postSingUpDevelopersHandler,
+  postSingInDevelopersHandler,
+  getTotalBranchsHandler,
+} = require("../handlers/handlersDevelopers");
 
 routeDevelopers = Router();
 
-routeDevelopers.post('/sing-up', postSingUpDevelopersHandler);
+// sesion
+routeDevelopers.post("/sing-up", postSingUpDevelopersHandler);
+routeDevelopers.post("/sing-in", postSingInDevelopersHandler);
 
-routeDevelopers.post('/sing-in', postSingInDevelopersHandler);
+// info
+routeDevelopers.get("/", getTotalBranchsHandler);
 
 module.exports = routeDevelopers;

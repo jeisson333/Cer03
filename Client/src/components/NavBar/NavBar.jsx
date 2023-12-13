@@ -57,12 +57,34 @@ const NavBAr = () => {
         <div className={style.logoContent}>
           {/* <TfiAlignJustify /> */}
           <div className={style.imgcontent}>
-            <NavLink to="/home" end className={style.logoLink}>
+            <NavLink
+              to={role === "developer" ? "/dashboardDeveloper" : "/home"}
+              end
+              className={style.logoLink}
+            >
               <img src={logoCer03} alt="Logo" />
             </NavLink>
           </div>
           <h2>Cer03</h2>
         </div>
+
+        {role === "developer" && (
+          <div className={style.side}>
+            <div className={style.divider}></div>
+            <SidebarLink
+              to="/dashboardDeveloper"
+              icon={<CiSettings />}
+              text="Administracion"
+            />
+            <div className={style.divider}></div>
+            <SidebarLink
+              to="/"
+              Onclick={handleSignOut}
+              icon={<IoIosLogOut />}
+              text="Cerrar sesión"
+            />
+          </div>
+        )}
 
         {role === "admin" && (
           <div className={style.side}>

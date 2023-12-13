@@ -36,6 +36,7 @@ import DeleteProductos from "./pages/DeleteProductos/DeleteProductos";
 import FormReview from "./pages/FormReview/FormReview";
 import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
 import FormSucursales from "./pages/FormSucursales/FormSucursales";
+import DashboardDeveloper from "./pages/DashboardDeveloper/DashboardDeveloper";
 
 function App() {
   const location = useLocation();
@@ -135,6 +136,11 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/detail" element={<Detail />} />
           <Route path="/home/:id" element={<SaleDetail />} />
+        </Route>
+
+        {/* developer */}
+        <Route element={<RequireAuth authRoles={["developer", "admin"]} />}>
+          <Route path="/dashboardDeveloper" element={<DashboardDeveloper />} />
         </Route>
 
         {/* sin nada */}

@@ -42,6 +42,7 @@
   margin: 25px;
   color: rgb(0, 0, 0);
   background-color: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(3px);
   /* background-color: rgb(237, 231, 223); */
 }
 
@@ -88,9 +89,7 @@
   margin-left: 10px;
   margin-right: 10px;
 }
-.text:hover {
-  color: #02458d;
-}
+
 .link {
   margin-top: 20px;
   cursor: pointer;
