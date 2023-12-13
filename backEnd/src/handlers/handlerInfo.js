@@ -25,6 +25,9 @@ const getGananciaSucursalesHandler = async (req, res) => {
   }
 };
 
+const getCantidadVendedoresHandler = () => {};
+
 module.exports = {
   getGananciaSucursalesHandler,
+  getCantidadVendedoresHandler,
 };
