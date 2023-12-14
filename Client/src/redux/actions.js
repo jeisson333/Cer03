@@ -24,6 +24,7 @@ import {
   GET_GANANCIAS_SUCURSALES,
   GET_CANTIDAD_VENDEDORES,
   GET_TOTAL_EMPRESAS,
+  GET_DISABLED_EMPRESAS,
 } from "./action-types.js";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -398,6 +399,21 @@ export const getTotalEmpresas = () => {
 
       return dispatch({
         type: GET_TOTAL_EMPRESAS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getDisabledEmpresas = () => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios(`${baseUrl}/developers/disabled-empresas`);
+
+      return dispatch({
+        type: GET_DISABLED_EMPRESAS,
         payload: data,
       });
     } catch (error) {
