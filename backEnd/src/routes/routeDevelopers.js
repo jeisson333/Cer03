@@ -3,6 +3,9 @@ const {
   postSingUpDevelopersHandler,
   postSingInDevelopersHandler,
   getTotalBranchsHandler,
+  deleteEmpresaHandler,
+  restoreEmpresaHandler,
+  getDisabledEmpresasHandler,
 } = require("../handlers/handlersDevelopers");
 
 routeDevelopers = Router();
@@ -13,5 +16,9 @@ routeDevelopers.post("/sing-in", postSingInDevelopersHandler);
 
 // info
 routeDevelopers.get("/", getTotalBranchsHandler);
+
+routeDevelopers.delete("/delete", deleteEmpresaHandler);
+routeDevelopers.put("/restore", restoreEmpresaHandler);
+routeDevelopers.get("/disabled-empresas", getDisabledEmpresasHandler);
 
 module.exports = routeDevelopers;

@@ -58,8 +58,59 @@ const getTotalBranchsController = async () => {
   return cantidad;
 };
 
+const deleteEmpresaController = async ({ branch }) => {
+  const deleted = await EMPRESA.destroy({
+    where: {
+      id_empresa: branch,
+    },
+  });
+
+  return deleted;
+};
+
+const restoreEmpresaController = async ({ branch }) => {
+  const restored = await EMPRESA.restore({
+    where: {
+      id_empresa: branch,
+    },
+  });
+
+  return restored;
+};
+
+const getDisabledEmpresasController = async () => {
+  const disabled = await EMPRESA.count({
+    attributes: [
+      "id_empresa",
+      "nombre_empresa",
+      [
+        Sequelize.fn("ARRAY_AGG", Sequelize.literal(`nombre_sucursal`)),
+        "sucursales",
+      ],
+    ],
+    where: {
+      deletedAt: {
+        [Op.not]: null,
+      },
+    },
+    include: [
+      {
+        model: SUCURSAL,
+        attributes: [],
+      },
+    ],
+    group: ["id_empresa", "nombre_empresa"],
+    paranoid: false,
+  });
+
+  return disabled;
+};
+
 module.exports = {
   singUpDeveloper,
   singInDeveloper,
   getTotalBranchsController,
+  deleteEmpresaController,
+  restoreEmpresaController,
+  getDisabledEmpresasController,
 };

@@ -25,7 +25,6 @@ const DashboardDeveloper = () => {
       setCantidadTotalSucursales(total);
     }
   }, [totalEmpresas]);
-  console.log(cantidadTotalSucursales);
 
   const selectHandler = (event) => {
     setSelect(event.target.value);
