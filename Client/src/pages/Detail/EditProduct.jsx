@@ -60,7 +60,7 @@ const EditProduct = ({ modalEditProduc, sucursales, product }) => {
         });
       setUpdateStock({
         ...updateStock,
-        productoid: product[0]?.PRODUCTO.id_producto,
+        productoid: product?.PRODUCTO.id_producto,
         sucursal: ids.id_sucursal,
       });
     } else {
@@ -109,9 +109,7 @@ const EditProduct = ({ modalEditProduc, sucursales, product }) => {
         <h2 className={style.tittle}>Inventario</h2>
       </div>
       <div>
-        <h2 className={style.tittle}>
-          {product[0]?.PRODUCTO?.nombre_producto}
-        </h2>
+        <h2 className={style.tittle}>{product?.PRODUCTO?.nombre_producto}</h2>
         <p className={style.info}>Sucursal</p>
         <select
           name="sucursales"

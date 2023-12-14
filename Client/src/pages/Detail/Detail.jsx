@@ -129,7 +129,7 @@ const Detail = () => {
       </div>
       <div className={modalProduct ? style.container : style.closedModal}>
         <EditProduct
-          product={product}
+          product={product[0]}
           sucursales={sucursales}
           modalEditProduc={modalEditProduc}
         />
