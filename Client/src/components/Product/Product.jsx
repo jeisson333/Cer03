@@ -52,6 +52,7 @@ const Product = ({ product }) => {
                 src={product?.PRODUCTO?.image}
                 alt={product?.PRODUCTO?.nombre_producto}
                 className={style.cardImage}
+                style={{ objectFit: "cover" }}
               />
             </div>
 
