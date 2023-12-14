@@ -1,61 +1,54 @@
 import { Slide } from "react-awesome-reveal";
+import { useState, useEffect } from "react";
 import Style from "./Testimonials.module.css";
+import axios from "axios";
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
-const testimonialsData = [
-  {
-    id: 1,
-    name: "Juan Pérez",
-    quote:
-      "Excelente, la empecé a revisar y está muy bien creada, tienen todo lo que necesito para llevar un mejor control de mi negocio y lo mejor de lo mejor es que se utiliza en el celular muy bien pensando Cer03. Gracias Cer03 por pensar en nosotros. ",
-  },
-  {
-    id: 2,
-    name: "María García",
-    quote:
-      "¡Me encanta! ¡Simplemente espectacular! Puedo no solo llevar el inventario y registro de compras y ventas sino también un registro de deudores. Además, que ponen a tu disposición una página web con un catálogo de tus productos. La amo.",
-  },
-  {
-    id: 3,
-    name: "Carlos Martínez",
-    quote:
-      "Es Genial pode hacer todas las tareas necesarias para administrar el negocio desde el celular o computadora y tener la opción de soporte técnico. Gracias!!",
-  },
-  {
-    id: 4,
-    name: "Ana Rodríguez",
-    quote:
-      "Excelente para llevar la administración de tu negocio y tus finanzas. Amo la opción de inventario, es justo lo que necesitaba para organizar mi mercancía.",
-  },
-  {
-    id: 5,
-    name: "Pedro Sánchez",
-    quote:
-      "Cuando empecé mi negocio me costaba mucho llevar la cuenta de mi inventario y las ventas del mes, pero desde que empecé a usar Cer03 todo mi trabajo se agilizó, aumentando así mis ingresos.",
-  },
-];
-
-const Testimonials = ({ currentIndex, handlePrev, handleNext }) => {
+const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const startIndex = currentIndex * 2;
   const endIndex = startIndex + 2;
-  const visibleTestimonials = testimonialsData.slice(startIndex, endIndex);
+  const [testimonialsData, setTestimonialsData] = useState([]);
+
+  useEffect(() => {
+    axios.post(`${baseUrl}/review/get`).then(({ data }) => {
+      setTestimonialsData(data);
+    });
+  }, []);
+
+  const visibleTestimonials = testimonialsData?.slice(startIndex, endIndex);
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? testimonialsData.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === testimonialsData.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   return (
     <div className={Style.testimonialsContainer}>
       <div className={Style.testimonialsList}>
         {visibleTestimonials.map((testimonial) => (
-          <Slide key={testimonial.id} bottom>
+          <Slide key={testimonial?.id_review} bottom>
             <div className={Style.testimonialItem}>
-              <p className={Style.quote}>{testimonial.quote}</p>
+              <p className={Style.quote}>{testimonial?.descripcion_review}</p>
               <div className={Style.authorInfo}>
                 <div className={Style.avatar}>
                   <img
                     className={Style.avatarImage}
-                    src={`https://ui-avatars.com/api/?name=${testimonial.name}`}
-                    alt={testimonial.name}
+                    src={`https://ui-avatars.com/api/?name=${testimonial?.EMPRESA?.nombre_empresa}`}
+                    alt={testimonial?.EMPRESA?.nombre_empresa}
                   />
                 </div>
                 <div className={Style.authorName}>
-                  <div className={Style.authorNameText}>{testimonial.name}</div>
+                  <div className={Style.authorNameText}>
+                    {testimonial?.EMPRESA?.nombre_empresa}
+                  </div>
                 </div>
               </div>
             </div>

@@ -12,7 +12,7 @@ import styles from "./Cart.module.css";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-const Cart = ({ comprar }) => {
+const Cart = ({ comprar, detectBuy }) => {
   const dispatch = useDispatch();
   const detectActionCart = useSelector((state) => state.actionCart);
   const [products, setProducts] = useState(
@@ -38,6 +38,11 @@ const Cart = ({ comprar }) => {
       setProducts([]);
     }
   }, [detectActionCart]);
+
+  useEffect(() => {
+    setProducts([]);
+    setTotalPrice(0);
+  }, [detectBuy]);
 
   useEffect(() => {
     let totalAmount = 0;
@@ -109,8 +114,11 @@ const Cart = ({ comprar }) => {
 
   const handleCartBuy = () => {
     if (products.length) {
-      if (totalPrice === 0) toast.error("El precio total no puede ser 0!");
-      else comprar();
+      if (totalPrice === 0)
+        return toast.error("El precio total no puede ser 0!");
+      else if (products.find((product) => product.stock === 0)) {
+        return toast.error("No puede haber un producto con stock 0");
+      } else comprar();
     } else {
       toast.error("El carro debe contener mínimo un producto!");
     }

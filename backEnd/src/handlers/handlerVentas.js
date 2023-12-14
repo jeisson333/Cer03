@@ -18,13 +18,22 @@ const getVentasHandler = async (req, res) => {
 
 const postVentasHandler = async (req, res) => {
   try {
-    const body = req.body;
-    const response = await postVenta({ body });
+    const { id_branch, nombre_sucursal, payment, products } = req.body;
 
-    res.status(200).json(response);
+    if (!id_branch || !nombre_sucursal || !payment || !products)
+      return res.status(400).json({ error: "Faltan datos" });
+
+    const response = await postVenta({
+      id_branch,
+      nombre_sucursal,
+      payment,
+      products,
+    });
+
+    return res.status(200).json(response);
     // res.status(200).json({ message: "La compra ha sido realizada con exito" });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    return res.status(400).json({ error: error.message });
   }
 };
 

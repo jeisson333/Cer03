@@ -1,4 +1,4 @@
-const { REVIEW } = require("../database/db");
+const { REVIEW, EMPRESA } = require("../database/db");
 
 const postReviewController = async ({ title, score, description, branch }) => {
   const find = await REVIEW.findOne({
@@ -22,17 +22,20 @@ const postReviewController = async ({ title, score, description, branch }) => {
   }
 };
 
-const getReviewController = async ({ branch }) => {
-  const find = await REVIEW.findOne({
-    where: {
-      empresa_review: branch,
-    },
+const getReviewController = async () => {
+  const find = await REVIEW.findAll({
     attributes: [
       "id_review",
       "titulo_review",
       "descripcion_review",
       "score_review",
       "createdAt",
+    ],
+    include: [
+      {
+        model: EMPRESA,
+        attributes: ["nombre_empresa"],
+      },
     ],
   });
 

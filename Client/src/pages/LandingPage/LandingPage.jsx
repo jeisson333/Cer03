@@ -1,5 +1,4 @@
 import Style from "./LandingPage.module.css";
-import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import SlideShow from "../../components/SlideShow/SlideShow";
 import Advantages from "../../components/Advantages/Advantages";
@@ -11,21 +10,8 @@ import { toast, Toaster } from "react-hot-toast";
 const cookies = new Cookies();
 
 const LandingPage = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const auth = cookies.get("auth");
   if (!auth) cookies.set("auth", {}, { path: "/" });
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonialsData.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === testimonialsData.length - 1 ? 0 : prevIndex + 1
-    );
-  };
 
   return (
     <div className={Style.main_container}>
@@ -65,11 +51,7 @@ const LandingPage = () => {
       <div className={Style.advantages_container}>
         <Advantages />
       </div>
-      <Testimonials
-        currentIndex={currentIndex}
-        handlePrev={handlePrev}
-        handleNext={handleNext}
-      />
+      <Testimonials />
       <div className={Style.additional_container}>
         <Fade>
           <div className={Style.additional_wrapper}>
