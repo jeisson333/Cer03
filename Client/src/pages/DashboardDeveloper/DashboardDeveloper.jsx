@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTotalEmpresas } from "../../redux/actions";
 import { PieChart, ResponsiveContainer, Pie, Tooltip, Cell } from "recharts";
 import { Link } from "react-router-dom";
+import Styles from "./DashboardDeveloper.module.css";
 
 const DashboardDeveloper = () => {
   const dispatch = useDispatch();
@@ -50,35 +51,44 @@ const DashboardDeveloper = () => {
   ];
 
   return (
-    <div>
-      <div style={{ width: "90%", height: 300 }}>
-        <h2>Total de empresas + Total de sucursales</h2>
-        <ResponsiveContainer>
-          <PieChart>
-            <Pie
-              dataKey="count"
-              nameKey="nombre_empresa"
-              data={totalEmpresas}
-              innerRadius={60}
-              outerRadius={110}
-              fill="#82ca9d"
-            >
-              {totalEmpresas.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
-        </ResponsiveContainer>
-        <div>
+    <div className="flex justify-center">
+      <div className={Styles.conteiner}>
+        <div className={Styles.title}>
+          Total de empresas + Total de sucursales
+        </div>
+        <div style={{ width: "80%", height: 300 }}>
+          <ResponsiveContainer>
+            <PieChart>
+              <Pie
+                dataKey="count"
+                nameKey="nombre_empresa"
+                data={totalEmpresas}
+                innerRadius={60}
+                outerRadius={110}
+                fill="#82ca9d"
+              >
+                {totalEmpresas.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+        <div className={Styles.contenido}>
           <p>Cantidad total de empresas: {cantidadTotalEmpresa}</p>
           <p>Cantidad total de sucursales: {cantidadTotalSucursales}</p>
           <p>
             La empresa{" "}
-            <select name="empresa" onChange={selectHandler} value={select}>
+            <select
+              name="empresa"
+              onChange={selectHandler}
+              value={select}
+              className={Styles.select}
+            >
               {totalEmpresas?.map((empresa) => (
                 <option value={empresa.nombre_empresa}>
                   {empresa.nombre_empresa}
@@ -93,10 +103,10 @@ const DashboardDeveloper = () => {
           </p>
         </div>
         <div>
-          <button>
+          <button className={Styles.banBTN}>
             <Link to="/to-ban">Banear empresa</Link>
           </button>
-          <button>
+          <button className={Styles.restBTN}>
             <Link to="/to-restore">Restaurar empresa</Link>
           </button>
         </div>
