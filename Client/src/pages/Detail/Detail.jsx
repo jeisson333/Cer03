@@ -11,6 +11,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import style from "../Detail/Detail.module.css";
 import EditProduct from "./EditProduct";
+import { BsShop } from "react-icons/bs";
 const cookies = new Cookies();
 
 const Detail = () => {
@@ -80,51 +81,54 @@ const Detail = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen p-4 bg-gray-300">
-      <div className="relative flex max-w-screen-lg mx-auto animate__animated animate__fadeIn">
-        <div className="w-100 h-85 object-cover rounded-lg overflow-hidden shadow-2xl bg-blue-800 transform -skew-y-12">
+    <div className={style.containerPrincipal}>
+      <div className={style.containerInfo}>
+        <div className={style.containerImage}>
           <img
-            className="w-96 h-50 object-cover rounded-lg overflow-hidden shadow-2xl items-center justify-center mt-20"
+            className={style.image}
             src={product[0]?.PRODUCTO?.image}
             alt={product[0]?.PRODUCTO?.nombre_producto}
             style={{ maxWidth: "300px", maxHeight: "250px" }}
           />
         </div>
 
-        <Rotate bottom right>
-          <div className="w-2/3 ml-4 bg-yellow-500 p-8 rounded-lg shadow-2xl text-black flex items-center justify-center animate__animated animate__fadeIn animate__rotate">
-            <div>
-              <h2 className="text-2xl font-bold mb-4">
-                {product[0]?.PRODUCTO?.nombre_producto}
-              </h2>
-              <p className="mb-2">
-                Sucursal: {product[0]?.SUCURSAL.nombre_sucursal}
-              </p>
-              <p className="mb-2">
-                Tipo de producto:{" "}
-                {product[0]?.PRODUCTO?.CATALOGO_UNIVERSAL?.nombre_catalogo}
-              </p>
-              <p className="mb-2">Stock/Cantidad: {product[0]?.stock}</p>
-              <p className="mb-2">Peso(gr): {product[0]?.PRODUCTO?.peso}</p>
-              <p className="mb-2">
-                Precio Compra: ${product[0]?.PRODUCTO?.valor_compra}
-              </p>
-              <p className="mb-2">
-                Precio Venta: ${product[0]?.PRODUCTO?.valor_venta}
-              </p>
-              <button
-                onClick={modalEditProduc}
-                className={`${style.buttons} mr-6`}
-              >
-                Agregar Stock
-              </button>
-              <button className={style.buttons} onClick={handleDeleteProduct}>
-                Eliminar
-                <FontAwesomeIcon icon={faTrash} />
-              </button>
-            </div>
+        <div className={style.infoProduct}>
+          <div>
+            <h2 className={style.tittle}>
+              {product[0]?.PRODUCTO?.nombre_producto}
+            </h2>
+            <p className={style.parrafoInfo}>
+              <BsShop />
+              Sucursal: {product[0]?.SUCURSAL.nombre_sucursal}
+            </p>
+            <p className={style.parrafoInfo}>
+              Tipo de producto:{" "}
+              {product[0]?.PRODUCTO?.CATALOGO_UNIVERSAL?.nombre_catalogo}
+            </p>
+            <p className={style.parrafoInfo}>
+              Stock/Cantidad: {product[0]?.stock}
+            </p>
+            <p className={style.parrafoInfo}>
+              Peso(gr): {product[0]?.PRODUCTO?.peso}
+            </p>
+            <p className={style.parrafoInfo}>
+              Precio Compra: ${product[0]?.PRODUCTO?.valor_compra}
+            </p>
+            <p className={style.parrafoInfo}>
+              Precio Venta: ${product[0]?.PRODUCTO?.valor_venta}
+            </p>
+            <button
+              onClick={modalEditProduc}
+              className={`${style.buttons} mr-6`}
+            >
+              Agregar Stock
+            </button>
+            <button className={style.buttons} onClick={handleDeleteProduct}>
+              Eliminar
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
           </div>
-        </Rotate>
+        </div>
       </div>
       <div className={modalProduct ? style.container : style.closedModal}>
         <EditProduct

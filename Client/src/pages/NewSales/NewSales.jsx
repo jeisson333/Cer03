@@ -4,6 +4,7 @@ import { getPayments, getProducts } from "../../redux/actions";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 import { toast } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 //components
 import Products from "../../components/Products/Products";
@@ -98,6 +99,11 @@ const NewSales = () => {
         setDetectBuy(!detectBuy);
         dispatch(getProducts(idBranch, conditions));
         setIsModal(false);
+        Swal.fire({
+          title: "SUCCESS!",
+          text: "Genial! Se registro con exito tu venta!",
+          icon: "success",
+        });
         // dispatch();
       }
     } catch (error) {
