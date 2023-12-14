@@ -1,5 +1,5 @@
 const mercadopage = require("mercadopago");
-const { PAGO_TOKEN, BASE_URL } = process.env;
+const { PAGO_TOKEN, BASE_URL, URL_WEBHOOK } = process.env;
 
 const getMercadoPagoController = async ({ info }) => {
   const { subscription, totalPay, currency, quantity } = info;
@@ -23,8 +23,7 @@ const getMercadoPagoController = async ({ info }) => {
       pending: `${BASE_URL}/subscription/pending`,
     },
 
-    notification_url:
-      "https://cer03-dev-dhmt.4.us-1.fl0.io/paymentGateways/webhook",
+    notification_url: `${URL_WEBHOOK}/paymentGateways/webhook`,
   });
 
   return result.body;
