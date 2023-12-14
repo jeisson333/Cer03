@@ -46,7 +46,7 @@ const BanEmpresa = () => {
   return (
     <div>
       <div className="flex justify-center">
-        <h2>Empresas Actuales</h2>
+        <h2 className={Style.title}>Empresas Actuales</h2>
       </div>
 
       <div className="flex justify-center">
