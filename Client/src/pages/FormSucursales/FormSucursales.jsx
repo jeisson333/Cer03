@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { getSucursales } from "../../redux/actions";
+import { toast } from "react-hot-toast";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 import Cookies from "universal-cookie";
 import { IoMdAdd } from "react-icons/io";
@@ -15,21 +17,30 @@ const FormSucursales = () => {
   const dataUser = cookies.get("auth");
   const [input, setInput] = useState("");
   const [sucursales, setSucursales] = useState([]);
-
+  const dataSucursales = useSelector((state) => state.sucursales);
   const handlerInput = (event) => {
     setInput(event.target.value);
   };
 
+  useEffect(() => {
+    dispatch(getSucursales(dataUser.idBranch));
+  }, []);
+
   const addSucursal = (event) => {
     event.preventDefault();
-    if (
-      !sucursales?.find(
-        (sucursal) => sucursal.toLowerCase() === input.toLowerCase()
-      ) &&
-      input
-    ) {
-      setSucursales([...sucursales, input]);
-      setInput("");
+    const flag = handleSubscription();
+    if (flag) {
+      if (
+        !sucursales?.find(
+          (sucursal) => sucursal.toLowerCase() === input.toLowerCase()
+        ) &&
+        input
+      ) {
+        setSucursales([...sucursales, input]);
+        setInput("");
+      }
+    } else {
+      toast.error("Haz alcanzado el limite de sucursales");
     }
     //mostrar msj de error
   };
@@ -41,8 +52,23 @@ const FormSucursales = () => {
     );
   };
 
+  const handleSubscription = () => {
+    switch (dataUser.subscription) {
+      case "free":
+        if (dataSucursales.length + sucursales.length >= 1) return false;
+        return true;
+
+      case "basic":
+        if (dataSucursales.length + sucursales.length >= 3) return false;
+        return true;
+      case "premium":
+        return true;
+    }
+  };
+
   const handlerSubmit = (event) => {
     event.preventDefault();
+
     if (sucursales.length) {
       const url = `${baseUrl}/sucursales/post-sucursales`;
       axios.post(url, {
