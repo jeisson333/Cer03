@@ -84,9 +84,9 @@ const Subscription = () => {
             <li id="free" className="price bottonBar">
               ${calculateSubscriptionPrice("free")}
             </li>
-            <li className="bottonBar">1 funcion</li>
-            <li className="bottonBar">2 funcion</li>
-            <li className="bottonBar">3 funcion</li>
+            <li className="bottonBar">1 NEGOCIO O SURCURSAL</li>
+            <li className="bottonBar">2 VENDEDORES</li>
+            <li className="bottonBar">SIN ACCESO A FILTROS</li>
             <li>
               <button className="btn" onClick={() => handleButtonClick("free")}>
                 Lo quiero
@@ -100,9 +100,9 @@ const Subscription = () => {
             <li id="free" className="price bottonBar">
               ${calculateSubscriptionPrice("basic")}
             </li>
-            <li className="bottonBar">1 funcion</li>
-            <li className="bottonBar">2 funcion</li>
-            <li className="bottonBar">3 funcion</li>
+            <li className="bottonBar">HASTA 3 SUCURSALES</li>
+            <li className="bottonBar">3 VENDEDORES X SUCURSAL</li>
+            <li className="bottonBar">CON ACCESO A FILTROS</li>
             <li>
               <button
                 className="btn active-btn"
@@ -119,9 +119,9 @@ const Subscription = () => {
             <li id="free" className="price bottonBar">
               ${calculateSubscriptionPrice("premium")}
             </li>
-            <li className="bottonBar">1 funcion</li>
-            <li className="bottonBar">2 funcion</li>
-            <li className="bottonBar">3 funcion</li>
+            <li className="bottonBar">HASTA 6 SUCURSALES</li>
+            <li className="bottonBar">HASTA 10 VENDEDORES </li>
+            <li className="bottonBar">CON ACCESO A FILTROS</li>
             <li>
               <button
                 className="btn"
