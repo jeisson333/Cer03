@@ -7,12 +7,14 @@ const { Router } = require("express");
 const {
   postReviewHandler,
   getReviewHandler,
+  putReviewHandler,
 } = require("../handlers/reviewHandler");
 
 routeReview = Router();
 
 routeReview.post("/post", postReviewHandler);
 routeReview.post("/get", getReviewHandler);
+routeReview.put("/edit", putReviewHandler);
 // routeSales.post("/", getPaymentSales);
 // routeSales.post("/webhook", getWebHook);
 

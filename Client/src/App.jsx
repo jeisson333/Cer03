@@ -40,27 +40,12 @@ import DashboardDeveloper from "./pages/DashboardDeveloper/DashboardDeveloper";
 import ManageInventory from "./pages/ManageInventory/ManageInventory";
 import BanEmpresa from "./pages/BanEmpresas/BanEmpresas";
 import RestoreEmpresa from "./pages/RestoreEmpresa/RestoreEmpresa";
+import EditReview from "./pages/EditReview/EditReview";
 
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { sidebarActive } = useSelector((state) => state);
-  // const withSide = [
-  //   "/products",
-  //   "/settings",
-  //   "/newProduct",
-  //   "/newsales",
-  //   "/home",
-  //   "/detail/",
-  //   "/subscription",
-  //   "/subscription/checkout",
-  //   "/subscription/success",
-  //   "/subscription/failure",
-  //   "/subscription/pending",
-  //   "/settingsProductos",
-  //   "/newSeller",
-  //   "/deleteProduct",
-  // ];
   const withoutSide = [
     "/",
     "/contact",
@@ -122,6 +107,7 @@ function App() {
           <Route path="/sign-up/sucursales" element={<AfterSignUp />} />
           <Route path="/review" element={<FormReview />} />
           <Route path="/newSucursal" element={<FormSucursales />} />
+          <Route path="/edit-review" element={<EditReview />} />
         </Route>
         {/* admin without subcription*/}
         <Route

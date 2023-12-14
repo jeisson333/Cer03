@@ -10,10 +10,11 @@ import { CiBadgeDollar } from "react-icons/ci";
 import style from "./SideBar.module.css";
 import logoCer03 from "../../components/image/logocer03.jpeg";
 import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "../../redux/actions";
+import { signOut, somethingReview } from "../../redux/actions";
 import Cookies from "universal-cookie";
 import { toast } from "react-hot-toast";
 import { MdOutlineRateReview } from "react-icons/md";
+import { useEffect } from "react";
 
 const cookies = new Cookies();
 

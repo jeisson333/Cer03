@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { somethingReview } from "../../redux/actions";
 import axios from "axios";
 import styles from "./Home.module.css";

@@ -345,6 +345,13 @@ export const somethingReview = (idBranch, action, form) => {
           description: form.descripcion,
           branch: idBranch,
         });
+      } else if (action === "edit") {
+        await axios.put(`${baseUrl}/review/edit`, {
+          title: form.titulo,
+          score: form.puntuacion,
+          description: form.descripcion,
+          branch: idBranch,
+        });
       }
 
       const find = await axios.post(`${baseUrl}/review/get`, {

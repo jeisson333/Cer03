@@ -22,8 +22,8 @@ const postReviewController = async ({ title, score, description, branch }) => {
   }
 };
 
-const getReviewController = async () => {
-  const find = await REVIEW.findAll({
+const getReviewController = async ({ branch }) => {
+  const find = await REVIEW.findOne({
     attributes: [
       "id_review",
       "titulo_review",
@@ -31,18 +31,34 @@ const getReviewController = async () => {
       "score_review",
       "createdAt",
     ],
-    include: [
-      {
-        model: EMPRESA,
-        attributes: ["nombre_empresa"],
-      },
-    ],
+    where: {
+      empresa_review: branch,
+    },
   });
 
   return find;
 };
 
+const putReviewController = async ({ title, score, description, branch }) => {
+  const findReview = await REVIEW.findOne({
+    where: {
+      empresa_review: branch,
+    },
+  });
+
+  findReview.set({
+    titulo_review: title,
+    score_review: score,
+    descripcion_review: description,
+  });
+
+  await findReview.save();
+
+  return findReview;
+};
+
 module.exports = {
   postReviewController,
   getReviewController,
+  putReviewController,
 };

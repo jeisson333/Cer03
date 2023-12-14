@@ -5,11 +5,13 @@ import FormVendedor from "../../components/FormVendedor/FormVendedor";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Settings = () => {
   const url = import.meta.env.VITE_BASE_URL;
   const { idBranch } = cookies.get("auth");
   const navigate = useNavigate();
+  const { review } = useSelector((state) => state);
 
   const navigateToPapelera = () => {
     navigate("/papelera");
@@ -32,6 +34,9 @@ const Settings = () => {
     navigate("/manageInventory");
   };
 
+  const navigateToEditReview = () => {
+    navigate("/edit-review");
+  };
   // useEffect(() => {}, []);
 
   return (
@@ -90,6 +95,11 @@ const Settings = () => {
           <button className={Style.Btn} onClick={navigateToDashboard}>
             Informacion
           </button>
+          {review && (
+            <button className={Style.Btn} onClick={navigateToEditReview}>
+              Editar Review
+            </button>
+          )}
         </div>
         <img
           src="https://www.creativefabrica.com/wp-content/uploads/2019/03/Statistic-finance-logo-vector-by-Mansel-Brist-1-580x406.jpg"

@@ -1,6 +1,7 @@
 const {
   postReviewController,
   getReviewController,
+  putReviewController,
 } = require("../controllers/controllerReview");
 
 const postReviewHandler = async (req, res) => {
@@ -32,7 +33,9 @@ const postReviewHandler = async (req, res) => {
 
 const getReviewHandler = async (req, res) => {
   try {
-    const response = await getReviewController();
+    const { branch } = req.body;
+
+    const response = await getReviewController({ branch });
 
     if (response) return res.status(200).json(response);
     else
@@ -44,7 +47,35 @@ const getReviewHandler = async (req, res) => {
   }
 };
 
+const putReviewHandler = async (req, res) => {
+  try {
+    const { title, score, description, branch } = req.body;
+
+    if (!title || !score || !description || !branch)
+      return res.status(400).json({ error: "Faltan datos" });
+
+    const response = await putReviewController({
+      title,
+      score,
+      description,
+      branch,
+    });
+
+    if (response)
+      return res.status(200).json({
+        message: "La review fue editada con exito, se agradece su tiempo",
+      });
+    else
+      return res
+        .status(400)
+        .json({ error: "No se ha podido enviar la review" });
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   postReviewHandler,
   getReviewHandler,
+  putReviewHandler,
 };
