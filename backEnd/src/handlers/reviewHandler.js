@@ -2,6 +2,7 @@ const {
   postReviewController,
   getReviewController,
   putReviewController,
+  getReviewsController,
 } = require("../controllers/controllerReview");
 
 const postReviewHandler = async (req, res) => {
@@ -74,8 +75,19 @@ const putReviewHandler = async (req, res) => {
   }
 };
 
+const getReviewsHandler = async (req, res) => {
+  try {
+    const response = await getReviewsController();
+
+    if (!response) return res.status(400).json({ message: "no" });
+
+    return res.status(200).json(response);
+  } catch (error) {}
+};
+
 module.exports = {
   postReviewHandler,
   getReviewHandler,
   putReviewHandler,
+  getReviewsHandler,
 };

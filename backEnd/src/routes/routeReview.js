@@ -8,6 +8,7 @@ const {
   postReviewHandler,
   getReviewHandler,
   putReviewHandler,
+  getReviewsHandler,
 } = require("../handlers/reviewHandler");
 
 routeReview = Router();
@@ -15,6 +16,7 @@ routeReview = Router();
 routeReview.post("/post", postReviewHandler);
 routeReview.post("/get", getReviewHandler);
 routeReview.put("/edit", putReviewHandler);
+routeReview.get("/", getReviewsHandler);
 // routeSales.post("/", getPaymentSales);
 // routeSales.post("/webhook", getWebHook);
 

@@ -11,7 +11,7 @@ const Testimonials = () => {
   const [testimonialsData, setTestimonialsData] = useState([]);
 
   useEffect(() => {
-    axios.post(`${baseUrl}/review/get`).then(({ data }) => {
+    axios(`${baseUrl}/review`).then(({ data }) => {
       setTestimonialsData(data);
     });
   }, []);
