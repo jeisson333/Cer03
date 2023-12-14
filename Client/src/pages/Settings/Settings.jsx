@@ -20,6 +20,9 @@ const Settings = () => {
   const navigateToFormVendedor = () => {
     navigate("/newSeller");
   };
+  const navigateToDashboard = () => {
+    navigate("/dashboard");
+  };
 
   const navigateToFormSucursal = () => {
     navigate("/newSucursal");
@@ -79,6 +82,20 @@ const Settings = () => {
           src="https://i.blogs.es/b68133/4urb5gipmfhw3ku55p7hkkrpue/200_200.jpg"
           alt=""
           style={{ borderRadius: "20px" }}
+        />
+      </div>
+      <div className={Style.divider}>
+        <div className={Style.usableHolder}>
+          <h2>Informacion</h2>
+          <button className={Style.Btn} onClick={navigateToDashboard}>
+            Informacion
+          </button>
+        </div>
+        <img
+          src="https://www.creativefabrica.com/wp-content/uploads/2019/03/Statistic-finance-logo-vector-by-Mansel-Brist-1-580x406.jpg"
+          alt=""
+          style={{ borderRadius: "20px" }}
+          width={220}
         />
       </div>
     </div>
