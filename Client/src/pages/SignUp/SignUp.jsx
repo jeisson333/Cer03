@@ -121,37 +121,36 @@ export default function SignUp() {
   return (
     <div className={Style.container}>
       <form onSubmit={handleSubmit} className={Style.containerForm}>
-        <h1 className={Style.title}>Registra tu negocio</h1>
-        <label className={Style.label}>Nombre de tu negocio</label>
+        <div className={Style.divTittle}>
+          <h1 className={Style.title}>Registrar negocio</h1>
+        </div>
         <input
           type="text"
           value={user?.nombre_empresa}
           onChange={handleUser}
           className={Style.input}
           name="nombre_empresa"
+          placeholder="Nombre negocio"
         />
-        <label className={Style.label}>Email</label>
+
         <input
           type="text"
           value={user?.email}
           onChange={handleUser}
           className={Style.input}
           name="email"
+          placeholder="Correo electrónico"
         />
-        <label className={Style.label}>Contraseña</label>
         <input
           type="password"
           value={user?.password}
           onChange={handleUser}
           className={Style.input}
           name="password"
+          placeholder="Contraseña nueva"
         />
         <p className={Style.errorMessage}>{Array.from(miSet).join(", ")}</p>
-        <button
-          type="submit"
-          disabled={disableFunction()}
-          className={Style.inputSubmit}
-        >
+        <button disabled={disableFunction()} className={Style.inputSubmit}>
           Registar
         </button>
         <div
