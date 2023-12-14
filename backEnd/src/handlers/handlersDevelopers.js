@@ -32,7 +32,7 @@ const postSingUpDevelopersHandler = async (req, res) => {
 const postSingInDevelopersHandler = async (req, res) => {
   try {
     const { email, password } = req.body;
-
+    console.log("aqui:", email, password);
     const response = await singInDeveloper({ email, password });
     return res.status(200).json(response);
   } catch (error) {
