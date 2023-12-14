@@ -78,7 +78,7 @@ function Papelera() {
   return (
     <div>
       <div className="flex justify-center">
-        <h2>Productos Eliminados</h2>
+        <h2 className={Style.title}>Productos Eliminados</h2>
       </div>
       <Filters
         conditions={conditions}
