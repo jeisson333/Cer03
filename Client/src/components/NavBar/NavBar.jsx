@@ -76,13 +76,13 @@ const NavBAr = () => {
               icon={<CiSettings />}
               text="Administracion"
             />
-            <div className={style.divider}></div>
+            <SidebarLink to="/to-ban" icon={<CiSettings />} text="Banear" />
             <SidebarLink
-              to="/"
-              Onclick={handleSignOut}
-              icon={<IoIosLogOut />}
-              text="Cerrar sesión"
+              to="/to-restore"
+              icon={<CiSettings />}
+              text="Restaurar"
             />
+            <div className={style.divider}></div>
           </div>
         )}
 
@@ -128,23 +128,10 @@ const NavBAr = () => {
               text="Cargar Producto"
             />
             <div className={style.divider}></div>
-            <SidebarLink
-              to="/"
-              Onclick={handleSignOut}
-              icon={<IoIosLogOut />}
-              text="Cerrar sesión"
-            />
           </div>
         )}
         {role === "user" && (
           <div>
-            {/* <div className={style.divider}></div>
-            <SidebarLink
-              to="/settings"
-              icon={<CiSettings />}
-              text="Configuraciones"
-            />
-            <div className={style.divider}></div> */}
             <div className={style.divider}></div>
             <SidebarLink
               to="/home"
@@ -158,14 +145,14 @@ const NavBAr = () => {
             />
 
             <div className={style.divider}></div>
-            <SidebarLink
-              to="/"
-              Onclick={handleSignOut}
-              icon={<IoIosLogOut />}
-              text="Cerrar sesión"
-            />
           </div>
         )}
+        <SidebarLink
+          to="/"
+          Onclick={handleSignOut}
+          icon={<IoIosLogOut />}
+          text="Cerrar sesión"
+        />
         <div className={style.divider}></div>
       </div>
     </div>
