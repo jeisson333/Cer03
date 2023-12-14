@@ -32,13 +32,7 @@ const postReviewHandler = async (req, res) => {
 
 const getReviewHandler = async (req, res) => {
   try {
-    const { branch } = req.body;
-
-    if (!branch) return res.status(400).json({ error: "Faltan datos" });
-
-    const response = await getReviewController({
-      branch,
-    });
+    const response = await getReviewController();
 
     if (response) return res.status(200).json(response);
     else
