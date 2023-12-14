@@ -8,14 +8,24 @@ const DashboardDeveloper = () => {
   const { totalEmpresas } = useSelector((state) => state);
   const [select, setSelect] = useState("");
   const [sucursales, setSucursales] = useState([]);
+  const [cantidadTotalEmpresa, setCantidadTotalEmpresa] = useState(0);
+  const [cantidadTotalSucursales, setCantidadTotalSucursales] = useState(0);
 
   useEffect(() => {
     dispatch(getTotalEmpresas());
   }, []);
 
   useEffect(() => {
-    if (totalEmpresas) setSelect(totalEmpresas[0]?.nombre_empresa);
+    if (totalEmpresas.length) {
+      setSelect(totalEmpresas[0]?.nombre_empresa);
+      setCantidadTotalEmpresa(totalEmpresas.length);
+
+      let total = 0;
+      totalEmpresas.forEach((empresa) => (total += empresa.count));
+      setCantidadTotalSucursales(total);
+    }
   }, [totalEmpresas]);
+  console.log(cantidadTotalSucursales);
 
   const selectHandler = (event) => {
     setSelect(event.target.value);
@@ -64,6 +74,8 @@ const DashboardDeveloper = () => {
           </PieChart>
         </ResponsiveContainer>
         <div>
+          <p>Cantidad total de empresas: {cantidadTotalEmpresa}</p>
+          <p>Cantidad total de sucursales: {cantidadTotalSucursales}</p>
           <p>
             La empresa{" "}
             <select name="empresa" onChange={selectHandler} value={select}>
