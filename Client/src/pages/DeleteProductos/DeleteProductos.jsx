@@ -75,7 +75,7 @@ const DeleteProductos = () => {
   return (
     <div>
       <div className="flex justify-center">
-        <h2>Productos</h2>
+        <h2 className={Style.title}>Productos</h2>
       </div>
       <Filters
         conditions={conditions}
