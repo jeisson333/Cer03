@@ -58,11 +58,11 @@ const AfterSignUp = () => {
   const handleSubscription = () => {
     switch (dataUser.subscription) {
       case "free":
-        if (dataSucursales.length + sucursales.length >= 1) return false;
+        if (dataSucursales.length + sucursales.length >= 3) return false;
         return true;
 
       case "basic":
-        if (dataSucursales.length + sucursales.length >= 3) return false;
+        if (dataSucursales.length + sucursales.length >= 6) return false;
         return true;
       case "premium":
         return true;

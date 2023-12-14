@@ -84,8 +84,8 @@ const Subscription = () => {
             <li id="free" className="price bottonBar">
               ${calculateSubscriptionPrice("free")}
             </li>
-            <li className="bottonBar">1 NEGOCIO O SURCURSAL</li>
-            <li className="bottonBar">2 VENDEDORES</li>
+            <li className="bottonBar">3 SUCURSALES</li>
+            <li className="bottonBar">2 VENDEDORES x SUCURSAL</li>
             <li className="bottonBar">SIN ACCESO A FILTROS</li>
             <li>
               <button className="btn" onClick={() => handleButtonClick("free")}>
@@ -100,8 +100,8 @@ const Subscription = () => {
             <li id="free" className="price bottonBar">
               ${calculateSubscriptionPrice("basic")}
             </li>
-            <li className="bottonBar">HASTA 3 SUCURSALES</li>
-            <li className="bottonBar">3 VENDEDORES X SUCURSAL</li>
+            <li className="bottonBar">6 SUCURSALES</li>
+            <li className="bottonBar">4 VENDEDORES x SUCURSAL</li>
             <li className="bottonBar">CON ACCESO A FILTROS</li>
             <li>
               <button
@@ -119,8 +119,8 @@ const Subscription = () => {
             <li id="free" className="price bottonBar">
               ${calculateSubscriptionPrice("premium")}
             </li>
-            <li className="bottonBar">HASTA 6 SUCURSALES</li>
-            <li className="bottonBar">HASTA 10 VENDEDORES </li>
+            <li className="bottonBar">SUCURSALES ILIMITADAS</li>
+            <li className="bottonBar">VENDEDORES ILIMITADOS</li>
             <li className="bottonBar">CON ACCESO A FILTROS</li>
             <li>
               <button
