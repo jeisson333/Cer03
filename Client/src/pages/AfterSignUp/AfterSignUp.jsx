@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getSucursales } from "../../redux/actions";
 import { changeSidebar } from "../../redux/actions";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 import Cookies from "universal-cookie";
 import { IoMdAdd } from "react-icons/io";
@@ -13,12 +15,14 @@ import Style from "./AfterSignUp.module.css";
 const AfterSignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const dataSucursales = useSelector((state) => state.sucursales);
   const dataUser = cookies.get("auth");
   const [input, setInput] = useState("");
   const [sucursales, setSucursales] = useState([]);
 
   useEffect(() => {
     dispatch(changeSidebar(false));
+    dispatch(getSucursales(dataUser.idBranch));
   }, []);
 
   const handlerInput = (event) => {
@@ -27,14 +31,19 @@ const AfterSignUp = () => {
 
   const addSucursal = (event) => {
     event.preventDefault();
-    if (
-      !sucursales?.find(
-        (sucursal) => sucursal.toLowerCase() === input.toLowerCase()
-      ) &&
-      input
-    ) {
-      setSucursales([...sucursales, input]);
-      setInput("");
+    const flag = handleSubscription();
+    if (flag) {
+      if (
+        !sucursales?.find(
+          (sucursal) => sucursal.toLowerCase() === input.toLowerCase()
+        ) &&
+        input
+      ) {
+        setSucursales([...sucursales, input]);
+        setInput("");
+      }
+    } else {
+      toast.error("Haz alcanzado el limite de sucursales");
     }
     //mostrar msj de error
   };
@@ -44,6 +53,20 @@ const AfterSignUp = () => {
     setSucursales(
       sucursales.filter((sucursal) => sucursal !== event.target.name)
     );
+  };
+
+  const handleSubscription = () => {
+    switch (dataUser.subscription) {
+      case "free":
+        if (dataSucursales.length + sucursales.length >= 3) return false;
+        return true;
+
+      case "basic":
+        if (dataSucursales.length + sucursales.length >= 6) return false;
+        return true;
+      case "premium":
+        return true;
+    }
   };
 
   const handlerSubmit = (event) => {

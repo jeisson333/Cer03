@@ -53,7 +53,7 @@ function RestoreEmpresa() {
   return (
     <div>
       <div className="flex justify-center">
-        <h2>Empresas Baneadas</h2>
+        <h2 className={Style.title}>Empresas Baneadas</h2>
       </div>
 
       <div className="flex justify-center">

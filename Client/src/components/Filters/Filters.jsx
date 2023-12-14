@@ -10,6 +10,9 @@ import SearchBar from "../SearchBar/SearchBar";
 
 //style
 import Style from "./Filters.module.css";
+
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 export default function Filters({
   conditions,
   setConditions,
@@ -18,6 +21,7 @@ export default function Filters({
   handlerChange,
   handlerSubmit,
 }) {
+  const { subscription } = cookies.get("auth");
   const dispatch = useDispatch();
   const allTypeProduct = useSelector((state) => state.allTypeProducts);
 
@@ -68,67 +72,72 @@ export default function Filters({
           </option>
         ))}
       </select>
-      <select
-        name="orderName"
-        onChange={handlerConditions}
-        className={Style.selectFilter}
-      >
-        <option value="" className={Style.optionFilter}>
-          Ordenar segun
-        </option>
-        <option value="valor_venta" className={Style.optionFilter}>
-          Precio de venta
-        </option>
-        <option value="valor_compra" className={Style.optionFilter}>
-          Precio de compra
-        </option>
-        <option value="nombre_producto" className={Style.optionFilter}>
-          Nombre del producto
-        </option>
-      </select>
-      <select
-        name="order"
-        onChange={handlerConditions}
-        className={Style.selectFilter}
-      >
-        <option value="" className={Style.optionFilter}>
-          Tipo de orden
-        </option>
-        <option value="ASC" className={Style.optionFilter}>
-          Ascendente
-        </option>
-        <option value="DESC" className={Style.optionFilter}>
-          Descendente
-        </option>
-      </select>
-      {useLocation().pathname !== "/newsales" && (
-        <select
-          name="sucursal"
-          onChange={handlerConditions}
-          className={Style.selectFilter}
-        >
-          <option
-            key={0}
-            value={sucursales[0]?.nombre_sucursal}
-            className={Style.optionFilter}
+      {subscription !== "free" && (
+        <>
+          <select
+            name="orderName"
+            onChange={handlerConditions}
+            className={Style.selectFilter}
           >
-            {sucursales[0]?.nombre_sucursal}
-          </option>
-          {sucursales.map((sucursal, index) => {
-            if (index != 0) {
-              return (
-                <option
-                  key={index}
-                  value={sucursal?.nombre_sucursal}
-                  className={Style.optionFilter}
-                >
-                  {sucursal?.nombre_sucursal}
-                </option>
-              );
-            }
-          })}
-        </select>
+            <option value="" className={Style.optionFilter}>
+              Ordenar segun
+            </option>
+            <option value="valor_venta" className={Style.optionFilter}>
+              Precio de venta
+            </option>
+            <option value="valor_compra" className={Style.optionFilter}>
+              Precio de compra
+            </option>
+            <option value="nombre_producto" className={Style.optionFilter}>
+              Nombre del producto
+            </option>
+          </select>
+          <select
+            name="order"
+            onChange={handlerConditions}
+            className={Style.selectFilter}
+          >
+            <option value="" className={Style.optionFilter}>
+              Tipo de orden
+            </option>
+            <option value="ASC" className={Style.optionFilter}>
+              Ascendente
+            </option>
+            <option value="DESC" className={Style.optionFilter}>
+              Descendente
+            </option>
+          </select>
+          {useLocation().pathname !== "/newsales" && (
+            <select
+              name="sucursal"
+              onChange={handlerConditions}
+              className={Style.selectFilter}
+            >
+              <option
+                key={0}
+                value={sucursales[0]?.nombre_sucursal}
+                className={Style.optionFilter}
+              >
+                {sucursales[0]?.nombre_sucursal}
+              </option>
+              {sucursales.map((sucursal, index) => {
+                if (index != 0) {
+                  return (
+                    <option
+                      key={index}
+                      value={sucursal?.nombre_sucursal}
+                      className={Style.optionFilter}
+                    >
+                      {sucursal?.nombre_sucursal}
+                    </option>
+                  );
+                }
+              })}
+            </select>
+          )}
+        </>
       )}
+
       <Paginate
         prevChange={prevPage}
         nextChange={nextPage}

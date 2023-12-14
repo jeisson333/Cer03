@@ -98,7 +98,7 @@ export function CreateProduct() {
   };
 
   const handleAddStock = () => {
-    if (stockCount != "" && stockSucursal != "") {
+    if (parseInt(stockCount) >= 1 && stockSucursal != "") {
       let stock = newProduct?.stock ? newProduct?.stock : [];
       let name;
       for (let index = 0; index < stock.length; index++) {
