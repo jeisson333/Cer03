@@ -65,35 +65,30 @@ export default function SignIn() {
       <form onSubmit={handleSubmit} className={Style.containerForm}>
         <div className={Style.divTittle}>
           <h1 className={Style.title}>Iniciar Sesion</h1>
-          <NavLink to="/signUp">
-            <button type="button" className={Style.SignUp}>
-              Registrate
-            </button>
-          </NavLink>
         </div>
-
-        <label className={Style.label}>Usuario</label>
         <input
           type="text"
           value={user?.email}
           onChange={handleUser}
           className={Style.input}
           name="email"
+          placeholder="Correo electrónico o nombre de usuario "
         />
-        <label className={Style.label}>Contraseña</label>
+
         <input
           type="password"
           value={user?.password}
           onChange={handleUser}
           className={Style.input}
           name="password"
+          placeholder="Contraseña"
         />
         <p className={Style.errorMessage}>
           {loginConfirm?.data?.error
             ? loginConfirm?.data?.error
             : loginConfirm?.data}
         </p>
-        <input type="submit" value="Ingresar" className={Style.inputSubmit} />
+        <button className={Style.inputSubmit}>iniciar sesión</button>
         <div
           style={{
             marginTop: "3vh",
@@ -104,10 +99,15 @@ export default function SignIn() {
           <GoogleLogin
             onSuccess={onSucess}
             onError={onFailure}
-            width={"500px"}
+            width={"360px"}
             text="signin_with"
             useOneTap={false}
           ></GoogleLogin>
+        </div>
+        <div className={Style.containerButton}>
+          <NavLink to="/signUp">
+            <button className={Style.SignUp}>Crear cuenta nueva</button>
+          </NavLink>
         </div>
       </form>
     </div>

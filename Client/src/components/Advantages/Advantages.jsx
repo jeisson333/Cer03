@@ -20,7 +20,7 @@ const Advantages = () => {
           {/* Container BASIC */}
           <div className="flex-1 p-6 bg-white text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out text-center">
             <h2 className="text-2xl font-bold mb-4">BASIC</h2>
-            <p className="text-3xl font-bold mb-4">$10.00</p>
+            <p className="text-3xl font-bold mb-4">$1000.00</p>
             <ul className="list-disc ml-2">
               <li className="mb-2">HASTA 3 SUCURSALES</li>
               <li className="mb-2">3 VENDEDORES POR SUCURSAL</li>
@@ -32,7 +32,7 @@ const Advantages = () => {
           {/* Container SUPER */}
           <div className="flex-1 p-6 bg-white text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out text-center">
             <h2 className="text-2xl font-bold mb-4">PREMIUM</h2>
-            <p className="text-3xl font-bold mb-4">$15.00</p>
+            <p className="text-3xl font-bold mb-4">$3000.00</p>
             <ul className="list-disc ml-2">
               <li className="mb-2">HASTA 6 SUCURSALES</li>
               <li className="mb-2">HASTA 10 VENDEDORES POR SUCURSAL</li>
