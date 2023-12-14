@@ -77,3 +77,11 @@
   width: 60%;
   height: 50vh;
 }
+
+.goBack{
+  color: #04304d;
+}
+
+.goBack:hover{
+  color: #0089d4;
+}

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../redux/actions";
 import Style from "./SignUp.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { gapi } from "gapi-script";
 import { decodeToken } from "react-jwt";
@@ -11,6 +11,8 @@ import Modal from "react-modal";
 const client_id = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 Modal.setAppElement("#root");
 export default function SignUp() {
@@ -167,6 +169,11 @@ export default function SignUp() {
             useOneTap={false}
             type="icon"
           ></GoogleLogin>
+        </div>
+        <div>
+          <NavLink to="/signIn">
+          <a className={Style.goBack}><FontAwesomeIcon icon={faArrowLeft}/> Volver</a>
+          </NavLink>
         </div>
       </form>
       <Modal isOpen={googleUser} className={Style.modal}>

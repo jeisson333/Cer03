@@ -88,3 +88,11 @@
   justify-content: center;
   align-items: center;
 }
+
+.goBack{
+  color: #04304d;
+}
+
+.goBack:hover{
+  color: #0089d4;
+}

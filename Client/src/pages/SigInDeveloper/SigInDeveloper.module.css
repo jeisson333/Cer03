@@ -74,3 +74,13 @@
   color: black;
   border-color: black;
 }
+
+.goBackDiv{
+  text-align: start;
+}
+
+
+
+.goBack:hover{
+  color:#ffffff;
+}
