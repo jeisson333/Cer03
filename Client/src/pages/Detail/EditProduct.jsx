@@ -37,6 +37,7 @@ const EditProduct = ({ modalEditProduc, sucursales, product }) => {
   };
   const disableFunction = () => {
     let disabledAux = 0;
+    if (updateStock?.stock <= 0) disabledAux++;
     for (let error in errors) {
       if (errors.hasOwnProperty(error)) {
         if (errors[error] !== "") {
@@ -86,6 +87,9 @@ const EditProduct = ({ modalEditProduc, sucursales, product }) => {
           id: idBranch,
         }
       );
+      setUpdateStock(dataParams);
+      const selectSucursal = document.getElementById("Sucursal");
+      if (selectSucursal) selectSucursal.selectedIndex = 0;
       Swal.fire({
         title: "SUCCESS!",
         text: "Genial! Se actualizo con exito el stock",
@@ -112,6 +116,7 @@ const EditProduct = ({ modalEditProduc, sucursales, product }) => {
         <h2 className={style.tittle}>{product?.PRODUCTO?.nombre_producto}</h2>
         <p className={style.info}>Sucursal</p>
         <select
+          id="Sucursal"
           name="sucursales"
           onChange={handleChange}
           className={style.selectModal}
@@ -135,6 +140,7 @@ const EditProduct = ({ modalEditProduc, sucursales, product }) => {
           name="stock"
           onChange={handleChange}
           className={style.optionModal}
+          value={updateStock.stock}
         />
       </div>
       <div>
