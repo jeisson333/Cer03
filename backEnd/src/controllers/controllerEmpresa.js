@@ -54,9 +54,16 @@ const updateEmpresa = async ({ values }) => {
       },
     });
 
-    const [result, sucursal] = await Promise.all([
+    const empresaPromise = EMPRESA.findOne({
+      where: {
+        id_empresa: idBranch,
+      },
+    });
+
+    const [result, sucursal, empresa] = await Promise.all([
       resultPromise,
       sucursalPromise,
+      empresaPromise,
     ]);
 
     if (result[0] === 0) {
@@ -68,6 +75,7 @@ const updateEmpresa = async ({ values }) => {
         idBranch: idBranch,
         idUser: null,
         role: "admin",
+        email: empresa?.email,
         branch: sucursal[0]?.nombre_sucursal,
         exp: Date.now() / 1000 + 60 * 1440,
         subscription: name_subcripcion,

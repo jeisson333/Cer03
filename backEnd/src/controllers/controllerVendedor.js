@@ -38,6 +38,60 @@ const getVendedorByName = async (name) => {
   return salesmen;
 };
 
+const getVendedores = async ({ name, numero_documento }) => {
+  let salesmen = await VENDEDOR.findAll({
+    where: {
+      [Op.or]: [
+        {
+          primer_nombre: {
+            [Op.iLike]: driverFilter.name,
+          },
+        },
+        {
+          segundo_nombre: {
+            [Op.iLike]: driverFilter.name,
+          },
+        },
+        {
+          primer_apellido: {
+            [Op.iLike]: driverFilter.name,
+          },
+        },
+        {
+          segundo_apellido: {
+            [Op.iLike]: driverFilter.name,
+          },
+        },
+      ],
+    },
+  });
+};
+
+const disableVendedor = async ({ id_vendedor }) => {
+  const rowsAffected = await VENDEDOR.destroy({
+    where: {
+      id_vendedor: id_vendedor,
+    },
+  });
+  if (rowsAffected === 0)
+    throw new Error({ error: "No se elimino el vendedor" });
+
+  return { msg: "Se elimino el producto exitosamente" };
+};
+
+const enableVendedor = async ({ id_vendedor }) => {
+  const vendedor = await VENDEDOR.restore({
+    where: {
+      id_vendedor: id_vendedor,
+    },
+  });
+
+  if (!vendedor) throw new Error({ error: "No se restauro el vendedor" });
+  else {
+    return { msg: "Se restauro el vendedor exitosamente" };
+  }
+};
+
 const postVendedor = async ({ values }) => {
   let [vendedor, created] = await VENDEDOR.findOrCreate({
     where: values,
@@ -53,4 +107,6 @@ module.exports = {
   getVendedorIdentityCard,
   getVendedorByName,
   postVendedor,
+  disableVendedor,
+  enableVendedor,
 };

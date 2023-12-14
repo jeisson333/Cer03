@@ -147,12 +147,13 @@ export default function SignUp() {
           name="password"
         />
         <p className={Style.errorMessage}>{Array.from(miSet).join(", ")}</p>
-        <input
+        <button
           type="submit"
-          value="Registar"
           disabled={disableFunction()}
           className={Style.inputSubmit}
-        />
+        >
+          Registar
+        </button>
         <div
           style={{
             marginTop: "3vh",

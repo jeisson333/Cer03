@@ -24,9 +24,10 @@
   max-width: 400px;
   width: 100%;
   padding: 20px;
-  border: 1px solid var(--curious-blue-500);
+  border: 2px solid var(--curious-blue-500);
   border-radius: 8px;
   background-color: var(--curious-blue-300);
+  box-shadow: 10px 5px 13px #04304d;
 }
 
 .labelSucursal {
@@ -75,11 +76,14 @@
 .inputSubmit {
   background-color: var(--curious-blue-800);
   color: var(--curious-blue-950);
-  border: none;
+  border: 2px solid var(--curious-blue-500);
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
   width: 100%;
+}
+.inputSubmit:hover {
+  background-color: aliceblue;
 }
 
 .title {

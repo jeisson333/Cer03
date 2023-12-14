@@ -13,6 +13,7 @@ const singIn = async (email, password) => {
   let sucursal = "";
   let idUser;
   let tipo_subcripcion;
+  let user;
   const empresaPromise = EMPRESA.findOne({
     where: {
       email: email,
@@ -53,6 +54,7 @@ const singIn = async (email, password) => {
       ]);
       tipo_subcripcion = modelSubcripcion?.nombre_catalogo;
       sucursal = modelSucursal[0]?.nombre_sucursal;
+      user = empresa?.email;
     }
   } else {
     if (vendedor?.contraseña_vendedor != password)
@@ -93,6 +95,7 @@ const singIn = async (email, password) => {
       idBranch: idBranch,
       idUser: idUser ? idUser : null,
       role: role,
+      email: user ? user : null,
       branch: sucursal,
       exp: Date.now() / 1000 + 60 * 1440,
       subscription: tipo_subcripcion,

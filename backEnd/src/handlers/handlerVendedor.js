@@ -2,6 +2,8 @@ const {
   getVendedorIdentityCard,
   getVendedorByName,
   postVendedor,
+  enableVendedor,
+  disableVendedor,
 } = require("../controllers/controllerVendedor.js");
 
 const getVendedorHandlerIdentityCard = async (req, res) => {
@@ -48,8 +50,32 @@ const postVendedorHandler = async (req, res) => {
   }
 };
 
+const deleteVendedor = async (req, res) => {
+  try {
+    const { id_vendedor } = req.query;
+    const response = await disableVendedor({
+      id_vendedor,
+    });
+    return res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const restoreVendedor = async (req, res) => {
+  try {
+    const { id_vendedor } = req.body;
+    const response = await enableVendedor({ id_vendedor });
+    return res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getVendedorHandlerIdentityCard,
   getVendedorHandlerName,
   postVendedorHandler,
+  deleteVendedor,
+  restoreVendedor,
 };

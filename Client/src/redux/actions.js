@@ -23,6 +23,7 @@ import {
   SOMETHING_REVIEW,
   GET_GANANCIAS_SUCURSALES,
   GET_CANTIDAD_VENDEDORES,
+  GET_TOTAL_EMPRESAS,
 } from "./action-types.js";
 import axios from "axios";
 const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -382,6 +383,21 @@ export const getCantidadVendedores = (idBranch) => {
 
       return dispatch({
         type: GET_CANTIDAD_VENDEDORES,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getTotalEmpresas = () => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios(`${baseUrl}/developers`);
+
+      return dispatch({
+        type: GET_TOTAL_EMPRESAS,
         payload: data,
       });
     } catch (error) {

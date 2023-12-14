@@ -22,6 +22,7 @@ import {
   SOMETHING_REVIEW,
   GET_GANANCIAS_SUCURSALES,
   GET_CANTIDAD_VENDEDORES,
+  GET_TOTAL_EMPRESAS,
 } from "./action-types.js";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -42,6 +43,7 @@ const initialState = {
   review: false,
   gananciaSucursales: [],
   cantidadVendedores: [],
+  totalEmpresas: [],
 };
 
 function reducer(state = initialState, action) {
@@ -129,6 +131,7 @@ function reducer(state = initialState, action) {
           role: action.payload?.role,
           branch: action.payload?.branch,
           subscription: action.payload?.subscription,
+          email: action.payload?.email,
         },
         { path: "/" }
       );
@@ -141,6 +144,8 @@ function reducer(state = initialState, action) {
           idUser: action.payload?.idUser,
           role: action.payload?.role,
           branch: action.payload?.branch,
+          subscription: action.payload?.subscription,
+          email: action.payload?.email,
         },
         { path: "/" }
       );
@@ -172,6 +177,9 @@ function reducer(state = initialState, action) {
 
     case GET_CANTIDAD_VENDEDORES:
       return { ...state, cantidadVendedores: [...action.payload] };
+
+    case GET_TOTAL_EMPRESAS:
+      return { ...state, totalEmpresas: [...action.payload] };
 
     default:
       return { ...state };

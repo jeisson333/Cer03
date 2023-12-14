@@ -43,7 +43,6 @@ const DeleteProductos = () => {
   const handleDeleteProduct = (id_producto) => {
     Swal.fire({
       title: "¿Estás seguro?",
-      text: "¡No podrás revertir esto!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
