@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions";
 import validations from "./validations";
 import { toast } from "react-hot-toast";
-
+import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
@@ -77,6 +77,11 @@ const FormVendedor = () => {
       dispatch(postSaleMen(form));
       console.log("Datos del formulario:", form);
       deleteFields();
+      Swal.fire({
+        title: "SUCCESS!",
+        text: "Genial! Se creo con exito tu vendedor",
+        icon: "success",
+      });
     } else {
       console.log("Hay errores en el formulario. No se puede enviar.");
     }
