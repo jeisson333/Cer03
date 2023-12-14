@@ -61,15 +61,15 @@ const AfterSignUp = () => {
   return (
     <div className={Style.container}>
       <form onSubmit={handlerSubmit} className={Style.containerForm}>
-        <h2>Ya has creado tu empresa!</h2>
-        <p>Ahora registremos tus sucursales</p>
-        <label className={Style.labelSucursal}>Nombre de la sucursal: </label>
+        <h2 className={Style.title}>Negocio creado con exito!</h2>
+        <label className={Style.labelSucursal}>Registra tus sucursales: </label>
         <input
           type="text"
           value={input}
           onChange={handlerInput}
           className={Style.input}
           name="sucursal"
+          placeholder="Nombre de la sucursal"
         />
         <button onClick={addSucursal} className={Style.buttonAdd}>
           <IoMdAdd />
@@ -85,7 +85,7 @@ const AfterSignUp = () => {
             </div>
           ))}
         </div>
-        <input type="submit" value="Registar" className={Style.inputSubmit} />
+        <button className={Style.inputSubmit}>Registar</button>
       </form>
     </div>
   );
