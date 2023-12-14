@@ -18,13 +18,16 @@ export default function Home() {
       try {
         dispatch(somethingReview(idBranch, "find", null));
         if (role === "admin") {
-          const { data } = await axios.post(`${url}/ventas`, {
-            id: idBranch,
-          });
+          const { data } = await axios.post(
+            `${url}/ventas?orderName=createdAt&order=DESC`,
+            {
+              id: idBranch,
+            }
+          );
           setSales(data.data);
         } else {
           const { data } = await axios.post(
-            `${url}/ventas?sucursal=${branch}`,
+            `${url}/ventas?sucursal=${branch}&orderName=createdAt&order=DESC`,
             {
               id: idBranch,
             }
