@@ -75,12 +75,12 @@ const DashboardAdmin = () => {
 
   useEffect(() => {
     if (sucOrder) {
-      setGanSucOrder(
-        [...ganSucOrder]?.sort((first, second) => {
-          if (sucOrder === "DESC") return first.total < second.total;
-          if (sucOrder === "ASC") return first.total > second.total;
-        })
-      );
+      const sortedArray = ganSucOrder?.slice().sort((first, second) => {
+        if (sucOrder === "DESC") return second.total - first.total;
+        if (sucOrder === "ASC") return first.total - second.total;
+        return 0;
+      });
+      setGanSucOrder(sortedArray);
     } else {
       setGanSucOrder([...gananciaSucursales]);
     }
@@ -88,12 +88,12 @@ const DashboardAdmin = () => {
 
   useEffect(() => {
     if (vendOrder) {
-      setCantVendOrder(
-        [...cantVendOrder]?.sort((first, second) => {
-          if (vendOrder === "DESC") return first.count < second.count;
-          if (vendOrder === "ASC") return first.count > second.count;
-        })
-      );
+      const sortedArray = cantVendOrder?.slice().sort((first, second) => {
+        if (vendOrder === "DESC") return second.count - first.count;
+        if (vendOrder === "ASC") return first.count - second.count;
+        return 0;
+      });
+      setCantVendOrder(sortedArray);
     } else {
       setCantVendOrder([...cantidadVendedores]);
     }
@@ -171,7 +171,7 @@ const DashboardAdmin = () => {
       <div className={styles.dividerLine}></div>
       {/* cantidad de vendedores */}
       <div className={styles.gananciasGraph}>
-        <div div className={styles.graphContainer}>
+        <div className={styles.graphContainer}>
           <h2 className={styles.graphTitle}>
             Cantidad de vendedores por sucursal
           </h2>
