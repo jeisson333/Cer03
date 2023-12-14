@@ -23,6 +23,7 @@ import {
   GET_GANANCIAS_SUCURSALES,
   GET_CANTIDAD_VENDEDORES,
   GET_TOTAL_EMPRESAS,
+  GET_DISABLED_EMPRESAS,
 } from "./action-types.js";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -44,6 +45,7 @@ const initialState = {
   gananciaSucursales: [],
   cantidadVendedores: [],
   totalEmpresas: [],
+  disabledEmpresas: [],
 };
 
 function reducer(state = initialState, action) {
@@ -180,6 +182,9 @@ function reducer(state = initialState, action) {
 
     case GET_TOTAL_EMPRESAS:
       return { ...state, totalEmpresas: [...action.payload] };
+
+    case GET_DISABLED_EMPRESAS:
+      return { ...state, disabledEmpresas: [...action.payload] };
 
     default:
       return { ...state };

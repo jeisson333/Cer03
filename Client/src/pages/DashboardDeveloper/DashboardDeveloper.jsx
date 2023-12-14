@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTotalEmpresas } from "../../redux/actions";
 import { PieChart, ResponsiveContainer, Pie, Tooltip, Cell } from "recharts";
+import { Link } from "react-router-dom";
 
 const DashboardDeveloper = () => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const DashboardDeveloper = () => {
       );
     }
   }, [select]);
-  // console.log(sucursales);
+
   const COLORS = [
     "#ce93d8",
     "#5c6bc0",
@@ -90,6 +91,14 @@ const DashboardDeveloper = () => {
               else return `${sucursal}.`;
             })}
           </p>
+        </div>
+        <div>
+          <button>
+            <Link to="/to-ban">Banear empresa</Link>
+          </button>
+          <button>
+            <Link to="/to-restore">Restaurar empresa</Link>
+          </button>
         </div>
       </div>
     </div>

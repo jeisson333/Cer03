@@ -38,6 +38,8 @@ import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
 import FormSucursales from "./pages/FormSucursales/FormSucursales";
 import DashboardDeveloper from "./pages/DashboardDeveloper/DashboardDeveloper";
 import ManageInventory from "./pages/ManageInventory/ManageInventory";
+import BanEmpresa from "./pages/BanEmpresas/BanEmpresas";
+import RestoreEmpresa from "./pages/RestoreEmpresa/RestoreEmpresa";
 
 function App() {
   const location = useLocation();
@@ -143,6 +145,8 @@ function App() {
         {/* developer */}
         <Route element={<RequireAuth authRoles={["developer", "admin"]} />}>
           <Route path="/dashboardDeveloper" element={<DashboardDeveloper />} />
+          <Route path="/to-ban" element={<BanEmpresa />} />
+          <Route path="/to-restore" element={<RestoreEmpresa />} />
         </Route>
 
         {/* sin nada */}
