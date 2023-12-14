@@ -56,7 +56,7 @@ const DeleteProductos = () => {
           icon: "success",
         });
         // Si el usuario ha confirmado, ejecuta la acción de borrar el producto
-        await dispatch(deleteProduct(id_producto, branch));
+        await dispatch(deleteProduct(id_producto, conditions?.sucursal));
         setFlagDeleteProduct(!flagDeleteProduct);
       }
     });
@@ -117,9 +117,13 @@ const DeleteProductos = () => {
                 </td>
                 <td className={Style.cell}>
                   <button
-                    onClick={() =>
-                      handleDeleteProduct(product?.PRODUCTO?.id_producto)
-                    }
+                    onClick={() => {
+                      setConditions({
+                        ...conditions,
+                        sucursal: product?.SUCURSAL.nombre_sucursal,
+                      });
+                      handleDeleteProduct(product?.PRODUCTO?.id_producto);
+                    }}
                   >
                     <FontAwesomeIcon icon={faTrash} />
                   </button>
