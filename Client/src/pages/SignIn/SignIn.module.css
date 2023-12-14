@@ -18,7 +18,12 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url("../../assets/3349370.jpg");
+  background: linear-gradient(
+    to bottom,
+    var(--curious-blue-900),
+    var(--curious-blue-500)
+  );
+  /* background-image: url("../../assets/3349370.jpg"); */
 }
 
 .containerForm {
