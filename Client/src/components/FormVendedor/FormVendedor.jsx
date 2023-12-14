@@ -1,25 +1,69 @@
 import { useState, useEffect } from "react";
 import Style from "./FormVendedor.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getDocuments, getSucursales, postSaleMen } from "../../redux/actions";
+import {
+  getDocuments,
+  getSucursales,
+  postSaleMen,
+  getGananciasSucursales,
+} from "../../redux/actions";
 import validations from "./validations";
+import { toast } from "react-hot-toast";
 
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 const FormVendedor = () => {
   const dispatch = useDispatch();
-  const { documents, sucursales } = useSelector((state) => state);
-  const { idBranch } = cookies.get("auth");
+  const { documents, sucursales, cantidadVendedores } = useSelector(
+    (state) => state
+  );
+  const { idBranch, subscription } = cookies.get("auth");
 
   const [form, setForm] = useState({});
-
+  const [flagCountVendedor, setFlagCountVendedor] = useState(true);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
+    dispatch(getGananciasSucursales(idBranch));
     dispatch(getDocuments());
     dispatch(getSucursales(idBranch));
   }, []);
+
+  useEffect(() => {
+    handleSubscription();
+  }, [form.vendedor_sucursal]);
+
+  const handleSubscription = () => {
+    let vendedor = cantidadVendedores.find(
+      (vendedor) => vendedor.id_sucursal == form.vendedor_sucursal
+    );
+    if (!vendedor) setFlagCountVendedor(true);
+
+    switch (subscription) {
+      case "free":
+        if (vendedor?.count >= 2) {
+          setFlagCountVendedor(false);
+          toast.error(
+            "Haz alcanzado el limite de vendedores con esta sucursal"
+          );
+        }
+        break;
+
+      case "basic":
+        if (vendedor?.count >= 4) {
+          setFlagCountVendedor(false);
+          toast.error(
+            "Haz alcanzado el limite de vendedores con esta sucursal"
+          );
+        }
+        break;
+      case "premium":
+        setFlagCountVendedor(true);
+        break;
+    }
+    console.log(flagCountVendedor, vendedor);
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -62,6 +106,7 @@ const FormVendedor = () => {
       !form.vendedor_sucursal ||
       !form.usuario_vendedor ||
       !form.contraseña_vendedor ||
+      !flagCountVendedor ||
       errors.primer_nombre ||
       errors.segundo_nombre ||
       errors.primer_apellido ||
