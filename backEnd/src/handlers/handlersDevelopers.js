@@ -14,7 +14,7 @@ const postSingUpDevelopersHandler = async (req, res) => {
     const { email, password } = req.body;
     const body = req.body;
 
-    console.log(body, "handlerrrrr");
+    // console.log(body, "handlerrrrr");
     const complete = await singUpDeveloper({ email, password });
 
     if (complete === "este usuario ya existe") {
