@@ -9,7 +9,7 @@ const {
 routeVentas = Router();
 
 routeVentas.post("/", getVentasHandler);
-routeVentas.post("/nuevaventa", postVentasHandler);
+routeVentas.post("/nueva-venta", postVentasHandler);
 routeVentas.get("/:id", getVentaDetailHandler);
 
 module.exports = routeVentas;

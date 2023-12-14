@@ -125,20 +125,28 @@ const getVentas = async ({ conditions, idBranch }) => {
   return handlerApiFormat(sales, pageNumber, count, limit);
 };
 
-const postVenta = async ({ body }) => {
-  const venta = await VENTA.create({
-    metodo_pago: body.payment,
-    venta_sucursal: body.sucursal,
+const postVenta = async ({ id_branch, nombre_sucursal, payment, products }) => {
+  const { id_sucursal } = await SUCURSAL.findOne({
+    attributes: ["id_sucursal"],
+    where: {
+      sucursal_empresa: id_branch,
+      nombre_sucursal: nombre_sucursal,
+    },
   });
 
-  venta.setSUCURSAL(body.sucursal);
-  venta.setCATALOGO_UNIVERSAL(body.payment);
+  const venta = await VENTA.create({
+    metodo_pago: payment,
+    venta_sucursal: id_sucursal,
+  });
 
-  body?.products.forEach(async (product) => {
+  venta.setSUCURSAL(id_sucursal);
+  venta.setCATALOGO_UNIVERSAL(payment);
+
+  products?.forEach(async (product) => {
     if (product.stock) {
       let detalleVenta = await DETALLES_VENTA.create({
         cantidad_producto: product.amount,
-        venta_producto: product.id_producto,
+        venta_producto: product.id,
         detalles_venta: venta.id_venta,
       });
 
@@ -147,13 +155,13 @@ const postVenta = async ({ body }) => {
 
       const invProd = await INVENTARIO_PRODUCTO.findOne({
         where: {
-          inventario_sucursal: body.sucursal,
+          inventario_sucursal: id_sucursal,
           inventario_producto: product.id,
         },
       });
 
       invProd.set({
-        stock: product.totalStock,
+        stock: product.stock - product.amount,
       });
 
       await invProd.save();
