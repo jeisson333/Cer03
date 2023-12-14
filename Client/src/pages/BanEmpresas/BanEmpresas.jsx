@@ -37,7 +37,7 @@ const BanEmpresa = () => {
         // Si el usuario ha confirmado, ejecuta la acción de borrar el producto
         // await dispatch(deleteProduct(id_producto, branch));
         // dispatch(getTotalEmpresas());
-        axios.delete(`${baseUrl}/developers/delete?branch=${id_empresa}`);
+        await axios.delete(`${baseUrl}/developers/delete?branch=${id_empresa}`);
         setFlagDeleteEmpresa(!flagDeleteEmpresa);
       }
     });
