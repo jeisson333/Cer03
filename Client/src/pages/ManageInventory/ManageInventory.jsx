@@ -13,6 +13,7 @@ const ManageInventory = () => {
   const dispatch = useDispatch();
   const { idBranch, branch } = cookies.get("auth");
   const [products, setProducts] = useState([]);
+  const [stockProduct, setStockProduct] = useState({});
   const totalPages = useSelector((state) => state.totalPages);
   const sucursales = useSelector((state) => state.sucursales);
   const [search, setSearch] = useState("");
@@ -39,7 +40,9 @@ const ManageInventory = () => {
     }
   }, [conditions, flagStockProduct]);
 
-  const handleEditStock = () => {
+  const handleEditStock = (product) => {
+    setStockProduct(product);
+    console.log(product);
     setFlagStockProduct(!flagStockProduct);
   };
   const handlerChange = (event) => {
@@ -99,7 +102,11 @@ const ManageInventory = () => {
                   {product?.SUCURSAL.nombre_sucursal}
                 </td>
                 <td className={Style.cell}>
-                  <button onClick={handleEditStock}>
+                  <button
+                    onClick={() => {
+                      handleEditStock(product);
+                    }}
+                  >
                     <CiEdit />
                   </button>
                 </td>
@@ -110,7 +117,7 @@ const ManageInventory = () => {
       </div>
       <div className={flagStockProduct ? Style.container : Style.closedModal}>
         <EditProduct
-          product={products}
+          product={stockProduct}
           sucursales={sucursales}
           modalEditProduc={handleEditStock}
         />

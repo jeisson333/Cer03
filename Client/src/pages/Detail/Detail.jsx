@@ -59,7 +59,6 @@ const Detail = () => {
   const handleDeleteProduct = async () => {
     Swal.fire({
       title: "¿Estás seguro?",
-      text: "¡No podrás revertir esto!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -129,7 +128,7 @@ const Detail = () => {
       </div>
       <div className={modalProduct ? style.container : style.closedModal}>
         <EditProduct
-          product={product}
+          product={product[0]}
           sucursales={sucursales}
           modalEditProduc={modalEditProduc}
         />

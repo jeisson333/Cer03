@@ -45,7 +45,6 @@ function Papelera() {
   const handleRestoreProduct = (id_inventario_producto) => {
     Swal.fire({
       title: "¿Estás seguro?",
-      text: "Restaurar",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",

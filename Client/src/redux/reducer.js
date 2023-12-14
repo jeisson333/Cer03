@@ -144,6 +144,8 @@ function reducer(state = initialState, action) {
           idUser: action.payload?.idUser,
           role: action.payload?.role,
           branch: action.payload?.branch,
+          subscription: action.payload?.subscription,
+          email: action.payload?.email,
         },
         { path: "/" }
       );
