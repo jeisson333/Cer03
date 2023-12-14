@@ -12,7 +12,6 @@ export default function Home() {
   const dispatch = useDispatch();
   const [sales, setSales] = useState([]);
   const { idBranch, role, branch } = cookies.get("auth");
-
   useEffect(() => {
     (async () => {
       try {
