@@ -11,6 +11,9 @@ import { toast } from "react-hot-toast";
 const client_id = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+// import {faArro}
 
 export default function SignIn() {
   const dispatch = useDispatch();
@@ -107,6 +110,11 @@ export default function SignIn() {
         <div className={Style.containerButton}>
           <NavLink to="/signUp">
             <button className={Style.SignUp}>Crear cuenta nueva</button>
+          </NavLink>
+        </div>
+        <div>
+          <NavLink to="/">
+          <a className={Style.goBack}><FontAwesomeIcon icon={faArrowLeft}/> Volver</a>
           </NavLink>
         </div>
       </form>

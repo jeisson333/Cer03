@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../redux/actions";
 import Style from "./SigInDeveloper.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { gapi } from "gapi-script";
 import { toast } from "react-hot-toast";
 const client_id = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function SignInDeveloper() {
   const dispatch = useDispatch();
@@ -76,6 +78,11 @@ export default function SignInDeveloper() {
             display: "flex",
           }}
         ></div>
+          <div className={Style.goBackDiv}>
+          <NavLink to="/">
+          <a className={Style.goBack}><FontAwesomeIcon icon={faArrowLeft}/> Volver</a>
+          </NavLink>
+        </div>
       </form>
     </div>
   );
