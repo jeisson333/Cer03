@@ -99,7 +99,7 @@ export default function SignIn() {
           <GoogleLogin
             onSuccess={onSucess}
             onError={onFailure}
-            width={"500px"}
+            width={"360px"}
             text="signin_with"
             useOneTap={false}
           ></GoogleLogin>
